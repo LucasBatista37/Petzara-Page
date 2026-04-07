@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom'
+import { appLoginUrl, appRegisterUrl, SUPPORT_EMAIL } from '../siteConfig'
+
 export default function Footer() {
     return (
         <footer className="bg-espresso text-white/60 py-12 relative overflow-hidden">
@@ -9,7 +12,7 @@ export default function Footer() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
                     {/* Brand */}
                     <div className="lg:col-span-1">
-                        <a href="#" className="flex items-center gap-2.5 mb-4">
+                        <Link to="/" className="flex items-center gap-2.5 mb-4">
                             <svg width="32" height="32" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" fill="#E07A5F" />
                                 <circle cx="160" cy="220" r="45" fill="#81B29A" />
@@ -17,9 +20,9 @@ export default function Footer() {
                                 <circle cx="352" cy="220" r="45" fill="#81B29A" />
                             </svg>
                             <span className="font-accent font-bold text-lg text-white">
-                                Pet<span className="text-terracotta">Care</span>
+                                Pet<span className="text-terracotta">zara</span>
                             </span>
-                        </a>
+                        </Link>
                         <p className="text-sm leading-relaxed max-w-xs">
                             O sistema de gestão completo para petshops focados em banho e tosa.
                         </p>
@@ -40,9 +43,9 @@ export default function Footer() {
                     <div>
                         <h4 className="font-accent font-bold text-white text-sm mb-4">Suporte</h4>
                         <ul className="space-y-2.5 text-sm">
-                            <li><a href="https://petcarezone.shop/login" target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors">Entrar</a></li>
-                            <li><a href="https://petcarezone.shop/register" target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors">Criar Conta</a></li>
-                            <li><a href="mailto:suporte@petcarezone.shop" className="hover:text-terracotta transition-colors">Contato</a></li>
+                            <li><a href={appLoginUrl} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors">Entrar</a></li>
+                            <li><a href={appRegisterUrl} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors">Criar Conta</a></li>
+                            <li><a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-terracotta transition-colors">Contato</a></li>
                         </ul>
                     </div>
 
@@ -50,8 +53,8 @@ export default function Footer() {
                     <div>
                         <h4 className="font-accent font-bold text-white text-sm mb-4">Legal</h4>
                         <ul className="space-y-2.5 text-sm">
-                            <li><a href="#" className="hover:text-terracotta transition-colors">Termos de Uso</a></li>
-                            <li><a href="#" className="hover:text-terracotta transition-colors">Política de Privacidade</a></li>
+                            <li><Link to="/termos-de-uso" className="hover:text-terracotta transition-colors">Termos de Uso</Link></li>
+                            <li><Link to="/politica-de-privacidade" className="hover:text-terracotta transition-colors">Política de Privacidade</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +62,7 @@ export default function Footer() {
                 {/* Divider + Copyright */}
                 <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p className="text-xs">
-                        © {new Date().getFullYear()} PetCare. Todos os direitos reservados.
+                        © {new Date().getFullYear()} Petzara. Todos os direitos reservados.
                     </p>
                     <div className="flex items-center gap-4">
                         <a

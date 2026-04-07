@@ -1,6 +1,16 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, Monitor, Smartphone } from 'lucide-react'
+import { APP_HOST, MARKETING_HOST } from '../siteConfig'
+
+/** Barra de endereço dos mocks: app para o sistema, domínio principal para página pública */
+function mockBrowserLine(screenTitle) {
+    if (screenTitle === 'Página Pública') {
+        return `${MARKETING_HOST}/petshop-da-ana`
+    }
+    const slug = screenTitle.toLowerCase().replace(/ /g, '-')
+    return `${APP_HOST}/${slug}`
+}
 
 const screens = [
     {
@@ -119,7 +129,7 @@ const screens = [
                         </svg>
                     </div>
                     <div className="font-accent font-bold text-sm text-espresso">PetShop da Ana</div>
-                    <div className="text-[10px] text-taupe">petcarezone.shop/petshop-da-ana</div>
+                    <div className="text-[10px] text-taupe">{MARKETING_HOST}/petshop-da-ana</div>
                 </div>
                 <div className="space-y-2">
                     <div className="text-xs font-bold text-espresso">Horários Disponíveis — Manhã</div>
@@ -219,7 +229,7 @@ export default function DemoSection() {
                                 </div>
                                 <div className="flex-1 mx-3">
                                     <div className="bg-white rounded-lg px-3 py-1 text-xs text-taupe/60 border border-sand/50 max-w-xs mx-auto">
-                                        petcarezone.shop/{screens[current].title.toLowerCase().replace(/ /g, '-')}
+                                        {mockBrowserLine(screens[current].title)}
                                     </div>
                                 </div>
                             </div>

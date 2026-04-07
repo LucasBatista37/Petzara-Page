@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { appRegisterUrl } from '../siteConfig'
 
 const navLinks = [
     { label: 'Problema', href: '#problema' },
@@ -38,7 +40,7 @@ export default function Navbar() {
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     {/* Logo */}
-                    <a href="#" className="flex items-center gap-2.5 group">
+                    <Link to="/" className="flex items-center gap-2.5 group">
                         <svg width="36" height="36" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform">
                             <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" fill="#E07A5F" />
                             <circle cx="160" cy="220" r="45" fill="#81B29A" />
@@ -46,9 +48,9 @@ export default function Navbar() {
                             <circle cx="352" cy="220" r="45" fill="#81B29A" />
                         </svg>
                         <span className="font-accent font-bold text-xl text-espresso">
-                            Pet<span className="text-terracotta">Care</span>
+                            Pet<span className="text-terracotta">zara</span>
                         </span>
-                    </a>
+                    </Link>
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-8">
@@ -62,7 +64,7 @@ export default function Navbar() {
                             </a>
                         ))}
                         <a
-                            href="https://petcarezone.shop/register"
+                            href={appRegisterUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-all hover:shadow-lg hover:shadow-terracotta/20 hover:-translate-y-0.5 active:translate-y-0"
@@ -118,7 +120,7 @@ export default function Navbar() {
                                 ))}
                                 <div className="mt-4 pt-4 border-t border-sand">
                                     <a
-                                        href="https://petcarezone.shop/register"
+                                        href={appRegisterUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="block text-center bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-6 py-3.5 rounded-xl transition-all"

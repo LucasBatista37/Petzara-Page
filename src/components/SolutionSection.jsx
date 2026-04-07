@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { CalendarCheck, PawPrint, LineChart, Globe, Users, Shield } from 'lucide-react'
+import { APP_HOST } from '../siteConfig'
 
 const features = [
     {
@@ -66,7 +67,7 @@ export default function SolutionSection() {
                     </span>
                     <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
                         Conheça o{' '}
-                        <span className="gradient-text">PetCare</span>
+                        <span className="gradient-text">Petzara</span>
                     </h2>
                     <p className="text-taupe text-lg leading-relaxed">
                         Tudo que você precisa para organizar, crescer e lucrar — em uma única plataforma feita para quem vive de banho e tosa.
@@ -115,7 +116,7 @@ export default function SolutionSection() {
                                 </div>
                                 <div className="flex-1 mx-3">
                                     <div className="bg-white rounded-lg px-3 py-1 text-xs text-taupe/60 border border-sand/50 max-w-xs">
-                                        petcarezone.shop/agendamentos
+                                        {APP_HOST}/agendamentos
                                     </div>
                                 </div>
                             </div>

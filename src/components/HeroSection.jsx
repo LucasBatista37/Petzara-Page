@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
+import { appRegisterUrl, APP_HOST } from '../siteConfig'
 
 export default function HeroSection() {
     return (
@@ -44,6 +45,9 @@ export default function HeroSection() {
                         </motion.div>
 
                         <h1 className="font-accent text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6">
+                            <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold text-terracotta tracking-tight mb-2">
+                                Petzara
+                            </span>
                             Seu petshop{' '}
                             <span className="gradient-text">organizado</span>.{' '}
                             <br className="hidden sm:block" />
@@ -57,7 +61,7 @@ export default function HeroSection() {
 
                         <div className="flex flex-col sm:flex-row gap-4">
                             <motion.a
-                                href="https://petcarezone.shop/register"
+                                href={appRegisterUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.03, y: -2 }}
@@ -116,7 +120,7 @@ export default function HeroSection() {
                                     </div>
                                     <div className="flex-1 mx-3">
                                         <div className="bg-white rounded-lg px-3 py-1 text-xs text-taupe/60 border border-sand/50 max-w-xs">
-                                            petcarezone.shop/dashboard
+                                            {APP_HOST}/dashboard
                                         </div>
                                     </div>
                                 </div>

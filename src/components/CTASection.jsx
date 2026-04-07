@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { ArrowRight, Check, Shield, Headphones, RefreshCw, CreditCard, Mail } from 'lucide-react'
+import { appRegisterUrl } from '../siteConfig'
 
 const trustItems = [
     { icon: Shield, label: 'Dados seguros na nuvem com criptografia' },
@@ -41,7 +42,7 @@ export default function CTASection() {
 
                         <div className="flex flex-col sm:flex-row gap-4 mb-8">
                             <motion.a
-                                href="https://petcarezone.shop/register"
+                                href={appRegisterUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.03, y: -2 }}
