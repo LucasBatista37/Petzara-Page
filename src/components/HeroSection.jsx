@@ -125,43 +125,13 @@ export default function HeroSection() {
                                     </div>
                                 </div>
 
-                                {/* Dashboard content mock */}
-                                <div className="p-5">
-                                    {/* Top stats */}
-                                    <div className="grid grid-cols-3 gap-3 mb-4">
-                                        {[
-                                            { label: 'Agendamentos', value: '24', color: 'bg-terracotta/10 text-terracotta' },
-                                            { label: 'Faturamento', value: 'R$3.850', color: 'bg-sage/10 text-sage-dark' },
-                                            { label: 'Pets Atendidos', value: '18', color: 'bg-terracotta/10 text-terracotta' },
-                                        ].map((stat) => (
-                                            <div key={stat.label} className={`rounded-xl p-3 ${stat.color}`}>
-                                                <div className="text-[10px] font-medium opacity-70">{stat.label}</div>
-                                                <div className="text-lg font-extrabold font-accent">{stat.value}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Schedule list */}
-                                    <div className="bg-cream rounded-xl p-3">
-                                        <div className="text-xs font-bold text-espresso mb-2">Hoje — Agendamentos</div>
-                                        {[
-                                            { time: '09:00', pet: 'Rex — Golden', service: 'Banho + Tosa', status: 'bg-sage/20 text-sage-dark', statusText: 'Concluído' },
-                                            { time: '10:30', pet: 'Luna — Shih Tzu', service: 'Banho Completo', status: 'bg-terracotta/20 text-terracotta', statusText: 'Em atendimento' },
-                                            { time: '14:00', pet: 'Mel — Poodle', service: 'Tosa Higiênica', status: 'bg-sand text-taupe', statusText: 'Agendado' },
-                                        ].map((item) => (
-                                            <div key={item.time} className="flex items-center gap-3 py-2 border-b border-sand/50 last:border-0 text-xs">
-                                                <span className="font-mono font-bold text-terracotta w-10">{item.time}</span>
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="font-semibold text-espresso truncate">{item.pet}</div>
-                                                    <div className="text-taupe text-[10px]">{item.service}</div>
-                                                </div>
-                                                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${item.status}`}>
-                                                    {item.statusText}
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                {/* Dashboard screenshot */}
+                                <img
+                                    src="/prints/dashboard.png"
+                                    alt="Dashboard Petzara"
+                                    className="w-full"
+                                    loading="eager"
+                                />
                             </div>
 
                             {/* Floating notification card */}

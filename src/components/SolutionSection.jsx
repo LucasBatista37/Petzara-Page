@@ -121,44 +121,13 @@ export default function SolutionSection() {
                                 </div>
                             </div>
 
-                            {/* Appointments mock */}
-                            <div className="p-5">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h3 className="font-accent font-bold text-sm text-espresso">Agendamentos — Hoje</h3>
-                                    <div className="flex gap-2">
-                                        <div className="px-3 py-1 bg-terracotta text-white text-[10px] font-bold rounded-lg">+ Novo</div>
-                                    </div>
-                                </div>
-
-                                {/* Table header */}
-                                <div className="grid grid-cols-5 gap-2 text-[10px] font-bold text-taupe uppercase tracking-wider pb-2 border-b border-sand/50">
-                                    <span>Horário</span>
-                                    <span>Pet</span>
-                                    <span>Tutor</span>
-                                    <span>Serviço</span>
-                                    <span>Status</span>
-                                </div>
-
-                                {/* Table rows */}
-                                {[
-                                    { time: '08:30', pet: 'Thor', tutor: 'Maria S.', service: 'Banho', status: 'Concluído', statusColor: 'bg-sage/20 text-sage-dark' },
-                                    { time: '09:00', pet: 'Bella', tutor: 'João P.', service: 'Banho + Tosa', status: 'Concluído', statusColor: 'bg-sage/20 text-sage-dark' },
-                                    { time: '10:30', pet: 'Luna', tutor: 'Ana C.', service: 'Tosa Higiênica', status: 'Em atend.', statusColor: 'bg-terracotta/20 text-terracotta' },
-                                    { time: '11:00', pet: 'Bob', tutor: 'Carlos M.', service: 'Banho', status: 'Agendado', statusColor: 'bg-sand text-taupe' },
-                                    { time: '14:00', pet: 'Mel', tutor: 'Paula R.', service: 'Banho + Tosa', status: 'Agendado', statusColor: 'bg-sand text-taupe' },
-                                    { time: '15:30', pet: 'Max', tutor: 'Lucas F.', service: 'Tosa Completa', status: 'Agendado', statusColor: 'bg-sand text-taupe' },
-                                ].map((row) => (
-                                    <div key={row.time + row.pet} className="grid grid-cols-5 gap-2 py-2.5 border-b border-sand/30 text-xs items-center">
-                                        <span className="font-mono font-bold text-terracotta">{row.time}</span>
-                                        <span className="font-semibold text-espresso">{row.pet}</span>
-                                        <span className="text-taupe">{row.tutor}</span>
-                                        <span className="text-taupe">{row.service}</span>
-                                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold text-center ${row.statusColor}`}>
-                                            {row.status}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
+                            {/* Agendamentos screenshot */}
+                            <img
+                                src="/prints/agendamentos_lista.png"
+                                alt="Lista de agendamentos Petzara"
+                                className="w-full"
+                                loading="lazy"
+                            />
                         </div>
                     </motion.div>
                 </div>
