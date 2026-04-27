@@ -106,9 +106,6 @@ export default function HeroSection() {
                         className="relative hidden lg:block"
                     >
                         <div className="relative">
-                            {/* Glow behind */}
-                            <div className="absolute -inset-4 bg-gradient-to-br from-terracotta/10 to-sage/10 rounded-3xl blur-2xl" />
-
                             {/* Main dashboard card */}
                             <div className="relative bg-white rounded-2xl shadow-2xl shadow-espresso/10 border border-sand/50 overflow-hidden">
                                 {/* Browser bar */}

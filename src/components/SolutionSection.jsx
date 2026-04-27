@@ -105,7 +105,6 @@ export default function SolutionSection() {
                         transition={{ duration: 0.7, delay: 0.4 }}
                         className="relative"
                     >
-                        <div className="absolute -inset-4 bg-gradient-to-br from-terracotta/10 to-sage/10 rounded-3xl blur-2xl" />
                         <div className="relative bg-white rounded-2xl shadow-2xl shadow-espresso/10 border border-sand/50 overflow-hidden">
                             {/* Browser bar */}
                             <div className="bg-cream-warm px-4 py-3 flex items-center gap-2 border-b border-sand/50">

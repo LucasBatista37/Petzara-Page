@@ -8,11 +8,10 @@ import HowItWorksSection from '../components/HowItWorksSection'
 import PricingSection from '../components/PricingSection'
 import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
-import MobileStickyCTA from '../components/MobileStickyCTA'
 
 export default function HomePage() {
     return (
-        <div className="min-h-screen bg-cream pb-[88px] md:pb-0">
+        <div className="min-h-screen bg-cream">
             <Navbar />
             <main>
                 <HeroSection />
@@ -25,7 +24,6 @@ export default function HomePage() {
                 <CTASection />
             </main>
             <Footer />
-            <MobileStickyCTA />
         </div>
     )
 }

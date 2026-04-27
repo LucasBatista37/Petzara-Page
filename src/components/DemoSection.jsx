@@ -166,36 +166,6 @@ export default function DemoSection() {
                         </div>
                     </div>
 
-                    {/* Screen title tabs — fade gradient nas duas pontas via mask-image */}
-                    <div
-                        className="flex gap-2 overflow-x-auto scrollbar-hide mb-6 pb-2"
-                        role="tablist"
-                        style={{
-                            WebkitMaskImage:
-                                'linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%)',
-                            maskImage:
-                                'linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%)',
-                        }}
-                    >
-                        {screens.map((s, i) => (
-                            <button
-                                key={s.title}
-                                role="tab"
-                                aria-selected={current === i}
-                                aria-controls={`panel-${i}`}
-                                id={`tab-${i}`}
-                                onClick={() => setCurrent(i)}
-                                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                                    current === i
-                                        ? 'bg-terracotta text-white shadow-lg shadow-terracotta/30 scale-105'
-                                        : 'bg-white text-taupe border border-sand hover:border-terracotta/30 hover:-translate-y-0.5 hover:shadow-sm'
-                                }`}
-                            >
-                                {s.title}
-                            </button>
-                        ))}
-                    </div>
-
                     {/* Frame area */}
                     {viewMode === 'desktop' ? (
                         /* ── Browser frame ── */
