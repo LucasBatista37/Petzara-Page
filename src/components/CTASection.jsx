@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { ArrowRight, Check, Shield, Headphones, RefreshCw, CreditCard, Mail } from 'lucide-react'
+import { ArrowRight, Check, Shield, Headphones, RefreshCw, CreditCard, Mail, Smartphone } from 'lucide-react'
 import { appRegisterUrl } from '../siteConfig'
 
 const trustItems = [
@@ -9,6 +9,7 @@ const trustItems = [
     { icon: RefreshCw, label: 'Atualizações constantes com novas funcionalidades' },
     { icon: CreditCard, label: 'Pagamento seguro processado pelo Stripe' },
     { icon: Mail, label: 'Verificação de e-mail para proteção da conta' },
+    { icon: Smartphone, label: 'Instala como app no Android (PWA + TWA)' },
 ]
 
 export default function CTASection() {
@@ -64,7 +65,7 @@ export default function CTASection() {
 
                         {/* Trust checklist */}
                         <div className="space-y-2.5">
-                            {['Teste grátis por 7 dias', 'Sem cartão de crédito', 'Cancele quando quiser', 'Suporte técnico incluso'].map((item) => (
+                            {['Teste grátis por 30 dias', 'Sem cartão de crédito', 'Cancele quando quiser', 'Suporte técnico incluso'].map((item) => (
                                 <div key={item} className="flex items-center gap-2.5 text-white/80 text-sm">
                                     <div className="w-5 h-5 bg-sage/20 rounded-full flex items-center justify-center shrink-0">
                                         <Check size={12} className="text-sage" />

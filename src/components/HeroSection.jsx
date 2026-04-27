@@ -85,7 +85,7 @@ export default function HeroSection() {
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-taupe">
                             <span className="flex items-center gap-1.5">
                                 <span className="w-2 h-2 bg-sage rounded-full"></span>
-                                Teste grátis por 7 dias
+                                Teste grátis por 30 dias
                             </span>
                             <span className="flex items-center gap-1.5">
                                 <span className="w-2 h-2 bg-sage rounded-full"></span>

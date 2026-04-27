@@ -1,43 +1,43 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { CalendarCheck, PawPrint, LineChart, Globe, Users, Shield } from 'lucide-react'
+import { CalendarCheck, Clock, LineChart, Palette, Users, MonitorSmartphone } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
 
 const features = [
     {
         icon: CalendarCheck,
         title: 'Agenda inteligente',
-        description: 'Controle visual de todos os agendamentos com prevenção automática de conflitos de horário.',
+        description: 'Controle visual em tempo real de todos os agendamentos com prevenção automática de conflitos. Atualizações sincronizadas entre dispositivos.',
         color: 'bg-terracotta/10 text-terracotta',
     },
     {
-        icon: PawPrint,
-        title: 'Cadastro completo',
-        description: 'Ficha detalhada com espécie, raça, porte, observações especiais e vínculo com o tutor.',
+        icon: Clock,
+        title: 'Agendamento 24h',
+        description: 'Página pública com URL do seu petshop. Clientes escolhem o horário e agendam sozinhos — sem te chamar no WhatsApp.',
         color: 'bg-sage/10 text-sage-dark',
     },
     {
         icon: LineChart,
         title: 'Financeiro integrado',
-        description: 'Receitas e despesas lado a lado, gráficos por categoria e saldo em tempo real.',
+        description: 'Receitas e despesas com gráficos por categoria. Cada agendamento finalizado já cria a transação financeira automaticamente.',
         color: 'bg-terracotta/10 text-terracotta',
     },
     {
-        icon: Globe,
-        title: 'Página pública',
-        description: 'URL exclusiva onde clientes veem horários disponíveis e agendam via WhatsApp.',
+        icon: Palette,
+        title: 'Tema com a sua marca',
+        description: 'Personalize as cores da sua página com 6 paletas. Seu link, seu visual — não parece sistema genérico.',
         color: 'bg-sage/10 text-sage-dark',
     },
     {
         icon: Users,
         title: 'Gestão de equipe',
-        description: 'Convide colaboradores, defina permissões e distribua a agenda entre banhistas.',
+        description: 'Convide colaboradores com permissões granulares (ler/criar/editar/excluir) por módulo. Cada banhista vê só o que precisa.',
         color: 'bg-terracotta/10 text-terracotta',
     },
     {
-        icon: Shield,
-        title: 'Seguro e confiável',
-        description: 'Dados na nuvem com criptografia. Nunca mais perca informações em cadernos.',
+        icon: MonitorSmartphone,
+        title: 'Funciona em tudo',
+        description: 'Celular, tablet e computador. Instala como app no Android sem precisar da Play Store. Sua equipe acessa de onde estiver.',
         color: 'bg-sage/10 text-sage-dark',
     },
 ]

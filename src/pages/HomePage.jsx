@@ -6,6 +6,7 @@ import BenefitsSection from '../components/BenefitsSection'
 import DemoSection from '../components/DemoSection'
 import HowItWorksSection from '../components/HowItWorksSection'
 import PricingSection from '../components/PricingSection'
+import FAQSection from '../components/FAQSection'
 import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
 
@@ -21,6 +22,7 @@ export default function HomePage() {
                 <DemoSection />
                 <HowItWorksSection />
                 <PricingSection />
+                <FAQSection />
                 <CTASection />
             </main>
             <Footer />

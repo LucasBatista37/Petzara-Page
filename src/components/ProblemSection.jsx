@@ -7,38 +7,38 @@ const problems = [
     {
         icon: CalendarX2,
         emoji: '⏰',
-        title: 'Conflitos de horário',
-        description: 'Dois pets marcados para o mesmo horário sem saber. Clientes irritados e retrabalho.',
+        title: 'O horário duplo que estraga o dia',
+        description: 'Dois tutores chegam ao mesmo tempo. Um vai embora irritado. Você ainda vai ouvir sobre isso no Google.',
     },
     {
         icon: DollarSign,
         emoji: '💸',
-        title: 'Sem visão financeira',
-        description: 'Não sabe quanto entra e quanto sai por mês. Decisões no escuro.',
+        title: 'Você fecha o caixa no chute',
+        description: 'No fim do mês soma as entradas no celular e reza pra dar lucro. Nunca tem certeza.',
     },
     {
         icon: Smartphone,
         emoji: '📱',
-        title: 'WhatsApp lotado',
-        description: 'Mensagens pessoais misturadas com agendamentos. Informações se perdem.',
+        title: 'O WhatsApp virou o sistema',
+        description: 'Agendamentos, confirmações, reclamações e áudios de voz misturados. Qualquer hora você perde um horário importante.',
     },
     {
         icon: Users,
         emoji: '👥',
-        title: 'Equipe no escuro',
-        description: 'Colaboradores dependem do dono para ver a agenda. Gargalo operacional.',
+        title: 'Banhista chega sem saber a agenda',
+        description: 'Sua equipe depende de você para saber o que tem no dia. Você responde mensagem antes de tomar café.',
     },
     {
         icon: Clock,
         emoji: '🕐',
-        title: 'Tempo desperdiçado',
-        description: 'Horas gastas organizando cadernos e planilhas em vez de atender mais pets.',
+        title: 'Horas que poderiam ser pets atendidos',
+        description: 'Cada hora atualizando planilha é um banho que não foi feito e um cliente que esperou.',
     },
     {
         icon: BarChart3,
         emoji: '📊',
-        title: 'Sem dados',
-        description: 'Não sabe qual serviço mais vende, qual horário é pico ou se está lucrando.',
+        title: 'Você não sabe o que mais lucra',
+        description: 'Tosa completa ou banho simples? Terça ou sábado? Sem dados é chute, e chute custa dinheiro.',
     },
 ]
 
@@ -103,7 +103,7 @@ export default function ProblemSection() {
                     className="text-center mt-12"
                 >
                     <p className="text-taupe text-base italic">
-                        "Você anota no caderno, recebe mensagens no WhatsApp, e no final do mês não sabe se deu lucro ou prejuízo."
+                        "Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro."
                     </p>
                 </motion.div>
             </div>

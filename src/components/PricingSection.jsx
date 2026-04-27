@@ -136,7 +136,7 @@ export default function PricingSection() {
                             </a>
 
                             <p className="mt-4 text-center text-taupe text-xs">
-                                7 dias grátis · Sem cartão · Cancele quando quiser
+                                30 dias grátis · Sem cartão · Cancele quando quiser
                             </p>
                         </motion.div>
                     ))}
