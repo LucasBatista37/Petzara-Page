@@ -8,7 +8,7 @@ const screens = [
         title: 'Dashboard',
         description: 'Visão completa do seu negócio em tempo real',
         desktopImage: '/prints/dashboard.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/dashboard.png',
         imageAlt: 'Dashboard Petzara',
         browserPath: `${APP_HOST}/dashboard`,
     },
@@ -16,7 +16,7 @@ const screens = [
         title: 'Agendamentos',
         description: 'Visualize e gerencie todos os atendimentos do dia',
         desktopImage: '/prints/agendamentos_calendario.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/agendamentos.png',
         imageAlt: 'Calendário de agendamentos Petzara',
         browserPath: `${APP_HOST}/agendamentos`,
     },
@@ -24,7 +24,7 @@ const screens = [
         title: 'Serviços',
         description: 'Configure serviços, preços e duração de cada atendimento',
         desktopImage: '/prints/servicos.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/servicos.png',
         imageAlt: 'Serviços configurados no Petzara',
         browserPath: `${APP_HOST}/servicos`,
     },
@@ -32,7 +32,7 @@ const screens = [
         title: 'Clientes',
         description: 'Ficha completa de cada tutor com histórico de atendimentos',
         desktopImage: '/prints/clientes_lista.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/clientes.png',
         imageAlt: 'Lista de clientes Petzara',
         browserPath: `${APP_HOST}/clientes`,
     },
@@ -40,7 +40,7 @@ const screens = [
         title: 'Pets',
         description: 'Cadastro detalhado com raça, porte e observações especiais',
         desktopImage: '/prints/pets_card.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/pets.png',
         imageAlt: 'Pets cadastrados no Petzara',
         browserPath: `${APP_HOST}/pets`,
     },
@@ -48,7 +48,7 @@ const screens = [
         title: 'Colaboradores',
         description: 'Gerencie sua equipe e distribua a agenda entre banhistas',
         desktopImage: '/prints/colaboradores_lista.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/colaboradores.png',
         imageAlt: 'Colaboradores Petzara',
         browserPath: `${APP_HOST}/colaboradores`,
     },
@@ -56,7 +56,7 @@ const screens = [
         title: 'Financeiro',
         description: 'Dashboard financeiro com receitas e despesas',
         desktopImage: '/prints/gestao_financeira_dashboard.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/gestao_financeira_dashboard.png',
         imageAlt: 'Dashboard financeiro Petzara',
         browserPath: `${APP_HOST}/financeiro`,
     },
@@ -64,7 +64,7 @@ const screens = [
         title: 'Contas a Receber',
         description: 'Controle de todas as receitas e pagamentos pendentes',
         desktopImage: '/prints/gestao_financeira_contas_a_receber.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/gestao_financeira_contas_a_receber.png',
         imageAlt: 'Contas a receber Petzara',
         browserPath: `${APP_HOST}/financeiro/contas-a-receber`,
     },
@@ -72,7 +72,7 @@ const screens = [
         title: 'Despesas',
         description: 'Registre e categorize todas as saídas do negócio',
         desktopImage: '/prints/gestao_financeira_despesas.png',
-        mobileImage: null,
+        mobileImage: '/prints/mobile/gestao_financeira_despesas.png',
         imageAlt: 'Despesas Petzara',
         browserPath: `${APP_HOST}/financeiro/despesas`,
     },
@@ -166,30 +166,34 @@ export default function DemoSection() {
                         </div>
                     </div>
 
-                    {/* Screen title tabs — single row scrollable */}
-                    <div className="relative mb-6">
-                        <div className="overflow-x-auto scrollbar-hide" role="tablist">
-                            <div className="flex gap-2 pb-2 px-1 w-max mx-auto">
-                                {screens.map((s, i) => (
-                                    <button
-                                        key={s.title}
-                                        role="tab"
-                                        aria-selected={current === i}
-                                        aria-controls={`panel-${i}`}
-                                        id={`tab-${i}`}
-                                        onClick={() => setCurrent(i)}
-                                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                                            current === i
-                                                ? 'bg-terracotta text-white shadow-md'
-                                                : 'bg-white text-taupe border border-sand hover:border-terracotta/30'
-                                        }`}
-                                    >
-                                        {s.title}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-cream-warm to-transparent" />
+                    {/* Screen title tabs — fade gradient nas duas pontas via mask-image */}
+                    <div
+                        className="flex gap-2 overflow-x-auto scrollbar-hide mb-6 pb-2"
+                        role="tablist"
+                        style={{
+                            WebkitMaskImage:
+                                'linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%)',
+                            maskImage:
+                                'linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%)',
+                        }}
+                    >
+                        {screens.map((s, i) => (
+                            <button
+                                key={s.title}
+                                role="tab"
+                                aria-selected={current === i}
+                                aria-controls={`panel-${i}`}
+                                id={`tab-${i}`}
+                                onClick={() => setCurrent(i)}
+                                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                                    current === i
+                                        ? 'bg-terracotta text-white shadow-lg shadow-terracotta/30 scale-105'
+                                        : 'bg-white text-taupe border border-sand hover:border-terracotta/30 hover:-translate-y-0.5 hover:shadow-sm'
+                                }`}
+                            >
+                                {s.title}
+                            </button>
+                        ))}
                     </div>
 
                     {/* Frame area */}
@@ -214,10 +218,10 @@ export default function DemoSection() {
                                     <img src={screen.desktopImage} alt={screen.imageAlt} className="w-full" loading="lazy" />
                                 </div>
                             </div>
-                            <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all hidden sm:flex">
+                            <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                 <ChevronLeft size={20} aria-hidden="true" />
                             </button>
-                            <button onClick={next} aria-label="Próxima tela" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all hidden sm:flex">
+                            <button onClick={next} aria-label="Próxima tela" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                 <ChevronRight size={20} aria-hidden="true" />
                             </button>
                         </div>
@@ -251,10 +255,10 @@ export default function DemoSection() {
                                         )}
                                     </div>
                                 </div>
-                                <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full -ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all hidden sm:flex">
+                                <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 sm:-translate-x-full sm:-ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                     <ChevronLeft size={20} aria-hidden="true" />
                                 </button>
-                                <button onClick={next} aria-label="Próxima tela" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all hidden sm:flex">
+                                <button onClick={next} aria-label="Próxima tela" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 sm:translate-x-full sm:ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                     <ChevronRight size={20} aria-hidden="true" />
                                 </button>
                             </div>

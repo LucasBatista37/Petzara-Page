@@ -5,6 +5,7 @@ import SolutionSection from '../components/SolutionSection'
 import BenefitsSection from '../components/BenefitsSection'
 import DemoSection from '../components/DemoSection'
 import HowItWorksSection from '../components/HowItWorksSection'
+import PricingSection from '../components/PricingSection'
 import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
 import MobileStickyCTA from '../components/MobileStickyCTA'
@@ -20,6 +21,7 @@ export default function HomePage() {
                 <BenefitsSection />
                 <DemoSection />
                 <HowItWorksSection />
+                <PricingSection />
                 <CTASection />
             </main>
             <Footer />

@@ -9,6 +9,7 @@ const navLinks = [
     { label: 'Solução', href: '#solucao' },
     { label: 'Benefícios', href: '#beneficios' },
     { label: 'Como Funciona', href: '#como-funciona' },
+    { label: 'Preços', href: '#precos' },
 ]
 
 export default function Navbar() {

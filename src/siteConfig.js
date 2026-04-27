@@ -9,6 +9,10 @@ export const SUPPORT_EMAIL = 'suporte@petzara.app'
 export const appRegisterUrl = `${APP_ORIGIN}/register`
 export const appLoginUrl = `${APP_ORIGIN}/login`
 
+/** Stripe Payment Links — substituir pelas URLs reais quando criadas no dashboard Stripe */
+export const stripeMonthlyUrl = `${appRegisterUrl}?plan=monthly`
+export const stripeAnnualUrl = `${appRegisterUrl}?plan=annual`
+
 export const marketingUrl = (path = '') =>
     `${MARKETING_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`
 
