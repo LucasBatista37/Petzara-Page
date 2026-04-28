@@ -1,7 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { ArrowRight, Check, Shield, Headphones, RefreshCw, CreditCard, Mail, Smartphone } from 'lucide-react'
-import { appRegisterUrl } from '../siteConfig'
+import { appRegisterUrl, whatsappDemoUrl } from '../siteConfig'
 
 const trustItems = [
     { icon: Shield, label: 'Dados seguros na nuvem com criptografia' },
@@ -54,12 +54,14 @@ export default function CTASection() {
                                 <ArrowRight size={18} />
                             </motion.a>
                             <motion.a
-                                href="#demo"
+                                href={whatsappDemoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ scale: 1.03 }}
                                 whileTap={{ scale: 0.98 }}
                                 className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-bold text-base px-8 py-4 rounded-2xl transition-all hover:bg-white/15"
                             >
-                                Ver demonstração
+                                Agendar demonstração
                             </motion.a>
                         </div>
 

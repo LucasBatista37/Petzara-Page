@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { appLoginUrl, appRegisterUrl, SUPPORT_EMAIL } from '../siteConfig'
+import { appLoginUrl, appRegisterUrl, SUPPORT_EMAIL, instagramUrl, whatsappSupportUrl } from '../siteConfig'
 
 export default function Footer() {
     return (
@@ -66,7 +66,7 @@ export default function Footer() {
                     </p>
                     <div className="flex items-center gap-4">
                         <a
-                            href="https://www.instagram.com/"
+                            href={instagramUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center hover:bg-terracotta/20 hover:text-terracotta transition-all"
@@ -77,7 +77,7 @@ export default function Footer() {
                             </svg>
                         </a>
                         <a
-                            href="https://wa.me/"
+                            href={whatsappSupportUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center hover:bg-sage/20 hover:text-sage transition-all"
