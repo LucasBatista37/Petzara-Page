@@ -43,7 +43,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
-            className="border border-sand/60 rounded-2xl overflow-hidden bg-white"
+            className={`rounded-2xl overflow-hidden bg-white transition-all duration-300 ${isOpen ? 'border border-terracotta/30 shadow-sm shadow-terracotta/5' : 'border border-sand/60'}`}
         >
             <button
                 onClick={onToggle}
@@ -87,8 +87,12 @@ export default function FAQSection() {
     const toggle = (index) => setOpenIndex(openIndex === index ? null : index)
 
     return (
-        <section id="faq" className="py-20 sm:py-28 relative">
-            <div className="absolute inset-0 bg-gradient-to-b from-cream-warm to-cream pointer-events-none" />
+        <section id="faq" className="py-20 sm:py-28 relative overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 right-0 w-72 h-72 bg-terracotta/4 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-80 h-80 bg-sage/4 rounded-full blur-3xl" />
+            </div>
 
             <div ref={ref} className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div

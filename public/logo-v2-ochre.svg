@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with very soft squircle -->
+  <rect width="512" height="512" rx="160" fill="#F4F1DE" />
+  
+  <!-- Stylized Organic Paw -->
+  <!-- Main pad (Ochre) -->
+  <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" fill="#BC6C25"/>
+  
+  <!-- Toes -->
+  <circle cx="160" cy="220" r="45" fill="#DDA15E" /> <!-- Secondary -->
+  <circle cx="256" cy="170" r="50" fill="#BC6C25" /> <!-- Primary -->
+  <circle cx="352" cy="220" r="45" fill="#DDA15E" /> <!-- Secondary -->
+</svg>

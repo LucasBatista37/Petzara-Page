@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
@@ -14,11 +14,28 @@ const navLinks = [
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
+    const [visible, setVisible] = useState(true)
     const [mobileOpen, setMobileOpen] = useState(false)
+    const mobileOpenRef = useRef(false)
+
+    // keep ref in sync so the scroll handler always reads the latest value
+    useEffect(() => { mobileOpenRef.current = mobileOpen }, [mobileOpen])
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 20)
-        window.addEventListener('scroll', onScroll)
+        let lastY = window.scrollY
+
+        const onScroll = () => {
+            const currentY = window.scrollY
+            setScrolled(currentY > 20)
+            if (mobileOpenRef.current || currentY < 60 || currentY < lastY) {
+                setVisible(true)
+            } else if (currentY > lastY + 4) {
+                setVisible(false)
+            }
+            lastY = currentY
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
@@ -33,7 +50,9 @@ export default function Navbar() {
 
     return (
         <>
-            <nav
+            <motion.nav
+                animate={{ y: visible ? 0 : '-110%' }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
                     ? 'glass border-b border-sand/50 shadow-sm py-3'
                     : 'bg-transparent py-5'
@@ -42,11 +61,12 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2.5 group">
-                        <svg width="36" height="36" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform">
-                            <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" fill="#E07A5F" />
-                            <circle cx="160" cy="220" r="45" fill="#81B29A" />
-                            <circle cx="256" cy="170" r="50" fill="#E07A5F" />
-                            <circle cx="352" cy="220" r="45" fill="#81B29A" />
+                        <svg width="36" height="36" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform" style={{ transition: 'transform 0.2s' }}>
+                            <rect width="512" height="512" rx="160" fill="#F4F1DE" />
+                            <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" style={{ fill: 'var(--color-terracotta)', transition: 'fill 0.5s ease' }} />
+                            <circle cx="160" cy="220" r="45" style={{ fill: 'var(--color-sage)', transition: 'fill 0.5s ease' }} />
+                            <circle cx="256" cy="170" r="50" style={{ fill: 'var(--color-terracotta)', transition: 'fill 0.5s ease' }} />
+                            <circle cx="352" cy="220" r="45" style={{ fill: 'var(--color-sage)', transition: 'fill 0.5s ease' }} />
                         </svg>
                         <span className="font-accent font-bold text-xl text-espresso">
                             Pet<span className="text-terracotta">zara</span>
@@ -84,7 +104,7 @@ export default function Navbar() {
                         {mobileOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
                     </button>
                 </div>
-            </nav>
+            </motion.nav>
 
             {/* Mobile Menu Overlay */}
             <AnimatePresence>

@@ -42,6 +42,7 @@ export default function PricingSection() {
 
     return (
         <section id="precos" className="py-20 sm:py-28 relative overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 left-1/3 w-96 h-96 bg-terracotta/5 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-sage/5 rounded-full blur-3xl" />

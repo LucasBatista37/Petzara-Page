@@ -6,6 +6,7 @@ export default function HeroSection() {
     return (
         <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-20">
             {/* Background decorations */}
+            <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-20 left-[10%] w-72 h-72 bg-terracotta/5 rounded-full blur-3xl" />
                 <div className="absolute bottom-20 right-[10%] w-96 h-96 bg-sage/5 rounded-full blur-3xl" />

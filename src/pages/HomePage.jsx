@@ -15,7 +15,7 @@ export default function HomePage() {
     return (
         <div className="min-h-screen bg-cream">
             <Navbar />
-            <main>
+            <main className="bg-gradient-to-b from-cream via-cream-warm to-cream">
                 <HeroSection />
                 <ProblemSection />
                 <SolutionSection />

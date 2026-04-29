@@ -47,8 +47,12 @@ export default function ProblemSection() {
     const isInView = useInView(ref, { once: true, margin: '-100px' })
 
     return (
-        <section id="problema" className="py-20 sm:py-28 relative">
-            <div className="absolute inset-0 bg-gradient-to-b from-cream via-cream-warm to-cream pointer-events-none" />
+        <section id="problema" className="py-20 sm:py-28 relative overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 right-[10%] w-80 h-80 bg-terracotta/4 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-[5%] w-96 h-96 bg-sage/4 rounded-full blur-3xl" />
+            </div>
 
             <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
@@ -95,16 +99,19 @@ export default function ProblemSection() {
                     ))}
                 </div>
 
-                {/* Bottom message */}
+                {/* Bottom callout */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.8 }}
-                    className="text-center mt-12"
+                    className="mt-12 max-w-2xl mx-auto"
                 >
-                    <p className="text-taupe text-base italic">
-                        "Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro."
-                    </p>
+                    <div className="bg-white border border-sand/60 rounded-2xl px-8 py-6 flex gap-4 items-start shadow-sm">
+                        <span className="text-2xl mt-0.5 shrink-0">💬</span>
+                        <p className="text-taupe text-base italic leading-relaxed">
+                            "Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro."
+                        </p>
+                    </div>
                 </motion.div>
             </div>
         </section>

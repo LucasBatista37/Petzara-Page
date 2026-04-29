@@ -28,8 +28,12 @@ export default function HowItWorksSection() {
     const isInView = useInView(ref, { once: true, margin: '-100px' })
 
     return (
-        <section id="como-funciona" className="py-20 sm:py-28 relative">
-            <div className="absolute inset-0 bg-gradient-to-b from-cream-warm via-cream to-cream pointer-events-none" />
+        <section id="como-funciona" className="py-20 sm:py-28 relative overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-terracotta/4 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-sage/4 rounded-full blur-3xl" />
+            </div>
 
             <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
@@ -65,11 +69,11 @@ export default function HowItWorksSection() {
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                                     transition={{ duration: 0.5, delay: index * 0.2 }}
-                                    className="relative text-center"
+                                    className="relative"
                                 >
-                                    {/* Step number circle */}
-                                    <div className="relative z-10 mx-auto mb-6">
-                                        <div className="w-20 h-20 bg-white rounded-2xl shadow-lg shadow-terracotta/10 border border-sand/50 flex items-center justify-center mx-auto relative group hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                    {/* Step icon */}
+                                    <div className="relative z-10 mb-6 flex justify-center">
+                                        <div className="w-20 h-20 bg-white rounded-2xl shadow-lg shadow-terracotta/10 border border-sand/50 flex items-center justify-center relative hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                             <Icon size={32} className="text-terracotta" strokeWidth={1.5} />
                                             <div className="absolute -top-2 -right-2 w-7 h-7 bg-terracotta text-white rounded-lg flex items-center justify-center text-xs font-extrabold shadow-md">
                                                 {step.number}
@@ -77,12 +81,15 @@ export default function HowItWorksSection() {
                                         </div>
                                     </div>
 
-                                    <h3 className="font-accent font-bold text-xl text-espresso mb-2">
-                                        {step.title}
-                                    </h3>
-                                    <p className="text-taupe text-sm leading-relaxed max-w-xs mx-auto">
-                                        {step.description}
-                                    </p>
+                                    {/* Card */}
+                                    <div className="bg-white rounded-2xl p-6 border border-sand/60 shadow-sm text-center hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                                        <h3 className="font-accent font-bold text-xl text-espresso mb-2">
+                                            {step.title}
+                                        </h3>
+                                        <p className="text-taupe text-sm leading-relaxed">
+                                            {step.description}
+                                        </p>
+                                    </div>
                                 </motion.div>
                             )
                         })}
