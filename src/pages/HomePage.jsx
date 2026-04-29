@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
 import ProblemSection from '../components/ProblemSection'
 import SolutionSection from '../components/SolutionSection'
+import ColorPaletteSection from '../components/ColorPaletteSection'
 import BenefitsSection from '../components/BenefitsSection'
 import DemoSection from '../components/DemoSection'
 import HowItWorksSection from '../components/HowItWorksSection'
@@ -18,6 +19,7 @@ export default function HomePage() {
                 <HeroSection />
                 <ProblemSection />
                 <SolutionSection />
+                <ColorPaletteSection />
                 <BenefitsSection />
                 <DemoSection />
                 <HowItWorksSection />
