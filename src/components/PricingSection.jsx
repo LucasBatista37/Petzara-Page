@@ -1,7 +1,7 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Check, Sparkles, ArrowRight } from 'lucide-react'
 import { stripeMonthlyUrl, stripeAnnualUrl } from '../siteConfig'
+import { useResponsiveInView } from '../animations/variants'
 
 const features = [
     'Agendamentos ilimitados',
@@ -37,8 +37,7 @@ const plans = [
 ]
 
 export default function PricingSection() {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-100px' })
+    const { ref, isInView, isMobile } = useResponsiveInView()
 
     return (
         <section id="precos" className="py-20 sm:py-28 relative overflow-hidden">
@@ -72,7 +71,7 @@ export default function PricingSection() {
                             key={plan.name}
                             initial={{ opacity: 0, y: 20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.6, delay: 0.2 + idx * 0.1 }}
+                            transition={{ duration: 0.6, delay: isMobile ? idx * 0.08 : 0.2 + idx * 0.1 }}
                             className={`relative bg-white rounded-2xl p-8 transition-all hover:-translate-y-1 ${
                                 plan.highlighted
                                     ? 'border-2 border-terracotta shadow-xl shadow-terracotta/15'

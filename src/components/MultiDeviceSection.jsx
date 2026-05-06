@@ -1,6 +1,6 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Monitor, Smartphone, Download, RefreshCw } from 'lucide-react'
+import { useResponsiveInView } from '../animations/variants'
 
 const pills = [
     { icon: Smartphone, label: 'Android & iOS' },
@@ -10,8 +10,7 @@ const pills = [
 ]
 
 export default function MultiDeviceSection() {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-100px' })
+    const { ref, isInView } = useResponsiveInView()
 
     const fadeUp = (delay = 0) => ({
         initial: { opacity: 0, y: 30 },

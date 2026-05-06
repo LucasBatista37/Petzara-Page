@@ -1,6 +1,7 @@
-import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { CalendarCheck, PawPrint, Wallet, Globe, Users, BarChart3 } from 'lucide-react'
+import { ease, useResponsiveInView } from '../animations/variants'
 
 const benefits = [
     {
@@ -41,9 +42,72 @@ const benefits = [
     },
 ]
 
-export default function BenefitsSection() {
+// Hook de tilt 3D — desativado em touch para não interferir com scroll
+function useTilt(disabled = false) {
     const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-100px' })
+    const x = useMotionValue(0)
+    const y = useMotionValue(0)
+    const rotateX = useTransform(y, [-0.5, 0.5], [5, -5])
+    const rotateY = useTransform(x, [-0.5, 0.5], [-5, 5])
+
+    if (disabled) return { ref, style: {}, onMouseMove: undefined, onMouseLeave: undefined }
+
+    const onMouseMove = (e) => {
+        const rect = ref.current?.getBoundingClientRect()
+        if (!rect) return
+        x.set((e.clientX - rect.left) / rect.width - 0.5)
+        y.set((e.clientY - rect.top) / rect.height - 0.5)
+    }
+    const onMouseLeave = () => { x.set(0); y.set(0) }
+
+    return { ref, style: { rotateX, rotateY, transformPerspective: 900 }, onMouseMove, onMouseLeave }
+}
+
+function BenefitCard({ benefit, index, isInView, isMobile }) {
+    const isTerracotta = benefit.color === 'terracotta'
+    const Icon = benefit.icon
+    const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+    const tilt = useTilt(isTouchDevice)
+
+    // Mobile: stagger mais curto para não perder a animação no scroll
+    const cardDelay  = isMobile ? index * 0.06        : index * 0.1
+    const iconDelay  = isMobile ? index * 0.06 + 0.10 : index * 0.1 + 0.18
+
+    return (
+        <motion.div
+            ref={tilt.ref}
+            style={tilt.style}
+            onMouseMove={tilt.onMouseMove}
+            onMouseLeave={tilt.onMouseLeave}
+            initial={{ opacity: 0, y: 28 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, delay: cardDelay, ease }}
+            className="group bg-white rounded-2xl p-7 border border-sand/60 hover:border-terracotta/30 hover:shadow-xl hover:shadow-terracotta/5 transition-colors duration-300 cursor-default"
+        >
+            {/* Ícone com spring pop */}
+            <motion.div
+                initial={{ scale: 0, rotate: -12 }}
+                animate={isInView ? { scale: 1, rotate: 0 } : {}}
+                transition={{ type: 'spring', stiffness: 220, damping: 12, delay: iconDelay }}
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${
+                    isTerracotta ? 'bg-terracotta/10 text-terracotta' : 'bg-sage/10 text-sage-dark'
+                }`}
+            >
+                <Icon size={26} strokeWidth={2} />
+            </motion.div>
+
+            <h3 className="font-accent font-bold text-lg text-espresso mb-2">
+                {benefit.title}
+            </h3>
+            <p className="text-taupe text-sm leading-relaxed">
+                {benefit.description}
+            </p>
+        </motion.div>
+    )
+}
+
+export default function BenefitsSection() {
+    const { ref, isInView, isMobile } = useResponsiveInView()
 
     return (
         <section id="beneficios" className="py-20 sm:py-28 relative overflow-hidden">
@@ -58,7 +122,7 @@ export default function BenefitsSection() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.6, ease }}
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
                     <span className="inline-block bg-terracotta/10 text-terracotta px-4 py-1.5 rounded-full text-sm font-bold mb-4">
@@ -75,30 +139,15 @@ export default function BenefitsSection() {
 
                 {/* Benefits Grid */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-                    {benefits.map((benefit, index) => {
-                        const Icon = benefit.icon
-                        const isTerracotta = benefit.color === 'terracotta'
-                        return (
-                            <motion.div
-                                key={benefit.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group bg-white rounded-2xl p-7 border border-sand/60 hover:border-terracotta/30 hover:shadow-xl hover:shadow-terracotta/5 transition-all duration-300 hover:-translate-y-1.5"
-                            >
-                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110 ${isTerracotta ? 'bg-terracotta/10 text-terracotta' : 'bg-sage/10 text-sage-dark'
-                                    }`}>
-                                    <Icon size={26} strokeWidth={2} />
-                                </div>
-                                <h3 className="font-accent font-bold text-lg text-espresso mb-2">
-                                    {benefit.title}
-                                </h3>
-                                <p className="text-taupe text-sm leading-relaxed">
-                                    {benefit.description}
-                                </p>
-                            </motion.div>
-                        )
-                    })}
+                    {benefits.map((benefit, index) => (
+                        <BenefitCard
+                            key={benefit.title}
+                            benefit={benefit}
+                            index={index}
+                            isInView={isInView}
+                            isMobile={isMobile}
+                        />
+                    ))}
                 </div>
             </div>
         </section>

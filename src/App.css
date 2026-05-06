@@ -118,6 +118,19 @@
   z-index: 1;
 }
 
+/* CTA section — gradient vivo */
+@keyframes gradient-shift {
+  0%,
+  100% { background-position: 0% 50%; }
+  50%   { background-position: 100% 50%; }
+}
+
+.cta-gradient-bg {
+  background: linear-gradient(135deg, #2C2421, #3a302c, #2C2421, #2a2620);
+  background-size: 300% 300%;
+  animation: gradient-shift 10s ease infinite;
+}
+
 /* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
 

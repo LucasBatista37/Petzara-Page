@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { appRegisterUrl } from '../siteConfig'
 
@@ -13,20 +13,23 @@ const navLinks = [
 ]
 
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false)
     const [visible, setVisible] = useState(true)
     const [mobileOpen, setMobileOpen] = useState(false)
     const mobileOpenRef = useRef(false)
 
-    // keep ref in sync so the scroll handler always reads the latest value
+    // Progressive blur via useScroll — substitui a troca binária
+    const { scrollY } = useScroll()
+    const blur = useTransform(scrollY, [0, 90], [0, 18])
+    const bgOpacity = useTransform(scrollY, [0, 90], [0, 0.92])
+    const borderOpacity = useTransform(scrollY, [0, 90], [0, 0.25])
+    const shadowOpacity = useTransform(scrollY, [0, 90], [0, 0.06])
+
     useEffect(() => { mobileOpenRef.current = mobileOpen }, [mobileOpen])
 
     useEffect(() => {
         let lastY = window.scrollY
-
         const onScroll = () => {
             const currentY = window.scrollY
-            setScrolled(currentY > 20)
             if (mobileOpenRef.current || currentY < 60 || currentY < lastY) {
                 setVisible(true)
             } else if (currentY > lastY + 4) {
@@ -34,17 +37,12 @@ export default function Navbar() {
             }
             lastY = currentY
         }
-
         window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
     useEffect(() => {
-        if (mobileOpen) {
-            document.body.style.overflow = 'hidden'
-        } else {
-            document.body.style.overflow = ''
-        }
+        document.body.style.overflow = mobileOpen ? 'hidden' : ''
         return () => { document.body.style.overflow = '' }
     }, [mobileOpen])
 
@@ -53,10 +51,14 @@ export default function Navbar() {
             <motion.nav
                 animate={{ y: visible ? 0 : '-110%' }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                    ? 'glass border-b border-sand/50 shadow-sm py-3'
-                    : 'bg-transparent py-5'
-                    }`}
+                style={{
+                    backdropFilter: useTransform(blur, (v) => `blur(${v}px)`),
+                    WebkitBackdropFilter: useTransform(blur, (v) => `blur(${v}px)`),
+                    backgroundColor: useTransform(bgOpacity, (v) => `rgba(250, 250, 249, ${v})`),
+                    borderBottomColor: useTransform(borderOpacity, (v) => `rgba(0,0,0,${v})`),
+                    boxShadow: useTransform(shadowOpacity, (v) => `0 1px 12px rgba(44,36,33,${v})`),
+                }}
+                className="fixed top-0 left-0 right-0 z-50 py-4 border-b"
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     {/* Logo */}
@@ -106,7 +108,7 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile Menu com stagger nos links */}
             <AnimatePresence>
                 {mobileOpen && (
                     <motion.div
@@ -128,18 +130,33 @@ export default function Navbar() {
                             aria-modal="true"
                             aria-label="Menu principal"
                         >
-                            <div className="p-6 pt-20 flex flex-col gap-2">
+                            <motion.div
+                                variants={{ animate: { transition: { staggerChildren: 0.05, delayChildren: 0.15 } } }}
+                                initial="initial"
+                                animate="animate"
+                                className="p-6 pt-20 flex flex-col gap-2"
+                            >
                                 {navLinks.map((link) => (
-                                    <a
+                                    <motion.a
                                         key={link.href}
                                         href={link.href}
                                         onClick={() => setMobileOpen(false)}
+                                        variants={{
+                                            initial: { opacity: 0, x: 20 },
+                                            animate: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+                                        }}
                                         className="text-espresso hover:text-terracotta font-medium text-lg py-3 px-4 rounded-xl hover:bg-terracotta/5 transition-all"
                                     >
                                         {link.label}
-                                    </a>
+                                    </motion.a>
                                 ))}
-                                <div className="mt-4 pt-4 border-t border-sand">
+                                <motion.div
+                                    variants={{
+                                        initial: { opacity: 0, y: 8 },
+                                        animate: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+                                    }}
+                                    className="mt-4 pt-4 border-t border-sand"
+                                >
                                     <a
                                         href={appRegisterUrl}
                                         target="_blank"
@@ -148,8 +165,8 @@ export default function Navbar() {
                                     >
                                         Começar Grátis →
                                     </a>
-                                </div>
-                            </div>
+                                </motion.div>
+                            </motion.div>
                         </motion.div>
                     </motion.div>
                 )}

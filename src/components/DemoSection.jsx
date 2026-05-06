@@ -1,10 +1,12 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, Monitor, Smartphone } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
+import { ease, useResponsiveInView } from '../animations/variants'
 
 const screens = [
     {
+        id: 'dashboard',
         title: 'Dashboard',
         description: 'Visão completa do seu negócio em tempo real',
         desktopImage: '/prints/dashboard.png',
@@ -13,6 +15,7 @@ const screens = [
         browserPath: `${APP_HOST}/dashboard`,
     },
     {
+        id: 'agendamentos',
         title: 'Agendamentos',
         description: 'Visualize e gerencie todos os atendimentos do dia',
         desktopImage: '/prints/agendamentos-calendario.png',
@@ -21,6 +24,7 @@ const screens = [
         browserPath: `${APP_HOST}/agendamentos`,
     },
     {
+        id: 'servicos',
         title: 'Serviços',
         description: 'Configure serviços, preços e duração de cada atendimento',
         desktopImage: '/prints/servicos.png',
@@ -29,6 +33,7 @@ const screens = [
         browserPath: `${APP_HOST}/servicos`,
     },
     {
+        id: 'clientes',
         title: 'Clientes',
         description: 'Ficha completa de cada tutor com histórico de atendimentos',
         desktopImage: '/prints/clientes-lista.png',
@@ -37,6 +42,7 @@ const screens = [
         browserPath: `${APP_HOST}/clientes`,
     },
     {
+        id: 'pets',
         title: 'Pets',
         description: 'Cadastro detalhado com raça, porte e observações especiais',
         desktopImage: '/prints/pets-card.png',
@@ -45,6 +51,7 @@ const screens = [
         browserPath: `${APP_HOST}/pets`,
     },
     {
+        id: 'colaboradores',
         title: 'Colaboradores',
         description: 'Gerencie sua equipe e distribua a agenda entre banhistas',
         desktopImage: '/prints/colaboradores-lista.png',
@@ -53,6 +60,7 @@ const screens = [
         browserPath: `${APP_HOST}/colaboradores`,
     },
     {
+        id: 'financeiro',
         title: 'Financeiro',
         description: 'Dashboard financeiro com receitas e despesas',
         desktopImage: '/prints/financeiro-dashboard.png',
@@ -61,6 +69,7 @@ const screens = [
         browserPath: `${APP_HOST}/financeiro`,
     },
     {
+        id: 'contas-receber',
         title: 'Contas a Receber',
         description: 'Controle de todas as receitas e pagamentos pendentes',
         desktopImage: '/prints/financeiro-contas-a-receber.png',
@@ -69,6 +78,7 @@ const screens = [
         browserPath: `${APP_HOST}/financeiro/contas-a-receber`,
     },
     {
+        id: 'despesas',
         title: 'Despesas',
         description: 'Registre e categorize todas as saídas do negócio',
         desktopImage: '/prints/financeiro-despesas.png',
@@ -77,6 +87,7 @@ const screens = [
         browserPath: `${APP_HOST}/financeiro/despesas`,
     },
     {
+        id: 'pagina-publica',
         title: 'Página Pública',
         description: 'Clientes agendam sozinhos via link exclusivo do petshop',
         desktopImage: '/prints/pagina-publica.png',
@@ -86,10 +97,17 @@ const screens = [
     },
 ]
 
+// Variantes para slide direcional — entrada/saída dependem da direção
+const slideVariants = {
+    enter: (dir) => ({ x: dir > 0 ? 48 : -48, opacity: 0 }),
+    center: { x: 0, opacity: 1, transition: { duration: 0.32, ease } },
+    exit: (dir) => ({ x: dir < 0 ? 48 : -48, opacity: 0, transition: { duration: 0.2, ease } }),
+}
+
 export default function DemoSection() {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-100px' })
+    const { ref, isInView } = useResponsiveInView()
     const [current, setCurrent] = useState(0)
+    const [direction, setDirection] = useState(0)
     const [viewMode, setViewMode] = useState('desktop')
 
     useEffect(() => {
@@ -98,8 +116,13 @@ export default function DemoSection() {
         }
     }, [])
 
-    const prev = () => setCurrent((c) => (c - 1 + screens.length) % screens.length)
-    const next = () => setCurrent((c) => (c + 1) % screens.length)
+    const navigate = (nextIdx) => {
+        setDirection(nextIdx > current ? 1 : -1)
+        setCurrent(nextIdx)
+    }
+
+    const prev = () => navigate((current - 1 + screens.length) % screens.length)
+    const next = () => navigate((current + 1) % screens.length)
 
     const screen = screens[current]
     const activeImage = viewMode === 'desktop' ? screen.desktopImage : screen.mobileImage
@@ -117,7 +140,7 @@ export default function DemoSection() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.6, ease }}
                     className="text-center max-w-2xl mx-auto mb-14"
                 >
                     <span className="inline-block bg-sage/10 text-sage-dark px-4 py-1.5 rounded-full text-sm font-bold mb-4">
@@ -134,36 +157,37 @@ export default function DemoSection() {
 
                 {/* Demo carousel */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.7, delay: 0.3 }}
+                    initial={{ opacity: 0, y: 40, scale: 0.97 }}
+                    animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                    transition={{ duration: 0.65, delay: 0.25, ease }}
                     className="max-w-4xl mx-auto"
                 >
-                    {/* Desktop / Mobile toggle */}
+                    {/* Desktop / Mobile toggle com layoutId */}
                     <div className="flex justify-center mb-6">
                         <div className="inline-flex bg-white border border-sand rounded-2xl p-1 gap-1 shadow-sm">
-                            <button
-                                onClick={() => setViewMode('desktop')}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${
-                                    viewMode === 'desktop'
-                                        ? 'bg-espresso text-white shadow-sm'
-                                        : 'text-taupe hover:text-espresso'
-                                }`}
-                            >
-                                <Monitor size={15} />
-                                Desktop
-                            </button>
-                            <button
-                                onClick={() => setViewMode('mobile')}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${
-                                    viewMode === 'mobile'
-                                        ? 'bg-espresso text-white shadow-sm'
-                                        : 'text-taupe hover:text-espresso'
-                                }`}
-                            >
-                                <Smartphone size={15} />
-                                Mobile
-                            </button>
+                            {[
+                                { mode: 'desktop', Icon: Monitor, label: 'Desktop' },
+                                { mode: 'mobile',  Icon: Smartphone, label: 'Mobile' },
+                            ].map(({ mode, Icon, label }) => (
+                                <button
+                                    key={mode}
+                                    onClick={() => setViewMode(mode)}
+                                    className="relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-colors z-10"
+                                    style={{ color: viewMode === mode ? 'white' : undefined }}
+                                >
+                                    {viewMode === mode && (
+                                        <motion.span
+                                            layoutId="demo-device-pill"
+                                            className="absolute inset-0 bg-espresso rounded-xl shadow-sm"
+                                            transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                                        />
+                                    )}
+                                    <span className="relative z-10 flex items-center gap-2" style={{ color: viewMode === mode ? 'white' : '' }}>
+                                        <Icon size={15} aria-hidden="true" />
+                                        {label}
+                                    </span>
+                                </button>
+                            ))}
                         </div>
                     </div>
 
@@ -180,13 +204,36 @@ export default function DemoSection() {
                                         <div className="w-3 h-3 rounded-full bg-sand" />
                                     </div>
                                     <div className="flex-1 mx-3">
-                                        <div className="bg-white rounded-lg px-3 py-1 text-xs text-taupe/60 border border-sand/50 max-w-xs mx-auto">
-                                            {screen.browserPath}
-                                        </div>
+                                        <AnimatePresence mode="wait">
+                                            <motion.div
+                                                key={screen.id}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="bg-white rounded-lg px-3 py-1 text-xs text-taupe/60 border border-sand/50 max-w-xs mx-auto"
+                                            >
+                                                {screen.browserPath}
+                                            </motion.div>
+                                        </AnimatePresence>
                                     </div>
                                 </div>
-                                <div id={`panel-${current}`} role="tabpanel" aria-labelledby={`tab-${current}`}>
-                                    <img src={screen.desktopImage} alt={screen.imageAlt} className="w-full" loading="lazy" />
+                                {/* Slide direcional */}
+                                <div className="overflow-hidden" role="tabpanel" aria-labelledby={`tab-${current}`}>
+                                    <AnimatePresence mode="wait" custom={direction}>
+                                        <motion.img
+                                            key={screen.id + '-desktop'}
+                                            src={screen.desktopImage}
+                                            alt={screen.imageAlt}
+                                            className="w-full"
+                                            loading="lazy"
+                                            custom={direction}
+                                            variants={slideVariants}
+                                            initial="enter"
+                                            animate="center"
+                                            exit="exit"
+                                        />
+                                    </AnimatePresence>
                                 </div>
                             </div>
                             <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
@@ -202,17 +249,23 @@ export default function DemoSection() {
                             <div className="relative">
                                 <div className="absolute -inset-4 bg-gradient-to-br from-terracotta/10 to-sage/10 rounded-[3.5rem] blur-xl" />
                                 <div className="relative bg-espresso rounded-[2.8rem] p-[10px] shadow-2xl shadow-espresso/30 w-[300px]">
-                                    {/* Dynamic island */}
                                     <div className="absolute top-[20px] left-1/2 -translate-x-1/2 w-[96px] h-[28px] bg-espresso rounded-full z-10" />
-                                    {/* Screen */}
-                                    <div
-                                        className="bg-white rounded-[2.3rem] overflow-hidden"
-                                        id={`panel-${current}`}
-                                        role="tabpanel"
-                                        aria-labelledby={`tab-${current}`}
-                                    >
+                                    <div className="bg-white rounded-[2.3rem] overflow-hidden" role="tabpanel" aria-labelledby={`tab-${current}`}>
                                         {activeImage ? (
-                                            <img src={activeImage} alt={`${screen.imageAlt} — mobile`} className="w-full" loading="lazy" />
+                                            <AnimatePresence mode="wait" custom={direction}>
+                                                <motion.img
+                                                    key={screen.id + '-mobile'}
+                                                    src={activeImage}
+                                                    alt={`${screen.imageAlt} — mobile`}
+                                                    className="w-full"
+                                                    loading="lazy"
+                                                    custom={direction}
+                                                    variants={slideVariants}
+                                                    initial="enter"
+                                                    animate="center"
+                                                    exit="exit"
+                                                />
+                                            </AnimatePresence>
                                         ) : (
                                             <div className="flex flex-col items-center justify-center py-24 px-8 gap-4 text-center">
                                                 <div className="w-14 h-14 bg-terracotta/10 rounded-2xl flex items-center justify-center">
@@ -236,21 +289,31 @@ export default function DemoSection() {
                         </div>
                     )}
 
-                    {/* Description */}
+                    {/* Description com fade na troca */}
                     <div className="text-center mt-8">
-                        <h3 className="font-accent font-bold text-lg text-espresso">{screen.title}</h3>
-                        <p className="text-taupe text-sm">{screen.description}</p>
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={screen.id + '-desc'}
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -6 }}
+                                transition={{ duration: 0.2, ease }}
+                            >
+                                <h3 className="font-accent font-bold text-lg text-espresso">{screen.title}</h3>
+                                <p className="text-taupe text-sm">{screen.description}</p>
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
 
                     {/* Dots */}
                     <div className="flex justify-center gap-2 mt-4" role="tablist">
-                        {screens.map((_, i) => (
+                        {screens.map((s, i) => (
                             <button
-                                key={i}
+                                key={s.id}
                                 role="tab"
-                                aria-label={`Ir para a tela ${i + 1}`}
+                                aria-label={`Ir para ${s.title}`}
                                 aria-selected={current === i}
-                                onClick={() => setCurrent(i)}
+                                onClick={() => navigate(i)}
                                 className={`h-2.5 rounded-full transition-all ${current === i ? 'bg-terracotta w-6' : 'bg-sand w-2.5'}`}
                             />
                         ))}

@@ -1,7 +1,7 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { CalendarCheck, Clock, LineChart, Users, PawPrint, BarChart3 } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
+import { ease, useResponsiveInView } from '../animations/variants'
 
 const features = [
     {
@@ -43,8 +43,7 @@ const features = [
 ]
 
 export default function SolutionSection() {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-100px' })
+    const { ref, isInView, isMobile } = useResponsiveInView()
 
     return (
         <section id="solucao" className="py-20 sm:py-28 relative overflow-hidden">
@@ -86,7 +85,7 @@ export default function SolutionSection() {
                                     key={feature.title}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                                    transition={{ duration: 0.5, delay: isMobile ? index * 0.06 : 0.2 + index * 0.1 }}
                                     className="bg-white rounded-2xl p-5 border border-sand/60 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
                                 >
                                     <div className={`w-10 h-10 rounded-xl ${feature.color} flex items-center justify-center mb-3`}>
@@ -103,7 +102,7 @@ export default function SolutionSection() {
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.7, delay: 0.4 }}
+                        transition={{ duration: 0.7, delay: isMobile ? 0.15 : 0.4 }}
                         className="relative"
                     >
                         <div className="relative bg-white rounded-2xl shadow-2xl shadow-espresso/10 border border-sand/50 overflow-hidden">

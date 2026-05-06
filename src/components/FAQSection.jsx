@@ -1,6 +1,7 @@
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
+import { useResponsiveInView } from '../animations/variants'
 
 const faqs = [
     {
@@ -80,8 +81,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
 }
 
 export default function FAQSection() {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-100px' })
+    const { ref, isInView } = useResponsiveInView()
     const [openIndex, setOpenIndex] = useState(null)
 
     const toggle = (index) => setOpenIndex(openIndex === index ? null : index)

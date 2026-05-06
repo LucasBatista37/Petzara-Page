@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
 import { CalendarX2, DollarSign, Smartphone, Users, Clock, BarChart3 } from 'lucide-react'
+import { useResponsiveInView } from '../animations/variants'
 
 const problems = [
     {
@@ -43,8 +42,7 @@ const problems = [
 ]
 
 export default function ProblemSection() {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-100px' })
+    const { ref, isInView, isMobile } = useResponsiveInView()
 
     return (
         <section id="problema" className="py-20 sm:py-28 relative overflow-hidden">
@@ -81,7 +79,7 @@ export default function ProblemSection() {
                             key={problem.title}
                             initial={{ opacity: 0, y: 20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            transition={{ duration: 0.5, delay: isMobile ? index * 0.06 : index * 0.1 }}
                             className="group bg-white rounded-2xl p-6 border border-sand/60 hover:border-terracotta/30 hover:shadow-lg hover:shadow-terracotta/5 transition-all duration-300 hover:-translate-y-1"
                         >
                             <div className="flex items-start gap-4">
@@ -103,7 +101,7 @@ export default function ProblemSection() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.8 }}
+                    transition={{ delay: isMobile ? 0.3 : 0.8 }}
                     className="mt-12 max-w-2xl mx-auto"
                 >
                     <div className="flex gap-4 items-start">

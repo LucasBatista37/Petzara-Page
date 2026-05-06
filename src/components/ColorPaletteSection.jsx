@@ -1,6 +1,7 @@
-import { useRef, useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence, useInView, useReducedMotion } from 'framer-motion'
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Monitor, Smartphone } from 'lucide-react'
+import { useResponsiveInView } from '../animations/variants'
 
 const PALETTES = [
   {
@@ -148,8 +149,7 @@ function MobileFrame({ palette, reduced }) {
 
 export default function ColorPaletteSection() {
   const reduced = useReducedMotion()
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { ref, isInView } = useResponsiveInView()
 
   const isMobileUA =
     typeof navigator !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent)
