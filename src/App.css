@@ -125,6 +125,27 @@
   50%   { background-position: 100% 50%; }
 }
 
+/* Aurora drift — background layer global */
+@keyframes aurora-drift-1 {
+  0%   { transform: translate(0px,    0px); }
+  33%  { transform: translate(50px,   35px); }
+  66%  { transform: translate(-30px,  70px); }
+  100% { transform: translate(0px,    0px); }
+}
+
+@keyframes aurora-drift-2 {
+  0%   { transform: translate(0px,    0px); }
+  40%  { transform: translate(-60px, -40px); }
+  70%  { transform: translate(30px,  -70px); }
+  100% { transform: translate(0px,    0px); }
+}
+
+@keyframes aurora-drift-3 {
+  0%   { transform: translate(0px,   0px)  scale(1); }
+  50%  { transform: translate(-40px, 50px) scale(1.08); }
+  100% { transform: translate(0px,   0px)  scale(1); }
+}
+
 .cta-gradient-bg {
   background: linear-gradient(135deg, #2C2421, #3a302c, #2C2421, #2a2620);
   background-size: 300% 300%;

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { CalendarX2, DollarSign, Smartphone, Users, Clock, BarChart3 } from 'lucide-react'
-import { useResponsiveInView } from '../animations/variants'
+import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
 
 const problems = [
     {
@@ -42,22 +42,19 @@ const problems = [
 ]
 
 export default function ProblemSection() {
-    const { ref, isInView, isMobile } = useResponsiveInView()
+    // ref apenas para o cabeçalho
+    const { ref, isInView } = useResponsiveInView()
 
     return (
         <section id="problema" className="py-20 sm:py-28 relative overflow-hidden">
             <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 right-[10%] w-80 h-80 bg-terracotta/4 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-[5%] w-96 h-96 bg-sage/4 rounded-full blur-3xl" />
-            </div>
 
             <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
+                {/* Cabeçalho */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.65, ease }}
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
                     <span className="inline-block bg-terracotta/10 text-terracotta px-4 py-1.5 rounded-full text-sm font-bold mb-4">
@@ -72,14 +69,15 @@ export default function ProblemSection() {
                     </p>
                 </motion.div>
 
-                {/* Problem Cards */}
+                {/* Cards — cada um anima individualmente ao entrar na tela */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                    {problems.map((problem, index) => (
+                    {problems.map((problem) => (
                         <motion.div
                             key={problem.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.5, delay: isMobile ? index * 0.06 : index * 0.1 }}
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={getCardViewport()}
+                            transition={{ duration: 0.55, ease }}
                             className="group bg-white rounded-2xl p-6 border border-sand/60 hover:border-terracotta/30 hover:shadow-lg hover:shadow-terracotta/5 transition-all duration-300 hover:-translate-y-1"
                         >
                             <div className="flex items-start gap-4">
@@ -97,11 +95,12 @@ export default function ProblemSection() {
                     ))}
                 </div>
 
-                {/* Bottom callout */}
+                {/* Callout — usa whileInView próprio */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: isMobile ? 0.3 : 0.8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={getCardViewport()}
+                    transition={{ duration: 0.6, ease }}
                     className="mt-12 max-w-2xl mx-auto"
                 >
                     <div className="flex gap-4 items-start">

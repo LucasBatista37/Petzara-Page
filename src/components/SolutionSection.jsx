@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { CalendarCheck, Clock, LineChart, Users, PawPrint, BarChart3 } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
-import { ease, useResponsiveInView } from '../animations/variants'
+import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
 
 const features = [
     {
@@ -47,62 +47,64 @@ export default function SolutionSection() {
 
     return (
         <section id="solucao" className="py-20 sm:py-28 relative overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-sage/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-terracotta/5 rounded-full blur-3xl" />
-            </div>
+            {/* Dark premium background — espresso warm */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1a0f0c] via-[#2c1a14] to-[#1a1208]" />
+            <div className="absolute -top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[140px] pointer-events-none"
+                 style={{ background: 'var(--color-terracotta)', opacity: 0.08 }} />
+            <div className="absolute bottom-0 left-[10%] w-[500px] h-[200px] rounded-full blur-[120px] pointer-events-none"
+                 style={{ background: 'var(--color-sage)', opacity: 0.06 }} />
 
             <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
+                {/* Cabeçalho */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.65, ease }}
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
-                    <span className="inline-block bg-sage/10 text-sage-dark px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+                    <span className="inline-block bg-white/10 border border-white/15 text-white/70 px-4 py-1.5 rounded-full text-sm font-bold mb-4 backdrop-blur-sm">
                         A solução
                     </span>
-                    <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
+                    <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-white">
                         Conheça o{' '}
                         <span className="gradient-text">Petzara</span>
                     </h2>
-                    <p className="text-taupe text-lg leading-relaxed">
+                    <p className="text-white/55 text-lg leading-relaxed">
                         Tudo que você precisa para organizar, crescer e lucrar — em uma única plataforma feita para quem vive de banho e tosa.
                     </p>
                 </motion.div>
 
                 {/* Two-column layout: features + mockup */}
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    {/* Features list */}
+                    {/* Feature cards — cada uma anima individualmente */}
                     <div className="grid sm:grid-cols-2 gap-4">
-                        {features.map((feature, index) => {
+                        {features.map((feature) => {
                             const Icon = feature.icon
                             return (
                                 <motion.div
                                     key={feature.title}
                                     initial={{ opacity: 0, y: 20 }}
-                                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                    transition={{ duration: 0.5, delay: isMobile ? index * 0.06 : 0.2 + index * 0.1 }}
-                                    className="bg-white rounded-2xl p-5 border border-sand/60 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={getCardViewport()}
+                                    transition={{ duration: 0.55, ease }}
+                                    className="bg-white/8 rounded-2xl p-5 border border-white/12 backdrop-blur-sm hover:bg-white/12 hover:-translate-y-0.5 transition-all duration-300"
                                 >
                                     <div className={`w-10 h-10 rounded-xl ${feature.color} flex items-center justify-center mb-3`}>
                                         <Icon size={20} />
                                     </div>
-                                    <h3 className="font-accent font-bold text-espresso mb-1">{feature.title}</h3>
-                                    <p className="text-taupe text-sm leading-relaxed">{feature.description}</p>
+                                    <h3 className="font-accent font-bold text-white/90 mb-1">{feature.title}</h3>
+                                    <p className="text-white/55 text-sm leading-relaxed">{feature.description}</p>
                                 </motion.div>
                             )
                         })}
                     </div>
 
-                    {/* Mockup */}
+                    {/* Mockup — delay pequeno para sequenciar após os primeiros cards no desktop */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.7, delay: isMobile ? 0.15 : 0.4 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={getCardViewport()}
+                        transition={{ duration: 0.7, delay: isMobile ? 0 : 0.2, ease }}
                         className="relative"
                     >
                         <div className="relative bg-white rounded-2xl shadow-2xl shadow-espresso/10 border border-sand/50 overflow-hidden">
@@ -120,7 +122,6 @@ export default function SolutionSection() {
                                 </div>
                             </div>
 
-                            {/* Agendamentos screenshot */}
                             <img
                                 src="/prints/agendamentos-lista.png"
                                 alt="Lista de agendamentos Petzara"

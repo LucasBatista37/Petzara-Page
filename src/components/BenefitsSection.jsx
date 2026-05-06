@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { CalendarCheck, PawPrint, Wallet, Globe, Users, BarChart3 } from 'lucide-react'
-import { ease, useResponsiveInView } from '../animations/variants'
+import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
 
 const benefits = [
     {
@@ -63,15 +63,14 @@ function useTilt(disabled = false) {
     return { ref, style: { rotateX, rotateY, transformPerspective: 900 }, onMouseMove, onMouseLeave }
 }
 
-function BenefitCard({ benefit, index, isInView, isMobile }) {
+function BenefitCard({ benefit }) {
     const isTerracotta = benefit.color === 'terracotta'
     const Icon = benefit.icon
     const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
     const tilt = useTilt(isTouchDevice)
-
-    // Mobile: stagger mais curto para não perder a animação no scroll
-    const cardDelay  = isMobile ? index * 0.06        : index * 0.1
-    const iconDelay  = isMobile ? index * 0.06 + 0.10 : index * 0.1 + 0.18
+    // Cada card tem seu próprio viewport — anima quando ELE entra na tela, não a seção inteira
+    const viewport = getCardViewport()
 
     return (
         <motion.div
@@ -79,16 +78,24 @@ function BenefitCard({ benefit, index, isInView, isMobile }) {
             style={tilt.style}
             onMouseMove={tilt.onMouseMove}
             onMouseLeave={tilt.onMouseLeave}
-            initial={{ opacity: 0, y: 28 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.45, delay: cardDelay, ease }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            variants={{
+                hidden: { opacity: 0, y: 28 },
+                // Mobile: 0.65s — mais lento para ser perceptível em tela menor
+                // Desktop: 0.5s — elegante e rápido
+                visible: { opacity: 1, y: 0, transition: { duration: isMobile ? 0.65 : 0.5, ease } },
+            }}
             className="group bg-white rounded-2xl p-7 border border-sand/60 hover:border-terracotta/30 hover:shadow-xl hover:shadow-terracotta/5 transition-colors duration-300 cursor-default"
         >
-            {/* Ícone com spring pop */}
+            {/* Ícone com spring pop — herdado do estado do pai via variants */}
             <motion.div
-                initial={{ scale: 0, rotate: -12 }}
-                animate={isInView ? { scale: 1, rotate: 0 } : {}}
-                transition={{ type: 'spring', stiffness: 220, damping: 12, delay: iconDelay }}
+                variants={{
+                    hidden: { scale: 0, rotate: -12 },
+                    // delay: 0.12 — entra logo após o card começar a subir
+                    visible: { scale: 1, rotate: 0, transition: { type: 'spring', stiffness: 220, damping: 12, delay: 0.12 } },
+                }}
                 className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${
                     isTerracotta ? 'bg-terracotta/10 text-terracotta' : 'bg-sage/10 text-sage-dark'
                 }`}
@@ -107,22 +114,19 @@ function BenefitCard({ benefit, index, isInView, isMobile }) {
 }
 
 export default function BenefitsSection() {
-    const { ref, isInView, isMobile } = useResponsiveInView()
+    // ref apenas para o cabeçalho da seção — não afeta mais os cards
+    const { ref, isInView } = useResponsiveInView()
 
     return (
         <section id="beneficios" className="py-20 sm:py-28 relative overflow-hidden">
             <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-0 w-72 h-72 bg-sage/4 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-terracotta/4 rounded-full blur-3xl" />
-            </div>
 
             <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
+                {/* Cabeçalho — seção-level está correto: o título fica no topo e é visível primeiro */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, ease }}
+                    transition={{ duration: 0.65, ease }}
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
                     <span className="inline-block bg-terracotta/10 text-terracotta px-4 py-1.5 rounded-full text-sm font-bold mb-4">
@@ -137,16 +141,10 @@ export default function BenefitsSection() {
                     </p>
                 </motion.div>
 
-                {/* Benefits Grid */}
+                {/* Grid — cada card dispara ao entrar na tela; o scroll é o stagger */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-                    {benefits.map((benefit, index) => (
-                        <BenefitCard
-                            key={benefit.title}
-                            benefit={benefit}
-                            index={index}
-                            isInView={isInView}
-                            isMobile={isMobile}
-                        />
+                    {benefits.map((benefit) => (
+                        <BenefitCard key={benefit.title} benefit={benefit} />
                     ))}
                 </div>
             </div>
