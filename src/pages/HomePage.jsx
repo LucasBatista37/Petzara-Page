@@ -3,8 +3,8 @@ import HeroSection from '../components/HeroSection'
 import ProblemSection from '../components/ProblemSection'
 import SolutionSection from '../components/SolutionSection'
 import ColorPaletteSection from '../components/ColorPaletteSection'
-import BenefitsSection from '../components/BenefitsSection'
 import DemoSection from '../components/DemoSection'
+import MultiDeviceSection from '../components/MultiDeviceSection'
 import HowItWorksSection from '../components/HowItWorksSection'
 import PricingSection from '../components/PricingSection'
 import FAQSection from '../components/FAQSection'
@@ -19,10 +19,10 @@ export default function HomePage() {
                 <HeroSection />
                 <ProblemSection />
                 <SolutionSection />
-                <ColorPaletteSection />
-                <BenefitsSection />
-                <DemoSection />
                 <HowItWorksSection />
+                <DemoSection />
+                <MultiDeviceSection />
+                <ColorPaletteSection />
                 <PricingSection />
                 <FAQSection />
                 <CTASection />

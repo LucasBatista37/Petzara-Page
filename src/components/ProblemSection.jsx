@@ -106,7 +106,7 @@ export default function ProblemSection() {
                     transition={{ delay: 0.8 }}
                     className="mt-12 max-w-2xl mx-auto"
                 >
-                    <div className="bg-white border border-sand/60 rounded-2xl px-8 py-6 flex gap-4 items-start shadow-sm">
+                    <div className="flex gap-4 items-start">
                         <span className="text-2xl mt-0.5 shrink-0">💬</span>
                         <p className="text-taupe text-base italic leading-relaxed">
                             "Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro."

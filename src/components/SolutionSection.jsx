@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { CalendarCheck, Clock, LineChart, Palette, Users, MonitorSmartphone } from 'lucide-react'
+import { CalendarCheck, Clock, LineChart, Users, PawPrint, BarChart3 } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
 
 const features = [
@@ -23,21 +23,21 @@ const features = [
         color: 'bg-terracotta/10 text-terracotta',
     },
     {
-        icon: Palette,
-        title: 'Tema com a sua marca',
-        description: 'Personalize as cores da sua página com 6 paletas. Seu link, seu visual — não parece sistema genérico.',
-        color: 'bg-sage/10 text-sage-dark',
-    },
-    {
         icon: Users,
         title: 'Gestão de equipe',
         description: 'Convide colaboradores com permissões granulares (ler/criar/editar/excluir) por módulo. Cada banhista vê só o que precisa.',
+        color: 'bg-sage/10 text-sage-dark',
+    },
+    {
+        icon: PawPrint,
+        title: 'Histórico do pet',
+        description: 'Raça, porte, observações do tutor e serviços anteriores de cada pet — tudo em um clique, sem depender de memória.',
         color: 'bg-terracotta/10 text-terracotta',
     },
     {
-        icon: MonitorSmartphone,
-        title: 'Funciona em tudo',
-        description: 'Celular, tablet e computador. Instala como app no Android sem precisar da Play Store. Sua equipe acessa de onde estiver.',
+        icon: BarChart3,
+        title: 'Decisões sem achismo',
+        description: 'Saiba qual serviço mais lucra, qual dia é pico e onde estão os buracos — antes que virem problema.',
         color: 'bg-sage/10 text-sage-dark',
     },
 ]
@@ -123,7 +123,7 @@ export default function SolutionSection() {
 
                             {/* Agendamentos screenshot */}
                             <img
-                                src="/prints/agendamentos_lista.png"
+                                src="/prints/agendamentos-lista.png"
                                 alt="Lista de agendamentos Petzara"
                                 className="w-full"
                                 loading="lazy"

@@ -82,7 +82,7 @@ export default function HowItWorksSection() {
                                     </div>
 
                                     {/* Card */}
-                                    <div className="bg-white rounded-2xl p-6 border border-sand/60 shadow-sm text-center hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                                    <div className="text-center pt-2">
                                         <h3 className="font-accent font-bold text-xl text-espresso mb-2">
                                             {step.title}
                                         </h3>

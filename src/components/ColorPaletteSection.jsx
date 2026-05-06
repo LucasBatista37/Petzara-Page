@@ -2,8 +2,6 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, useInView, useReducedMotion } from 'framer-motion'
 import { Monitor, Smartphone } from 'lucide-react'
 
-// ─── Palette definitions ─────────────────────────────────────────────────────
-
 const PALETTES = [
   {
     id: 'terracotta',
@@ -13,6 +11,8 @@ const PALETTES = [
     secondary: '#81B29A',
     primaryDark: '#C4634A',
     secondaryDark: '#6A9980',
+    desktopImage: '/prints/themes/terracotta-desktop.png',
+    mobileImage: '/prints/themes/terracotta-mobile.png',
   },
   {
     id: 'forest',
@@ -22,6 +22,8 @@ const PALETTES = [
     secondary: '#97BC62',
     primaryDark: '#1e4520',
     secondaryDark: '#7aa34e',
+    desktopImage: '/prints/themes/forest-desktop.png',
+    mobileImage: '/prints/themes/forest-mobile.png',
   },
   {
     id: 'ocean',
@@ -31,6 +33,8 @@ const PALETTES = [
     secondary: '#669BBC',
     primaryDark: '#001e2f',
     secondaryDark: '#4a86a8',
+    desktopImage: '/prints/themes/ocean-desktop.png',
+    mobileImage: '/prints/themes/ocean-mobile.png',
   },
   {
     id: 'ochre',
@@ -40,10 +44,10 @@ const PALETTES = [
     secondary: '#DDA15E',
     primaryDark: '#9a5519',
     secondaryDark: '#c8894a',
+    desktopImage: '/prints/themes/ochre-desktop.png',
+    mobileImage: '/prints/themes/ochre-mobile.png',
   },
 ]
-
-// ─── Apply palette site-wide via CSS variables ────────────────────────────────
 
 function applyPaletteGlobally(palette) {
   const root = document.documentElement
@@ -53,35 +57,27 @@ function applyPaletteGlobally(palette) {
   root.style.setProperty('--color-sage-dark', palette.secondaryDark)
 }
 
-// ─── Desktop Mockup (browser frame style da DemoSection) ─────────────────────
-
-function DesktopMockup({ palette }) {
-  const p = palette.primary
-  const s = palette.secondary
-
-  const menuItems = ['Dashboard', 'Agendamentos', 'Clientes', 'Pets', 'Financeiro']
-
+function DesktopFrame({ palette, reduced }) {
   return (
     <div className="relative">
-      <div
+      <motion.div
         className="absolute -inset-3 rounded-3xl blur-xl opacity-40"
-        style={{
-          background: `linear-gradient(135deg, ${p}33, ${s}33)`,
-        }}
+        animate={{ background: `linear-gradient(135deg, ${palette.primary}33, ${palette.secondary}33)` }}
+        transition={{ duration: reduced ? 0 : 0.6 }}
       />
       <div className="relative bg-white rounded-2xl shadow-2xl shadow-espresso/10 border border-sand/50 overflow-hidden">
-        {/* Browser bar — mesmo estilo da DemoSection */}
+        {/* Browser bar */}
         <div className="bg-cream-warm px-4 py-3 flex items-center gap-2 border-b border-sand/50">
           <div className="flex gap-1.5">
             <motion.div
               className="w-3 h-3 rounded-full"
-              animate={{ backgroundColor: p + '99' }}
-              transition={{ duration: 0.5 }}
+              animate={{ backgroundColor: palette.primary + '99' }}
+              transition={{ duration: reduced ? 0 : 0.5 }}
             />
             <motion.div
               className="w-3 h-3 rounded-full"
-              animate={{ backgroundColor: s + '99' }}
-              transition={{ duration: 0.5 }}
+              animate={{ backgroundColor: palette.secondary + '99' }}
+              transition={{ duration: reduced ? 0 : 0.5 }}
             />
             <div className="w-3 h-3 rounded-full bg-sand" />
           </div>
@@ -91,236 +87,64 @@ function DesktopMockup({ palette }) {
             </div>
           </div>
         </div>
-
-        {/* App shell */}
-        <div className="flex h-72 sm:h-80">
-          {/* Sidebar */}
-          <motion.div
-            className="w-36 sm:w-40 flex-shrink-0 flex flex-col py-4 px-2.5 gap-0.5"
-            animate={{ backgroundColor: p }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-2 mb-4 px-2">
-              <div className="w-5 h-5 rounded-full bg-white/30 flex-shrink-0" />
-              <div className="h-2.5 w-14 rounded bg-white/60" />
-            </div>
-            {menuItems.map((item, i) => (
-              <div
-                key={item}
-                className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
-                style={{ backgroundColor: i === 0 ? 'rgba(255,255,255,0.22)' : 'transparent' }}
-              >
-                <div className="w-2.5 h-2.5 rounded-sm bg-white/60 flex-shrink-0" />
-                <span className="text-white/90 text-[11px] font-medium truncate">{item}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Main content */}
-          <div className="flex-1 flex flex-col overflow-hidden bg-[#FAFAF9]">
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 py-2.5 border-b border-sand/40 bg-white">
-              <div>
-                <p className="text-[10px] text-taupe">Bom dia,</p>
-                <p className="text-xs font-semibold text-espresso">Pet Shop Amigo Fiel</p>
-              </div>
-              <motion.div
-                className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold"
-                animate={{ backgroundColor: s }}
-                transition={{ duration: 0.5 }}
-              >
-                A
-              </motion.div>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-2.5 px-4 py-3">
-              {[
-                { label: 'Agendamentos hoje', value: '12' },
-                { label: 'Faturamento', value: 'R$ 840' },
-                { label: 'Clientes ativos', value: '87' },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-xl p-2.5 border border-sand/50 bg-white"
-                >
-                  <p className="text-[9px] text-taupe leading-tight">{stat.label}</p>
-                  <motion.p
-                    className="text-sm font-bold mt-0.5"
-                    animate={{ color: p }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    {stat.value}
-                  </motion.p>
-                </div>
-              ))}
-            </div>
-
-            {/* Appointments */}
-            <div className="px-4 flex-1 overflow-hidden">
-              <p className="text-[10px] font-semibold text-espresso mb-1.5">Próximos agendamentos</p>
-              {[
-                { pet: 'Bidu', service: 'Banho & Tosa', time: '09:30', owner: 'Carlos M.' },
-                { pet: 'Luna', service: 'Consulta', time: '10:15', owner: 'Ana S.' },
-                { pet: 'Thor', service: 'Banho', time: '11:00', owner: 'Roberto P.' },
-              ].map((appt, i) => (
-                <div
-                  key={appt.pet}
-                  className="flex items-center gap-2.5 py-1.5 border-b border-sand/30 last:border-0"
-                >
-                  <motion.div
-                    className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[9px] font-bold"
-                    animate={{ backgroundColor: i % 2 === 0 ? p : s }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {appt.pet[0]}
-                  </motion.div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[10px] font-medium text-espresso truncate">
-                      {appt.pet} · {appt.service}
-                    </p>
-                    <p className="text-[9px] text-taupe">{appt.owner}</p>
-                  </div>
-                  <motion.span
-                    className="text-[9px] font-semibold px-1.5 py-0.5 rounded-full flex-shrink-0"
-                    animate={{ color: p, backgroundColor: p + '20' }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    {appt.time}
-                  </motion.span>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Todas as imagens empilhadas — cross-fade via opacity */}
+        <div className="grid">
+          {PALETTES.map(p => (
+            <motion.img
+              key={p.id}
+              src={p.desktopImage}
+              alt={`Petzara - tema ${p.name}`}
+              className="w-full object-cover"
+              style={{ gridArea: '1 / 1' }}
+              animate={{ opacity: p.id === palette.id ? 1 : 0 }}
+              transition={{ duration: reduced ? 0 : 0.4 }}
+              loading="eager"
+            />
+          ))}
         </div>
       </div>
     </div>
   )
 }
 
-// ─── Mobile Mockup (phone frame style da DemoSection) ────────────────────────
-
-function MobileMockup({ palette }) {
-  const p = palette.primary
-  const s = palette.secondary
-
+function MobileFrame({ palette, reduced }) {
   return (
     <div className="flex justify-center">
       <div className="relative">
-        <div
-          className="absolute -inset-4 rounded-[3.5rem] blur-xl opacity-40"
-          style={{ background: `linear-gradient(135deg, ${p}33, ${s}33)` }}
-        />
-        {/* Phone frame — mesmo estilo da DemoSection */}
         <motion.div
+          className="absolute -inset-4 rounded-[3.5rem] blur-xl opacity-40"
+          animate={{ background: `linear-gradient(135deg, ${palette.primary}33, ${palette.secondary}33)` }}
+          transition={{ duration: reduced ? 0 : 0.6 }}
+        />
+        <div
           className="relative rounded-[2.8rem] p-[10px] shadow-2xl shadow-espresso/30 w-[220px] sm:w-[260px]"
           style={{ backgroundColor: '#2C2421' }}
         >
           {/* Dynamic island */}
-          <div className="absolute top-[18px] left-1/2 -translate-x-1/2 w-[80px] h-[24px] rounded-full z-10" style={{ backgroundColor: '#2C2421' }} />
-
-          {/* Screen content */}
-          <div className="bg-[#FAFAF9] rounded-[2.3rem] overflow-hidden">
-            {/* Status bar */}
-            <motion.div
-              className="flex justify-between items-center px-5 pt-8 pb-2"
-              animate={{ backgroundColor: p }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="text-white/80 text-[9px] font-semibold">9:41</span>
-              <div className="flex gap-1 items-center">
-                <div className="w-3 h-1.5 border border-white/60 rounded-sm">
-                  <div className="w-2/3 h-full bg-white/80 rounded-sm" />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* App header */}
-            <motion.div
-              className="px-4 py-3 flex items-center justify-between"
-              animate={{ backgroundColor: p }}
-              transition={{ duration: 0.5 }}
-            >
-              <div>
-                <p className="text-white/70 text-[9px]">Olá, Ana</p>
-                <p className="text-white text-xs font-bold">Amigo Fiel</p>
-              </div>
-              <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-white text-[9px] font-bold">AF</span>
-              </div>
-            </motion.div>
-
-            {/* Content */}
-            <div className="px-3 py-3 space-y-2">
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { label: 'Hoje', value: '12' },
-                  { label: 'Receita', value: 'R$840' },
-                ].map((st) => (
-                  <div key={st.label} className="bg-white rounded-xl p-2.5 shadow-sm border border-sand/30">
-                    <p className="text-[9px] text-taupe">{st.label}</p>
-                    <motion.p
-                      className="text-sm font-bold"
-                      animate={{ color: p }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {st.value}
-                    </motion.p>
-                  </div>
-                ))}
-              </div>
-
-              <p className="text-[9px] font-semibold text-espresso pt-0.5">Agendamentos</p>
-              {[
-                { pet: 'Bidu', service: 'Banho & Tosa', time: '09:30' },
-                { pet: 'Luna', service: 'Consulta Vet.', time: '10:15' },
-              ].map((appt, i) => (
-                <div key={appt.pet} className="bg-white rounded-xl p-2.5 shadow-sm border border-sand/30 flex items-center gap-2">
-                  <motion.div
-                    className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[9px] font-bold"
-                    animate={{ backgroundColor: i === 0 ? p : s }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {appt.pet[0]}
-                  </motion.div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[9px] font-semibold text-espresso truncate">{appt.pet}</p>
-                    <p className="text-[8px] text-taupe">{appt.service}</p>
-                  </div>
-                  <motion.span
-                    className="text-[8px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0"
-                    animate={{ color: p, backgroundColor: p + '20' }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    {appt.time}
-                  </motion.span>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom nav */}
-            <div className="flex justify-around items-center px-3 py-2.5 border-t border-sand/40 bg-white mt-1">
-              {['🏠', '📅', '🐾', '💰'].map((icon, i) => (
-                <div key={i} className="flex flex-col items-center gap-0.5">
-                  <span className="text-sm">{icon}</span>
-                  {i === 0 && (
-                    <motion.div
-                      className="w-1 h-1 rounded-full"
-                      animate={{ backgroundColor: p }}
-                      transition={{ duration: 0.4 }}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
+          <div
+            className="absolute top-[18px] left-1/2 -translate-x-1/2 w-[80px] h-[24px] rounded-full z-10"
+            style={{ backgroundColor: '#2C2421' }}
+          />
+          {/* Todas as imagens empilhadas — cross-fade via opacity */}
+          <div className="grid rounded-[2.3rem] overflow-hidden">
+            {PALETTES.map(p => (
+              <motion.img
+                key={p.id}
+                src={p.mobileImage}
+                alt={`Petzara mobile - tema ${p.name}`}
+                className="w-full object-cover"
+                style={{ gridArea: '1 / 1' }}
+                animate={{ opacity: p.id === palette.id ? 1 : 0 }}
+                transition={{ duration: reduced ? 0 : 0.4 }}
+                loading="eager"
+              />
+            ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   )
 }
-
-// ─── Main Section ─────────────────────────────────────────────────────────────
 
 export default function ColorPaletteSection() {
   const reduced = useReducedMotion()
@@ -402,7 +226,7 @@ export default function ColorPaletteSection() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="max-w-5xl mx-auto"
         >
-          {/* Device toggle — mesmo estilo da DemoSection */}
+          {/* Device toggle */}
           <div className="flex justify-center mb-8">
             <div className="inline-flex bg-white border border-sand rounded-2xl p-1 gap-1 shadow-sm">
               <button
@@ -446,7 +270,7 @@ export default function ColorPaletteSection() {
                     exit={{ opacity: 0, y: reduced ? 0 : -16 }}
                     transition={{ duration: reduced ? 0 : 0.3 }}
                   >
-                    <DesktopMockup palette={palette} />
+                    <DesktopFrame palette={palette} reduced={reduced} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -456,7 +280,7 @@ export default function ColorPaletteSection() {
                     exit={{ opacity: 0, y: reduced ? 0 : -16 }}
                     transition={{ duration: reduced ? 0 : 0.3 }}
                   >
-                    <MobileMockup palette={palette} />
+                    <MobileFrame palette={palette} reduced={reduced} />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -465,7 +289,7 @@ export default function ColorPaletteSection() {
             {/* Palette picker */}
             <div className="flex-shrink-0 flex flex-col items-center lg:items-start gap-6 w-full lg:w-auto">
 
-              {/* Tagline */}
+              {/* Selected style label */}
               <div className="text-center lg:text-left">
                 <p className="text-xs font-semibold text-taupe uppercase tracking-widest mb-2">
                   Estilo selecionado
@@ -520,7 +344,6 @@ export default function ColorPaletteSection() {
                     aria-label={`Selecionar paleta ${pl.name}`}
                     aria-pressed={i === activeIdx}
                   >
-                    {/* Color swatches */}
                     <div className="flex gap-1.5">
                       <div
                         className="w-7 h-7 rounded-full shadow-sm border-2 border-white"
@@ -535,7 +358,6 @@ export default function ColorPaletteSection() {
                       {pl.name}
                     </span>
 
-                    {/* Active ring */}
                     {i === activeIdx && (
                       <motion.div
                         layoutId="palette-ring"
