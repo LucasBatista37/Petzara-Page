@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { appRegisterUrl, APP_HOST, whatsappDemoUrl } from '../siteConfig'
 import { ease, wordVariant } from '../animations/variants'
+import OptimizedImage from './OptimizedImage'
 
 function AnimatedWords({ children, delay = 0 }) {
     const words = String(children).split(' ')
@@ -9,19 +10,18 @@ function AnimatedWords({ children, delay = 0 }) {
         <motion.span
             variants={{ animate: { transition: { staggerChildren: 0.045, delayChildren: delay } } }}
         >
-            {words.map((word, i) => (
-                <motion.span key={i} className="inline-block" variants={wordVariant}>
-                    {word}{i < words.length - 1 ? ' ' : ''}
-                </motion.span>
-            ))}
+            {words.flatMap((word, i) => i < words.length - 1
+                ? [<motion.span key={i} className="inline-block" variants={wordVariant}>{word}</motion.span>, ' ']
+                : [<motion.span key={i} className="inline-block" variants={wordVariant}>{word}</motion.span>]
+            )}
         </motion.span>
     )
 }
 
 const trustItems = [
-    'Teste grátis por 30 dias',
-    'Sem cartão de crédito',
-    'Cancele a qualquer momento',
+    { text: 'Teste grátis por 30 dias', icon: '✓' },
+    { text: 'Sem cartão de crédito', icon: '✓' },
+    { text: 'Cancele quando quiser', icon: '✓' },
 ]
 
 // ─── Dual Device Mockup ────────────────────────────────────────────────────────
@@ -57,7 +57,7 @@ function DualDeviceMockup({ mockupY }) {
                                 </div>
                             </div>
                         </div>
-                        <img
+                        <OptimizedImage
                             src="/prints/dashboard.png"
                             alt="Dashboard Petzara"
                             className="w-full block"
@@ -100,7 +100,7 @@ function DualDeviceMockup({ mockupY }) {
 
                     {/* Tela */}
                     <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
-                        <img
+                        <OptimizedImage
                             src="/prints/mobile/dashboard.png"
                             alt="Petzara Mobile"
                             className="w-full block"
@@ -197,10 +197,10 @@ export default function HeroSection() {
                                 initial: { opacity: 0, scale: 0.88, y: 8 },
                                 animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease } },
                             }}
-                            className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-semibold mb-6"
+                            className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-terracotta/20"
                         >
-                            <Sparkles size={16} />
-                            Teste Grátis • Sem Cartão
+                            <Sparkles size={15} />
+                            Sistema para petshops — 30 dias grátis, sem cartão
                         </motion.div>
 
                         {/* Headline */}
@@ -235,7 +235,7 @@ export default function HeroSection() {
                             }}
                             className="text-taupe text-lg sm:text-xl leading-relaxed mb-8 max-w-xl"
                         >
-                            Gerencie agendamentos, clientes, pets e finanças em um único lugar — feito especialmente para petshops de banho e tosa. De caderno para profissional em minutos.
+                            Agenda, clientes, pets e finanças em um único lugar. Feito especialmente para petshops de banho e tosa — do caderno para profissional em minutos.
                         </motion.p>
 
                         {/* CTAs */}
@@ -252,7 +252,7 @@ export default function HeroSection() {
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.03, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20"
+                                className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20"
                             >
                                 Começar Teste Grátis
                                 <ArrowRight size={18} />
@@ -272,19 +272,26 @@ export default function HeroSection() {
                         {/* Trust signals */}
                         <motion.div
                             variants={{ animate: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } } }}
-                            className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-taupe"
+                            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2.5 text-sm"
                         >
-                            {trustItems.map((item) => (
+                            {trustItems.map((item, i) => (
                                 <motion.span
-                                    key={item}
+                                    key={item.text}
                                     variants={{
                                         initial: { opacity: 0, x: -10 },
                                         animate: { opacity: 1, x: 0, transition: { duration: 0.4, ease } },
                                     }}
                                     className="flex items-center gap-1.5"
                                 >
-                                    <span className="w-2 h-2 bg-sage rounded-full" />
-                                    {item}
+                                    <span className="w-4 h-4 bg-sage/20 rounded-full flex items-center justify-center shrink-0">
+                                        <svg className="w-2.5 h-2.5 text-sage-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </span>
+                                    <span className="text-espresso/70 font-medium">{item.text}</span>
+                                    {i < trustItems.length - 1 && (
+                                        <span className="hidden sm:block w-px h-3 bg-sand mx-1" aria-hidden="true" />
+                                    )}
                                 </motion.span>
                             ))}
                         </motion.div>

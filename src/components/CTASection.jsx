@@ -28,11 +28,10 @@ function HeadlineWords({ children, className }) {
             className={className}
             variants={{ animate: { transition: { staggerChildren: 0.045 } } }}
         >
-            {parts.map((word, i) => (
-                <motion.span key={i} className="inline-block" variants={wordVariant}>
-                    {word}{i < parts.length - 1 ? ' ' : ''}
-                </motion.span>
-            ))}
+            {parts.flatMap((word, i) => i < parts.length - 1
+                ? [<motion.span key={i} className="inline-block" variants={wordVariant}>{word}</motion.span>, ' ']
+                : [<motion.span key={i} className="inline-block" variants={wordVariant}>{word}</motion.span>]
+            )}
         </motion.span>
     )
 }
@@ -120,7 +119,7 @@ export default function CTASection() {
                                 } : {}}
                                 transition={showPulse ? { duration: 1.2, ease: 'easeInOut' } : { duration: 0.2 }}
                                 onAnimationComplete={() => setShowPulse(false)}
-                                className="inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-terracotta/30"
+                                className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-terracotta/30"
                             >
                                 Criar Conta Grátis
                                 <ArrowRight size={18} />

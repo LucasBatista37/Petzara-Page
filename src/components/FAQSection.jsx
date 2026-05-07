@@ -36,6 +36,18 @@ const faqs = [
         question: 'Posso importar meus clientes e pets já cadastrados?',
         answer: 'Sim. Você pode cadastrar clientes e pets manualmente ou importar via planilha. O processo é guiado passo a passo.',
     },
+    {
+        question: 'O sistema é difícil de aprender?',
+        answer: 'Não. Em menos de 10 minutos você já está criando agendamentos. A interface foi pensada para quem nunca usou um sistema de gestão antes — sem manual, sem treinamento.',
+    },
+    {
+        question: 'Já uso planilha ou caderno. É difícil fazer a transição?',
+        answer: 'Muito fácil. Você pode importar clientes e pets via arquivo ou adicionar manualmente. Nossa equipe de suporte te acompanha na transição sem custo adicional.',
+    },
+    {
+        question: 'Tenho um petshop pequeno com 1 ou 2 funcionários. Vale a pena?',
+        answer: 'Vale muito — e esse é exatamente o perfil de quem mais usa o Petzara. Petshops pequenos ganham mais porque o dono para de ser o intermediário de tudo e passa a atender mais.',
+    },
 ]
 
 function FAQItem({ faq, index, isOpen, onToggle }) {

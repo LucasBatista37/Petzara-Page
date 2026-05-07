@@ -108,20 +108,12 @@ export default function MultiDeviceSection() {
 
             {/* Dark premium background — espresso warm */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#1a0f0c] via-[#2c1a14] to-[#1a1208]" />
-
-            {/* Glow orbs — respondem à paleta via CSS vars */}
-            <div
-                className="absolute -top-[8%] left-[8%] w-[500px] h-[500px] rounded-full blur-[160px] pointer-events-none"
-                style={{ background: 'var(--color-terracotta)', opacity: 0.12 }}
-            />
-            <div
-                className="absolute top-[15%] -right-[5%] w-[400px] h-[400px] rounded-full blur-[140px] pointer-events-none"
-                style={{ background: 'var(--color-sage)', opacity: 0.08 }}
-            />
-            <div
-                className="absolute bottom-0 left-[20%] w-[600px] h-[250px] rounded-full blur-[120px] pointer-events-none"
-                style={{ background: 'var(--color-terracotta)', opacity: 0.06 }}
-            />
+            <div className="absolute -top-[8%] left-[8%] w-[500px] h-[500px] rounded-full blur-[160px] pointer-events-none"
+                 style={{ background: 'var(--color-terracotta)', opacity: 0.12 }} />
+            <div className="absolute top-[15%] -right-[5%] w-[400px] h-[400px] rounded-full blur-[140px] pointer-events-none"
+                 style={{ background: 'var(--color-sage)', opacity: 0.08 }} />
+            <div className="absolute bottom-0 left-[20%] w-[600px] h-[250px] rounded-full blur-[120px] pointer-events-none"
+                 style={{ background: 'var(--color-terracotta)', opacity: 0.06 }} />
 
             <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -139,7 +131,7 @@ export default function MultiDeviceSection() {
                         Funciona em{' '}
                         <span className="gradient-text">qualquer dispositivo</span>
                     </h2>
-                    <p className="text-white/55 text-lg leading-relaxed">
+                    <p className="text-white/65 text-lg leading-relaxed">
                         Celular, tablet e computador. Instala como app no Android sem precisar da Play Store.
                         Sua equipe acessa de onde estiver.
                     </p>
@@ -222,9 +214,9 @@ export default function MultiDeviceSection() {
                     {pills.map(({ icon: Icon, label }) => (
                         <div
                             key={label}
-                            className="inline-flex items-center gap-2 bg-white/8 border border-white/12 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm text-white/65 font-medium backdrop-blur-sm"
+                            className="inline-flex items-center gap-2 bg-white border border-sand/60 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm text-espresso/70 font-medium shadow-sm"
                         >
-                            <Icon size={13} className="text-white/45 shrink-0" />
+                            <Icon size={13} className="text-terracotta shrink-0" />
                             {label}
                         </div>
                     ))}

@@ -69,7 +69,7 @@ export default function SolutionSection() {
                         Conheça o{' '}
                         <span className="gradient-text">Petzara</span>
                     </h2>
-                    <p className="text-white/55 text-lg leading-relaxed">
+                    <p className="text-white/65 text-lg leading-relaxed">
                         Tudo que você precisa para organizar, crescer e lucrar — em uma única plataforma feita para quem vive de banho e tosa.
                     </p>
                 </motion.div>
@@ -93,7 +93,7 @@ export default function SolutionSection() {
                                         <Icon size={20} />
                                     </div>
                                     <h3 className="font-accent font-bold text-white/90 mb-1">{feature.title}</h3>
-                                    <p className="text-white/55 text-sm leading-relaxed">{feature.description}</p>
+                                    <p className="text-white/65 text-sm leading-relaxed">{feature.description}</p>
                                 </motion.div>
                             )
                         })}

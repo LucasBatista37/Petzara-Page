@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { CalendarX2, DollarSign, Smartphone, Users, Clock, BarChart3 } from 'lucide-react'
+import { CalendarX2, DollarSign, Smartphone, Users, Clock, BarChart3, ArrowRight } from 'lucide-react'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
+import { appRegisterUrl } from '../siteConfig'
 
 const problems = [
     {
@@ -95,7 +96,7 @@ export default function ProblemSection() {
                     ))}
                 </div>
 
-                {/* Callout — usa whileInView próprio */}
+                {/* Callout — impacto emocional sem atribuição falsa */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -103,12 +104,36 @@ export default function ProblemSection() {
                     transition={{ duration: 0.6, ease }}
                     className="mt-12 max-w-2xl mx-auto"
                 >
-                    <div className="flex gap-4 items-start">
-                        <span className="text-2xl mt-0.5 shrink-0">💬</span>
-                        <p className="text-taupe text-base italic leading-relaxed">
-                            "Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro."
-                        </p>
+                    <div className="bg-terracotta/5 border border-terracotta/20 rounded-2xl px-6 py-5 flex gap-4 items-start">
+                        <span className="text-2xl mt-0.5 shrink-0" aria-hidden="true">💬</span>
+                        <div>
+                            <p className="text-espresso/80 text-base leading-relaxed font-medium italic">
+                                "Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro."
+                            </p>
+                            <p className="text-taupe text-sm mt-2">
+                                Esse é o dia a dia de petshops que ainda não usam o Petzara.
+                            </p>
+                        </div>
                     </div>
+                </motion.div>
+
+                {/* Mini CTA — aparece após o callout emocional */}
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={getCardViewport()}
+                    transition={{ duration: 0.5, delay: 0.1, ease }}
+                    className="mt-8 text-center"
+                >
+                    <a
+                        href={appRegisterUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-terracotta font-bold text-sm hover:gap-3 transition-all duration-200 group"
+                    >
+                        Resolver isso agora — é grátis
+                        <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+                    </a>
                 </motion.div>
             </div>
         </section>

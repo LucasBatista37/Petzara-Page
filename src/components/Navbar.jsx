@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { appRegisterUrl } from '../siteConfig'
 
@@ -15,6 +15,7 @@ const navLinks = [
 export default function Navbar() {
     const [visible, setVisible] = useState(true)
     const [mobileOpen, setMobileOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
     const mobileOpenRef = useRef(false)
 
     // Progressive blur via useScroll — substitui a troca binária
@@ -23,6 +24,9 @@ export default function Navbar() {
     const bgOpacity = useTransform(scrollY, [0, 90], [0, 0.92])
     const borderOpacity = useTransform(scrollY, [0, 90], [0, 0.25])
     const shadowOpacity = useTransform(scrollY, [0, 90], [0, 0.06])
+
+    // Detecta quando o usuário passou da dobra para destacar o CTA
+    useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 120))
 
     useEffect(() => { mobileOpenRef.current = mobileOpen }, [mobileOpen])
 
@@ -86,14 +90,22 @@ export default function Navbar() {
                                 {link.label}
                             </a>
                         ))}
-                        <a
+                        <motion.a
                             href={appRegisterUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-all hover:shadow-lg hover:shadow-terracotta/20 hover:-translate-y-0.5 active:translate-y-0"
+                            animate={scrolled ? {
+                                boxShadow: '0 0 16px rgba(224, 122, 95, 0.4)',
+                            } : {
+                                boxShadow: '0 0 0px rgba(224, 122, 95, 0)',
+                            }}
+                            transition={{ duration: 0.4 }}
+                            whileHover={{ scale: 1.03, y: -1 }}
+                            whileTap={{ scale: 0.97, y: 0 }}
+                            className="bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-colors"
                         >
                             Começar Grátis
-                        </a>
+                        </motion.a>
                     </div>
 
                     {/* Mobile Toggle */}

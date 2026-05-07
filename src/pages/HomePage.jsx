@@ -2,10 +2,10 @@ import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
 import ProblemSection from '../components/ProblemSection'
 import SolutionSection from '../components/SolutionSection'
-import ColorPaletteSection from '../components/ColorPaletteSection'
-import DemoSection from '../components/DemoSection'
-import MultiDeviceSection from '../components/MultiDeviceSection'
 import HowItWorksSection from '../components/HowItWorksSection'
+import DemoSection from '../components/DemoSection'
+import ColorPaletteSection from '../components/ColorPaletteSection'
+import MultiDeviceSection from '../components/MultiDeviceSection'
 import PricingSection from '../components/PricingSection'
 import FAQSection from '../components/FAQSection'
 import CTASection from '../components/CTASection'
@@ -41,14 +41,14 @@ function AuroraBackground() {
 
             {/* Blob 2 — sage, problem — oculto no mobile para poupar GPU */}
             <div className="hidden sm:block"
-                 style={blob('sage',       '22%', { key: 'right', value: '-100px' }, 500, 'aurora-drift-2 28s')} />
+                 style={blob('sage',       '20%', { key: 'right', value: '-100px' }, 500, 'aurora-drift-2 28s')} />
 
             {/* Blob 3 — terracotta, solution/benefits */}
-            <div style={blob('terracotta', '45%', { key: 'left',  value: '5%'     }, 700, 'aurora-drift-3 18s')} />
+            <div style={blob('terracotta', '42%', { key: 'left',  value: '5%'     }, 700, 'aurora-drift-3 18s')} />
 
-            {/* Blob 4 — sage, how it works — oculto no mobile */}
+            {/* Blob 4 — sage, demo/palette — oculto no mobile */}
             <div className="hidden sm:block"
-                 style={blob('sage',       '65%', { key: 'right', value: '5%'     }, 550, 'aurora-drift-1 25s', 4)} />
+                 style={blob('sage',       '63%', { key: 'right', value: '5%'     }, 550, 'aurora-drift-1 25s', 4)} />
 
             {/* Blob 5 — terracotta, pricing/CTA */}
             <div style={blob('terracotta', '82%', { key: 'left',  value: '-80px'  }, 600, 'aurora-drift-2 20s', 8)} />
@@ -66,8 +66,8 @@ export default function HomePage() {
                 <ProblemSection />
                 <SolutionSection />
                 <HowItWorksSection />
-                <DemoSection />
                 <MultiDeviceSection />
+                <DemoSection />
                 <ColorPaletteSection />
                 <PricingSection />
                 <FAQSection />

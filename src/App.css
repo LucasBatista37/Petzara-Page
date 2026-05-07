@@ -152,6 +152,36 @@
   animation: gradient-shift 10s ease infinite;
 }
 
+/* Shimmer/shine effect on primary CTA buttons */
+@keyframes btn-shine {
+  0%   { left: -120%; }
+  60%,
+  100% { left: 150%; }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: btn-shine 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
 /* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
 

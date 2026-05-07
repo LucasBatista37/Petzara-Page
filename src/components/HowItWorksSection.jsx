@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { UserPlus, Settings, CalendarPlus } from 'lucide-react'
+import { UserPlus, Settings, CalendarPlus, ArrowRight } from 'lucide-react'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
+import { appRegisterUrl } from '../siteConfig'
 
 const steps = [
     {
@@ -127,6 +128,27 @@ export default function HowItWorksSection() {
                         })}
                     </div>
                 </div>
+
+                {/* CTA — após entender que é simples, é o melhor momento para agir */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.55, delay: 0.5, ease }}
+                    className="mt-14 text-center"
+                >
+                    <p className="text-taupe text-base mb-4">
+                        Comece em 3 minutos, não 3 dias.
+                    </p>
+                    <a
+                        href={appRegisterUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-terracotta font-bold text-base hover:gap-3 transition-all duration-200 group border-b-2 border-terracotta/30 hover:border-terracotta pb-0.5"
+                    >
+                        Criar conta grátis agora
+                        <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                    </a>
+                </motion.div>
             </div>
         </section>
     )

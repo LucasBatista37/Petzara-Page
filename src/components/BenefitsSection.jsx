@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { CalendarCheck, PawPrint, Wallet, Globe, Users, BarChart3 } from 'lucide-react'
+import { CalendarCheck, PawPrint, Wallet, Globe, Users, BarChart3, ArrowRight } from 'lucide-react'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
+import { appRegisterUrl } from '../siteConfig'
 
 const benefits = [
     {
@@ -147,6 +148,28 @@ export default function BenefitsSection() {
                         <BenefitCard key={benefit.title} benefit={benefit} />
                     ))}
                 </div>
+
+                {/* CTA ao final — momento de menor resistência após ver os benefícios */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={getCardViewport()}
+                    transition={{ duration: 0.55, ease }}
+                    className="mt-14 text-center"
+                >
+                    <a
+                        href={appRegisterUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20 hover:shadow-terracotta/30 hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                        Quero esses benefícios — testar grátis
+                        <ArrowRight size={18} />
+                    </a>
+                    <p className="mt-3 text-taupe text-sm">
+                        30 dias grátis · Sem cartão · Cancele quando quiser
+                    </p>
+                </motion.div>
             </div>
         </section>
     )
