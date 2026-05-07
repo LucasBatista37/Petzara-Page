@@ -36,7 +36,7 @@ function DualDeviceMockup({ mockupY }) {
             style={{ y: mockupY }}
             transition={{ duration: 0.8, delay: 0.3, ease }}
             // pb-16: espaço para o iPhone e o card flutuante que saem do limite inferior
-            className="relative w-full max-w-lg mx-auto lg:mx-0 pb-16"
+            className="relative w-full max-w-lg mx-auto lg:mx-0 pb-16 mt-14 lg:mt-0"
         >
 
             {/* ── MacBook ─────────────────────────────────────────────────────── */}

@@ -5,6 +5,8 @@ export default function Footer() {
     return (
         <footer className="bg-espresso text-white/60 py-12 relative overflow-hidden">
             <div className="absolute inset-0 pointer-events-none">
+                {/* Espelha o blob sage do CTA para unificar o brilho na fronteira entre as seções */}
+                <div className="absolute top-0 left-0 w-72 h-72 bg-sage/10 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 right-0 w-48 h-48 bg-terracotta/5 rounded-full blur-3xl" />
             </div>
 

@@ -1,5 +1,5 @@
 import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 // Curva de easing premium — usada em Framer, Linear, Vercel
 export const ease = [0.25, 0.46, 0.45, 0.94]
@@ -32,8 +32,9 @@ export const wordVariant = {
 /**
  * Viewport config para whileInView por elemento.
  *
- * Mobile  (< 768px): dispara no momento em que qualquer parte do elemento
- *   toca o viewport — o scroll já funciona como stagger natural.
+ * Mobile  (< 768px): dispara 120px ANTES do elemento entrar na tela —
+ *   assim a animação já terminou quando o usuário chega no elemento,
+ *   mesmo em scroll rápido.
  * Desktop (≥ 768px): dispara 80px dentro do viewport para o efeito
  *   "subindo para a tela" que deixa a animação visível e deliberada.
  *
@@ -42,24 +43,41 @@ export const wordVariant = {
 export function getCardViewport() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   return isMobile
-    ? { once: true, margin: '0px 0px 0px 0px' }
+    ? { once: true, margin: '0px 0px 120px 0px' }
     : { once: true, margin: '0px 0px -80px 0px' }
 }
 
 /**
  * Hook responsivo de scroll-reveal para CABEÇALHOS de seção.
- * O ref fica no container da seção — adequado para títulos que ficam
- * no topo de cada seção e ficam visíveis quando ela entra na tela.
  *
- * Para cards individuais dentro de grids/listas, use whileInView + getCardViewport()
- * em cada card, não este hook — assim cada card anima quando ELE entra na tela.
+ * Mobile: dispara 150px antes do elemento entrar no viewport, dando
+ *   tempo para a animação completar mesmo com scroll rápido.
+ *   Inclui fallback: se o scroll foi tão rápido que o IntersectionObserver
+ *   nunca disparou e o elemento já passou, força o estado animado após 600ms.
+ *
+ * Desktop: dispara 80px dentro do viewport para o reveal deliberado.
  */
 export function useResponsiveInView() {
   const ref = useRef(null)
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
   const isInView = useInView(ref, {
     once: true,
-    margin: isMobile ? '-20px' : '-80px',
+    margin: isMobile ? '0px 0px 150px 0px' : '0px 0px -80px 0px',
   })
-  return { ref, isInView, isMobile }
+
+  // Fallback para scroll ultra-rápido no mobile: se o observer não disparou
+  // e o elemento já saiu do viewport pelo topo, força o estado animado.
+  const [scrolledPast, setScrolledPast] = useState(false)
+  useEffect(() => {
+    if (isInView || !isMobile) return
+    const id = setTimeout(() => {
+      if (ref.current && ref.current.getBoundingClientRect().bottom < 0) {
+        setScrolledPast(true)
+      }
+    }, 600)
+    return () => clearTimeout(id)
+  }, [isInView, isMobile])
+
+  return { ref, isInView: isInView || scrolledPast, isMobile }
 }

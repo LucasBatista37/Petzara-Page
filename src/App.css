@@ -147,8 +147,12 @@
 }
 
 .cta-gradient-bg {
-  background: linear-gradient(135deg, #2C2421, #3a302c, #2C2421, #2a2620);
-  background-size: 300% 300%;
+  /* Layer 1 (frente): máscara estática que fixa #2C2421 na borda inferior,
+     independente de onde o layer animado estiver no ciclo */
+  background:
+    linear-gradient(to bottom, transparent 45%, #2C2421 100%),
+    linear-gradient(135deg, #2C2421, #3a302c, #2C2421, #2a2620);
+  background-size: 100% 100%, 300% 300%;
   animation: gradient-shift 10s ease infinite;
 }
 
