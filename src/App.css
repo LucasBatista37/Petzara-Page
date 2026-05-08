@@ -163,9 +163,8 @@
 
 /* Shimmer/shine effect on primary CTA buttons */
 @keyframes btn-shine {
-  0%   { left: -120%; }
-  60%,
-  100% { left: 150%; }
+  0%       { transform: translateX(-200%) skewX(-20deg); }
+  60%, 100% { transform: translateX(250%)  skewX(-20deg); }
 }
 
 .btn-shine {
@@ -177,7 +176,7 @@
   content: '';
   position: absolute;
   top: 0;
-  left: -120%;
+  left: 0;
   width: 60%;
   height: 100%;
   background: linear-gradient(
@@ -186,7 +185,6 @@
     rgba(255, 255, 255, 0.22) 50%,
     transparent 100%
   );
-  transform: skewX(-20deg);
   animation: btn-shine 3.5s ease-in-out infinite;
   pointer-events: none;
 }

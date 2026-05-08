@@ -28,12 +28,12 @@ const trustItems = [
 // MacBook ao fundo + iPhone sobreposto com leve rotação.
 // Responsivo: aparece centralizado abaixo do copy no mobile,
 // lado a lado com o copy no desktop (lg+).
-function DualDeviceMockup({ mockupY }) {
+function DualDeviceMockup({ mockupY, isDesktop }) {
     return (
         <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            style={{ y: mockupY }}
+            style={{ y: mockupY, willChange: isDesktop ? 'transform' : 'auto' }}
             transition={{ duration: 0.8, delay: 0.3, ease }}
             // pb-16: espaço para o iPhone e o card flutuante que saem do limite inferior
             className="relative w-full max-w-lg mx-auto lg:mx-0 pb-16 mt-14 lg:mt-0"
@@ -147,11 +147,12 @@ function DualDeviceMockup({ mockupY }) {
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 export default function HeroSection() {
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024
     const { scrollY } = useScroll()
-    const mockupY   = useTransform(scrollY, [0, 600], [0, -50])
-    const pawBigY   = useTransform(scrollY, [0, 600], [0, -25])
-    const pawSmallY = useTransform(scrollY, [0, 600], [0, -75])
-    const blobY     = useTransform(scrollY, [0, 600], [0, -35])
+    const mockupY   = useTransform(scrollY, [0, 600], isDesktop ? [0, -50] : [0, 0])
+    const pawBigY   = useTransform(scrollY, [0, 600], isDesktop ? [0, -25] : [0, 0])
+    const pawSmallY = useTransform(scrollY, [0, 600], isDesktop ? [0, -75] : [0, 0])
+    const blobY     = useTransform(scrollY, [0, 600], isDesktop ? [0, -35] : [0, 0])
 
     return (
         <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
@@ -168,18 +169,18 @@ export default function HeroSection() {
             {/* Parallax decorations */}
             <div className="absolute inset-0 pointer-events-none">
                 <motion.div
-                    style={{ y: blobY }}
+                    style={{ y: blobY, willChange: isDesktop ? 'transform' : 'auto' }}
                     className="absolute top-1/3 right-[20%] w-48 h-48 bg-terracotta/3 rounded-full blur-2xl animate-float-slow"
                 />
-                <motion.svg style={{ y: pawBigY }} aria-hidden="true" className="absolute top-[25%] left-[5%] w-8 h-8 text-terracotta/10 animate-float" viewBox="0 0 512 512" fill="currentColor">
+                <motion.svg style={{ y: pawBigY, willChange: isDesktop ? 'transform' : 'auto' }} aria-hidden="true" className="absolute top-[25%] left-[5%] w-8 h-8 text-terracotta/10 animate-float" viewBox="0 0 512 512" fill="currentColor">
                     <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" />
                     <circle cx="160" cy="220" r="45" /><circle cx="256" cy="170" r="50" /><circle cx="352" cy="220" r="45" />
                 </motion.svg>
-                <motion.svg style={{ y: pawBigY }} aria-hidden="true" className="absolute top-[60%] right-[8%] w-12 h-12 text-sage/10 animate-float-slow" viewBox="0 0 512 512" fill="currentColor" initial={false}>
+                <motion.svg style={{ y: pawBigY, willChange: isDesktop ? 'transform' : 'auto' }} aria-hidden="true" className="absolute top-[60%] right-[8%] w-12 h-12 text-sage/10 animate-float-slow" viewBox="0 0 512 512" fill="currentColor" initial={false}>
                     <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" />
                     <circle cx="160" cy="220" r="45" /><circle cx="256" cy="170" r="50" /><circle cx="352" cy="220" r="45" />
                 </motion.svg>
-                <motion.svg style={{ y: pawSmallY }} aria-hidden="true" className="absolute bottom-[20%] left-[15%] w-6 h-6 text-terracotta/8 animate-float" viewBox="0 0 512 512" fill="currentColor">
+                <motion.svg style={{ y: pawSmallY, willChange: isDesktop ? 'transform' : 'auto' }} aria-hidden="true" className="absolute bottom-[20%] left-[15%] w-6 h-6 text-terracotta/8 animate-float" viewBox="0 0 512 512" fill="currentColor">
                     <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" />
                     <circle cx="160" cy="220" r="45" /><circle cx="256" cy="170" r="50" /><circle cx="352" cy="220" r="45" />
                 </motion.svg>
@@ -301,7 +302,7 @@ export default function HeroSection() {
                     </motion.div>
 
                     {/* ── Dual Device Mockup ────────────────────────────────────── */}
-                    <DualDeviceMockup mockupY={mockupY} />
+                    <DualDeviceMockup mockupY={mockupY} isDesktop={isDesktop} />
 
                 </div>
             </div>

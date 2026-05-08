@@ -40,9 +40,9 @@ export default function CTASection() {
     const { ref, isInView } = useResponsiveInView()
     const [showPulse, setShowPulse] = useState(false)
 
-    // Pulse de atenção no botão após 3s de permanência na seção
+    // Pulse de atenção no botão após 3s — desabilitado em mobile para poupar CPU
     useEffect(() => {
-        if (!isInView) return
+        if (!isInView || window.innerWidth < 1024) return
         const t = setTimeout(() => setShowPulse(true), 3000)
         return () => clearTimeout(t)
     }, [isInView])

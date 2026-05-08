@@ -210,20 +210,24 @@ export default function DemoSection() {
                                         </AnimatePresence>
                                     </div>
                                 </div>
-                                {/* Cross-fade: todas as imagens empilhadas, só a ativa é opaca */}
+                                {/* Cross-fade: apenas slide atual ± 1 adjacente no DOM */}
                                 <div className="grid" role="tabpanel" aria-labelledby={`tab-${current}`}>
-                                    {screens.map(s => (
-                                        <motion.img
-                                            key={s.id + '-desktop'}
-                                            src={s.desktopImage}
-                                            alt={s.imageAlt}
-                                            className="w-full object-cover"
-                                            style={{ gridArea: '1 / 1' }}
-                                            animate={{ opacity: s.id === screen.id ? 1 : 0 }}
-                                            transition={FADE}
-                                            loading="lazy"
-                                        />
-                                    ))}
+                                    {screens.map((s, i) => {
+                                        const isVisible = s.id === screen.id
+                                        if (!isVisible && Math.abs(i - current) > 1) return null
+                                        return (
+                                            <motion.img
+                                                key={s.id + '-desktop'}
+                                                src={s.desktopImage}
+                                                alt={s.imageAlt}
+                                                className="w-full object-cover"
+                                                style={{ gridArea: '1 / 1' }}
+                                                animate={{ opacity: isVisible ? 1 : 0 }}
+                                                transition={FADE}
+                                                loading={isVisible ? 'eager' : 'lazy'}
+                                            />
+                                        )
+                                    })}
                                 </div>
                             </div>
                             <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
@@ -246,20 +250,24 @@ export default function DemoSection() {
                                 />
                                 <div className="relative bg-espresso rounded-[2.8rem] p-[10px] shadow-2xl shadow-espresso/30 w-[300px]">
                                     <div className="absolute top-[20px] left-1/2 -translate-x-1/2 w-[96px] h-[28px] bg-espresso rounded-full z-10" />
-                                    {/* Cross-fade: todas as imagens mobile empilhadas */}
+                                    {/* Cross-fade: apenas slide atual ± 1 adjacente no DOM */}
                                     <div className="grid rounded-[2.3rem] overflow-hidden" role="tabpanel" aria-labelledby={`tab-${current}`}>
-                                        {screens.map(s => (
-                                            <motion.img
-                                                key={s.id + '-mobile'}
-                                                src={s.mobileImage}
-                                                alt={`${s.imageAlt} — mobile`}
-                                                className="w-full object-cover"
-                                                style={{ gridArea: '1 / 1' }}
-                                                animate={{ opacity: s.id === screen.id ? 1 : 0 }}
-                                                transition={FADE}
-                                                loading="lazy"
-                                            />
-                                        ))}
+                                        {screens.map((s, i) => {
+                                            const isVisible = s.id === screen.id
+                                            if (!isVisible && Math.abs(i - current) > 1) return null
+                                            return (
+                                                <motion.img
+                                                    key={s.id + '-mobile'}
+                                                    src={s.mobileImage}
+                                                    alt={`${s.imageAlt} — mobile`}
+                                                    className="w-full object-cover"
+                                                    style={{ gridArea: '1 / 1' }}
+                                                    animate={{ opacity: isVisible ? 1 : 0 }}
+                                                    transition={FADE}
+                                                    loading={isVisible ? 'eager' : 'lazy'}
+                                                />
+                                            )
+                                        })}
                                     </div>
                                 </div>
                                 <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 sm:-translate-x-full sm:-ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
