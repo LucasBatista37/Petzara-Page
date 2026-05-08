@@ -89,7 +89,7 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                 className="absolute bottom-0 -right-3 sm:-right-5 lg:-right-8 rotate-[3deg] z-10"
             >
                 <div
-                    className="relative bg-espresso p-[7px] shadow-[0_20px_48px_-8px_rgba(44,36,33,0.55)]"
+                    className="relative bg-espresso p-[7px] shadow-md shadow-espresso/20 lg:shadow-[0_20px_48px_-8px_rgba(44,36,33,0.55)]"
                     style={{ borderRadius: '28px', width: 'clamp(88px, 22vw, 128px)' }}
                 >
                     {/* Dynamic island */}
@@ -157,8 +157,6 @@ export default function HeroSection() {
     return (
         <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
 
-            {/* Mobile: mascara sombras/blurs clipados pelo overflow-hidden antes da divisória com a próxima seção */}
-            <div className="lg:hidden absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-cream pointer-events-none z-20" />
 
             {/* Dot pattern */}
             <div
@@ -170,7 +168,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 pointer-events-none">
                 <motion.div
                     style={{ y: blobY, willChange: isDesktop ? 'transform' : 'auto' }}
-                    className="absolute top-1/3 right-[20%] w-48 h-48 bg-terracotta/3 rounded-full blur-2xl animate-float-slow"
+                    className="hidden lg:block absolute top-1/3 right-[20%] w-48 h-48 bg-terracotta/3 rounded-full blur-2xl animate-float-slow"
                 />
                 <motion.svg style={{ y: pawBigY, willChange: isDesktop ? 'transform' : 'auto' }} aria-hidden="true" className="absolute top-[25%] left-[5%] w-8 h-8 text-terracotta/10 animate-float" viewBox="0 0 512 512" fill="currentColor">
                     <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" />

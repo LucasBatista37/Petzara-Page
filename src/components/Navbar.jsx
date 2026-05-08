@@ -23,7 +23,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="relative z-50 py-4 bg-cream/90 backdrop-blur-sm border-b border-sand/40">
+            <nav className="relative z-50 py-4 bg-cream sm:bg-cream/90 sm:backdrop-blur-sm sm:shadow-sm sm:shadow-sand/30">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2.5 group">
