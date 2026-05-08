@@ -45,6 +45,11 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  /* inline-block garante box próprio fora do contexto de linha do h1,
+     evitando que o overflow-hidden do section e o perspective do pai
+     cortem os glifos nas bordas do content box */
+  display: inline-block;
+  padding: 0.06em 0.06em 0.1em 0;
 }
 
 /* Floating animation */

@@ -110,9 +110,6 @@ export default function ProblemSection() {
                             <p className="text-espresso/80 text-base leading-relaxed font-medium italic">
                                 "Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro."
                             </p>
-                            <p className="text-taupe text-sm mt-2">
-                                Esse é o dia a dia de petshops que ainda não usam o Petzara.
-                            </p>
                         </div>
                     </div>
                 </motion.div>
@@ -131,7 +128,7 @@ export default function ProblemSection() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-terracotta font-bold text-sm hover:gap-3 transition-all duration-200 group"
                     >
-                        Resolver isso agora — é grátis
+                        Resolver isso — testar 30 dias grátis
                         <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
                     </a>
                 </motion.div>

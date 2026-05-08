@@ -309,12 +309,11 @@ export default function ColorPaletteSection() {
                     >
                       {palette.name}
                     </motion.p>
-                    <p className="text-sm text-taupe mt-0.5">{palette.tagline}</p>
                   </motion.div>
                 </AnimatePresence>
 
                 {/* Progress dots */}
-                <div className="flex gap-1.5 mt-3">
+                <div className="flex gap-1.5 mt-3 justify-center lg:justify-start">
                   {PALETTES.map((pl, i) => (
                     <motion.div
                       key={i}

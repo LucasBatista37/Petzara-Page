@@ -16,10 +16,10 @@ export default function Footer() {
                     <div className="lg:col-span-1">
                         <Link to="/" className="flex items-center gap-2.5 mb-4">
                             <svg width="32" height="32" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" fill="#E07A5F" />
-                                <circle cx="160" cy="220" r="45" fill="#81B29A" />
-                                <circle cx="256" cy="170" r="50" fill="#E07A5F" />
-                                <circle cx="352" cy="220" r="45" fill="#81B29A" />
+                                <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" style={{ fill: 'var(--color-terracotta)', transition: 'fill 0.5s ease' }} />
+                                <circle cx="160" cy="220" r="45" style={{ fill: 'var(--color-sage)', transition: 'fill 0.5s ease' }} />
+                                <circle cx="256" cy="170" r="50" style={{ fill: 'var(--color-terracotta)', transition: 'fill 0.5s ease' }} />
+                                <circle cx="352" cy="220" r="45" style={{ fill: 'var(--color-sage)', transition: 'fill 0.5s ease' }} />
                             </svg>
                             <span className="font-accent font-bold text-lg text-white">
                                 Pet<span className="text-terracotta">zara</span>

@@ -145,7 +145,7 @@ export default function HowItWorksSection() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-terracotta font-bold text-base hover:gap-3 transition-all duration-200 group border-b-2 border-terracotta/30 hover:border-terracotta pb-0.5"
                     >
-                        Criar conta grátis agora
+                        Criar conta — testar 30 dias grátis
                         <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
                     </a>
                 </motion.div>

@@ -4,6 +4,8 @@ import { ChevronLeft, ChevronRight, Monitor, Smartphone } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
 import { ease, useResponsiveInView } from '../animations/variants'
 
+const FADE = { duration: 0.28, ease }
+
 const screens = [
     {
         id: 'dashboard',
@@ -97,17 +99,10 @@ const screens = [
     },
 ]
 
-// Variantes para slide direcional — entrada/saída dependem da direção
-const slideVariants = {
-    enter: (dir) => ({ x: dir > 0 ? 48 : -48, opacity: 0 }),
-    center: { x: 0, opacity: 1, transition: { duration: 0.32, ease } },
-    exit: (dir) => ({ x: dir < 0 ? 48 : -48, opacity: 0, transition: { duration: 0.2, ease } }),
-}
 
 export default function DemoSection() {
     const { ref, isInView } = useResponsiveInView()
     const [current, setCurrent] = useState(0)
-    const [direction, setDirection] = useState(0)
     const [viewMode, setViewMode] = useState('desktop')
 
     useEffect(() => {
@@ -116,16 +111,11 @@ export default function DemoSection() {
         }
     }, [])
 
-    const navigate = (nextIdx) => {
-        setDirection(nextIdx > current ? 1 : -1)
-        setCurrent(nextIdx)
-    }
-
+    const navigate = (nextIdx) => setCurrent(nextIdx)
     const prev = () => navigate((current - 1 + screens.length) % screens.length)
     const next = () => navigate((current + 1) % screens.length)
 
     const screen = screens[current]
-    const activeImage = viewMode === 'desktop' ? screen.desktopImage : screen.mobileImage
 
     return (
         <section id="demo" className="py-20 sm:py-28 relative overflow-hidden">
@@ -191,7 +181,13 @@ export default function DemoSection() {
                     {viewMode === 'desktop' ? (
                         /* ── Browser frame ── */
                         <div className="relative">
-                            <div className="absolute -inset-3 bg-gradient-to-br from-terracotta/10 to-sage/10 rounded-3xl blur-xl" />
+                            <div
+                                className="absolute -inset-3 rounded-3xl blur-xl opacity-40"
+                                style={{
+                                    background: 'linear-gradient(225deg, var(--color-terracotta), var(--color-sage))',
+                                    transition: 'background 0.6s ease',
+                                }}
+                            />
                             <div className="relative bg-white rounded-2xl shadow-2xl shadow-espresso/10 border border-sand/50 overflow-hidden">
                                 <div className="bg-cream-warm px-4 py-3 flex items-center gap-2 border-b border-sand/50" aria-hidden="true">
                                     <div className="flex gap-1.5">
@@ -214,22 +210,20 @@ export default function DemoSection() {
                                         </AnimatePresence>
                                     </div>
                                 </div>
-                                {/* Slide direcional */}
-                                <div className="overflow-hidden" role="tabpanel" aria-labelledby={`tab-${current}`}>
-                                    <AnimatePresence mode="wait" custom={direction}>
+                                {/* Cross-fade: todas as imagens empilhadas, só a ativa é opaca */}
+                                <div className="grid" role="tabpanel" aria-labelledby={`tab-${current}`}>
+                                    {screens.map(s => (
                                         <motion.img
-                                            key={screen.id + '-desktop'}
-                                            src={screen.desktopImage}
-                                            alt={screen.imageAlt}
-                                            className="w-full"
+                                            key={s.id + '-desktop'}
+                                            src={s.desktopImage}
+                                            alt={s.imageAlt}
+                                            className="w-full object-cover"
+                                            style={{ gridArea: '1 / 1' }}
+                                            animate={{ opacity: s.id === screen.id ? 1 : 0 }}
+                                            transition={FADE}
                                             loading="lazy"
-                                            custom={direction}
-                                            variants={slideVariants}
-                                            initial="enter"
-                                            animate="center"
-                                            exit="exit"
                                         />
-                                    </AnimatePresence>
+                                    ))}
                                 </div>
                             </div>
                             <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
@@ -243,36 +237,29 @@ export default function DemoSection() {
                         /* ── Phone frame ── */
                         <div className="flex justify-center">
                             <div className="relative">
-                                <div className="absolute -inset-4 bg-gradient-to-br from-terracotta/10 to-sage/10 rounded-[3.5rem] blur-xl" />
+                                <div
+                                    className="absolute -inset-4 rounded-[3.5rem] blur-xl opacity-40"
+                                    style={{
+                                        background: 'linear-gradient(225deg, var(--color-terracotta), var(--color-sage))',
+                                        transition: 'background 0.6s ease',
+                                    }}
+                                />
                                 <div className="relative bg-espresso rounded-[2.8rem] p-[10px] shadow-2xl shadow-espresso/30 w-[300px]">
                                     <div className="absolute top-[20px] left-1/2 -translate-x-1/2 w-[96px] h-[28px] bg-espresso rounded-full z-10" />
-                                    <div className="bg-white rounded-[2.3rem] overflow-hidden" role="tabpanel" aria-labelledby={`tab-${current}`}>
-                                        {activeImage ? (
-                                            <AnimatePresence mode="wait" custom={direction}>
-                                                <motion.img
-                                                    key={screen.id + '-mobile'}
-                                                    src={activeImage}
-                                                    alt={`${screen.imageAlt} — mobile`}
-                                                    className="w-full"
-                                                    loading="lazy"
-                                                    custom={direction}
-                                                    variants={slideVariants}
-                                                    initial="enter"
-                                                    animate="center"
-                                                    exit="exit"
-                                                />
-                                            </AnimatePresence>
-                                        ) : (
-                                            <div className="flex flex-col items-center justify-center py-24 px-8 gap-4 text-center">
-                                                <div className="w-14 h-14 bg-terracotta/10 rounded-2xl flex items-center justify-center">
-                                                    <Smartphone size={26} className="text-terracotta" />
-                                                </div>
-                                                <div>
-                                                    <p className="font-accent font-bold text-espresso text-sm mb-1">Preview mobile</p>
-                                                    <p className="text-taupe text-xs leading-relaxed">Mockups em preparação</p>
-                                                </div>
-                                            </div>
-                                        )}
+                                    {/* Cross-fade: todas as imagens mobile empilhadas */}
+                                    <div className="grid rounded-[2.3rem] overflow-hidden" role="tabpanel" aria-labelledby={`tab-${current}`}>
+                                        {screens.map(s => (
+                                            <motion.img
+                                                key={s.id + '-mobile'}
+                                                src={s.mobileImage}
+                                                alt={`${s.imageAlt} — mobile`}
+                                                className="w-full object-cover"
+                                                style={{ gridArea: '1 / 1' }}
+                                                animate={{ opacity: s.id === screen.id ? 1 : 0 }}
+                                                transition={FADE}
+                                                loading="lazy"
+                                            />
+                                        ))}
                                     </div>
                                 </div>
                                 <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 sm:-translate-x-full sm:-ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">

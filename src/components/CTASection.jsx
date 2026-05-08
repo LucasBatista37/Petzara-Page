@@ -186,8 +186,8 @@ export default function CTASection() {
                                             }}
                                             className="flex items-center gap-4 text-white/80"
                                         >
-                                            <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
-                                                <Icon size={20} className="text-terracotta" />
+                                            <div className="w-10 h-10 bg-sage/20 rounded-xl flex items-center justify-center shrink-0">
+                                                <Icon size={20} className="text-sage" />
                                             </div>
                                             <span className="text-sm">{item.label}</span>
                                         </motion.div>

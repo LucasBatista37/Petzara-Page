@@ -1,49 +1,20 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { appRegisterUrl } from '../siteConfig'
 
 const navLinks = [
     { label: 'Problema', href: '#problema' },
     { label: 'Solução', href: '#solucao' },
-    { label: 'Benefícios', href: '#beneficios' },
     { label: 'Como Funciona', href: '#como-funciona' },
+    { label: 'Demo', href: '#demo' },
     { label: 'Preços', href: '#precos' },
+    { label: 'FAQ', href: '#faq' },
 ]
 
 export default function Navbar() {
-    const [visible, setVisible] = useState(true)
     const [mobileOpen, setMobileOpen] = useState(false)
-    const [scrolled, setScrolled] = useState(false)
-    const mobileOpenRef = useRef(false)
-
-    // Progressive blur via useScroll — substitui a troca binária
-    const { scrollY } = useScroll()
-    const blur = useTransform(scrollY, [0, 90], [0, 18])
-    const bgOpacity = useTransform(scrollY, [0, 90], [0, 0.92])
-    const borderOpacity = useTransform(scrollY, [0, 90], [0, 0.25])
-    const shadowOpacity = useTransform(scrollY, [0, 90], [0, 0.06])
-
-    // Detecta quando o usuário passou da dobra para destacar o CTA
-    useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 120))
-
-    useEffect(() => { mobileOpenRef.current = mobileOpen }, [mobileOpen])
-
-    useEffect(() => {
-        let lastY = window.scrollY
-        const onScroll = () => {
-            const currentY = window.scrollY
-            if (mobileOpenRef.current || currentY < 60 || currentY < lastY) {
-                setVisible(true)
-            } else if (currentY > lastY + 4) {
-                setVisible(false)
-            }
-            lastY = currentY
-        }
-        window.addEventListener('scroll', onScroll, { passive: true })
-        return () => window.removeEventListener('scroll', onScroll)
-    }, [])
 
     useEffect(() => {
         document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -52,18 +23,7 @@ export default function Navbar() {
 
     return (
         <>
-            <motion.nav
-                animate={{ y: visible ? 0 : '-110%' }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                style={{
-                    backdropFilter: useTransform(blur, (v) => `blur(${v}px)`),
-                    WebkitBackdropFilter: useTransform(blur, (v) => `blur(${v}px)`),
-                    backgroundColor: useTransform(bgOpacity, (v) => `rgba(250, 250, 249, ${v})`),
-                    borderBottomColor: useTransform(borderOpacity, (v) => `rgba(0,0,0,${v})`),
-                    boxShadow: useTransform(shadowOpacity, (v) => `0 1px 12px rgba(44,36,33,${v})`),
-                }}
-                className="fixed top-0 left-0 right-0 z-50 py-4 border-b"
-            >
+            <nav className="relative z-50 py-4 bg-cream/90 backdrop-blur-sm border-b border-sand/40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2.5 group">
@@ -80,7 +40,7 @@ export default function Navbar() {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-8">
+                    <div className="hidden md:flex items-center gap-6">
                         {navLinks.map((link) => (
                             <a
                                 key={link.href}
@@ -94,12 +54,6 @@ export default function Navbar() {
                             href={appRegisterUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            animate={scrolled ? {
-                                boxShadow: '0 0 16px rgba(224, 122, 95, 0.4)',
-                            } : {
-                                boxShadow: '0 0 0px rgba(224, 122, 95, 0)',
-                            }}
-                            transition={{ duration: 0.4 }}
                             whileHover={{ scale: 1.03, y: -1 }}
                             whileTap={{ scale: 0.97, y: 0 }}
                             className="bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-colors"
@@ -118,9 +72,9 @@ export default function Navbar() {
                         {mobileOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
                     </button>
                 </div>
-            </motion.nav>
+            </nav>
 
-            {/* Mobile Menu com stagger nos links */}
+            {/* Mobile Menu */}
             <AnimatePresence>
                 {mobileOpen && (
                     <motion.div
@@ -143,7 +97,7 @@ export default function Navbar() {
                             aria-label="Menu principal"
                         >
                             <motion.div
-                                variants={{ animate: { transition: { staggerChildren: 0.05, delayChildren: 0.15 } } }}
+                                variants={{ animate: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } } }}
                                 initial="initial"
                                 animate="animate"
                                 className="p-6 pt-20 flex flex-col gap-2"

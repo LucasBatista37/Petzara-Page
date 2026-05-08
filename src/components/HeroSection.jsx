@@ -154,7 +154,10 @@ export default function HeroSection() {
     const blobY     = useTransform(scrollY, [0, 600], [0, -35])
 
     return (
-        <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-20">
+        <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+
+            {/* Mobile: mascara sombras/blurs clipados pelo overflow-hidden antes da divisória com a próxima seção */}
+            <div className="lg:hidden absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-cream pointer-events-none z-20" />
 
             {/* Dot pattern */}
             <div
