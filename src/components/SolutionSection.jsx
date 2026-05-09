@@ -13,7 +13,7 @@ const features = [
     {
         icon: Clock,
         title: 'Agendamento 24h',
-        description: 'Página pública com URL do seu petshop. Clientes escolhem o horário e agendam sozinhos — sem te chamar no WhatsApp.',
+        description: 'Página pública com URL do seu petshop. Clientes visualizam os horários disponíveis e são direcionados para o WhatsApp para confirmar o agendamento.',
         color: 'bg-sage/10 text-sage-dark',
     },
     {

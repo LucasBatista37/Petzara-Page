@@ -33,16 +33,8 @@ const faqs = [
         answer: 'Sim. Suporte por e-mail e WhatsApp incluso em todos os planos. Nossa equipe responde em horário comercial.',
     },
     {
-        question: 'Posso importar meus clientes e pets já cadastrados?',
-        answer: 'Sim. Você pode cadastrar clientes e pets manualmente ou importar via planilha. O processo é guiado passo a passo.',
-    },
-    {
         question: 'O sistema é difícil de aprender?',
         answer: 'Não. Em menos de 10 minutos você já está criando agendamentos. A interface foi pensada para quem nunca usou um sistema de gestão antes — sem manual, sem treinamento.',
-    },
-    {
-        question: 'Já uso planilha ou caderno. É difícil fazer a transição?',
-        answer: 'Muito fácil. Você pode importar clientes e pets via arquivo ou adicionar manualmente. Nossa equipe de suporte te acompanha na transição sem custo adicional.',
     },
     {
         question: 'Tenho um petshop pequeno com 1 ou 2 funcionários. Vale a pena?',
