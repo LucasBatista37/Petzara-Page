@@ -99,36 +99,87 @@ export default function SolutionSection() {
                         })}
                     </div>
 
-                    {/* Mockup — delay pequeno para sequenciar após os primeiros cards no desktop */}
+                    {/* Dual device mockup */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={getCardViewport()}
                         transition={{ duration: 0.7, delay: isMobile ? 0 : 0.2, ease }}
-                        className="relative"
+                        className="relative pb-16"
                     >
-                        <div className="relative bg-white rounded-2xl shadow-2xl shadow-espresso/10 border border-sand/50 overflow-hidden">
-                            {/* Browser bar */}
-                            <div className="bg-cream-warm px-4 py-3 flex items-center gap-2 border-b border-sand/50">
-                                <div className="flex gap-1.5">
-                                    <div className="w-3 h-3 rounded-full bg-terracotta/60" />
-                                    <div className="w-3 h-3 rounded-full bg-sage/60" />
-                                    <div className="w-3 h-3 rounded-full bg-sand" />
-                                </div>
-                                <div className="flex-1 mx-3">
-                                    <div className="bg-white rounded-lg px-3 py-1 text-xs text-taupe/60 border border-sand/50 max-w-xs">
-                                        {APP_HOST}/agendamentos
+                        {/* Glow aura — palette-reactive */}
+                        <div
+                            className="absolute -inset-3 rounded-3xl blur-2xl opacity-20 pointer-events-none"
+                            style={{ background: 'linear-gradient(225deg, var(--color-terracotta), var(--color-sage))', transition: 'background 0.6s ease' }}
+                        />
+
+                        {/* MacBook */}
+                        <div className="relative">
+                            {/* Bezel */}
+                            <div className="bg-[#1a1208] rounded-t-[18px] px-[3.5%] pt-[3%] shadow-2xl shadow-black/50 border border-white/5">
+                                <div className="rounded-t-xl overflow-hidden">
+                                    {/* Browser chrome */}
+                                    <div className="bg-cream-warm px-3 py-2 flex items-center gap-2 border-b border-sand/30">
+                                        <div className="flex gap-1.5 shrink-0">
+                                            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-terracotta/60" />
+                                            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-sage/60" />
+                                            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-sand" />
+                                        </div>
+                                        <div className="flex-1 mx-2">
+                                            <div className="bg-white rounded px-2 py-0.5 text-[8px] sm:text-[9px] text-taupe/50 border border-sand/30 truncate max-w-[180px]">
+                                                {APP_HOST}/agendamentos
+                                            </div>
+                                        </div>
                                     </div>
+                                    <img
+                                        src="/prints/agendamentos-lista.webp"
+                                        alt="Lista de agendamentos Petzara"
+                                        className="w-full block"
+                                        loading="lazy"
+                                    />
                                 </div>
                             </div>
-
-                            <img
-                                src="/prints/agendamentos-lista.png"
-                                alt="Lista de agendamentos Petzara"
-                                className="w-full"
-                                loading="lazy"
-                            />
+                            {/* Webcam notch */}
+                            <div className="bg-[#1a1208] h-3 flex items-center justify-center border-x border-white/5">
+                                <div className="w-6 h-[3px] rounded-full bg-black/40" />
+                            </div>
+                            {/* Dobradiça */}
+                            <div className="h-[4px] bg-black/40" />
+                            {/* Base */}
+                            <div className="bg-[#151009] h-4 sm:h-5 rounded-b-xl mx-[1.5%] border border-white/5" />
                         </div>
+
+                        {/* Phone mockup flutuando */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.85, y: 20 }}
+                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                            viewport={getCardViewport()}
+                            transition={{ delay: isMobile ? 0.1 : 0.45, type: 'spring', damping: 16, stiffness: 120 }}
+                            className="absolute bottom-0 -right-3 sm:-right-5 rotate-[3deg] z-10"
+                        >
+                            <div
+                                className="relative p-[7px] shadow-2xl shadow-black/60"
+                                style={{ background: '#100b09', borderRadius: '28px', width: 'clamp(84px, 20vw, 116px)' }}
+                            >
+                                {/* Dynamic island */}
+                                <div
+                                    className="absolute left-1/2 -translate-x-1/2 rounded-full z-10"
+                                    style={{ background: '#100b09', top: '11px', width: '44%', height: '12px' }}
+                                />
+                                <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
+                                    <img
+                                        src="/prints/mobile/agendamentos.webp"
+                                        alt="Agendamentos mobile Petzara"
+                                        className="w-full block"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                {/* Botões laterais */}
+                                <div className="absolute -right-[3px] top-14 w-[3px] h-7 rounded-r-sm" style={{ background: '#100b09' }} />
+                                <div className="absolute -left-[3px] top-10 w-[3px] h-4 rounded-l-sm" style={{ background: '#100b09' }} />
+                                <div className="absolute -left-[3px] top-16 w-[3px] h-4 rounded-l-sm" style={{ background: '#100b09' }} />
+                            </div>
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>
