@@ -1,8 +1,40 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Monitor, Download, Shield, Wifi } from 'lucide-react'
 import { ease, useResponsiveInView } from '../animations/variants'
 
-const DOWNLOAD_URL = 'https://github.com/LucasBatista37/petzara-desktop/releases/latest/download/Petzara-Setup.exe'
+const DOWNLOADS = {
+    windows: {
+        url:   'https://github.com/LucasBatista37/petzara-desktop/releases/latest/download/Petzara-Setup.exe',
+        label: 'Baixar para Windows',
+        hint:  'Windows 10 / 11 · 64-bit',
+    },
+    mac: {
+        url:   'https://github.com/LucasBatista37/petzara-desktop/releases/latest/download/Petzara.dmg',
+        label: 'Baixar para macOS',
+        hint:  'macOS 11+ · Apple Silicon & Intel',
+    },
+    linux: {
+        url:   'https://github.com/LucasBatista37/petzara-desktop/releases/latest/download/Petzara.AppImage',
+        label: 'Baixar para Linux',
+        hint:  'AppImage · 64-bit',
+    },
+}
+
+const OS_ORDER = {
+    windows: ['windows', 'mac', 'linux'],
+    mac:     ['mac', 'windows', 'linux'],
+    linux:   ['linux', 'windows', 'mac'],
+}
+
+function detectOS() {
+    if (typeof navigator === 'undefined') return 'windows'
+    const ua = navigator.userAgent
+    if (/Win/i.test(ua))   return 'windows'
+    if (/Mac/i.test(ua))   return 'mac'
+    if (/Linux/i.test(ua)) return 'linux'
+    return 'windows'
+}
 
 const features = [
     { icon: Monitor, text: 'Atalho na área de trabalho' },
@@ -12,11 +44,19 @@ const features = [
 
 export default function DesktopAppSection() {
     const { ref, isInView } = useResponsiveInView()
+    const [detectedOS, setDetectedOS] = useState('windows')
+
+    useEffect(() => {
+        setDetectedOS(detectOS())
+    }, [])
+
+    const order = OS_ORDER[detectedOS]
+    const primary = DOWNLOADS[order[0]]
+    const secondaries = order.slice(1).map(os => DOWNLOADS[os])
 
     return (
         <section ref={ref} className="py-16 sm:py-20 bg-cream relative overflow-hidden">
 
-            {/* Blob de fundo */}
             <div
                 className="absolute -left-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[140px] pointer-events-none"
                 style={{ background: 'var(--color-terracotta)', opacity: 0.05 }}
@@ -29,7 +69,7 @@ export default function DesktopAppSection() {
                     transition={{ duration: 0.65, ease }}
                     className="bg-white border border-sand/60 rounded-2xl sm:rounded-3xl shadow-sm px-6 sm:px-10 py-10 sm:py-12 flex flex-col sm:flex-row items-center gap-8 sm:gap-12"
                 >
-                    {/* Ícone / ilustração */}
+                    {/* Ícone */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.85 }}
                         animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -39,7 +79,7 @@ export default function DesktopAppSection() {
                         <Monitor size={44} className="text-terracotta" strokeWidth={1.5} />
                     </motion.div>
 
-                    {/* Texto */}
+                    {/* Texto + CTAs */}
                     <div className="flex-1 text-center sm:text-left">
                         <motion.div
                             initial={{ opacity: 0, y: 16 }}
@@ -47,14 +87,14 @@ export default function DesktopAppSection() {
                             transition={{ duration: 0.55, delay: 0.2, ease }}
                         >
                             <span className="inline-block bg-terracotta/10 text-terracotta px-3 py-1 rounded-full text-xs font-bold mb-3 tracking-wide uppercase">
-                                Aplicativo para Windows
+                                App Desktop
                             </span>
                             <h2 className="font-accent text-2xl sm:text-3xl font-extrabold text-espresso mb-2">
                                 Petzara no seu computador
                             </h2>
                             <p className="text-taupe/70 text-sm sm:text-base leading-relaxed mb-5 max-w-md mx-auto sm:mx-0">
                                 Acesse o sistema direto da área de trabalho, sem abrir o navegador.
-                                Instale uma vez e tenha o Petzara sempre a um clique.
+                                Disponível para Windows, macOS e Linux.
                             </p>
 
                             {/* Feature pills */}
@@ -71,23 +111,39 @@ export default function DesktopAppSection() {
                             </div>
                         </motion.div>
 
-                        {/* CTA */}
+                        {/* Botão primário — SO detectado */}
                         <motion.div
                             initial={{ opacity: 0, y: 12 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.5, delay: 0.35, ease }}
-                            className="flex flex-col sm:flex-row items-center sm:items-start gap-3"
+                            className="flex flex-col items-center sm:items-start gap-4"
                         >
-                            <a
-                                href={DOWNLOAD_URL}
-                                className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta/90 active:bg-terracotta/80 text-white font-semibold px-6 py-3 rounded-xl transition-colors shadow-md shadow-terracotta/20 text-sm"
-                            >
-                                <Download size={16} />
-                                Baixar para Windows
-                            </a>
-                            <span className="text-xs text-taupe/45 self-center">
-                                Windows 10 / 11 · 64-bit · ~74 MB · Gratuito
-                            </span>
+                            <div className="flex flex-col sm:flex-row items-center gap-3">
+                                <a
+                                    href={primary.url}
+                                    className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta/90 active:bg-terracotta/80 text-white font-semibold px-6 py-3 rounded-xl transition-colors shadow-md shadow-terracotta/20 text-sm"
+                                >
+                                    <Download size={16} />
+                                    {primary.label}
+                                </a>
+                                <span className="text-xs text-taupe/45 self-center">
+                                    {primary.hint} · ~74 MB · Gratuito
+                                </span>
+                            </div>
+
+                            {/* Botões secundários — outros SOs */}
+                            <div className="flex flex-wrap justify-center sm:justify-start gap-2">
+                                {secondaries.map(({ url, label }) => (
+                                    <a
+                                        key={label}
+                                        href={url}
+                                        className="inline-flex items-center gap-1.5 bg-cream hover:bg-sand/30 border border-sand/60 text-espresso/60 hover:text-espresso/80 px-4 py-2 rounded-lg text-xs font-medium transition-colors"
+                                    >
+                                        <Download size={11} />
+                                        {label}
+                                    </a>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
                 </motion.div>
