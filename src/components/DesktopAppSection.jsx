@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Monitor, Download, Shield, Wifi } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Monitor, Download, Shield, Wifi, Info, X } from 'lucide-react'
 import { ease, useResponsiveInView } from '../animations/variants'
 
 const DOWNLOADS = {
@@ -42,12 +42,43 @@ const features = [
     { icon: Shield,  text: 'Sem dados locais — tudo na nuvem' },
 ]
 
+function MacWarning({ onClose }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.3 }}
+            className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-left max-w-md mx-auto sm:mx-0"
+        >
+            <Info size={15} className="text-amber-500 shrink-0 mt-0.5" />
+            <div className="flex-1 text-xs text-amber-800 leading-relaxed">
+                <strong className="block mb-0.5">Primeira abertura no macOS</strong>
+                O macOS pode bloquear o app por não ter assinatura Apple.
+                Abra o arquivo baixado, e se aparecer aviso, vá em{' '}
+                <strong>Configurações do Sistema → Privacidade e Segurança</strong>{' '}
+                e clique em <strong>"Abrir assim mesmo"</strong>.
+            </div>
+            <button
+                onClick={onClose}
+                className="text-amber-400 hover:text-amber-600 shrink-0 transition-colors"
+                aria-label="Fechar aviso"
+            >
+                <X size={14} />
+            </button>
+        </motion.div>
+    )
+}
+
 export default function DesktopAppSection() {
     const { ref, isInView } = useResponsiveInView()
     const [detectedOS, setDetectedOS] = useState('windows')
+    const [showMacWarning, setShowMacWarning] = useState(false)
 
     useEffect(() => {
-        setDetectedOS(detectOS())
+        const os = detectOS()
+        setDetectedOS(os)
+        if (os === 'mac') setShowMacWarning(true)
     }, [])
 
     const order = OS_ORDER[detectedOS]
@@ -137,6 +168,7 @@ export default function DesktopAppSection() {
                                     <a
                                         key={label}
                                         href={url}
+                                        onClick={() => label.includes('macOS') && setShowMacWarning(true)}
                                         className="inline-flex items-center gap-1.5 bg-cream hover:bg-sand/30 border border-sand/60 text-espresso/60 hover:text-espresso/80 px-4 py-2 rounded-lg text-xs font-medium transition-colors"
                                     >
                                         <Download size={11} />
@@ -144,6 +176,13 @@ export default function DesktopAppSection() {
                                     </a>
                                 ))}
                             </div>
+
+                            {/* Aviso macOS */}
+                            <AnimatePresence>
+                                {showMacWarning && (
+                                    <MacWarning onClose={() => setShowMacWarning(false)} />
+                                )}
+                            </AnimatePresence>
                         </motion.div>
                     </div>
                 </motion.div>
