@@ -42,7 +42,29 @@ const features = [
     { icon: Shield,  text: 'Sem dados locais — tudo na nuvem' },
 ]
 
-function MacWarning({ onClose }) {
+function PlatformWarning({ os, onClose }) {
+    const content = os === 'mac' ? {
+        title: 'Primeira abertura no macOS',
+        body: (
+            <>
+                O macOS pode bloquear o app por não ter assinatura Apple.
+                Abra o arquivo baixado e, se aparecer o aviso, vá em{' '}
+                <strong>Configurações do Sistema → Privacidade e Segurança</strong>{' '}
+                e clique em <strong>"Abrir assim mesmo"</strong>.
+            </>
+        ),
+    } : {
+        title: 'Aviso do Windows ao instalar',
+        body: (
+            <>
+                O Windows SmartScreen pode exibir "O Windows protegeu seu PC"
+                por o app não ter certificado digital. Clique em{' '}
+                <strong>"Mais informações"</strong> e depois em{' '}
+                <strong>"Executar assim mesmo"</strong> para prosseguir com a instalação.
+            </>
+        ),
+    }
+
     return (
         <motion.div
             initial={{ opacity: 0, y: -6 }}
@@ -53,11 +75,8 @@ function MacWarning({ onClose }) {
         >
             <Info size={15} className="text-amber-500 shrink-0 mt-0.5" />
             <div className="flex-1 text-xs text-amber-800 leading-relaxed">
-                <strong className="block mb-0.5">Primeira abertura no macOS</strong>
-                O macOS pode bloquear o app por não ter assinatura Apple.
-                Abra o arquivo baixado, e se aparecer aviso, vá em{' '}
-                <strong>Configurações do Sistema → Privacidade e Segurança</strong>{' '}
-                e clique em <strong>"Abrir assim mesmo"</strong>.
+                <strong className="block mb-0.5">{content.title}</strong>
+                {content.body}
             </div>
             <button
                 onClick={onClose}
@@ -73,12 +92,12 @@ function MacWarning({ onClose }) {
 export default function DesktopAppSection() {
     const { ref, isInView } = useResponsiveInView()
     const [detectedOS, setDetectedOS] = useState('windows')
-    const [showMacWarning, setShowMacWarning] = useState(false)
+    const [showWarning, setShowWarning] = useState(false)
 
     useEffect(() => {
         const os = detectOS()
         setDetectedOS(os)
-        if (os === 'mac') setShowMacWarning(true)
+        if (os === 'mac' || os === 'windows') setShowWarning(true)
     }, [])
 
     const order = OS_ORDER[detectedOS]
@@ -164,23 +183,26 @@ export default function DesktopAppSection() {
 
                             {/* Botões secundários — outros SOs */}
                             <div className="flex flex-wrap justify-center sm:justify-start gap-2">
-                                {secondaries.map(({ url, label }) => (
-                                    <a
-                                        key={label}
-                                        href={url}
-                                        onClick={() => label.includes('macOS') && setShowMacWarning(true)}
-                                        className="inline-flex items-center gap-1.5 bg-cream hover:bg-sand/30 border border-sand/60 text-espresso/60 hover:text-espresso/80 px-4 py-2 rounded-lg text-xs font-medium transition-colors"
-                                    >
-                                        <Download size={11} />
-                                        {label}
-                                    </a>
-                                ))}
+                                {secondaries.map(({ url, label }) => {
+                                    const targetOS = label.includes('macOS') ? 'mac' : label.includes('Windows') ? 'windows' : null
+                                    return (
+                                        <a
+                                            key={label}
+                                            href={url}
+                                            onClick={() => targetOS && (setDetectedOS(targetOS), setShowWarning(true))}
+                                            className="inline-flex items-center gap-1.5 bg-cream hover:bg-sand/30 border border-sand/60 text-espresso/60 hover:text-espresso/80 px-4 py-2 rounded-lg text-xs font-medium transition-colors"
+                                        >
+                                            <Download size={11} />
+                                            {label}
+                                        </a>
+                                    )
+                                })}
                             </div>
 
-                            {/* Aviso macOS */}
+                            {/* Aviso por plataforma */}
                             <AnimatePresence>
-                                {showMacWarning && (
-                                    <MacWarning onClose={() => setShowMacWarning(false)} />
+                                {showWarning && (detectedOS === 'mac' || detectedOS === 'windows') && (
+                                    <PlatformWarning os={detectedOS} onClose={() => setShowWarning(false)} />
                                 )}
                             </AnimatePresence>
                         </motion.div>
