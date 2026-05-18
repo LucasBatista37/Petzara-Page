@@ -44,24 +44,30 @@ const features = [
 
 function PlatformWarning({ os, onClose }) {
     const content = os === 'mac' ? {
-        title: 'Primeira abertura no macOS',
+        title: 'Como instalar no macOS',
         body: (
-            <>
-                O macOS pode bloquear o app por não ter assinatura Apple.
-                Abra o arquivo baixado e, se aparecer o aviso, vá em{' '}
-                <strong>Configurações do Sistema → Privacidade e Segurança</strong>{' '}
-                e clique em <strong>"Abrir assim mesmo"</strong>.
-            </>
+            <ol className="list-decimal list-inside space-y-1 mt-1">
+                <li>Abra o <strong>.dmg</strong> e arraste o Petzara para Aplicativos</li>
+                <li>Se aparecer <em>"app está danificado"</em>, abra o <strong>Terminal</strong> e execute:<br />
+                    <code className="bg-amber-100 px-1 rounded text-amber-900 select-all">
+                        xattr -cr /Applications/Petzara.app
+                    </code>
+                </li>
+                <li>Se aparecer <em>"desenvolvedor não identificado"</em>, vá em{' '}
+                    <strong>Configurações → Privacidade e Segurança</strong>{' '}
+                    e clique em <strong>"Abrir assim mesmo"</strong>
+                </li>
+            </ol>
         ),
     } : {
-        title: 'Aviso do Windows ao instalar',
+        title: 'Como instalar no Windows',
         body: (
-            <>
-                O Windows SmartScreen pode exibir "O Windows protegeu seu PC"
-                por o app não ter certificado digital. Clique em{' '}
-                <strong>"Mais informações"</strong> e depois em{' '}
-                <strong>"Executar assim mesmo"</strong> para prosseguir com a instalação.
-            </>
+            <ol className="list-decimal list-inside space-y-1 mt-1">
+                <li>Execute o <strong>Petzara-Setup.exe</strong> baixado</li>
+                <li>Se o SmartScreen exibir <em>"O Windows protegeu seu PC"</em>,
+                    clique em <strong>"Mais informações"</strong></li>
+                <li>Clique em <strong>"Executar assim mesmo"</strong></li>
+            </ol>
         ),
     }
 
