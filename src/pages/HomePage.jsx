@@ -7,6 +7,7 @@ const ProblemSection      = lazy(() => import('../components/ProblemSection'))
 const SolutionSection     = lazy(() => import('../components/SolutionSection'))
 const HowItWorksSection   = lazy(() => import('../components/HowItWorksSection'))
 const MultiDeviceSection  = lazy(() => import('../components/MultiDeviceSection'))
+const DesktopAppSection   = lazy(() => import('../components/DesktopAppSection'))
 const DemoSection         = lazy(() => import('../components/DemoSection'))
 const ColorPaletteSection = lazy(() => import('../components/ColorPaletteSection'))
 const PricingSection      = lazy(() => import('../components/PricingSection'))
@@ -88,6 +89,7 @@ export default function HomePage() {
                 <Suspense fallback={<SectionFallback />}><SolutionSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><HowItWorksSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><MultiDeviceSection /></Suspense>
+                <Suspense fallback={<SectionFallback />}><DesktopAppSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><DemoSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><ColorPaletteSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><PricingSection /></Suspense>
