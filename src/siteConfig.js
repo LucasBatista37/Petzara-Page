@@ -17,6 +17,27 @@ export const whatsappDemoUrl = 'https://wa.me/5513996830085?text=Ol%C3%A1!%20Vi%
 export const whatsappSupportUrl = 'https://wa.me/5513996830085'
 export const instagramUrl = 'https://www.instagram.com/petzara.app'
 
+export const DESKTOP_DOWNLOADS = {
+    windows: {
+        url:   'https://github.com/LucasBatista37/petzara-desktop/releases/latest/download/Petzara-Setup.exe',
+        label: 'Baixar para Windows',
+        hint:  'Windows 10 / 11 · 64-bit',
+        ext:   '.exe',
+    },
+    mac: {
+        url:   'https://github.com/LucasBatista37/petzara-desktop/releases/latest/download/Petzara.dmg',
+        label: 'Baixar para macOS',
+        hint:  'macOS 11+ · Apple Silicon & Intel',
+        ext:   '.dmg',
+    },
+    linux: {
+        url:   'https://github.com/LucasBatista37/petzara-desktop/releases/latest/download/Petzara.AppImage',
+        label: 'Baixar para Linux',
+        hint:  'AppImage · 64-bit',
+        ext:   '.AppImage',
+    },
+}
+
 export const marketingUrl = (path = '') =>
     `${MARKETING_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`
 

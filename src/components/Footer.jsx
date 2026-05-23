@@ -35,6 +35,7 @@ export default function Footer() {
                         <h4 className="font-accent font-bold text-white text-sm mb-4">Produto</h4>
                         <ul className="space-y-2.5 text-sm">
                             <li><Link to="/blog" className="hover:text-terracotta transition-colors">Blog</Link></li>
+                            <li><Link to="/download" className="hover:text-terracotta transition-colors">Petzara Desktop</Link></li>
                             <li><a href="#solucao" className="hover:text-terracotta transition-colors">Funcionalidades</a></li>
                             <li><a href="#beneficios" className="hover:text-terracotta transition-colors">Benefícios</a></li>
                             <li><a href="#demo" className="hover:text-terracotta transition-colors">Demonstração</a></li>
