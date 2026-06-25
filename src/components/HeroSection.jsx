@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
-import { appRegisterUrl, APP_HOST, whatsappDemoUrl } from '../siteConfig'
+import { appRegisterUrl, APP_HOST, whatsappDemoUrl, playStoreUrl } from '../siteConfig'
 import { ease, wordVariant } from '../animations/variants'
 import OptimizedImage from './OptimizedImage'
 
@@ -269,6 +269,31 @@ export default function HeroSection() {
                             >
                                 Agendar demonstração
                             </motion.a>
+                        </motion.div>
+
+                        {/* Google Play badge */}
+                        <motion.div
+                            variants={{
+                                initial: { opacity: 0, y: 16 },
+                                animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+                            }}
+                            className="mt-5"
+                        >
+                            <a
+                                href={playStoreUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Disponível no Google Play"
+                                className="inline-block transition-transform hover:-translate-y-0.5 active:translate-y-0"
+                            >
+                                <img
+                                    src="https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png"
+                                    alt="Disponível no Google Play"
+                                    height={48}
+                                    className="h-12 w-auto"
+                                    loading="eager"
+                                />
+                            </a>
                         </motion.div>
 
                         {/* Trust signals */}

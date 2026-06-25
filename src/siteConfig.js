@@ -13,6 +13,8 @@ export const appLoginUrl = `${APP_ORIGIN}/login`
 export const stripeMonthlyUrl = `${appRegisterUrl}?plan=monthly`
 export const stripeAnnualUrl = `${appRegisterUrl}?plan=annual`
 
+export const playStoreUrl = 'https://play.google.com/store/apps/details?id=app.petzara.twa'
+
 export const whatsappDemoUrl = 'https://wa.me/5513996830085?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Petzara%20e%20gostaria%20de%20agendar%20uma%20demonstra%C3%A7%C3%A3o.'
 export const whatsappSupportUrl = 'https://wa.me/5513996830085'
 export const instagramUrl = 'https://www.instagram.com/petzara.app'

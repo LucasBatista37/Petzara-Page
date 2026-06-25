@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import { Monitor, Smartphone, Download, RefreshCw } from 'lucide-react'
 import { ease, useResponsiveInView } from '../animations/variants'
+import { playStoreUrl } from '../siteConfig'
 
 const pills = [
     { icon: Smartphone,  label: 'Android & iOS' },
     { icon: Monitor,     label: 'Qualquer navegador' },
-    { icon: Download,    label: 'Instala como app (PWA)' },
+    { icon: Download,    label: 'Disponível na Play Store' },
     { icon: RefreshCw,   label: 'Sincronização em tempo real' },
 ]
 
@@ -132,9 +133,25 @@ export default function MultiDeviceSection() {
                         <span className="gradient-text">qualquer dispositivo</span>
                     </h2>
                     <p className="text-white/65 text-lg leading-relaxed">
-                        Celular, tablet e computador. Instala como app no Android sem precisar da Play Store.
+                        Celular, tablet e computador. Instala como app no Android direto pela Play Store.
                         Sua equipe acessa de onde estiver.
                     </p>
+                    <div className="mt-6 flex justify-center">
+                        <a
+                            href={playStoreUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Disponível no Google Play"
+                            className="inline-block transition-transform hover:-translate-y-0.5 active:translate-y-0"
+                        >
+                            <img
+                                src="https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png"
+                                alt="Disponível no Google Play"
+                                className="h-12 w-auto"
+                                loading="lazy"
+                            />
+                        </a>
+                    </div>
                 </motion.div>
 
                 {/* ── Three-device showcase ─────────────────────────────────── */}

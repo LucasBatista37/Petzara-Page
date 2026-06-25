@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { ArrowRight, Check, Shield, Headphones, RefreshCw, CreditCard, Mail, Smartphone } from 'lucide-react'
-import { appRegisterUrl, whatsappDemoUrl } from '../siteConfig'
+import { appRegisterUrl, whatsappDemoUrl, playStoreUrl } from '../siteConfig'
 import { ease, wordVariant, useResponsiveInView } from '../animations/variants'
 
 const trustItems = [
@@ -10,7 +10,7 @@ const trustItems = [
     { icon: RefreshCw, label: 'Atualizações constantes com novas funcionalidades' },
     { icon: CreditCard, label: 'Pagamento seguro processado pelo Stripe' },
     { icon: Mail, label: 'Verificação de e-mail para proteção da conta' },
-    { icon: Smartphone, label: 'Instala como app no Android (PWA + TWA)' },
+    { icon: Smartphone, label: 'App Android disponível na Play Store', href: playStoreUrl },
 ]
 
 const checkItems = [
@@ -177,6 +177,14 @@ export default function CTASection() {
                             >
                                 {trustItems.map((item) => {
                                     const Icon = item.icon
+                                    const inner = (
+                                        <>
+                                            <div className="w-10 h-10 bg-sage/20 rounded-xl flex items-center justify-center shrink-0">
+                                                <Icon size={20} className="text-sage" />
+                                            </div>
+                                            <span className="text-sm">{item.label}</span>
+                                        </>
+                                    )
                                     return (
                                         <motion.div
                                             key={item.label}
@@ -186,10 +194,11 @@ export default function CTASection() {
                                             }}
                                             className="flex items-center gap-4 text-white/80"
                                         >
-                                            <div className="w-10 h-10 bg-sage/20 rounded-xl flex items-center justify-center shrink-0">
-                                                <Icon size={20} className="text-sage" />
-                                            </div>
-                                            <span className="text-sm">{item.label}</span>
+                                            {item.href ? (
+                                                <a href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 hover:text-white transition-colors w-full">
+                                                    {inner}
+                                                </a>
+                                            ) : inner}
                                         </motion.div>
                                     )
                                 })}
