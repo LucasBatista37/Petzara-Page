@@ -1,6 +1,6 @@
 # Política de Privacidade — Petzara
 
-**Última atualização:** abril de 2026
+**Última atualização:** outubro de 2026
 
 ---
 
@@ -47,9 +47,9 @@ Conforme as funcionalidades utilizadas, podemos tratar as categorias abaixo.
 
 ### 3.2 Dados de assinatura e pagamento (SaaS)
 
-- Identificadores e status no **Stripe** (cliente, assinatura), **período vigente**, **período de teste**, datas de cobrança, situação (ativa, em teste, inadimplente, cancelada, etc.).
+- Identificadores e status da assinatura no provedor de pagamento utilizado: **Google Play** (token da compra, número do pedido, produto e plano) ou **Stripe** (cliente, assinatura); **período vigente**, **período de teste**, datas de cobrança, situação (ativa, em teste, inadimplente, cancelada, etc.).
 
-**Não** tratamos, em nossos servidores de aplicação, o **número completo** do cartão de crédito; o processamento de pagamento é realizado pelo **Stripe**.
+**Não** tratamos, em nossos servidores de aplicação, o **número completo** do cartão de crédito; o processamento de pagamento é realizado pelo **Google Play** ou pelo **Stripe**, conforme o provedor usado na contratação.
 
 ### 3.3 Dados operacionais inseridos pelo estabelecimento
 
@@ -78,7 +78,7 @@ Tratamos dados pessoais para:
 
 1. **Cadastrar, autenticar e gerenciar contas** de administradores e colaboradores;
 2. **Fornecer e operar** as funcionalidades da Petzara (agenda, cadastros, financeiro, notificações, página pública de horários);
-3. **Cobrar e administrar assinaturas** (incluindo período de teste quando oferecido), via Stripe;
+3. **Cobrar e administrar assinaturas** (incluindo período de teste quando oferecido), via Google Play ou Stripe;
 4. **Comunicar-se** com o Usuário (e-mail transacional, suporte);
 5. **Cumprir obrigações legais** e responder a solicitações legítimas de autoridades;
 6. **Proteger direitos**, prevenir fraudes e garantir a **segurança** da Plataforma;
@@ -110,7 +110,7 @@ Podemos compartilhar dados com prestadores que atuam em nosso nome ou como parte
 
 | Categoria | Exemplos de finalidade |
 |-----------|------------------------|
-| **Pagamentos** | **Stripe** — processamento de assinaturas, portal do cliente, eventos de cobrança |
+| **Pagamentos** | **Google Play** — assinaturas contratadas no aplicativo Android (confirmação e status da compra); **Stripe** — assinaturas da versão web, portal do cliente, eventos de cobrança |
 | **Autenticação** | **Google** — login OAuth quando habilitado |
 | **E-mail** | **Resend** (ou provedor equivalente) — envio de mensagens transacionais |
 | **Monitoramento de erros** | **Sentry** — diagnóstico de falhas e desempenho |
@@ -123,7 +123,7 @@ Exigimos contratos ou cláusulas que tratem dados conforme a LGPD, na medida apl
 
 ## 7. Transferência internacional de dados
 
-Alguns prestadores (como **Stripe**, **Google**, **Sentry** ou **Resend**) podem processar dados em **servidores localizados fora do Brasil**, inclusive nos Estados Unidos ou na União Europeia.
+Alguns prestadores (como **Google** (inclusive o Google Play), **Stripe**, **Sentry** ou **Resend**) podem processar dados em **servidores localizados fora do Brasil**, inclusive nos Estados Unidos ou na União Europeia.
 
 Nesses casos, adotamos medidas previstas na LGPD (arts. 33 a 36), como **cláusulas contratuais padrão**, **certificações** ou outras garantias compatíveis, e informamos os titulares sobre essa possibilidade nesta Política.
 

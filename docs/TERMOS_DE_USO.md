@@ -1,6 +1,6 @@
 # Termos de Uso — Petzara
 
-**Última atualização:** abril de 2026
+**Última atualização:** outubro de 2026
 
 ---
 
@@ -71,17 +71,21 @@ Este documento tem caráter informativo e contratual entre você e o operador da
 
 ---
 
-## 6. Assinatura, período de teste, pagamentos e cancelamento (Stripe)
+## 6. Assinatura, período de teste, pagamentos e cancelamento
 
-**6.1** O uso contínuo das funcionalidades principais da Plataforma está condicionado a **planos pagos** processados por meio de **Stripe** (ou outro provedor indicado pelo operador), incluindo assinatura recorrente.
+**6.1** O uso contínuo das funcionalidades principais da Plataforma está condicionado a **planos pagos** com **renovação automática** (mensal ou anual). A assinatura é contratada por meio de um dos provedores de pagamento disponíveis: o **Google Play**, para assinaturas feitas no aplicativo Android, ou o **Stripe**, para assinaturas feitas na versão web.
 
-**6.2** Em condições oferecidas pelo operador, novos cadastros podem incluir **período de teste gratuito** (por exemplo, **30 dias**), conforme comunicado no momento do cadastro. O período de teste está sujeito às regras do Stripe e às condições de preço vigentes.
+**6.2** Em condições oferecidas pelo operador, novos cadastros podem incluir **período de teste gratuito** (por exemplo, **30 dias**), conforme comunicado no momento do cadastro. Ao fim do teste, só há cobrança se o Usuário tiver contratado um plano, nas condições de preço exibidas no momento da contratação.
 
-**6.3** Pagamentos, faturas, métodos de pagamento, renovações, falhas de cobrança e **cancelamento ou alteração de plano** podem ser geridos pelo Usuário por meio do **portal do cliente** do Stripe ou fluxos equivalentes integrados à Plataforma. O operador não armazena números completos de cartão de crédito em seus servidores de aplicação; tais dados são tratados pelo Stripe conforme a política deste.
+**6.3 Assinaturas pelo Google Play.** A cobrança, a renovação, os métodos de pagamento, o **cancelamento** e os pedidos de **reembolso** das assinaturas contratadas no aplicativo Android são processados pelo **Google Play**, de acordo com os termos e as políticas do Google. O Usuário pode cancelar a qualquer momento no aplicativo Google Play, em **Pagamentos e assinaturas › Assinaturas**; o acesso continua liberado até o fim do período já pago. O operador não recebe os dados do cartão ou de outro meio de pagamento usado no Google Play.
 
-**6.4** Estados de assinatura (como ativa, em período de teste, inadimplente ou cancelada) podem refletir-se no **acesso à Plataforma**. Em situações de assinatura inativa ou não paga, conforme regras técnicas implementadas, o operador poderá **bloquear o uso** de funcionalidades até regularização ou encerramento da conta.
+**6.4 Assinaturas pelo Stripe.** Pagamentos, faturas, métodos de pagamento, renovações, falhas de cobrança e **cancelamento ou alteração de plano** das assinaturas contratadas na versão web podem ser geridos pelo Usuário por meio do **portal do cliente** do Stripe ou de fluxos equivalentes integrados à Plataforma. O operador não armazena números completos de cartão de crédito em seus servidores de aplicação; esses dados são tratados pelo Stripe conforme a política deste.
 
-**6.5** Valores, tributos incidentes e política de reembolso seguem as condições exibidas no checkout e a legislação aplicável. Dúvidas sobre cobrança devem ser dirimidas junto ao suporte indicado pelo operador e, quando cabível, pelo Stripe.
+**6.5** Cada conta pode ter **uma assinatura ativa por vez**, que deve ser gerenciada no mesmo provedor em que foi contratada. Colaboradores convidados usam a assinatura do titular da conta.
+
+**6.6** Estados de assinatura (como ativa, em período de teste, com pagamento pendente ou cancelada) podem refletir-se no **acesso à Plataforma**. Em situações de assinatura inativa ou não paga, conforme regras técnicas implementadas, o operador poderá **limitar ou bloquear** o uso de funcionalidades até a regularização ou o encerramento da conta.
+
+**6.7** Valores, tributos incidentes e política de reembolso seguem as condições exibidas no momento da contratação, as políticas do provedor de pagamento utilizado e a legislação aplicável. Dúvidas sobre cobrança podem ser enviadas ao suporte indicado pelo operador e, quando cabível, ao Google Play ou ao Stripe.
 
 ---
 
@@ -134,7 +138,7 @@ O tratamento de dados pessoais segue a [Política de Privacidade](./POLITICA_DE_
 - lucros cessantes, perda de dados por culpa exclusiva do Usuário ou danos indiretos, salvo disposição legal imperativa em contrário;
 - descumprimento de obrigações fiscais, trabalhistas ou consumeristas do estabelecimento;
 - disputas entre o estabelecimento e tutores, colaboradores ou terceiros;
-- falhas de **serviços de terceiros** (incluindo Stripe, Google, provedores de e-mail, hospedagem e redes).
+- falhas de **serviços de terceiros** (incluindo Google Play, Stripe, Google, provedores de e-mail, hospedagem e redes).
 
 **11.3** A responsabilidade total do operador por danos diretos comprovados, em qualquer hipótese, ficará limitada ao **valor efetivamente pago pelo Usuário ao operador** nos **doze meses anteriores** ao evento que deu origem à reclamação, quando aplicável e salvo dolo ou culpa grave não excluída por lei.
 
