@@ -15,8 +15,12 @@
  * então qualquer link novo para cadastro/WhatsApp/Play já é medido.
  */
 
-const GA4_ID = (import.meta.env.VITE_GA4_ID || '').trim()
-const PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID || '').trim()
+// IDs públicos (aparecem no HTML de qualquer site que os usa). A variável da Vercel, se existir, tem prioridade.
+// GA4: propriedade "Petzara — site", fluxo petzara.app (criado em 16/10/2026).
+const GA4_DEFAULT = 'G-QZ53SEKZ7L'
+const PIXEL_DEFAULT = ''
+const GA4_ID = (import.meta.env.VITE_GA4_ID || GA4_DEFAULT).trim()
+const PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID || PIXEL_DEFAULT).trim()
 
 export const CONSENT_KEY = 'pz_cookie_consent'
 export const CONSENT_EVENT = 'pz:consent-change'
