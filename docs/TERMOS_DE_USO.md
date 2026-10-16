@@ -1,6 +1,6 @@
 # Termos de Uso — Petzara
 
-**Última atualização:** outubro de 2026
+**Última atualização:** 16/10/2026
 
 ---
 
@@ -26,7 +26,7 @@ Este documento tem caráter informativo e contratual entre você e o operador da
 
 **2.1** A Plataforma destina-se a pessoas físicas ou jurídicas que atuem de forma legítima na prestação de serviços para animais de estimação ou gestão de estabelecimentos congeneres. Ao cadastrar-se, você declara possuir capacidade civil para contratar e que as informações fornecidas são verdadeiras, completas e atualizadas.
 
-**2.2** O cadastro pode exigir dados como nome, nome do estabelecimento, e-mail, telefone e senha. O operador pode exigir **verificação de endereço de e-mail** antes de liberar determinadas funcionalidades.
+**2.2** O cadastro pode exigir dados como nome, nome do estabelecimento, e-mail, telefone e senha. A **confirmação do endereço de e-mail** não é condição para usar a Plataforma: ela serve para garantir que o e-mail está correto, para que o Usuário possa **recuperar a senha** e **receber os avisos da conta**.
 
 **2.3** O Usuário é o único responsável pela confidencialidade das credenciais de acesso e por todas as atividades realizadas em sua conta. O operador não se responsabiliza por acessos decorrentes de negligência do Usuário (por exemplo, compartilhamento de senha).
 
@@ -75,9 +75,13 @@ Este documento tem caráter informativo e contratual entre você e o operador da
 
 **6.1** O uso contínuo das funcionalidades principais da Plataforma está condicionado a **planos pagos** com **renovação automática** (mensal ou anual). A assinatura é contratada por meio de um dos provedores de pagamento disponíveis: o **Google Play**, para assinaturas feitas no aplicativo Android, ou o **Stripe**, para assinaturas feitas na versão web.
 
-**6.2** Em condições oferecidas pelo operador, novos cadastros podem incluir **período de teste gratuito** (por exemplo, **30 dias**), conforme comunicado no momento do cadastro. Ao fim do teste, só há cobrança se o Usuário tiver contratado um plano, nas condições de preço exibidas no momento da contratação.
+**6.2** Em condições oferecidas pelo operador, novos cadastros podem incluir **período de teste gratuito** (por exemplo, **30 dias**, sem cartão), conforme comunicado no momento do cadastro. Ao fim do teste, só há cobrança se o Usuário tiver contratado um plano, nas condições de preço exibidas no momento da contratação.
 
-**6.3 Assinaturas pelo Google Play.** A cobrança, a renovação, os métodos de pagamento, o **cancelamento** e os pedidos de **reembolso** das assinaturas contratadas no aplicativo Android são processados pelo **Google Play**, de acordo com os termos e as políticas do Google. O Usuário pode cancelar a qualquer momento no aplicativo Google Play, em **Pagamentos e assinaturas › Assinaturas**; o acesso continua liberado até o fim do período já pago. O operador não recebe os dados do cartão ou de outro meio de pagamento usado no Google Play.
+**6.2.1 Bônus promocional de +14 dias.** Durante o período de teste, a conta que tiver **agendamentos criados em 3 (três) dias diferentes** recebe automaticamente **14 (quatorze) dias adicionais de teste**. Conta o **dia em que o agendamento é criado** na Plataforma (horário de Brasília), e não a data marcada para o atendimento; agendamentos excluídos não contam. O bônus vale **uma única vez por conta**, não é cumulativo, não tem valor em dinheiro e não pode ser transferido. Por ser uma condição promocional, o operador pode alterá-la ou encerrá-la **para contas criadas depois da mudança**, mantidas as condições divulgadas às contas já existentes.
+
+**6.2.2 Assinatura durante o teste.** Quem contrata um plano durante o teste **não paga na hora**: pela versão web (Stripe), a 1ª cobrança ocorre no fim do teste; pelo aplicativo Android (Google Play), a assinatura é contratada com um período gratuito da própria Google Play que termina no fim do teste (ou poucos dias depois, nunca antes), e a **data da 1ª cobrança é exibida antes da confirmação da compra**. Até essa data o Usuário pode cancelar **sem custo** — no Google Play, em **Pagamentos e assinaturas › Assinaturas**, ou, na versão web, nas configurações da conta. Se faltar pouco para o fim do teste (menos de 2 dias, no site; menos de 1 dia, no aplicativo) ou se, excepcionalmente, a oferta com período gratuito não estiver disponível no aplicativo, a cobrança é feita no dia da contratação, e a tela de pagamento informa isso antes da confirmação.
+
+**6.3 Assinaturas pelo Google Play.** A cobrança, a renovação, os métodos de pagamento, o **cancelamento** e os pedidos de **reembolso** das assinaturas contratadas no aplicativo Android são processados pelo **Google Play**, de acordo com os termos e as políticas do Google. O Usuário pode cancelar a qualquer momento no aplicativo Google Play, em **Pagamentos e assinaturas › Assinaturas**; o acesso continua liberado até o fim do período já pago. **Reembolsos** de compras feitas no aplicativo seguem as **políticas de reembolso do Google Play** e podem ser pedidos diretamente ao Google; além disso, o **suporte do Petzara também pode reembolsar**, pelo Google Play, cobranças feitas **há até 7 (sete) dias**, mediante pedido pelos canais de contato. O operador não recebe os dados do cartão ou de outro meio de pagamento usado no Google Play.
 
 **6.4 Assinaturas pelo Stripe.** Pagamentos, faturas, métodos de pagamento, renovações, falhas de cobrança e **cancelamento ou alteração de plano** das assinaturas contratadas na versão web podem ser geridos pelo Usuário por meio do **portal do cliente** do Stripe ou de fluxos equivalentes integrados à Plataforma. O operador não armazena números completos de cartão de crédito em seus servidores de aplicação; esses dados são tratados pelo Stripe conforme a política deste.
 
@@ -85,7 +89,11 @@ Este documento tem caráter informativo e contratual entre você e o operador da
 
 **6.6** Estados de assinatura (como ativa, em período de teste, com pagamento pendente ou cancelada) podem refletir-se no **acesso à Plataforma**. Em situações de assinatura inativa ou não paga, conforme regras técnicas implementadas, o operador poderá **limitar ou bloquear** o uso de funcionalidades até a regularização ou o encerramento da conta.
 
-**6.7** Valores, tributos incidentes e política de reembolso seguem as condições exibidas no momento da contratação, as políticas do provedor de pagamento utilizado e a legislação aplicável. Dúvidas sobre cobrança podem ser enviadas ao suporte indicado pelo operador e, quando cabível, ao Google Play ou ao Stripe.
+**6.7** Valores e tributos incidentes seguem as condições exibidas no momento da contratação e a legislação aplicável; reembolsos seguem as cláusulas 6.3 e 6.8, as políticas do provedor de pagamento utilizado e a lei. Dúvidas sobre cobrança podem ser enviadas ao suporte indicado pelo operador e, quando cabível, ao Google Play ou ao Stripe.
+
+**6.8 Direito de arrependimento (compras pelo site).** Nos termos do **art. 49 do Código de Defesa do Consumidor**, o Usuário que contratar um plano pela versão web pode **desistir da contratação em até 7 (sete) dias** contados da contratação, com **reembolso integral** dos valores eventualmente pagos, bastando pedir pelo suporte (e-mail **suporte@petzara.app** ou WhatsApp). O reembolso é feito pelo mesmo meio de pagamento, pelo Stripe. Se a contratação ocorreu durante o teste, o Usuário também pode simplesmente cancelar antes da 1ª cobrança, sem custo (cláusula 6.2.2). Para compras feitas no aplicativo Android, vale a cláusula 6.3.
+
+**6.9 Conta que não assina.** Ao fim do teste sem assinatura, a conta passa ao **modo somente leitura**: os dados (clientes, pets, agendamentos e financeiro) **continuam guardados enquanto a conta existir**, e o Usuário pode consultá-los, **exportá-los** (por exemplo, os agendamentos em CSV ou XLSX, nas Configurações; outros dados mediante pedido ao suporte) ou **pedir a exclusão** a qualquer momento (em **Configurações › Excluir conta** ou pelo suporte). Ao assinar, a conta volta a funcionar normalmente com os mesmos dados. A retenção segue também a seção 10 da [Política de Privacidade](./POLITICA_DE_PRIVACIDADE.md).
 
 ---
 
@@ -148,7 +156,7 @@ O tratamento de dados pessoais segue a [Política de Privacidade](./POLITICA_DE_
 
 **12.1** O operador poderá **suspender ou encerrar** contas em caso de violação destes Termos, ordem judicial, risco à segurança ou inadimplência relevante, observados os requisitos legais.
 
-**12.2** O Usuário pode solicitar o encerramento da conta pelos canais indicados na Política de Privacidade ou no aplicativo, ficando sujeito à retenção de dados quando a lei ou legítimo interesse exigirem.
+**12.2** O Usuário pode excluir a conta em **Configurações › Excluir conta** ou solicitar o encerramento pelos canais indicados na Política de Privacidade, ficando sujeito à retenção de dados quando a lei ou legítimo interesse exigirem. Se houver assinatura ativa, ela é cancelada no provedor de pagamento.
 
 ---
 

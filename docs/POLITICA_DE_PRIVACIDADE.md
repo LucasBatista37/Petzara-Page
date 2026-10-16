@@ -1,6 +1,6 @@
 # Política de Privacidade — Petzara
 
-**Última atualização:** outubro de 2026
+**Última atualização:** 16/10/2026
 
 ---
 
@@ -47,7 +47,7 @@ Conforme as funcionalidades utilizadas, podemos tratar as categorias abaixo.
 
 ### 3.2 Dados de assinatura e pagamento (SaaS)
 
-- Identificadores e status da assinatura no provedor de pagamento utilizado: **Google Play** (token da compra, número do pedido, produto e plano) ou **Stripe** (cliente, assinatura); **período vigente**, **período de teste**, datas de cobrança, situação (ativa, em teste, inadimplente, cancelada, etc.).
+- Identificadores e status da assinatura no provedor de pagamento utilizado: **Google Play** (token da compra, número do pedido, produto, plano e, quando a compra usa período gratuito da Google Play, o identificador da oferta e a data de fim desse período) ou **Stripe** (cliente, assinatura); **período vigente**, **período de teste**, datas de cobrança, situação (ativa, em teste, inadimplente, cancelada, etc.).
 
 **Não** tratamos, em nossos servidores de aplicação, o **número completo** do cartão de crédito; o processamento de pagamento é realizado pelo **Google Play** ou pelo **Stripe**, conforme o provedor usado na contratação.
 
@@ -162,9 +162,11 @@ Nenhum sistema é totalmente seguro. Em caso de **incidente de segurança** que 
 
 **10.1** Mantemos dados pelo tempo necessário para **cumprir as finalidades** descritas, respeitando prazos legais (fiscal, civil, etc.).
 
-**10.2** Após **encerramento da conta**, poderemos **reter** dados por período adicional para cumprimento de obrigação legal, resolução de litígios ou exercício regular de direitos.
+**10.2** **Contas que não assinam** ao fim do teste gratuito ficam em modo somente leitura e seus dados (cadastro, clientes, pets, agendamentos e financeiro) **continuam guardados enquanto a conta existir** — não há exclusão automática por falta de assinatura. O Usuário pode, a qualquer momento, **exportar** dados (por exemplo, os agendamentos em CSV ou XLSX, nas Configurações; outros dados mediante pedido pelo canal da seção 14) ou **pedir a exclusão** da conta (em **Configurações › Excluir conta** ou pelo canal da seção 14).
 
-**10.3** Logs e dados técnicos de segurança podem ser retidos por períodos **mais curtos ou mais longos**, conforme política interna e lei.
+**10.3** Após **encerramento da conta**, poderemos **reter** dados por período adicional para cumprimento de obrigação legal, resolução de litígios ou exercício regular de direitos.
+
+**10.4** Logs e dados técnicos de segurança podem ser retidos por períodos **mais curtos ou mais longos**, conforme política interna e lei.
 
 ---
 
@@ -183,7 +185,7 @@ Nos termos do art. 18 da LGPD, o titular pode solicitar:
 
 **11.1** Pedidos podem ser feitos pelo **canal de contato** da seção 14. Poderemos solicitar informações para **confirmar identidade**.
 
-**11.2** Algumas solicitações podem ser **atendidas diretamente pelo Usuário** na própria Plataforma (edição de cadastros). Dados tratados pelo **Stripe** ou pela **Google** podem exigir solicitação também diretamente a esses provedores.
+**11.2** Algumas solicitações podem ser **atendidas diretamente pelo Usuário** na própria Plataforma (edição de cadastros, exportação de agendamentos e exclusão da conta). Dados tratados pelo **Stripe** ou pela **Google** podem exigir solicitação também diretamente a esses provedores.
 
 **11.3** O titular pode **peticionar à Autoridade Nacional de Proteção de Dados (ANPD)**.
 
