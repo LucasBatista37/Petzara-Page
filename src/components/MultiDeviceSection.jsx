@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Monitor, Smartphone, Download, RefreshCw } from 'lucide-react'
 import { ease, useResponsiveInView } from '../animations/variants'
 import { playStoreUrl } from '../siteConfig'
+import OptimizedImage from './OptimizedImage'
 
 const pills = [
     { icon: Smartphone,  label: 'Android & iOS' },
@@ -30,7 +31,7 @@ function MacBookFrame({ src, alt }) {
                             </div>
                         </div>
                     </div>
-                    <img src={src} alt={alt} className="w-full block" loading="lazy" />
+                    <OptimizedImage src={src} alt={alt} className="w-full block" />
                 </div>
             </div>
             {/* Camera notch */}
@@ -65,7 +66,7 @@ function IPadFrame({ src, alt }) {
             />
             {/* Tela */}
             <div className="overflow-hidden" style={{ borderRadius: '5px' }}>
-                <img src={src} alt={alt} className="w-full block" loading="lazy" />
+                <OptimizedImage src={src} alt={alt} className="w-full block" />
             </div>
         </div>
     )
@@ -89,7 +90,7 @@ function IPhoneFrame({ src, alt }) {
             />
             {/* Tela */}
             <div className="overflow-hidden" style={{ borderRadius: '15px' }}>
-                <img src={src} alt={alt} className="w-full block" loading="lazy" />
+                <OptimizedImage src={src} alt={alt} className="w-full block" />
             </div>
             {/* Botão lateral */}
             <div className="absolute -right-[2px] top-12 w-[2px] h-5 bg-espresso/60 rounded-r-sm" />
