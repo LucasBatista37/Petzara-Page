@@ -2,19 +2,45 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { useResponsiveInView } from '../animations/variants'
+import { whatsappSupportUrl } from '../siteConfig'
 
 const faqs = [
     {
+        question: 'Posso testar antes de pagar?',
+        answer: 'Sim. São 30 dias grátis, sem cartão de crédito, com acesso a tudo. Como não pedimos cartão, nada é cobrado automaticamente: no fim do teste você decide se quer assinar.',
+    },
+    {
+        question: 'Como ganho +14 dias grátis?',
+        answer: 'Use o Petzara em 3 dias diferentes durante o teste — é só criar agendamentos em 3 dias distintos (por exemplo, segunda, terça e quinta). Os 14 dias extras entram automaticamente no seu teste, uma vez por conta.',
+    },
+    {
+        question: 'O que acontece quando o teste acaba?',
+        answer: 'Se você não assinar, a conta fica somente leitura: seus clientes, pets, agendamentos e o financeiro continuam guardados e você consegue consultar tudo, mas não cria nem edita nada até assinar. Assinou, volta tudo na hora.',
+    },
+    {
+        question: 'Manda lembrete no WhatsApp?',
+        answer: 'Ainda não. Hoje o Petzara não envia lembretes automáticos por WhatsApp para os seus clientes. O que ele faz: na Agenda pública, o cliente vê os horários livres e é levado para o WhatsApp do seu pet shop para combinar o horário com você; e o Petzara avisa você e a sua equipe pelo app, como quando entra um agendamento novo.',
+    },
+    {
+        question: 'Consigo trazer meus clientes do caderno ou planilha?',
+        answer: 'Sim. No sistema pelo navegador (app.petzara.app), em Clientes › Importar, você envia uma planilha CSV com nome e telefone (tem um modelo para baixar; no Excel é só "Salvar como → CSV"). Telefones repetidos são ignorados. Se seus clientes estão no caderno, passe para uma planilha simples ou mande para a gente no WhatsApp que ajudamos.',
+    },
+    {
+        question: 'Vocês me ajudam a configurar?',
+        answer: 'Sim, de graça, pelo WhatsApp: ajudamos a cadastrar serviços e preços, horários de funcionamento, importar seus clientes e ativar o seu link de agendamento. Depois, o suporte continua pelo WhatsApp e pelo e-mail suporte@petzara.app, em horário comercial.',
+        link: { href: whatsappSupportUrl, label: 'Chamar no WhatsApp' },
+    },
+    {
         question: 'Preciso instalar algum programa no computador?',
-        answer: 'Não. O Petzara é 100% online — funciona em qualquer navegador, sem instalação. No Android, você pode adicionar à tela inicial como app diretamente pelo Chrome.',
+        answer: 'Não. O Petzara funciona no navegador do computador, do tablet ou do celular — é só entrar em app.petzara.app. No Android, também tem o app Petzara na Google Play.',
+    },
+    {
+        question: 'O sistema funciona bem no celular?',
+        answer: 'Sim. No Android, baixe o app Petzara na Google Play. No iPhone, use pelo navegador (Safari ou Chrome) em app.petzara.app — dá para adicionar à tela de início. A conta é a mesma em todos os aparelhos.',
     },
     {
         question: 'Meus dados ficam seguros?',
-        answer: 'Sim. Todos os dados são criptografados em trânsito e em repouso, com backup automático na nuvem. Você nunca vai perder informações por falha de computador ou caderno molhado.',
-    },
-    {
-        question: 'Posso testar antes de pagar?',
-        answer: 'Sim. São 30 dias grátis com acesso completo a todas as funcionalidades, sem cartão de crédito e sem compromisso.',
+        answer: 'Sim. Os dados ficam na nuvem, com conexão criptografada (HTTPS) e senhas guardadas com hash — não dependem do seu computador nem de um caderno. Só quem você convida acessa a conta, cada um com as permissões que você definir.',
     },
     {
         question: 'Quantos colaboradores posso adicionar?',
@@ -22,25 +48,28 @@ const faqs = [
     },
     {
         question: 'Como funciona o cancelamento?',
-        answer: 'Você cancela quando quiser, direto nas configurações da sua conta. Sem multa, sem ligação e sem burocracia.',
-    },
-    {
-        question: 'O sistema funciona bem no celular?',
-        answer: 'Sim. O Petzara é responsivo e funciona em qualquer tela. No Android, você pode instalar como app pelo navegador — sem precisar da Play Store.',
-    },
-    {
-        question: 'Tenho suporte se precisar de ajuda?',
-        answer: 'Sim. Suporte por e-mail e WhatsApp incluso em todos os planos. Nossa equipe responde em horário comercial.',
+        answer: 'Sem multa e sem ligação. Assinou pelo site: cancele quando quiser nas configurações da conta. Assinou pelo app Android: o cancelamento é feito na Google Play, em Pagamentos e assinaturas.',
     },
     {
         question: 'O sistema é difícil de aprender?',
-        answer: 'Não. Em menos de 10 minutos você já está criando agendamentos. A interface foi pensada para quem nunca usou um sistema de gestão antes — sem manual, sem treinamento.',
+        answer: 'Não. Foi pensado para quem nunca usou um sistema de gestão: você cadastra seus serviços, cria o primeiro agendamento e já está usando. Se travar em algo, a gente ajuda pelo WhatsApp.',
     },
     {
         question: 'Tenho um petshop pequeno com 1 ou 2 funcionários. Vale a pena?',
-        answer: 'Vale muito — e esse é exatamente o perfil de quem mais usa o Petzara. Petshops pequenos ganham mais porque o dono para de ser o intermediário de tudo e passa a atender mais.',
+        answer: 'Vale: o Petzara foi feito para pet shops pequenos de banho e tosa. Com a agenda no celular da equipe, o dono para de ser o intermediário de tudo. E você testa 30 dias grátis antes de decidir.',
     },
 ]
+
+// Dados estruturados (FAQPage) para o Google
+const faqJsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+})
 
 function FAQItem({ faq, index, isOpen, onToggle }) {
     return (
@@ -52,6 +81,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
         >
             <button
                 onClick={onToggle}
+                aria-expanded={isOpen}
                 className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-cream transition-colors duration-200"
             >
                 <span className="font-accent font-bold text-espresso text-base leading-snug">
@@ -76,6 +106,20 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
                     >
                         <p className="px-6 pb-5 text-taupe text-sm leading-relaxed">
                             {faq.answer}
+                            {faq.link && (
+                                <>
+                                    {' '}
+                                    <a
+                                        href={faq.link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-track="faq"
+                                        className="font-bold text-terracotta hover:text-terracotta-dark underline underline-offset-2"
+                                    >
+                                        {faq.link.label}
+                                    </a>
+                                </>
+                            )}
                         </p>
                     </motion.div>
                 )}
@@ -92,6 +136,7 @@ export default function FAQSection() {
 
     return (
         <section id="faq" className="py-20 sm:py-28 relative overflow-hidden">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
             <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(circle, #3D1F0D15 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
             <div ref={ref} className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
