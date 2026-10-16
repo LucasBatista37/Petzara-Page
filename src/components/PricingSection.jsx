@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import { Check, Sparkles, ArrowRight, Star, Zap } from 'lucide-react'
 import { stripeMonthlyUrl, stripeAnnualUrl } from '../siteConfig'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
+import { useEffect } from 'react'
+import { track } from '../lib/analytics'
 
 const sharedFeatures = [
     'Agendamentos ilimitados',
@@ -16,6 +18,11 @@ const sharedFeatures = [
 
 export default function PricingSection() {
     const { ref, isInView } = useResponsiveInView()
+
+    // GA4: a seção de preços apareceu na tela (uma vez por visita à página)
+    useEffect(() => {
+        if (isInView) track('view_pricing')
+    }, [isInView])
 
     return (
         <section id="precos" className="py-20 sm:py-28 relative overflow-hidden">

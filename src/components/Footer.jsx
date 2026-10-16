@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { appLoginUrl, appRegisterUrl, SUPPORT_EMAIL, instagramUrl, whatsappSupportUrl } from '../siteConfig'
+import { analyticsConfigured, resetConsent } from '../lib/analytics'
 
 export default function Footer() {
     return (
@@ -59,6 +60,13 @@ export default function Footer() {
                         <ul className="space-y-2.5 text-sm">
                             <li><Link to="/termos-de-uso" className="hover:text-terracotta transition-colors">Termos de Uso</Link></li>
                             <li><Link to="/politica-de-privacidade" className="hover:text-terracotta transition-colors">Política de Privacidade</Link></li>
+                            {analyticsConfigured && (
+                                <li>
+                                    <button type="button" onClick={resetConsent} className="hover:text-terracotta transition-colors text-left">
+                                        Preferências de cookies
+                                    </button>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
