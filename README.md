@@ -63,3 +63,18 @@ um link novo para cadastro, WhatsApp ou Play já é medido sem código extra.
 
 No GA4, marque `click_signup` e `click_play` como **eventos principais (conversões)** em
 Administrador → Eventos.
+
+## Origem das visitas (UTM)
+
+`src/lib/attribution.js` lê `?utm_source`, `utm_medium`, `utm_campaign`, `utm_content` e `utm_term`
+da URL e guarda a **primeira** origem com UTM no navegador (`localStorage`, chave `pz_utm`).
+A UTM da URL atual tem prioridade; sem UTM na URL, vale a guardada.
+
+- Todos os links de cadastro viram `https://app.petzara.app/register?utm_source=…&utm_medium=…`
+  (o sistema web lê esses parâmetros e grava a origem do cadastro).
+- Todos os links da Play ganham o referrer de instalação:
+  `…?id=app.petzara.twa&referrer=utm_source%3D<src>%26utm_medium%3D<med>%26utm_campaign%3D<camp>`;
+  o que faltar vira `site` (ex.: visita sem UTM → `utm_source%3Dsite%26utm_medium%3Dsite%26utm_campaign%3Dsite`).
+  Aparece no Play Console em Estatísticas → Aquisição de usuários.
+
+Exemplo de link para campanha: `https://petzara.app/?utm_source=instagram&utm_medium=social&utm_campaign=outubro`.
