@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import ConsentBanner from './ConsentBanner'
+import FloatingWhatsApp from './FloatingWhatsApp'
 import {
     analyticsConfigured,
     CONSENT_EVENT,
@@ -10,14 +11,14 @@ import {
 } from '../lib/analytics'
 
 /**
- * Elementos fixos do site (faixa de cookies). Não aparecem nas páginas abertas
+ * Elementos fixos do site: faixa de cookies (L1) e botão flutuante do WhatsApp (L5). Não aparecem nas páginas abertas
  * pelo app (?origem=app), que não devem levar ao site.
  */
 export default function SiteOverlays() {
     const location = useLocation()
     const fromApp = new URLSearchParams(location.search).get('origem') === 'app'
     const [consent, setConsentState] = useState(() => getConsent())
-    const [, setBannerHeight] = useState(0)
+    const [bannerHeight, setBannerHeight] = useState(0)
     const firstPath = useRef(location.pathname)
 
     useEffect(() => {
@@ -41,6 +42,7 @@ export default function SiteOverlays() {
 
     return (
         <>
+            <FloatingWhatsApp bannerHeight={showBanner ? bannerHeight : 0} />
             {showBanner && <ConsentBanner onHeight={setBannerHeight} />}
         </>
     )

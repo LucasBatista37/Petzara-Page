@@ -24,6 +24,8 @@ export const playStoreUrl = playUrlWithReferrer(PLAY_STORE_BASE_URL, visitUtm)
 
 export const whatsappDemoUrl = 'https://wa.me/5513996830085?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Petzara%20e%20gostaria%20de%20agendar%20uma%20demonstra%C3%A7%C3%A3o.'
 export const whatsappSupportUrl = 'https://wa.me/5513996830085'
+/** Botão flutuante do site: mensagem pronta para quem tem dúvida ou quer ajuda para configurar. */
+export const whatsappFloatingUrl = 'https://wa.me/5513996830085?text=' + encodeURIComponent('Olá! Vim pelo site do Petzara e tenho uma dúvida.')
 export const instagramUrl = 'https://www.instagram.com/petzara.app'
 
 export const DESKTOP_DOWNLOADS = {
