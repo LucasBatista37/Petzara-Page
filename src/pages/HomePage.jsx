@@ -89,9 +89,10 @@ export default function HomePage() {
                 <Suspense fallback={<SectionFallback />}><HowItWorksSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><MultiDeviceSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><DemoSection /></Suspense>
-                <Suspense fallback={<SectionFallback />}><ColorPaletteSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><PricingSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><FAQSection /></Suspense>
+                {/* Paleta de cores: depois do FAQ, fora do caminho até os preços */}
+                <Suspense fallback={<SectionFallback />}><ColorPaletteSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><CTASection /></Suspense>
             </main>
             <Suspense fallback={null}><Footer /></Suspense>
