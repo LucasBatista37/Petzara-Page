@@ -33,7 +33,7 @@ export default function CaseSection({ preview = false }) {
     if (!isCaseComplete(c)) return null
 
     const numbers = (c.numbers || []).filter((n) => n.value?.trim() && n.label?.trim())
-    const initials = c.petshopName.trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join('').toUpperCase()
+    const initials = c.petshopName.replace(/[^\p{L}\s]/gu, '').trim().split(/\s+/).slice(0, 2).map((w) => w[0] || '').join('').toUpperCase()
 
     return (
         <section id="caso" className="py-20 sm:py-28 relative overflow-hidden">
