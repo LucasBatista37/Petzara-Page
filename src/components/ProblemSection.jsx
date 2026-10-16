@@ -66,7 +66,7 @@ export default function ProblemSection() {
                         <span className="text-terracotta">custando clientes</span>
                     </h2>
                     <p className="text-taupe text-lg leading-relaxed">
-                        A maioria dos petshops perde dinheiro por falta de organização — não por falta de clientes.
+                        Muito petshop perde dinheiro por falta de organização — não por falta de clientes.
                     </p>
                 </motion.div>
 

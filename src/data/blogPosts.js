@@ -419,7 +419,7 @@ Uma equipe bem estruturada libera o dono para focar no que realmente importa: qu
     slug: 'agendamento-online-petshop-24h',
     title: 'Agendamento online 24h: como deixar o cliente marcar enquanto você foca no trabalho',
     category: 'Organização',
-    description: 'Uma página de agendamento online disponível 24h libera o dono do petshop das mensagens e permite que clientes marquem sozinhos a qualquer hora do dia.',
+    description: 'Uma página de agendamento online disponível 24h mostra os horários livres a qualquer hora e leva o cliente ao WhatsApp do petshop com dia e horário já escolhidos.',
     excerpt: 'Às 22h, um cliente quer marcar banho para segunda-feira. Se você depende do WhatsApp, a mensagem espera até amanhã — ou ele vai no concorrente. Existe uma alternativa mais simples.',
     readingTime: '5 min de leitura',
     keywords: ['agendamento online petshop', 'cliente agendar sozinho', 'link agendamento petshop'],
@@ -436,22 +436,22 @@ O resultado: clientes que não recebem resposta rápida vão para o concorrente 
 
 ## O que é o agendamento online
 
-Agendamento online é uma página pública do seu petshop onde o cliente pode ver os horários disponíveis e marcar sozinho, sem precisar de resposta sua.
+Agendamento online é uma página pública do seu petshop onde o cliente vê os horários disponíveis a qualquer hora, sem precisar perguntar a você o que está livre.
 
 Funciona assim:
 1. O cliente acessa o link (você compartilha no WhatsApp, Instagram, Google)
 2. Ele vê os horários disponíveis em tempo real
-3. Escolhe o dia, o serviço e o pet
-4. O agendamento é criado e você recebe a notificação
+3. Escolhe o dia e o horário
+4. É levado para o WhatsApp do seu petshop com a mensagem pronta ("Gostaria de agendar às 10:00 no dia 20/10")
 
-Você não precisa estar acordado às 22h para que isso aconteça.
+Às 22h você não precisa responder "que horário tem livre?": a conversa já chega com dia e horário escolhidos, e você só confirma quando puder.
 
 ## O que muda na rotina do petshop
 
 Com agendamento online disponível:
 
-- **Você para de ser o gargalo dos agendamentos.** Clientes conseguem marcar sem depender da sua disponibilidade imediata.
-- **Os horários continuam bloqueados automaticamente.** Quando um cliente marca online, o slot fica indisponível para os próximos — sem risco de conflito.
+- **Você para de ser o gargalo dos agendamentos.** O cliente escolhe o horário sem depender da sua resposta imediata — você só confirma.
+- **Os horários ocupados não aparecem.** A página mostra só o que está livre na agenda; quando você lança o agendamento, o horário sai da lista para os próximos.
 - **A agenda do dia já está estruturada quando você chega de manhã.** Não é mais você que constrói ela ao longo do dia respondendo mensagens.
 - **Clientes fidelizados marcam com mais frequência.** Quando marcar é fácil, a recorrência aumenta naturalmente.
 
@@ -464,7 +464,7 @@ Ter o link não adianta nada se os clientes não souberem que ele existe. Alguma
 - **No Google Meu Negócio:** Adicione o link de agendamento no perfil
 - **No rodapé das mensagens de confirmação:** "Quer marcar o próximo? Acesse [link]"
 
-O objetivo é tornar o agendamento tão fácil que o cliente prefira fazer sozinho a esperar pela sua resposta.
+O objetivo é tornar o agendamento tão fácil que o cliente prefira escolher o horário pelo link a esperar pela sua resposta.
 
 ## Quando o agendamento online não substitui o WhatsApp
 
@@ -474,11 +474,11 @@ A proposta não é eliminar o contato humano — é eliminar o retrabalho dos ag
 
 ## Como o Petzara disponibiliza o agendamento online
 
-No Petzara, cada petshop tem uma URL pública de agendamento. O cliente acessa, vê os horários disponíveis em tempo real (sincronizados com a agenda interna) e confirma o serviço. O agendamento entra diretamente no sistema — sem que você precise fazer nada.
+No Petzara, cada petshop tem uma Agenda pública com o seu link de agendamento (app.petzara.app/agendar/seu-petshop). O cliente acessa, vê os horários livres em tempo real (sincronizados com a agenda interna), escolhe dia e horário e é levado para o WhatsApp do petshop com a mensagem pronta. Você confirma na conversa e lança o agendamento no Petzara.
 
 ## Conclusão
 
-Agendamento online não é um luxo de grandes redes. É uma ferramenta acessível que muda a dinâmica de operação de qualquer petshop. Quando o cliente pode marcar sozinho, você ganha tempo, reduz perda de oportunidades e profissionaliza a experiência de quem ainda está decidindo se volta ou não.`,
+Agendamento online não é um luxo de grandes redes. É uma ferramenta acessível que muda a dinâmica de operação de qualquer petshop. Quando o cliente vê os horários livres sem precisar perguntar, você ganha tempo, reduz perda de oportunidades e profissionaliza a experiência de quem ainda está decidindo se volta ou não.`,
   },
 
   {

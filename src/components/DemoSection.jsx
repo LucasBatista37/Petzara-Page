@@ -90,8 +90,8 @@ const screens = [
     },
     {
         id: 'pagina-publica',
-        title: 'Página Pública',
-        description: 'Clientes agendam sozinhos via link exclusivo do petshop',
+        title: 'Agenda pública',
+        description: 'Clientes veem os horários livres no seu link e chamam você no WhatsApp',
         desktopImage: '/prints/pagina-publica.webp',
         mobileImage: '/prints/mobile/pagina-publica.webp',
         imageAlt: 'Página pública de agendamento Petzara',

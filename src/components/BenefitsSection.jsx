@@ -8,7 +8,7 @@ const benefits = [
     {
         icon: CalendarCheck,
         title: 'Fim do conflito de horário',
-        description: 'Nunca mais dois tutores no mesmo slot. O sistema bloqueia automaticamente — você nem precisa checar.',
+        description: 'A agenda confere os horários livres antes de salvar, respeitando quantos atendimentos você faz ao mesmo tempo.',
         color: 'terracotta',
     },
     {
@@ -20,13 +20,13 @@ const benefits = [
     {
         icon: Wallet,
         title: 'Caixa que se fecha sozinho',
-        description: 'Agendamento finalizado → transação financeira criada automaticamente. Você fecha o dia sem digitar nada.',
+        description: 'Agendamento finalizado → transação financeira criada automaticamente. Menos coisa para lançar no fim do dia.',
         color: 'terracotta',
     },
     {
         icon: Globe,
-        title: 'Cliente agenda enquanto você dorme',
-        description: 'Sua página fica disponível 24h. Clientes escolhem horário, confirmam e pronto — sem mensagem nenhuma.',
+        title: 'Horários livres à vista 24h',
+        description: 'Seu link de agendamento fica no ar o tempo todo. O cliente vê os horários livres e chama você no WhatsApp com dia e horário escolhidos.',
         color: 'sage',
     },
     {
@@ -131,7 +131,7 @@ export default function BenefitsSection() {
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
                     <span className="inline-block bg-terracotta/10 text-terracotta px-4 py-1.5 rounded-full text-sm font-bold mb-4">
-                        Resultados reais
+                        Benefícios
                     </span>
                     <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
                         Mais organização.{' '}

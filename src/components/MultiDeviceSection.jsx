@@ -5,7 +5,7 @@ import { playStoreUrl } from '../siteConfig'
 import OptimizedImage from './OptimizedImage'
 
 const pills = [
-    { icon: Smartphone,  label: 'Android & iOS' },
+    { icon: Smartphone,  label: 'Android e iPhone (navegador)' },
     { icon: Monitor,     label: 'Qualquer navegador' },
     { icon: Download,    label: 'Disponível na Play Store' },
     { icon: RefreshCw,   label: 'Sincronização em tempo real' },
