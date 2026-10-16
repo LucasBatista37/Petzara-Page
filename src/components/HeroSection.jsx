@@ -261,7 +261,7 @@ export default function HeroSection() {
 
                         {/* Bônus de uso */}
                         <p className="mt-5 text-sm text-espresso/70 font-medium">
-                            <span className="text-sage-dark font-bold">+14 dias grátis</span> se você usar o Petzara em 3 dias diferentes.
+                            <span className="text-sage-dark font-bold">+14 dias grátis</span> se você criar agendamentos em 3 dias diferentes durante o teste.
                         </p>
 
                         {/* Trust signals */}

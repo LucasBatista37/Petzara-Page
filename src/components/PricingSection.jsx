@@ -51,7 +51,7 @@ export default function PricingSection() {
                     </p>
                     <div className="inline-flex items-center gap-2 bg-terracotta/20 border border-terracotta/35 text-terracotta px-4 py-2 rounded-full text-sm font-bold">
                         <Gift size={14} aria-hidden="true" />
-                        +14 dias grátis se você usar o Petzara em 3 dias diferentes
+                        +14 dias grátis se você criar agendamentos em 3 dias diferentes durante o teste
                     </div>
                 </motion.div>
 

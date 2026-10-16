@@ -10,8 +10,12 @@ const faqs = [
         answer: 'Sim. São 30 dias grátis, sem cartão de crédito, com acesso a tudo. Como não pedimos cartão, nada é cobrado automaticamente: no fim do teste você decide se quer assinar.',
     },
     {
+        question: 'Se eu assinar durante o teste, pago na hora?',
+        answer: 'Não. Pelo site e pelo app, a 1ª cobrança é só no fim do teste: os dias grátis que faltam continuam valendo. No app Android, a data da 1ª cobrança aparece antes de você confirmar a compra, e dá para cancelar sem custo na Play Store antes dela. Só se faltar menos de 2 dias para o teste acabar a cobrança pode ser feita no dia — e a tela de pagamento avisa antes.',
+    },
+    {
         question: 'Como ganho +14 dias grátis?',
-        answer: 'Use o Petzara em 3 dias diferentes durante o teste — é só criar agendamentos em 3 dias distintos (por exemplo, segunda, terça e quinta). Os 14 dias extras entram automaticamente no seu teste, uma vez por conta.',
+        answer: 'Crie agendamentos em 3 dias diferentes durante o teste. Conta o dia em que você cria o agendamento no Petzara, não a data marcada para o atendimento: se hoje você cadastra os horários da semana inteira, isso vale como 1 dia. Quando chegar ao 3º dia, os 14 dias extras entram automaticamente no seu teste. Vale uma vez por conta.',
     },
     {
         question: 'O que acontece quando o teste acaba?',
