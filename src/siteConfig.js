@@ -54,3 +54,29 @@ export const marketingUrl = (path = '') =>
 
 export const appUrl = (path = '') =>
     `${APP_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`
+
+/**
+ * Prova social (L9) — caso real da loja-piloto. NÃO inventar nada aqui.
+ *
+ * Para publicar: preencha os campos com dados reais (com autorização por escrito do
+ * pet shop para nome, foto e frase), confira os números no próprio Petzara e troque
+ * SHOW_CASE para true. Enquanto SHOW_CASE for false — ou faltar nome, frase ou autor —
+ * a seção não aparece e o código dela nem é baixado.
+ * Prévia com rótulos de exemplo: `npm run dev` e abra http://localhost:5173/?previewCase=1
+ */
+export const SHOW_CASE = false
+
+export const CASE_STUDY = {
+    petshopName: '',   // nome do pet shop
+    city: '',          // cidade – UF
+    photo: '',         // imagem em /public, ex.: '/case/loja-piloto.webp' (WebP, ~800px de largura)
+    photoAlt: '',      // descrição da foto
+    quote: '',         // frase real, nas palavras de quem disse
+    author: '',        // nome de quem disse
+    role: '',          // ex.: 'Dona do pet shop'
+    numbers: [         // números reais medidos no Petzara (deixe vazio o que não tiver)
+        { value: '', label: '' },  // ex.: { value: '…', label: 'agendamentos no 1º mês' }
+        { value: '', label: '' },
+        { value: '', label: '' },
+    ],
+}

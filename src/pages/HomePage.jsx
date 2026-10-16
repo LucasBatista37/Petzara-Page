@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
+import { SHOW_CASE } from '../siteConfig'
 
 // Below-fold sections — loaded on demand as the user scrolls
 const ProblemSection      = lazy(() => import('../components/ProblemSection'))
@@ -9,6 +10,7 @@ const HowItWorksSection   = lazy(() => import('../components/HowItWorksSection')
 const MultiDeviceSection  = lazy(() => import('../components/MultiDeviceSection'))
 const DemoSection         = lazy(() => import('../components/DemoSection'))
 const ColorPaletteSection = lazy(() => import('../components/ColorPaletteSection'))
+const CaseSection         = lazy(() => import('../components/CaseSection'))
 const PricingSection      = lazy(() => import('../components/PricingSection'))
 const FAQSection          = lazy(() => import('../components/FAQSection'))
 const CTASection          = lazy(() => import('../components/CTASection'))
@@ -77,6 +79,10 @@ function SectionFallback() {
     return <div className="min-h-[200px]" />
 }
 
+// Prévia do layout da prova social só no `npm run dev` (?previewCase=1); nunca em produção.
+const previewCase = import.meta.env.DEV && typeof window !== 'undefined'
+    && new URLSearchParams(window.location.search).has('previewCase')
+
 export default function HomePage() {
     return (
         <div className="relative min-h-screen bg-cream">
@@ -89,6 +95,10 @@ export default function HomePage() {
                 <Suspense fallback={<SectionFallback />}><HowItWorksSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><MultiDeviceSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><DemoSection /></Suspense>
+                {/* Prova social (L9): desligada até o Lucas preencher CASE_STUDY com dados reais */}
+                {(SHOW_CASE || previewCase) && (
+                    <Suspense fallback={<SectionFallback />}><CaseSection preview={previewCase} /></Suspense>
+                )}
                 <Suspense fallback={<SectionFallback />}><PricingSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><FAQSection /></Suspense>
                 {/* Paleta de cores: depois do FAQ, fora do caminho até os preços */}

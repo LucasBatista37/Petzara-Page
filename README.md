@@ -78,3 +78,12 @@ A UTM da URL atual tem prioridade; sem UTM na URL, vale a guardada.
   Aparece no Play Console em Estatísticas → Aquisição de usuários.
 
 Exemplo de link para campanha: `https://petzara.app/?utm_source=instagram&utm_medium=social&utm_campaign=outubro`.
+
+## Prova social (seção de caso real)
+
+A seção `src/components/CaseSection.jsx` está pronta, mas **desligada** (`SHOW_CASE = false` em
+`src/siteConfig.js`) e **sem conteúdo**. Nada de depoimento ou número inventado: preencha `CASE_STUDY`
+com a loja-piloto (nome, cidade, foto em `/public`, frase, autor, função e até 3 números medidos no
+Petzara), com autorização por escrito do pet shop, e troque `SHOW_CASE` para `true`.
+Se faltar nome, frase ou autor, a seção não aparece mesmo com a flag ligada.
+Prévia do layout com rótulos de exemplo: `npm run dev` e abra `http://localhost:5173/?previewCase=1`.
