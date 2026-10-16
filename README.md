@@ -87,3 +87,20 @@ com a loja-piloto (nome, cidade, foto em `/public`, frase, autor, função e at�
 Petzara), com autorização por escrito do pet shop, e troque `SHOW_CASE` para `true`.
 Se faltar nome, frase ou autor, a seção não aparece mesmo com a flag ligada.
 Prévia do layout com rótulos de exemplo: `npm run dev` e abra `http://localhost:5173/?previewCase=1`.
+
+## Vídeos da Central de Ajuda do app (`public/ajuda-videos.json`)
+
+O app Android (3.4.0+58 em diante) já traz os ids dos vídeos do canal https://www.youtube.com/@Petzara,
+mas ao abrir a Ajuda ele lê `https://petzara.app/ajuda-videos.json` (até 4 s, sem aviso se falhar) e, se o
+arquivo for válido, usa os ids daqui. Para trocar um vídeo (ex.: "Primeiros passos" regravado), suba o vídeo
+no canal, troque o id (os 11 caracteres depois de `watch?v=`) na chave do tema e publique o site — não precisa
+de versão nova do app. O arquivo tem cache de 5 min (`vercel.json`).
+
+- `version`: sempre `1` (outro valor faz o app ignorar o arquivo inteiro).
+- `channel`: link do canal ("Ver todos os vídeos no YouTube").
+- `complete`: tutorial completo (cartão do topo da Ajuda); `intro`: apresentação do app (1 min).
+- `topics`: `primeiros-passos`, `inicio`, `agendamentos`, `clientes-pets`, `servicos`, `financeiro`, `equipe`,
+  `configuracoes` (Agenda pública e Configurações), `termos`, `suporte` e `assinatura` (Teste grátis e
+  assinatura — ainda sem vídeo; incluir a chave faz o cartão aparecer no app).
+- Chaves desconhecidas e ids fora do formato `[A-Za-z0-9_-]{11}` são ignorados um a um (o app fica com o id
+  embutido daquele tema).
