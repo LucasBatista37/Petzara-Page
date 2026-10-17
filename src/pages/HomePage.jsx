@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
+import { SHOW_CASE } from '../siteConfig'
 
 // Below-fold sections — loaded on demand as the user scrolls
 const ProblemSection      = lazy(() => import('../components/ProblemSection'))
@@ -9,15 +10,18 @@ const HowItWorksSection   = lazy(() => import('../components/HowItWorksSection')
 const MultiDeviceSection  = lazy(() => import('../components/MultiDeviceSection'))
 const DemoSection         = lazy(() => import('../components/DemoSection'))
 const ColorPaletteSection = lazy(() => import('../components/ColorPaletteSection'))
+const CaseSection         = lazy(() => import('../components/CaseSection'))
 const PricingSection      = lazy(() => import('../components/PricingSection'))
 const FAQSection          = lazy(() => import('../components/FAQSection'))
 const CTASection          = lazy(() => import('../components/CTASection'))
 const Footer              = lazy(() => import('../components/Footer'))
 
-// Aurora global — 5 blobs grandes espalhados pela altura da página.
+// Aurora global — blobs grandes espalhados pela altura da página.
 // Usam CSS variables (var(--color-terracotta) / var(--color-sage)) para que
 // a troca de paleta na ColorPaletteSection propague automaticamente via
 // applyPaletteGlobally(). Animações de deriva em CSS puro (compositor thread).
+// Desligados no celular (< 640px): blur de 180px em elementos de 600px+ custa
+// GPU/bateria e quase não aparece em tela pequena (L8).
 function AuroraBackground() {
     const [isDesktop, setIsDesktop] = useState(
         typeof window !== 'undefined' && window.innerWidth >= 640
@@ -29,6 +33,8 @@ function AuroraBackground() {
         mq.addEventListener('change', handler)
         return () => mq.removeEventListener('change', handler)
     }, [])
+
+    if (!isDesktop) return null
 
     const blob = (color, top, side, size, anim, delay = 0) => ({
         position: 'absolute',
@@ -53,18 +59,14 @@ function AuroraBackground() {
             {/* Blob 1 — terracotta, hero */}
             <div style={blob('terracotta', '2%',  { key: 'left',  value: '-120px' }, 650, 'aurora-drift-1 22s')} />
 
-            {/* Blob 2 — sage, problem — só renderiza no desktop */}
-            {isDesktop && (
-                <div style={blob('sage', '20%', { key: 'right', value: '-100px' }, 500, 'aurora-drift-2 28s')} />
-            )}
+            {/* Blob 2 — sage, problem */}
+            <div style={blob('sage', '20%', { key: 'right', value: '-100px' }, 500, 'aurora-drift-2 28s')} />
 
             {/* Blob 3 — terracotta, solution/benefits */}
             <div style={blob('terracotta', '42%', { key: 'left',  value: '5%'     }, 700, 'aurora-drift-3 18s')} />
 
-            {/* Blob 4 — sage, demo/palette — só renderiza no desktop */}
-            {isDesktop && (
-                <div style={blob('sage', '63%', { key: 'right', value: '5%' }, 550, 'aurora-drift-1 25s', 4)} />
-            )}
+            {/* Blob 4 — sage, demo/palette */}
+            <div style={blob('sage', '63%', { key: 'right', value: '5%' }, 550, 'aurora-drift-1 25s', 4)} />
 
             {/* Blob 5 — terracotta, pricing/CTA */}
             <div style={blob('terracotta', '82%', { key: 'left',  value: '-80px'  }, 600, 'aurora-drift-2 20s', 8)} />
@@ -76,6 +78,10 @@ function AuroraBackground() {
 function SectionFallback() {
     return <div className="min-h-[200px]" />
 }
+
+// Prévia do layout da prova social só no `npm run dev` (?previewCase=1); nunca em produção.
+const previewCase = import.meta.env.DEV && typeof window !== 'undefined'
+    && new URLSearchParams(window.location.search).has('previewCase')
 
 export default function HomePage() {
     return (
@@ -89,9 +95,14 @@ export default function HomePage() {
                 <Suspense fallback={<SectionFallback />}><HowItWorksSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><MultiDeviceSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><DemoSection /></Suspense>
-                <Suspense fallback={<SectionFallback />}><ColorPaletteSection /></Suspense>
+                {/* Prova social (L9): desligada até o Lucas preencher CASE_STUDY com dados reais */}
+                {(SHOW_CASE || previewCase) && (
+                    <Suspense fallback={<SectionFallback />}><CaseSection preview={previewCase} /></Suspense>
+                )}
                 <Suspense fallback={<SectionFallback />}><PricingSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><FAQSection /></Suspense>
+                {/* Paleta de cores: depois do FAQ, fora do caminho até os preços */}
+                <Suspense fallback={<SectionFallback />}><ColorPaletteSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><CTASection /></Suspense>
             </main>
             <Suspense fallback={null}><Footer /></Suspense>

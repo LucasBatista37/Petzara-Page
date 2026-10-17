@@ -13,6 +13,16 @@ function BlogCard({ post }) {
             variants={cardVariant}
             className="group bg-white rounded-2xl border border-sand/60 hover:border-terracotta/30 hover:shadow-lg hover:shadow-terracotta/5 transition-all duration-300 overflow-hidden flex flex-col"
         >
+            {post.coverImage && (
+                <Link to={`/blog/${post.slug}`} className="block aspect-[16/9] overflow-hidden bg-cream-warm" tabIndex={-1} aria-hidden="true">
+                    <img
+                        src={post.coverImage}
+                        alt=""
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                </Link>
+            )}
             <div className="px-6 pt-5">
                 <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full border ${colors.bg} ${colors.text} ${colors.border}`}>
                     {post.category}

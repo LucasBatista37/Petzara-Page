@@ -1,14 +1,16 @@
 import { motion } from 'framer-motion'
-import { Check, Sparkles, ArrowRight, Star, Zap } from 'lucide-react'
+import { Check, Sparkles, ArrowRight, Gift } from 'lucide-react'
 import { stripeMonthlyUrl, stripeAnnualUrl } from '../siteConfig'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
+import { useEffect } from 'react'
+import { track } from '../lib/analytics'
 
 const sharedFeatures = [
     'Agendamentos ilimitados',
     'Cadastro completo de pets e clientes',
     'Dashboard financeiro com receitas e despesas',
     'Gestão de equipe e colaboradores',
-    'Página pública para agendamento online',
+    'Agenda pública: seu link de agendamento 24h',
     'Suporte por email e WhatsApp',
     'Atualizações automáticas',
     'Dados seguros na nuvem',
@@ -16,6 +18,11 @@ const sharedFeatures = [
 
 export default function PricingSection() {
     const { ref, isInView } = useResponsiveInView()
+
+    // GA4: a seção de preços apareceu na tela (uma vez por visita à página)
+    useEffect(() => {
+        if (isInView) track('view_pricing')
+    }, [isInView])
 
     return (
         <section id="precos" className="py-20 sm:py-28 relative overflow-hidden">
@@ -43,8 +50,8 @@ export default function PricingSection() {
                         Comece grátis. Escolha o plano quando estiver pronto.
                     </p>
                     <div className="inline-flex items-center gap-2 bg-terracotta/20 border border-terracotta/35 text-terracotta px-4 py-2 rounded-full text-sm font-bold">
-                        <Zap size={14} />
-                        Preço de fundador para os 10 primeiros petshops
+                        <Gift size={14} aria-hidden="true" />
+                        +14 dias grátis se você criar agendamentos em 3 dias diferentes durante o teste
                     </div>
                 </motion.div>
 
@@ -102,11 +109,6 @@ export default function PricingSection() {
                         transition={{ duration: 0.6, delay: 0.08, ease }}
                         className="relative rounded-2xl p-8 backdrop-blur-sm border-2 border-terracotta/70 bg-white/12 shadow-xl shadow-terracotta/20 transition-all hover:-translate-y-1"
                     >
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 bg-terracotta text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
-                            <Star size={11} fill="currentColor" />
-                            Mais Popular
-                        </div>
-
                         <div className="mb-6">
                             <h3 className="font-accent font-bold text-2xl text-white mb-1">Anual</h3>
                             <p className="text-white/65 text-sm">Equivale a R$ 41,58/mês</p>
@@ -114,7 +116,7 @@ export default function PricingSection() {
 
                         <div className="mb-2 flex items-baseline gap-1">
                             <span className="text-white/65 font-bold">R$</span>
-                            <span className="font-accent text-5xl font-extrabold text-white">499</span>
+                            <span className="font-accent text-5xl font-extrabold text-white">499,00</span>
                             <span className="text-white/65">/ano</span>
                         </div>
 
@@ -140,7 +142,7 @@ export default function PricingSection() {
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-bold text-sm transition-all bg-terracotta hover:bg-terracotta-dark text-white shadow-lg shadow-terracotta/30 hover:-translate-y-0.5"
                         >
-                            Garantir preço de fundador
+                            Testar grátis por 30 dias
                             <ArrowRight size={16} />
                         </a>
 
@@ -157,7 +159,9 @@ export default function PricingSection() {
                     transition={{ duration: 0.6, ease }}
                     className="text-center text-white/40 text-sm mt-10"
                 >
-                    Pagamentos processados com segurança via Stripe. Mesmo plano de funcionalidades nos dois planos.
+                    Preços da assinatura pelo site, com pagamento seguro via Stripe. Mesmas funcionalidades nos dois planos.
+                    <br className="hidden sm:block" />
+                    {' '}No app Android, a assinatura é feita pela Google Play e o preço aparece no próprio app.
                 </motion.p>
             </div>
         </section>

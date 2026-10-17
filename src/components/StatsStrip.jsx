@@ -5,14 +5,14 @@ import { ease, useResponsiveInView } from '../animations/variants'
 const stats = [
     {
         icon: Clock,
-        value: 'Até 5h',
-        label: 'economizadas por semana em agendamentos manuais',
+        value: '24h',
+        label: 'seu link de agendamento no ar, com os horários livres',
         color: 'terracotta',
     },
     {
         icon: CalendarCheck,
-        value: '0 conflitos',
-        label: 'de horário com a agenda inteligente do Petzara',
+        value: 'Sem duplicar',
+        label: 'a agenda avisa quando o horário já está ocupado',
         color: 'sage',
     },
     {

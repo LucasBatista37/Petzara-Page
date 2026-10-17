@@ -20,7 +20,7 @@ const steps = [
         icon: CalendarPlus,
         number: '3',
         title: 'Comece a agendar',
-        description: 'Crie o primeiro agendamento e ative sua página pública.',
+        description: 'Crie o primeiro agendamento e compartilhe seu link de agendamento.',
     },
 ]
 
@@ -137,7 +137,7 @@ export default function HowItWorksSection() {
                     className="mt-14 text-center"
                 >
                     <p className="text-taupe text-base mb-4">
-                        Comece em 3 minutos, não 3 dias.
+                        Sem instalar nada e sem cartão. Se precisar, a gente ajuda a configurar pelo WhatsApp.
                     </p>
                     <a
                         href={appRegisterUrl}

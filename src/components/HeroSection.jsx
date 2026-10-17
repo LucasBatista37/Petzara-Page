@@ -1,28 +1,17 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, Sparkles } from 'lucide-react'
-import { appRegisterUrl, APP_HOST, whatsappDemoUrl, playStoreUrl } from '../siteConfig'
-import { ease, wordVariant } from '../animations/variants'
+import { ArrowRight, Download, Sparkles } from 'lucide-react'
+import { appRegisterUrl, playStoreUrl } from '../siteConfig'
+import { ease } from '../animations/variants'
 import OptimizedImage from './OptimizedImage'
 
-function AnimatedWords({ children, delay = 0 }) {
-    const words = String(children).split(' ')
-    return (
-        <motion.span
-            variants={{ animate: { transition: { staggerChildren: 0.045, delayChildren: delay } } }}
-        >
-            {words.flatMap((word, i) => i < words.length - 1
-                ? [<motion.span key={i} className="inline-block" variants={wordVariant}>{word}</motion.span>, ' ']
-                : [<motion.span key={i} className="inline-block" variants={wordVariant}>{word}</motion.span>]
-            )}
-        </motion.span>
-    )
-}
-
 const trustItems = [
-    { text: 'Teste grátis por 30 dias', icon: '✓' },
-    { text: 'Sem cartão de crédito', icon: '✓' },
-    { text: 'Cancele quando quiser', icon: '✓' },
+    { text: 'Sem cartão de crédito' },
+    { text: 'Ajuda grátis para configurar' },
+    { text: 'Cancele quando quiser' },
 ]
+
+/** Android → o CTA principal leva à Play; nos demais, ao cadastro web (L3). */
+const isAndroid = typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent || '')
 
 // ─── Dual Device Mockup ────────────────────────────────────────────────────────
 // MacBook ao fundo + iPhone sobreposto com leve rotação.
@@ -188,130 +177,99 @@ export default function HeroSection() {
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
                     {/* ── Copy ──────────────────────────────────────────────────── */}
-                    <motion.div
-                        variants={{ animate: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } } }}
-                        initial="initial"
-                        animate="animate"
-                    >
-                        {/* Badge */}
-                        <motion.div
-                            variants={{
-                                initial: { opacity: 0, scale: 0.88, y: 8 },
-                                animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease } },
-                            }}
-                            className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-terracotta/20"
-                        >
-                            <Sparkles size={15} />
-                            Sistema para petshops — 30 dias grátis, sem cartão
-                        </motion.div>
+                    {/* Sem animação de entrada: H1, texto e botões aparecem já no 1º quadro (LCP). */}
+                    <div>
+                        {/* Selo */}
+                        <div className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-terracotta/20">
+                            <Sparkles size={15} aria-hidden="true" />
+                            30 dias grátis · sem cartão
+                        </div>
 
-                        {/* Headline */}
-                        <motion.h1
-                            className="font-accent text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6"
-                            variants={{ animate: { transition: { staggerChildren: 0.045 } } }}
-                            style={{ perspective: 1000 }}
-                        >
-                            <motion.span
-                                className="block text-2xl sm:text-3xl lg:text-4xl font-bold text-terracotta tracking-tight mb-2"
-                                variants={wordVariant}
-                            >
-                                Petzara
-                            </motion.span>
-                            <AnimatedWords delay={0.08}>Seu petshop</AnimatedWords>
-                            {' '}
-                            <motion.span className="gradient-text" variants={wordVariant}>organizado</motion.span>
-                            <motion.span variants={wordVariant}>.</motion.span>
-                            {' '}
-                            <br className="hidden sm:block" />
-                            <AnimatedWords delay={0.22}>Seus clientes</AnimatedWords>
-                            {' '}
-                            <motion.span className="gradient-text" variants={wordVariant}>felizes</motion.span>
-                            <motion.span variants={wordVariant}>.</motion.span>
-                        </motion.h1>
+                        {/* Headline — resultado + palavra-chave */}
+                        <h1 className="font-accent text-[2.1rem] sm:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.1] mb-6 text-espresso">
+                            Agenda de banho e tosa{' '}
+                            <span className="gradient-text">sem horário duplicado</span>
+                            {' '}— e sem caderno
+                        </h1>
 
                         {/* Subheading */}
-                        <motion.p
-                            variants={{
-                                initial: { opacity: 0, y: 16 },
-                                animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
-                            }}
-                            className="text-taupe text-lg sm:text-xl leading-relaxed mb-8 max-w-xl"
-                        >
-                            Agenda, clientes, pets e finanças em um único lugar. Feito especialmente para petshops de banho e tosa — do caderno para profissional em minutos.
-                        </motion.p>
+                        <p className="text-taupe text-lg sm:text-xl leading-relaxed mb-8 max-w-xl">
+                            Agenda, clientes, pets e caixa do seu pet shop em um só lugar, no celular e no computador.
+                            Seus clientes veem os horários livres no seu link de agendamento e chamam você no WhatsApp.
+                        </p>
 
-                        {/* CTAs */}
-                        <motion.div
-                            variants={{
-                                initial: { opacity: 0, y: 16 },
-                                animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
-                            }}
-                            className="flex flex-col sm:flex-row gap-4"
-                        >
-                            <motion.a
-                                href={appRegisterUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                whileHover={{ scale: 1.03, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20"
-                            >
-                                Começar Teste Grátis
-                                <ArrowRight size={18} />
-                            </motion.a>
-                            <motion.a
-                                href={whatsappDemoUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="inline-flex items-center justify-center gap-2 bg-white border-2 border-sand hover:border-terracotta/40 text-espresso font-bold text-base px-8 py-4 rounded-2xl transition-all"
-                            >
-                                Agendar demonstração
-                            </motion.a>
-                        </motion.div>
+                        {/* CTAs — o principal depende do aparelho */}
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                            {isAndroid ? (
+                                <>
+                                    <motion.a
+                                        href={playStoreUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-track="hero_principal"
+                                        whileHover={{ scale: 1.03, y: -2 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20"
+                                    >
+                                        <Download size={18} aria-hidden="true" />
+                                        Baixar grátis na Play Store
+                                    </motion.a>
+                                    <a
+                                        href={appRegisterUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-track="hero_secundario"
+                                        className="inline-flex items-center justify-center gap-2 bg-white border-2 border-sand hover:border-terracotta/40 text-espresso font-bold text-base px-8 py-4 rounded-2xl transition-all"
+                                    >
+                                        Começar teste grátis no navegador
+                                    </a>
+                                </>
+                            ) : (
+                                <>
+                                    <motion.a
+                                        href={appRegisterUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-track="hero_principal"
+                                        whileHover={{ scale: 1.03, y: -2 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20"
+                                    >
+                                        Começar teste grátis
+                                        <ArrowRight size={18} aria-hidden="true" />
+                                    </motion.a>
+                                    <a
+                                        href={playStoreUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-track="hero_secundario"
+                                        aria-label="Baixar grátis na Play Store"
+                                        className="inline-flex justify-center sm:justify-start transition-transform hover:-translate-y-0.5 active:translate-y-0"
+                                    >
+                                        <img
+                                            src="https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png"
+                                            alt="Disponível no Google Play"
+                                            width={155}
+                                            height={60}
+                                            className="h-[60px] w-auto"
+                                            loading="eager"
+                                        />
+                                    </a>
+                                </>
+                            )}
+                        </div>
 
-                        {/* Google Play badge */}
-                        <motion.div
-                            variants={{
-                                initial: { opacity: 0, y: 16 },
-                                animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
-                            }}
-                            className="mt-5"
-                        >
-                            <a
-                                href={playStoreUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Disponível no Google Play"
-                                className="inline-block transition-transform hover:-translate-y-0.5 active:translate-y-0"
-                            >
-                                <img
-                                    src="https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png"
-                                    alt="Disponível no Google Play"
-                                    height={48}
-                                    className="h-12 w-auto"
-                                    loading="eager"
-                                />
-                            </a>
-                        </motion.div>
+                        {/* Bônus de uso */}
+                        <p className="mt-5 text-sm text-espresso/70 font-medium">
+                            <span className="text-sage-dark font-bold">+14 dias grátis</span> se você criar agendamentos em 3 dias diferentes durante o teste.
+                        </p>
 
                         {/* Trust signals */}
-                        <motion.div
-                            variants={{ animate: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } } }}
-                            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2.5 text-sm"
-                        >
+                        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2.5 text-sm">
                             {trustItems.map((item, i) => (
-                                <motion.span
-                                    key={item.text}
-                                    variants={{
-                                        initial: { opacity: 0, x: -10 },
-                                        animate: { opacity: 1, x: 0, transition: { duration: 0.4, ease } },
-                                    }}
-                                    className="flex items-center gap-1.5"
-                                >
+                                <span key={item.text} className="flex items-center gap-1.5">
                                     <span className="w-4 h-4 bg-sage/20 rounded-full flex items-center justify-center shrink-0">
-                                        <svg className="w-2.5 h-2.5 text-sage-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                        <svg className="w-2.5 h-2.5 text-sage-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                         </svg>
                                     </span>
@@ -319,10 +277,10 @@ export default function HeroSection() {
                                     {i < trustItems.length - 1 && (
                                         <span className="hidden sm:block w-px h-3 bg-sand mx-1" aria-hidden="true" />
                                     )}
-                                </motion.span>
+                                </span>
                             ))}
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
 
                     {/* ── Dual Device Mockup ────────────────────────────────────── */}
                     <DualDeviceMockup mockupY={mockupY} isDesktop={isDesktop} />

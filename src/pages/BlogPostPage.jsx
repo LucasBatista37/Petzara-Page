@@ -1,12 +1,30 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Clock, ArrowRight } from 'lucide-react'
+import { ArrowLeft, Clock, ArrowRight, List } from 'lucide-react'
 import { blogPosts, categoryColors } from '../data/blogPosts'
 import { fadeUp, cardVariant, staggerContainer, getCardViewport } from '../animations/variants'
 import { appRegisterUrl } from '../siteConfig'
+
+const DIACRITICS_RE = new RegExp('[̀-ͯ]', 'g')
+
+function slugify(text) {
+    return text
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(DIACRITICS_RE, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '')
+}
+
+function textOf(children) {
+    if (Array.isArray(children)) return children.map(textOf).join('')
+    if (typeof children === 'string' || typeof children === 'number') return String(children)
+    return ''
+}
 
 function MarkdownLink({ href, children }) {
     const isMail = href?.startsWith('mailto:')
@@ -36,7 +54,7 @@ const mdComponents = {
         <h1 className="font-accent text-3xl sm:text-4xl font-extrabold text-espresso mb-6">{children}</h1>
     ),
     h2: ({ children }) => (
-        <h2 className="font-accent text-xl sm:text-2xl font-bold text-espresso mt-10 mb-4 scroll-mt-24 first:mt-0">
+        <h2 id={slugify(textOf(children))} className="font-accent text-xl sm:text-2xl font-bold text-espresso mt-10 mb-4 scroll-mt-24 first:mt-0">
             {children}
         </h2>
     ),
@@ -59,9 +77,22 @@ const mdComponents = {
     strong: ({ children }) => <strong className="font-semibold text-espresso">{children}</strong>,
     hr: () => <hr className="my-8 border-sand" />,
     blockquote: ({ children }) => (
-        <blockquote className="border-l-4 border-terracotta/40 pl-4 my-4 text-taupe italic">{children}</blockquote>
+        <blockquote className="border-l-4 border-terracotta/40 bg-terracotta/5 rounded-r-xl pl-4 pr-4 py-3 my-6 text-espresso not-italic">{children}</blockquote>
     ),
     a: MarkdownLink,
+    img: ({ src, alt }) => (
+        <figure className="my-8">
+            <img
+                src={src}
+                alt={alt || ''}
+                loading="lazy"
+                className="w-full rounded-2xl border border-sand/60"
+            />
+            {alt && (
+                <figcaption className="text-center text-xs text-taupe/80 mt-2 italic">{alt}</figcaption>
+            )}
+        </figure>
+    ),
 }
 
 export default function BlogPostPage() {
@@ -75,6 +106,12 @@ export default function BlogPostPage() {
     const sameCat = blogPosts.filter(p => p.id !== post.id && p.category === post.category).slice(0, 2)
     const otherCat = blogPosts.filter(p => p.id !== post.id && p.category !== post.category).slice(0, 3 - sameCat.length)
     const relatedPosts = [...sameCat, ...otherCat].slice(0, 3)
+
+    const toc = useMemo(() => {
+        if (!post) return []
+        const matches = [...post.content.matchAll(/^##\s+(.+)$/gm)]
+        return matches.map(m => ({ text: m[1].trim(), id: slugify(m[1].trim()) }))
+    }, [post])
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
@@ -156,8 +193,40 @@ export default function BlogPostPage() {
                     </div>
                 </section>
 
+                {/* Cover image */}
+                {post.coverImage && (
+                    <div className="max-w-3xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-8 relative z-10">
+                        <motion.img
+                            {...fadeUp(0.05)}
+                            src={post.coverImage}
+                            alt={post.title}
+                            className="w-full aspect-[16/9] object-cover rounded-2xl border border-sand/60 shadow-md shadow-espresso/5"
+                        />
+                    </div>
+                )}
+
                 {/* Article body */}
                 <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+                    {toc.length > 2 && (
+                        <nav aria-label="Sumário do artigo" className="bg-cream-warm border border-sand/60 rounded-2xl px-5 py-4 mb-10">
+                            <p className="flex items-center gap-2 font-accent font-bold text-sm text-espresso mb-3">
+                                <List size={16} aria-hidden="true" />
+                                Neste artigo
+                            </p>
+                            <ol className="space-y-1.5">
+                                {toc.map(item => (
+                                    <li key={item.id}>
+                                        <a
+                                            href={`#${item.id}`}
+                                            className="text-sm text-taupe hover:text-terracotta transition-colors"
+                                        >
+                                            {item.text}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ol>
+                        </nav>
+                    )}
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
                         {post.content}
                     </ReactMarkdown>

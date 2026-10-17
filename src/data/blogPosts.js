@@ -4,6 +4,7 @@ export const categoryColors = {
   Finanças:    { bg: 'bg-espresso/10',   text: 'text-espresso',   border: 'border-espresso/20'   },
   Clientes:    { bg: 'bg-terracotta/10', text: 'text-terracotta', border: 'border-terracotta/20' },
   Equipe:      { bg: 'bg-sage/10',       text: 'text-sage-dark',  border: 'border-sage/20'       },
+  Marketing:   { bg: 'bg-sage/10',       text: 'text-sage-dark',  border: 'border-sage/20'       },
 }
 
 export const blogPosts = [
@@ -418,7 +419,7 @@ Uma equipe bem estruturada libera o dono para focar no que realmente importa: qu
     slug: 'agendamento-online-petshop-24h',
     title: 'Agendamento online 24h: como deixar o cliente marcar enquanto você foca no trabalho',
     category: 'Organização',
-    description: 'Uma página de agendamento online disponível 24h libera o dono do petshop das mensagens e permite que clientes marquem sozinhos a qualquer hora do dia.',
+    description: 'Uma página de agendamento online disponível 24h mostra os horários livres a qualquer hora e leva o cliente ao WhatsApp do petshop com dia e horário já escolhidos.',
     excerpt: 'Às 22h, um cliente quer marcar banho para segunda-feira. Se você depende do WhatsApp, a mensagem espera até amanhã — ou ele vai no concorrente. Existe uma alternativa mais simples.',
     readingTime: '5 min de leitura',
     keywords: ['agendamento online petshop', 'cliente agendar sozinho', 'link agendamento petshop'],
@@ -435,22 +436,22 @@ O resultado: clientes que não recebem resposta rápida vão para o concorrente 
 
 ## O que é o agendamento online
 
-Agendamento online é uma página pública do seu petshop onde o cliente pode ver os horários disponíveis e marcar sozinho, sem precisar de resposta sua.
+Agendamento online é uma página pública do seu petshop onde o cliente vê os horários disponíveis a qualquer hora, sem precisar perguntar a você o que está livre.
 
 Funciona assim:
 1. O cliente acessa o link (você compartilha no WhatsApp, Instagram, Google)
 2. Ele vê os horários disponíveis em tempo real
-3. Escolhe o dia, o serviço e o pet
-4. O agendamento é criado e você recebe a notificação
+3. Escolhe o dia e o horário
+4. É levado para o WhatsApp do seu petshop com a mensagem pronta ("Gostaria de agendar às 10:00 no dia 20/10")
 
-Você não precisa estar acordado às 22h para que isso aconteça.
+Às 22h você não precisa responder "que horário tem livre?": a conversa já chega com dia e horário escolhidos, e você só confirma quando puder.
 
 ## O que muda na rotina do petshop
 
 Com agendamento online disponível:
 
-- **Você para de ser o gargalo dos agendamentos.** Clientes conseguem marcar sem depender da sua disponibilidade imediata.
-- **Os horários continuam bloqueados automaticamente.** Quando um cliente marca online, o slot fica indisponível para os próximos — sem risco de conflito.
+- **Você para de ser o gargalo dos agendamentos.** O cliente escolhe o horário sem depender da sua resposta imediata — você só confirma.
+- **Os horários ocupados não aparecem.** A página mostra só o que está livre na agenda; quando você lança o agendamento, o horário sai da lista para os próximos.
 - **A agenda do dia já está estruturada quando você chega de manhã.** Não é mais você que constrói ela ao longo do dia respondendo mensagens.
 - **Clientes fidelizados marcam com mais frequência.** Quando marcar é fácil, a recorrência aumenta naturalmente.
 
@@ -463,7 +464,7 @@ Ter o link não adianta nada se os clientes não souberem que ele existe. Alguma
 - **No Google Meu Negócio:** Adicione o link de agendamento no perfil
 - **No rodapé das mensagens de confirmação:** "Quer marcar o próximo? Acesse [link]"
 
-O objetivo é tornar o agendamento tão fácil que o cliente prefira fazer sozinho a esperar pela sua resposta.
+O objetivo é tornar o agendamento tão fácil que o cliente prefira escolher o horário pelo link a esperar pela sua resposta.
 
 ## Quando o agendamento online não substitui o WhatsApp
 
@@ -473,10 +474,89 @@ A proposta não é eliminar o contato humano — é eliminar o retrabalho dos ag
 
 ## Como o Petzara disponibiliza o agendamento online
 
-No Petzara, cada petshop tem uma URL pública de agendamento. O cliente acessa, vê os horários disponíveis em tempo real (sincronizados com a agenda interna) e confirma o serviço. O agendamento entra diretamente no sistema — sem que você precise fazer nada.
+No Petzara, cada petshop tem uma Agenda pública com o seu link de agendamento (app.petzara.app/agendar/seu-petshop). O cliente acessa, vê os horários livres em tempo real (sincronizados com a agenda interna), escolhe dia e horário e é levado para o WhatsApp do petshop com a mensagem pronta. Você confirma na conversa e lança o agendamento no Petzara.
 
 ## Conclusão
 
-Agendamento online não é um luxo de grandes redes. É uma ferramenta acessível que muda a dinâmica de operação de qualquer petshop. Quando o cliente pode marcar sozinho, você ganha tempo, reduz perda de oportunidades e profissionaliza a experiência de quem ainda está decidindo se volta ou não.`,
+Agendamento online não é um luxo de grandes redes. É uma ferramenta acessível que muda a dinâmica de operação de qualquer petshop. Quando o cliente vê os horários livres sem precisar perguntar, você ganha tempo, reduz perda de oportunidades e profissionaliza a experiência de quem ainda está decidindo se volta ou não.`,
+  },
+
+  {
+    id: 8,
+    slug: 'marketing-petshop-instagram-agendamento',
+    title: 'Marketing para petshop: como transformar seguidores do Instagram em agendamentos reais',
+    category: 'Marketing',
+    description: 'Postar bem no Instagram não enche a agenda do petshop sozinho. Veja como estruturar o conteúdo, usar o Google Meu Negócio e fechar o ciclo entre curtida e horário marcado.',
+    excerpt: 'O petshop posta todo dia, ganha curtidas, mas a agenda não enche na mesma proporção. O problema não é o conteúdo — é o que acontece depois do "like". Veja como fechar esse ciclo.',
+    readingTime: '7 min de leitura',
+    keywords: ['marketing para petshop', 'atrair clientes petshop instagram', 'divulgar petshop instagram'],
+    publishedAt: '2026-07-01',
+    coverImage: '/blog/covers/marketing-instagram-agendamento.svg',
+    content: `O petshop posta antes e depois todos os dias, ganha curtidas, recebe elogios nos comentários — e mesmo assim a agenda da semana tem buracos. Se essa cena é familiar, o problema raramente é falta de conteúdo. É o que acontece entre o "like" e o agendamento de fato.
+
+## O engajamento não é o problema
+
+Curtida não paga conta e comentário não é horário marcado. O gargalo normalmente está no meio do caminho: o cliente se interessa, manda uma mensagem na DM ou no WhatsApp, e essa mensagem entra na fila junto com dezenas de outras conversas. Enquanto você está com as mãos ocupadas na tosa, a mensagem espera. Às vezes esquece de responder. Às vezes o cliente já resolveu com outro petshop antes de você abrir o celular.
+
+Ou seja: o Instagram está fazendo o trabalho dele — gerar interesse. O que falta é um caminho curto entre esse interesse e um horário confirmado na agenda.
+
+## A proporção de conteúdo que realmente funciona
+
+Perfis de petshop que crescem de forma consistente costumam seguir uma proporção simples entre os tipos de post:
+
+- **60% utilidade** — cuidados por raça, dicas sazonais (calor, frio, alergias), sinais de que o pet precisa de tosa, comportamento no banho.
+- **30% emoção** — antes e depois, bastidor do atendimento, cliente com o pet, reação fofa durante o banho.
+- **10% oferta** — promoção, vaga na agenda da semana, pacote de banhos, lembrete de vacina ou tosa sazonal.
+
+> **Dica prática:** se os últimos dez posts do seu feed forem só antes/depois ou só promoção, o algoritmo e o público notam a repetição. Alternar as três categorias mantém o perfil interessante para quem ainda não é cliente.
+
+![Proporção de conteúdo recomendada para petshop: 60% utilidade, 30% emoção, 10% oferta](/blog/inline/proporcao-conteudo.svg)
+
+## Google Meu Negócio: o parceiro silencioso do Instagram
+
+Enquanto o Instagram atrai quem já segue o perfil, o Google Meu Negócio pega quem está pesquisando agora — "banho e tosa perto de mim", "petshop no bairro X". Três ajustes fazem diferença real:
+
+- Categoria principal correta: **Loja de animais de estimação**, com categoria secundária **Serviço de banho e tosa**.
+- Fotos reais do espaço e da equipe, não só logo.
+- Pedir avaliação para cada cliente satisfeito — meta realista é chegar a 40 avaliações nos primeiros 90 dias.
+
+Um perfil completo no Google, com boas avaliações, aparece antes de muitos concorrentes que só investem em Instagram.
+
+## Hashtags e alcance local
+
+Hashtags genéricas como #petlovers competem com milhões de posts de qualquer lugar do mundo. Hashtags locais — #petshop[seubairro], #cachorrodo[cidade], #banhoetosa[região] — competem com um punhado de perfis da sua área, e é exatamente esse público que pode se tornar cliente. Vale combinar 2 a 3 hashtags locais com 2 a 3 hashtags de nicho (#banhoetosa, #tosahigienica) em cada post.
+
+## O elo que falta: o link na bio
+
+Aqui está o ponto que a maioria dos petshops deixa passar: o Instagram manda a pessoa para uma DM, não para uma agenda. Cada mensagem depende de alguém ler, responder, perguntar disponibilidade, confirmar — um processo manual que se perde fácil no meio do expediente.
+
+A alternativa é colocar na bio um link direto de agendamento. A pessoa vê o post, clica no link do perfil, escolhe o serviço e o horário disponível, e o agendamento já entra confirmado — sem trocar uma única mensagem. É a diferença entre "vou ver se ele confirma" e "já está marcado".
+
+## Uma rotina semanal simples de postar
+
+Não é preciso uma agência de marketing para manter a constância. Uma rotina realista para quem já toma conta do salão:
+
+- **Segunda:** dica de utilidade (cuidado, comportamento ou saúde).
+- **Quarta:** antes e depois de um atendimento recente.
+- **Sexta:** vaga disponível na agenda do fim de semana ou lembrete de serviço sazonal.
+- **Stories diários:** bastidor rápido, 15 segundos, sem produção — o que já está acontecendo no salão naquele momento.
+
+## Métricas simples para acompanhar
+
+Não é necessário um painel complexo. Revisar semanalmente três números já mostra se a estratégia está funcionando:
+
+- Quantas mensagens/DMs o perfil recebeu.
+- Quanto tempo levou, em média, para responder cada uma.
+- Quantos agendamentos vieram do link da bio, e não da DM.
+
+Se o terceiro número cresce mês a mês, o marketing está convertendo — não só engajando.
+
+## Como o Petzara entra nessa equação
+
+O Petzara gera uma URL pública de agendamento personalizada para cada petshop, pronta para colocar na bio do Instagram e no Google Meu Negócio. O cliente escolhe o serviço e o horário disponível em tempo real, sem trocar mensagem — o agendamento cai direto na sua agenda. O teste é gratuito por 30 dias, sem cartão de crédito.
+
+## Conclusão
+
+Postar mais não é a resposta — postar com propósito e fechar o ciclo até o agendamento, sim. Quando o conteúdo do Instagram tem um caminho direto até a agenda, cada curtida deixa de ser só um número e passa a ter chance real de virar cliente.`,
   },
 ]

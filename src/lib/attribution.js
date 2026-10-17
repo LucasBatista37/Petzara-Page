@@ -1,0 +1,77 @@
+/**
+ * Origem da visita (L2).
+ *
+ * - Lê ?utm_source, utm_medium, utm_campaign, utm_content, utm_term da página.
+ * - Guarda a primeira origem com UTM no localStorage (primeiro toque).
+ * - UTM da página atual vale mais que a guardada.
+ *
+ * Usado por src/siteConfig.js para montar, uma vez por carregamento:
+ * - o link de cadastro (app.petzara.app/register?utm_…) — o sistema web lê e grava a origem;
+ * - o link da Play com &referrer=utm_source%3D…%26utm_medium%3D…%26utm_campaign%3D… (padrão "site").
+ */
+
+export const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
+const STORAGE_KEY = 'pz_utm'
+const MAX_LEN = 100
+
+function clean(v) {
+    return String(v ?? '').trim().slice(0, MAX_LEN)
+}
+
+function fromSearch(search) {
+    const out = {}
+    try {
+        const params = new URLSearchParams(search)
+        for (const k of UTM_KEYS) {
+            const v = clean(params.get(k))
+            if (v) out[k] = v
+        }
+    } catch { /* URL inválida */ }
+    return out
+}
+
+function readStored() {
+    try {
+        const raw = window.localStorage.getItem(STORAGE_KEY)
+        const parsed = raw ? JSON.parse(raw) : null
+        if (!parsed || typeof parsed !== 'object') return {}
+        const out = {}
+        for (const k of UTM_KEYS) if (parsed[k]) out[k] = clean(parsed[k])
+        return out
+    } catch { return {} }
+}
+
+/** UTM efetiva da visita: a da URL atual; sem UTM na URL, a guardada na 1ª visita. */
+export function resolveUtm() {
+    if (typeof window === 'undefined') return {}
+    const current = fromSearch(window.location.search)
+    const stored = readStored()
+    if (Object.keys(current).length) {
+        if (!Object.keys(stored).length) {
+            try {
+                window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, at: new Date().toISOString() }))
+            } catch { /* armazenamento bloqueado */ }
+        }
+        return current
+    }
+    return stored
+}
+
+/** Acrescenta parâmetros a uma URL absoluta, sem duplicar "?". */
+export function withParams(url, params = {}) {
+    const u = new URL(url)
+    for (const [k, v] of Object.entries(params)) {
+        if (v !== undefined && v !== null && v !== '') u.searchParams.set(k, v)
+    }
+    return u.toString()
+}
+
+/** Link da Play com referrer de instalação (a Play repassa ao app/Play Console). */
+export function playUrlWithReferrer(baseUrl, utm = {}) {
+    const referrer = [
+        `utm_source=${encodeURIComponent(utm.utm_source || 'site')}`,
+        `utm_medium=${encodeURIComponent(utm.utm_medium || 'site')}`,
+        `utm_campaign=${encodeURIComponent(utm.utm_campaign || 'site')}`,
+    ].join('&')
+    return withParams(baseUrl, { referrer })
+}

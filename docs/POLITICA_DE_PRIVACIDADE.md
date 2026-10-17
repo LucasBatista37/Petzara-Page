@@ -1,6 +1,6 @@
 # Política de Privacidade — Petzara
 
-**Última atualização:** outubro de 2026
+**Última atualização:** 16/10/2026
 
 ---
 
@@ -47,7 +47,7 @@ Conforme as funcionalidades utilizadas, podemos tratar as categorias abaixo.
 
 ### 3.2 Dados de assinatura e pagamento (SaaS)
 
-- Identificadores e status da assinatura no provedor de pagamento utilizado: **Google Play** (token da compra, número do pedido, produto e plano) ou **Stripe** (cliente, assinatura); **período vigente**, **período de teste**, datas de cobrança, situação (ativa, em teste, inadimplente, cancelada, etc.).
+- Identificadores e status da assinatura no provedor de pagamento utilizado: **Google Play** (token da compra, número do pedido, produto, plano e, quando a compra usa período gratuito da Google Play, o identificador da oferta e a data de fim desse período) ou **Stripe** (cliente, assinatura); **período vigente**, **período de teste**, datas de cobrança, situação (ativa, em teste, inadimplente, cancelada, etc.).
 
 **Não** tratamos, em nossos servidores de aplicação, o **número completo** do cartão de crédito; o processamento de pagamento é realizado pelo **Google Play** ou pelo **Stripe**, conforme o provedor usado na contratação.
 
@@ -114,6 +114,7 @@ Podemos compartilhar dados com prestadores que atuam em nosso nome ou como parte
 | **Autenticação** | **Google** — login OAuth quando habilitado |
 | **E-mail** | **Resend** (ou provedor equivalente) — envio de mensagens transacionais |
 | **Monitoramento de erros** | **Sentry** — diagnóstico de falhas e desempenho |
+| **Medição do site (só com consentimento)** | **Google Analytics 4** e **Meta Pixel** — audiência e campanhas do site petzara.app (ver seção 8.4) |
 | **Hospedagem e banco de dados** | Provedores de nuvem onde a aplicação e o **MongoDB** são hospedados |
 | **Ordem judicial ou requisição legal** | Autoridades, quando obrigatório |
 
@@ -123,7 +124,7 @@ Exigimos contratos ou cláusulas que tratem dados conforme a LGPD, na medida apl
 
 ## 7. Transferência internacional de dados
 
-Alguns prestadores (como **Google** (inclusive o Google Play), **Stripe**, **Sentry** ou **Resend**) podem processar dados em **servidores localizados fora do Brasil**, inclusive nos Estados Unidos ou na União Europeia.
+Alguns prestadores (como **Google** (inclusive o Google Play e o Google Analytics), **Meta**, **Stripe**, **Sentry** ou **Resend**) podem processar dados em **servidores localizados fora do Brasil**, inclusive nos Estados Unidos ou na União Europeia.
 
 Nesses casos, adotamos medidas previstas na LGPD (arts. 33 a 36), como **cláusulas contratuais padrão**, **certificações** ou outras garantias compatíveis, e informamos os titulares sobre essa possibilidade nesta Política.
 
@@ -137,7 +138,9 @@ Nesses casos, adotamos medidas previstas na LGPD (arts. 33 a 36), como **cláusu
 
 **8.3** O uso de **“Entrar com Google”** está sujeito às políticas de cookies e privacidade da **Google**.
 
-**8.4** Atualmente não utilizamos **cookies de publicidade** de terceiros para perfilagem de marketing. Caso isso mude, esta Política será atualizada e, quando exigido, será obtido consentimento.
+**8.4** No **site institucional** (petzara.app) podemos usar ferramentas de **medição de audiência** e de **anúncios** de terceiros — **Google Analytics 4** (Google) e **Meta Pixel** (Meta Platforms) — para entender como o site é usado (páginas vistas, cliques em "criar conta", "WhatsApp" e "Google Play") e medir campanhas. Essas ferramentas **só são carregadas depois do seu consentimento** na faixa de cookies ("Aceitar"). Se você clicar em "Recusar", elas não são carregadas. Sua escolha fica guardada no armazenamento local do navegador e pode ser alterada a qualquer momento em **"Preferências de cookies"**, no rodapé do site. Base legal: **consentimento** (art. 7º, I, da LGPD). Os dados coletados por essas ferramentas são tratados também conforme as políticas da Google e da Meta, podendo ser processados fora do Brasil (ver seção 7).
+
+**8.5** O **sistema** (app.petzara.app) e o **aplicativo Android** não usam cookies de publicidade para perfilagem de marketing.
 
 ---
 
@@ -159,9 +162,11 @@ Nenhum sistema é totalmente seguro. Em caso de **incidente de segurança** que 
 
 **10.1** Mantemos dados pelo tempo necessário para **cumprir as finalidades** descritas, respeitando prazos legais (fiscal, civil, etc.).
 
-**10.2** Após **encerramento da conta**, poderemos **reter** dados por período adicional para cumprimento de obrigação legal, resolução de litígios ou exercício regular de direitos.
+**10.2** **Contas que não assinam** ao fim do teste gratuito ficam em modo somente leitura e seus dados (cadastro, clientes, pets, agendamentos e financeiro) **continuam guardados enquanto a conta existir** — não há exclusão automática por falta de assinatura. O Usuário pode, a qualquer momento, **exportar** dados (por exemplo, os agendamentos em CSV ou XLSX, nas Configurações; outros dados mediante pedido pelo canal da seção 14) ou **pedir a exclusão** da conta (em **Configurações › Excluir conta** ou pelo canal da seção 14).
 
-**10.3** Logs e dados técnicos de segurança podem ser retidos por períodos **mais curtos ou mais longos**, conforme política interna e lei.
+**10.3** Após **encerramento da conta**, poderemos **reter** dados por período adicional para cumprimento de obrigação legal, resolução de litígios ou exercício regular de direitos.
+
+**10.4** Logs e dados técnicos de segurança podem ser retidos por períodos **mais curtos ou mais longos**, conforme política interna e lei.
 
 ---
 
@@ -180,7 +185,7 @@ Nos termos do art. 18 da LGPD, o titular pode solicitar:
 
 **11.1** Pedidos podem ser feitos pelo **canal de contato** da seção 14. Poderemos solicitar informações para **confirmar identidade**.
 
-**11.2** Algumas solicitações podem ser **atendidas diretamente pelo Usuário** na própria Plataforma (edição de cadastros). Dados tratados pelo **Stripe** ou pela **Google** podem exigir solicitação também diretamente a esses provedores.
+**11.2** Algumas solicitações podem ser **atendidas diretamente pelo Usuário** na própria Plataforma (edição de cadastros, exportação de agendamentos e exclusão da conta). Dados tratados pelo **Stripe** ou pela **Google** podem exigir solicitação também diretamente a esses provedores.
 
 **11.3** O titular pode **peticionar à Autoridade Nacional de Proteção de Dados (ANPD)**.
 

@@ -1,0 +1,23 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico: proporção de conteúdo recomendada para petshop — 60% utilidade, 30% emoção, 10% oferta">
+  <rect width="800" height="360" rx="24" fill="#F5F0EB"/>
+
+  <!-- Utilidade 60% -->
+  <text x="40" y="60" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#2C2421">Utilidade</text>
+  <text x="760" y="60" text-anchor="end" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#E07A5F">60%</text>
+  <rect x="40" y="74" width="720" height="26" rx="13" fill="#E6DED8"/>
+  <rect x="40" y="74" width="432" height="26" rx="13" fill="#E07A5F"/>
+
+  <!-- Emoção 30% -->
+  <text x="40" y="160" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#2C2421">Emoção</text>
+  <text x="760" y="160" text-anchor="end" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#6A9980">30%</text>
+  <rect x="40" y="174" width="720" height="26" rx="13" fill="#E6DED8"/>
+  <rect x="40" y="174" width="216" height="26" rx="13" fill="#81B29A"/>
+
+  <!-- Oferta 10% -->
+  <text x="40" y="260" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#2C2421">Oferta</text>
+  <text x="760" y="260" text-anchor="end" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#2C2421">10%</text>
+  <rect x="40" y="274" width="720" height="26" rx="13" fill="#E6DED8"/>
+  <rect x="40" y="274" width="72" height="26" rx="13" fill="#2C2421"/>
+
+  <text x="40" y="332" font-family="Arial, sans-serif" font-size="14" fill="#8C7A6B">Cuidados e dicas · Antes/depois e bastidor · Promoções e vagas na agenda</text>
+</svg>
