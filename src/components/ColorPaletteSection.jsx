@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Monitor, Smartphone } from 'lucide-react'
 import { useResponsiveInView } from '../animations/variants'
+import { useI18n } from '../i18n/I18nProvider.jsx'
 
 const PALETTES = [
   {
@@ -59,6 +60,7 @@ function applyPaletteGlobally(palette) {
 }
 
 function DesktopFrame({ palette, reduced }) {
+  const { t } = useI18n()
   return (
     <div className="relative">
       <motion.div
@@ -94,7 +96,7 @@ function DesktopFrame({ palette, reduced }) {
             <motion.img
               key={p.id}
               src={p.desktopImage}
-              alt={`Petzara - tema ${p.name}`}
+              alt={t('palette.desktopAlt', { name: p.name })}
               className="w-full object-cover"
               style={{ gridArea: '1 / 1' }}
               animate={{ opacity: p.id === palette.id ? 1 : 0 }}
@@ -109,6 +111,7 @@ function DesktopFrame({ palette, reduced }) {
 }
 
 function MobileFrame({ palette, reduced }) {
+  const { t } = useI18n()
   return (
     <div className="flex justify-center">
       <div className="relative">
@@ -132,7 +135,7 @@ function MobileFrame({ palette, reduced }) {
               <motion.img
                 key={p.id}
                 src={p.mobileImage}
-                alt={`Petzara mobile - tema ${p.name}`}
+                alt={t('palette.mobileAlt', { name: p.name })}
                 className="w-full object-cover"
                 style={{ gridArea: '1 / 1' }}
                 animate={{ opacity: p.id === palette.id ? 1 : 0 }}
@@ -150,6 +153,8 @@ function MobileFrame({ palette, reduced }) {
 export default function ColorPaletteSection() {
   const reduced = useReducedMotion()
   const { ref, isInView } = useResponsiveInView()
+  const { t, tm } = useI18n()
+  const title = tm('palette.title') || {}
 
   const isMobileUA =
     typeof navigator !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent)
@@ -203,19 +208,20 @@ export default function ColorPaletteSection() {
             }}
             transition={{ duration: reduced ? 0 : 0.5 }}
           >
-            Personalize como quiser
+            {t('palette.badge')}
           </motion.span>
           <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-espresso">
-            Sua identidade visual,{' '}
+            {title.before}{title.before ? ' ' : null}
             <motion.span
               animate={{ color: palette.primary }}
               transition={{ duration: reduced ? 0 : 0.5 }}
             >
-              do seu jeito
+              {title.highlight}
             </motion.span>
+            {title.after ? ` ${title.after}` : null}
           </h2>
           <p className="text-taupe text-lg leading-relaxed">
-            Escolha a paleta que combina com o seu negócio. Seu sistema — e esta página — mudam instantaneamente.
+            {t('palette.subtitle')}
           </p>
         </motion.div>
 
@@ -239,7 +245,7 @@ export default function ColorPaletteSection() {
                 aria-pressed={device === 'desktop'}
               >
                 <Monitor size={15} aria-hidden="true" />
-                Desktop
+                {t('palette.desktop')}
               </button>
               <button
                 onClick={() => setDevice('mobile')}
@@ -251,7 +257,7 @@ export default function ColorPaletteSection() {
                 aria-pressed={device === 'mobile'}
               >
                 <Smartphone size={15} aria-hidden="true" />
-                Mobile
+                {t('palette.mobile')}
               </button>
             </div>
           </div>
@@ -292,7 +298,7 @@ export default function ColorPaletteSection() {
               {/* Selected style label */}
               <div className="text-center lg:text-left">
                 <p className="text-xs font-semibold text-taupe uppercase tracking-widest mb-2">
-                  Estilo selecionado
+                  {t('palette.selected')}
                 </p>
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -340,7 +346,7 @@ export default function ColorPaletteSection() {
                       borderColor: i === activeIdx ? pl.primary : '#E6DED8',
                       backgroundColor: i === activeIdx ? pl.primary + '10' : 'white',
                     }}
-                    aria-label={`Selecionar paleta ${pl.name}`}
+                    aria-label={t('palette.selectAria', { name: pl.name })}
                     aria-pressed={i === activeIdx}
                   >
                     <div className="flex gap-1.5">

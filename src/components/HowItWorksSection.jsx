@@ -1,30 +1,15 @@
 import { motion } from 'framer-motion'
 import { UserPlus, Settings, CalendarPlus, ArrowRight } from 'lucide-react'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
-import { appRegisterUrl } from '../siteConfig'
+import { useLinks } from '../lib/links'
+import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
-const steps = [
-    {
-        icon: UserPlus,
-        number: '1',
-        title: 'Crie sua conta',
-        description: 'Cadastro rápido com e-mail. Sem cartão de crédito, sem burocracia.',
-    },
-    {
-        icon: Settings,
-        number: '2',
-        title: 'Configure seu petshop',
-        description: 'Adicione serviços, horários de funcionamento e convide sua equipe.',
-    },
-    {
-        icon: CalendarPlus,
-        number: '3',
-        title: 'Comece a agendar',
-        description: 'Crie o primeiro agendamento e compartilhe seu link de agendamento.',
-    },
-]
+const STEP_ICONS = [UserPlus, Settings, CalendarPlus]
 
 export default function HowItWorksSection() {
+    const { t, tm } = useI18n()
+    const links = useLinks()
+    const steps = (tm('howItWorks.steps') || []).map((step, i) => ({ ...step, icon: STEP_ICONS[i], number: String(i + 1) }))
     // ref apenas para o cabeçalho e a linha conectora
     const { ref, isInView } = useResponsiveInView()
 
@@ -41,14 +26,13 @@ export default function HowItWorksSection() {
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
                     <span className="inline-block bg-terracotta/10 text-terracotta px-4 py-1.5 rounded-full text-sm font-bold mb-4">
-                        É simples
+                        {t('howItWorks.badge')}
                     </span>
                     <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
-                        Comece em{' '}
-                        <span className="gradient-text">3 passos</span>
+                        <Highlighted parts={tm('howItWorks.title')} />
                     </h2>
                     <p className="text-taupe text-lg leading-relaxed">
-                        Do cadastro ao primeiro agendamento em minutos.
+                        {t('howItWorks.subtitle')}
                     </p>
                 </motion.div>
 
@@ -137,15 +121,15 @@ export default function HowItWorksSection() {
                     className="mt-14 text-center"
                 >
                     <p className="text-taupe text-base mb-4">
-                        Sem instalar nada e sem cartão. Se precisar, a gente ajuda a configurar pelo WhatsApp.
+                        {t('howItWorks.ctaNote')}
                     </p>
                     <a
-                        href={appRegisterUrl}
+                        href={links.register}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-terracotta font-bold text-base hover:gap-3 transition-all duration-200 group border-b-2 border-terracotta/30 hover:border-terracotta pb-0.5"
                     >
-                        Criar conta — testar 30 dias grátis
+                        {t('howItWorks.cta')}
                         <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
                     </a>
                 </motion.div>

@@ -3,105 +3,30 @@ import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, Monitor, Smartphone } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
 import { ease, useResponsiveInView } from '../animations/variants'
+import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
 const FADE = { duration: 0.28, ease }
 
-const screens = [
-    {
-        id: 'dashboard',
-        title: 'Dashboard',
-        description: 'Visão completa do seu negócio em tempo real',
-        desktopImage: '/prints/dashboard.webp',
-        mobileImage: '/prints/mobile/dashboard.webp',
-        imageAlt: 'Dashboard Petzara',
-        browserPath: `${APP_HOST}/dashboard`,
-    },
-    {
-        id: 'agendamentos',
-        title: 'Agendamentos',
-        description: 'Visualize e gerencie todos os atendimentos do dia',
-        desktopImage: '/prints/agendamentos-calendario.webp',
-        mobileImage: '/prints/mobile/agendamentos.webp',
-        imageAlt: 'Calendário de agendamentos Petzara',
-        browserPath: `${APP_HOST}/agendamentos`,
-    },
-    {
-        id: 'servicos',
-        title: 'Serviços',
-        description: 'Configure serviços, preços e duração de cada atendimento',
-        desktopImage: '/prints/servicos.webp',
-        mobileImage: '/prints/mobile/servicos.webp',
-        imageAlt: 'Serviços configurados no Petzara',
-        browserPath: `${APP_HOST}/servicos`,
-    },
-    {
-        id: 'clientes',
-        title: 'Clientes',
-        description: 'Ficha completa de cada tutor com histórico de atendimentos',
-        desktopImage: '/prints/clientes-lista.webp',
-        mobileImage: '/prints/mobile/clientes.webp',
-        imageAlt: 'Lista de clientes Petzara',
-        browserPath: `${APP_HOST}/clientes`,
-    },
-    {
-        id: 'pets',
-        title: 'Pets',
-        description: 'Cadastro detalhado com raça, porte e observações especiais',
-        desktopImage: '/prints/pets-card.webp',
-        mobileImage: '/prints/mobile/pets.webp',
-        imageAlt: 'Pets cadastrados no Petzara',
-        browserPath: `${APP_HOST}/pets`,
-    },
-    {
-        id: 'colaboradores',
-        title: 'Colaboradores',
-        description: 'Gerencie sua equipe e distribua a agenda entre banhistas',
-        desktopImage: '/prints/colaboradores-lista.webp',
-        mobileImage: '/prints/mobile/colaboradores.webp',
-        imageAlt: 'Colaboradores Petzara',
-        browserPath: `${APP_HOST}/colaboradores`,
-    },
-    {
-        id: 'financeiro',
-        title: 'Financeiro',
-        description: 'Dashboard financeiro com receitas e despesas',
-        desktopImage: '/prints/financeiro-dashboard.webp',
-        mobileImage: '/prints/mobile/financeiro-dashboard.webp',
-        imageAlt: 'Dashboard financeiro Petzara',
-        browserPath: `${APP_HOST}/financeiro`,
-    },
-    {
-        id: 'contas-receber',
-        title: 'Contas a Receber',
-        description: 'Controle de todas as receitas e pagamentos pendentes',
-        desktopImage: '/prints/financeiro-contas-a-receber.webp',
-        mobileImage: '/prints/mobile/financeiro-contas-a-receber.webp',
-        imageAlt: 'Contas a receber Petzara',
-        browserPath: `${APP_HOST}/financeiro/contas-a-receber`,
-    },
-    {
-        id: 'despesas',
-        title: 'Despesas',
-        description: 'Registre e categorize todas as saídas do negócio',
-        desktopImage: '/prints/financeiro-despesas.webp',
-        mobileImage: '/prints/mobile/financeiro-despesas.webp',
-        imageAlt: 'Despesas Petzara',
-        browserPath: `${APP_HOST}/financeiro/despesas`,
-    },
-    {
-        id: 'pagina-publica',
-        title: 'Agenda pública',
-        description: 'Clientes veem os horários livres no seu link e chamam você no WhatsApp',
-        desktopImage: '/prints/pagina-publica.webp',
-        mobileImage: '/prints/mobile/pagina-publica.webp',
-        imageAlt: 'Página pública de agendamento Petzara',
-        browserPath: `${APP_HOST}/agendar/petshop-da-ana`,
-    },
+// Textos (título, descrição, alt) em i18n/locales → demo.screens.<key>. As capturas ainda mostram
+// a interface em português (ver LANDING-SEO.md: capturas localizadas pendentes).
+const SCREENS = [
+    { id: 'dashboard', key: 'dashboard', desktopImage: '/prints/dashboard.webp', mobileImage: '/prints/mobile/dashboard.webp', browserPath: `${APP_HOST}/dashboard` },
+    { id: 'agendamentos', key: 'agendamentos', desktopImage: '/prints/agendamentos-calendario.webp', mobileImage: '/prints/mobile/agendamentos.webp', browserPath: `${APP_HOST}/agendamentos` },
+    { id: 'servicos', key: 'servicos', desktopImage: '/prints/servicos.webp', mobileImage: '/prints/mobile/servicos.webp', browserPath: `${APP_HOST}/servicos` },
+    { id: 'clientes', key: 'clientes', desktopImage: '/prints/clientes-lista.webp', mobileImage: '/prints/mobile/clientes.webp', browserPath: `${APP_HOST}/clientes` },
+    { id: 'pets', key: 'pets', desktopImage: '/prints/pets-card.webp', mobileImage: '/prints/mobile/pets.webp', browserPath: `${APP_HOST}/pets` },
+    { id: 'colaboradores', key: 'colaboradores', desktopImage: '/prints/colaboradores-lista.webp', mobileImage: '/prints/mobile/colaboradores.webp', browserPath: `${APP_HOST}/colaboradores` },
+    { id: 'financeiro', key: 'financeiro', desktopImage: '/prints/financeiro-dashboard.webp', mobileImage: '/prints/mobile/financeiro-dashboard.webp', browserPath: `${APP_HOST}/financeiro` },
+    { id: 'contas-receber', key: 'contasReceber', desktopImage: '/prints/financeiro-contas-a-receber.webp', mobileImage: '/prints/mobile/financeiro-contas-a-receber.webp', browserPath: `${APP_HOST}/financeiro/contas-a-receber` },
+    { id: 'despesas', key: 'despesas', desktopImage: '/prints/financeiro-despesas.webp', mobileImage: '/prints/mobile/financeiro-despesas.webp', browserPath: `${APP_HOST}/financeiro/despesas` },
+    { id: 'pagina-publica', key: 'paginaPublica', desktopImage: '/prints/pagina-publica.webp', mobileImage: '/prints/mobile/pagina-publica.webp', browserPath: `${APP_HOST}/agendar/petshop-da-ana` },
 ]
 
 
 export default function DemoSection() {
     const { ref, isInView } = useResponsiveInView()
+    const { t, tm } = useI18n()
+    const screens = SCREENS.map((s) => ({ ...s, ...(tm(`demo.screens.${s.key}`) || {}) }))
     const [current, setCurrent] = useState(0)
     const [viewMode, setViewMode] = useState('desktop')
 
@@ -130,14 +55,13 @@ export default function DemoSection() {
                     className="text-center max-w-2xl mx-auto mb-14"
                 >
                     <span className="inline-block bg-sage/10 text-sage-dark px-4 py-1.5 rounded-full text-sm font-bold mb-4">
-                        Veja em ação
+                        {t('demo.badge')}
                     </span>
                     <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
-                        Simples por fora,{' '}
-                        <span className="gradient-text">poderoso</span> por dentro
+                        <Highlighted parts={tm('demo.title')} />
                     </h2>
                     <p className="text-taupe text-lg leading-relaxed">
-                        Cada tela foi pensada para o dia a dia do petshop — sem complicação.
+                        {t('demo.subtitle')}
                     </p>
                 </motion.div>
 
@@ -152,8 +76,8 @@ export default function DemoSection() {
                     <div className="flex justify-center mb-6">
                         <div className="inline-flex bg-white border border-sand rounded-2xl p-1 gap-1 shadow-sm">
                             {[
-                                { mode: 'desktop', Icon: Monitor, label: 'Desktop' },
-                                { mode: 'mobile',  Icon: Smartphone, label: 'Mobile' },
+                                { mode: 'desktop', Icon: Monitor, label: t('demo.desktop') },
+                                { mode: 'mobile',  Icon: Smartphone, label: t('demo.mobile') },
                             ].map(({ mode, Icon, label }) => (
                                 <button
                                     key={mode}
@@ -230,10 +154,10 @@ export default function DemoSection() {
                                     })}
                                 </div>
                             </div>
-                            <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
+                            <button onClick={prev} aria-label={t('demo.prev')} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                 <ChevronLeft size={20} aria-hidden="true" />
                             </button>
-                            <button onClick={next} aria-label="Próxima tela" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
+                            <button onClick={next} aria-label={t('demo.next')} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                 <ChevronRight size={20} aria-hidden="true" />
                             </button>
                         </div>
@@ -259,7 +183,7 @@ export default function DemoSection() {
                                                 <motion.img
                                                     key={s.id + '-mobile'}
                                                     src={s.mobileImage}
-                                                    alt={`${s.imageAlt} — mobile`}
+                                                    alt={t('demo.mobileAlt', { alt: s.imageAlt })}
                                                     className="w-full object-cover"
                                                     style={{ gridArea: '1 / 1' }}
                                                     animate={{ opacity: isVisible ? 1 : 0 }}
@@ -270,10 +194,10 @@ export default function DemoSection() {
                                         })}
                                     </div>
                                 </div>
-                                <button onClick={prev} aria-label="Tela anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 sm:-translate-x-full sm:-ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
+                                <button onClick={prev} aria-label={t('demo.prev')} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 sm:-translate-x-full sm:-ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                     <ChevronLeft size={20} aria-hidden="true" />
                                 </button>
-                                <button onClick={next} aria-label="Próxima tela" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 sm:translate-x-full sm:ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
+                                <button onClick={next} aria-label={t('demo.next')} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 sm:translate-x-full sm:ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                     <ChevronRight size={20} aria-hidden="true" />
                                 </button>
                             </div>
@@ -302,7 +226,7 @@ export default function DemoSection() {
                             <button
                                 key={s.id}
                                 role="tab"
-                                aria-label={`Ir para ${s.title}`}
+                                aria-label={t('demo.goTo', { title: s.title })}
                                 aria-selected={current === i}
                                 onClick={() => navigate(i)}
                                 className={`h-2.5 rounded-full transition-all ${current === i ? 'bg-terracotta w-6' : 'bg-sand w-2.5'}`}

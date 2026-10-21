@@ -1,0 +1,487 @@
+{
+  "seo": {
+    "siteName": "Petzara",
+    "home": {
+      "title": "Petzara — Dog Grooming Software & Appointment Scheduling",
+      "description": "Appointments, clients, pets and finances for your grooming salon in one place, plus a 24/7 booking link. 30-day free trial, no credit card.",
+      "keywords": "Petzara, dog grooming software, grooming scheduling app, pet grooming booking, grooming salon software, pet grooming appointment app",
+      "ogTitle": "Petzara — Your grooming salon, organized. Your clients, happy.",
+      "ogDescription": "Scheduling and management software for groomers who want to ditch the paper planner and endless message threads.",
+      "ogImageAlt": "Petzara — scheduling and management software for pet grooming salons",
+      "twitterTitle": "Petzara — Your grooming salon, organized.",
+      "twitterDescription": "Appointments, clients, pets and finances. All in one place.",
+      "appDescription": "Appointment scheduling and management software for pet grooming salons."
+    },
+    "download": {
+      "title": "Petzara Desktop | Download for Windows, macOS and Linux",
+      "description": "Download Petzara Desktop for Windows, macOS and Linux: your grooming salon software one click from the desktop, with new appointment notifications."
+    },
+    "terms": {
+      "title": "Terms of Use (reference translation) — Petzara",
+      "description": "Reference translation of the Petzara Terms of Use. The binding version is the Portuguese original."
+    },
+    "privacy": {
+      "title": "Privacy Policy (reference translation) — Petzara",
+      "description": "Reference translation of the Petzara Privacy Policy. The binding version is the Portuguese original."
+    }
+  },
+  "nav": {
+    "problem": "Problem",
+    "solution": "Solution",
+    "howItWorks": "How it works",
+    "demo": "Demo",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "cta": "Start free",
+    "ctaMobile": "Start free →",
+    "menu": "Menu",
+    "menuLabel": "Main menu",
+    "homeAria": "Petzara — home page"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "Change language to {language}"
+  },
+  "hero": {
+    "badge": "30 days free · no credit card",
+    "title": {
+      "before": "Dog grooming scheduling",
+      "highlight": "without double bookings",
+      "after": "— or paper planners"
+    },
+    "subtitle": "Appointments, clients, pets and cash flow for your grooming business in one place, on your phone and your computer. Clients see your open slots on your booking link and message you on WhatsApp.",
+    "playCta": "Get it free on Google Play",
+    "webCtaAndroid": "Start your free trial in the browser",
+    "webCta": "Start free trial",
+    "playBadgeAlt": "Get it on Google Play",
+    "bonusStrong": "+14 free days",
+    "bonusText": "when you create appointments on 3 different days during your trial.",
+    "trust": ["No credit card", "Free setup help", "Cancel anytime"],
+    "dashboardAlt": "Petzara dashboard",
+    "mobileAlt": "Petzara on mobile",
+    "notificationTitle": "New appointment!",
+    "notificationText": "Luna — Bath at 10:30 AM"
+  },
+  "problem": {
+    "badge": "Sound familiar?",
+    "title": {
+      "before": "Disorganization is",
+      "highlight": "costing you clients",
+      "after": ""
+    },
+    "subtitle": "Plenty of grooming salons lose money to disorganization, not to a lack of clients.",
+    "items": [
+      {
+        "title": "The double booking that ruins your day",
+        "description": "Two pet owners show up at the same time. One leaves annoyed. And you'll hear about it in a Google review."
+      },
+      {
+        "title": "You close out the day by guesswork",
+        "description": "At the end of the month you add up payments on your phone and hope there's a profit. You're never sure."
+      },
+      {
+        "title": "Your inbox became your system",
+        "description": "Appointments, confirmations, complaints and voice notes all mixed together. Sooner or later an important booking slips through."
+      },
+      {
+        "title": "Groomers show up without knowing the schedule",
+        "description": "Your team depends on you to know what's on today. You're answering messages before your first coffee."
+      },
+      {
+        "title": "Hours that could be pets groomed",
+        "description": "Every hour spent updating a spreadsheet is a bath that didn't happen and a client who waited."
+      },
+      {
+        "title": "You don't know what earns the most",
+        "description": "Full haircut or basic bath? Tuesday or Saturday? Without data it's a guess, and guessing costs money."
+      }
+    ],
+    "quote": "\"In real life: you write it in a planner, book over text, close out in Excel… and at the end of the month you still don't know if you made a profit.\"",
+    "cta": "Fix this — try it free for 30 days"
+  },
+  "solution": {
+    "badge": "The solution",
+    "title": {
+      "before": "Meet",
+      "highlight": "Petzara",
+      "after": ""
+    },
+    "subtitle": "Everything you need to get organized, grow and earn more, in one platform built for pet grooming businesses.",
+    "features": [
+      {
+        "title": "Smart calendar",
+        "description": "See every appointment in real time, with automatic conflict prevention. Changes sync across all your devices."
+      },
+      {
+        "title": "24/7 booking",
+        "description": "A public page with your salon's own URL. Clients see your available times and are sent to WhatsApp to confirm the appointment."
+      },
+      {
+        "title": "Built-in finances",
+        "description": "Income and expenses with charts by category. Every completed appointment is recorded as income automatically."
+      },
+      {
+        "title": "Team management",
+        "description": "Invite team members with detailed permissions (view/create/edit/delete) per area. Each groomer sees only what they need."
+      },
+      {
+        "title": "Pet history",
+        "description": "Breed, size, owner notes and past services for every pet, one click away, no memory required."
+      },
+      {
+        "title": "Decisions backed by data",
+        "description": "Know which service earns the most, which day is busiest and where the gaps are, before they become a problem."
+      }
+    ],
+    "listAlt": "Petzara appointment list",
+    "mobileAlt": "Petzara appointments on mobile"
+  },
+  "howItWorks": {
+    "badge": "It's simple",
+    "title": {
+      "before": "Get started in",
+      "highlight": "3 steps",
+      "after": ""
+    },
+    "subtitle": "From sign-up to your first appointment in minutes.",
+    "steps": [
+      {
+        "title": "Create your account",
+        "description": "Quick sign-up with your email. No credit card, no paperwork."
+      },
+      {
+        "title": "Set up your salon",
+        "description": "Add your services and business hours, and invite your team."
+      },
+      {
+        "title": "Start booking",
+        "description": "Create your first appointment and share your booking link."
+      }
+    ],
+    "ctaNote": "Nothing to install and no card needed. If you need a hand, we'll help you set up over WhatsApp.",
+    "cta": "Create account — try it free for 30 days"
+  },
+  "multiDevice": {
+    "badge": "Use it anywhere",
+    "title": {
+      "before": "Works on",
+      "highlight": "any device",
+      "after": ""
+    },
+    "subtitle": "Phone, tablet and computer. On Android, install the app straight from Google Play. Your team can log in from wherever they are.",
+    "playBadgeAlt": "Get it on Google Play",
+    "tabletAlt": "Client management on a tablet",
+    "desktopAlt": "Petzara dashboard on a computer",
+    "phoneAlt": "Appointments on a phone",
+    "pills": ["Android and iPhone (browser)", "Any browser", "Available on Google Play", "Real-time sync"]
+  },
+  "demo": {
+    "badge": "See it in action",
+    "title": {
+      "before": "Simple on the outside,",
+      "highlight": "powerful",
+      "after": "on the inside"
+    },
+    "subtitle": "Every screen is designed for the day-to-day of a grooming salon, with no fuss.",
+    "desktop": "Desktop",
+    "mobile": "Mobile",
+    "prev": "Previous screen",
+    "next": "Next screen",
+    "goTo": "Go to {title}",
+    "mobileAlt": "{alt} — mobile",
+    "screens": {
+      "dashboard": {
+        "title": "Dashboard",
+        "description": "A full view of your business in real time",
+        "imageAlt": "Petzara dashboard"
+      },
+      "agendamentos": {
+        "title": "Appointments",
+        "description": "See and manage every appointment of the day",
+        "imageAlt": "Petzara appointment calendar"
+      },
+      "servicos": {
+        "title": "Services",
+        "description": "Set up services, prices and how long each one takes",
+        "imageAlt": "Services set up in Petzara"
+      },
+      "clientes": {
+        "title": "Clients",
+        "description": "A complete profile for each pet owner, with appointment history",
+        "imageAlt": "Petzara client list"
+      },
+      "pets": {
+        "title": "Pets",
+        "description": "Detailed records with breed, size and special notes",
+        "imageAlt": "Pets in Petzara"
+      },
+      "colaboradores": {
+        "title": "Team",
+        "description": "Manage your team and split the schedule among your groomers",
+        "imageAlt": "Petzara team members"
+      },
+      "financeiro": {
+        "title": "Finances",
+        "description": "Financial dashboard with income and expenses",
+        "imageAlt": "Petzara finances dashboard"
+      },
+      "contasReceber": {
+        "title": "Receivables",
+        "description": "Track all income and pending payments",
+        "imageAlt": "Petzara receivables"
+      },
+      "despesas": {
+        "title": "Expenses",
+        "description": "Record and categorize every business expense",
+        "imageAlt": "Petzara expenses"
+      },
+      "paginaPublica": {
+        "title": "Booking link",
+        "description": "Clients see your open slots on your link and message you on WhatsApp",
+        "imageAlt": "Petzara public booking page"
+      }
+    }
+  },
+  "palette": {
+    "badge": "Make it yours",
+    "title": {
+      "before": "Your brand look,",
+      "highlight": "your way",
+      "after": ""
+    },
+    "subtitle": "Pick the palette that fits your business. Your system, and this page, change instantly.",
+    "desktop": "Desktop",
+    "mobile": "Mobile",
+    "selected": "Selected style",
+    "selectAria": "Select the {name} palette",
+    "desktopAlt": "Petzara - {name} theme",
+    "mobileAlt": "Petzara mobile - {name} theme"
+  },
+  "pricing": {
+    "badge": "Pricing",
+    "title": {
+      "before": "Simple and",
+      "highlight": "fair",
+      "after": ""
+    },
+    "subtitle": "Start free. Pick a plan when you're ready.",
+    "bonus": "+14 free days when you create appointments on 3 different days during your trial",
+    "monthly": {
+      "name": "Monthly plan",
+      "description": "The flexibility to pay month to month",
+      "per": "/month"
+    },
+    "annual": {
+      "name": "Annual plan",
+      "description": "Works out to {amount}/month",
+      "descriptionNoPrice": "Pay once a year",
+      "per": "/year",
+      "savings": "Save {amount}: {months} months free"
+    },
+    "noPrice": "Price in your currency on Google Play",
+    "noPriceTrial": "Free trial",
+    "features": [
+      "Unlimited appointments",
+      "Complete pet and client records",
+      "Financial dashboard with income and expenses",
+      "Team and team member management",
+      "24/7 booking link",
+      "Support by email and WhatsApp",
+      "Automatic updates",
+      "Secure cloud data"
+    ],
+    "cta": "Try it free for 30 days",
+    "fineprint": "30 days free · No credit card · Cancel anytime",
+    "footnote": "Same features on both plans. You subscribe in the Android app through Google Play, which shows the price in your currency before you confirm.",
+    "footnote2": "Card subscriptions on the web aren't available in your country yet."
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": {
+      "before": "Questions",
+      "highlight": "and answers",
+      "after": ""
+    },
+    "subtitle": "Got a question? The answer is probably here.",
+    "whatsappLink": "Message us on WhatsApp",
+    "items": [
+      {
+        "question": "Can I try it before I pay?",
+        "answer": "Yes. You get 30 days free, no credit card, with access to everything. Since we don't ask for a card, nothing is charged automatically: at the end of the trial, you decide whether to subscribe."
+      },
+      {
+        "question": "How do I subscribe, and how much is it?",
+        "answer": "You subscribe in the Petzara Android app through Google Play. Before you confirm, Google Play shows the price in your currency and the billing date, and you can cancel anytime in Google Play. Card subscriptions on the web aren't available in your country yet."
+      },
+      {
+        "question": "How do I get +14 free days?",
+        "answer": "Create appointments on 3 different days during your trial. What counts is the day you create the appointment in Petzara, not the appointment date: if you add the whole week's bookings today, that counts as 1 day. Once you hit the 3rd day, the 14 extra days are added to your trial automatically. One time per account."
+      },
+      {
+        "question": "What happens when the trial ends?",
+        "answer": "If you don't subscribe, your account becomes read-only: your clients, pets, appointments and finances stay saved and you can look at everything, but you can't create or edit anything until you subscribe. Subscribe and everything is back instantly."
+      },
+      {
+        "question": "Does it send WhatsApp reminders?",
+        "answer": "Not yet. Right now Petzara doesn't send automatic WhatsApp reminders to your clients. What it does: on your booking link, clients see your open slots and are sent to your business WhatsApp to confirm the time with you; and Petzara notifies you and your team in the app, like when a new appointment comes in."
+      },
+      {
+        "question": "Can I bring in my clients from a planner or spreadsheet?",
+        "answer": "Yes. In the web app (app.petzara.app), go to Clients › Import and upload a CSV spreadsheet with names and phone numbers (there's a template to download; in Excel, just use \"Save as → CSV\"). Duplicate phone numbers are skipped. If your clients are in a paper planner, move them to a simple spreadsheet or send them to us on WhatsApp and we'll help."
+      },
+      {
+        "question": "Will you help me set it up?",
+        "answer": "Yes, for free, over WhatsApp: we help you add services and prices, business hours, import your clients and turn on your booking link. After that, support continues over WhatsApp and email (suporte@petzara.app) during business hours in Brazil (UTC−3).",
+        "link": "whatsapp"
+      },
+      {
+        "question": "Do I need to install anything on my computer?",
+        "answer": "No. Petzara runs in the browser on your computer, tablet or phone: just go to app.petzara.app. On Android, there's also the Petzara app on Google Play."
+      },
+      {
+        "question": "Does it work well on a phone?",
+        "answer": "Yes. On Android, download the Petzara app from Google Play. On iPhone, use it in the browser (Safari or Chrome) at app.petzara.app; you can add it to your home screen. It's the same account on every device."
+      },
+      {
+        "question": "Is my data secure?",
+        "answer": "Yes. Your data is stored in the cloud, with an encrypted connection (HTTPS) and hashed passwords, so it doesn't depend on your computer or a paper planner. Only people you invite can access your account, each with the permissions you choose."
+      },
+      {
+        "question": "How many team members can I add?",
+        "answer": "Unlimited on both plans. Each team member gets their own login with permissions you set per area: you decide what each person can see and do."
+      },
+      {
+        "question": "How does canceling work?",
+        "answer": "No fees and no phone calls. If you subscribed in the Android app, cancel in Google Play under Payments & subscriptions. If you subscribed on the web, cancel anytime in your account settings."
+      },
+      {
+        "question": "Is it hard to learn?",
+        "answer": "No. It's designed for people who have never used management software: add your services, create your first appointment and you're up and running. If you get stuck, we'll help over WhatsApp."
+      },
+      {
+        "question": "I run a small salon with 1 or 2 employees. Is it worth it?",
+        "answer": "Yes: Petzara is built for small grooming businesses. With the calendar on your team's phones, you stop being the go-between for everything. And you can try it free for 30 days before deciding."
+      }
+    ]
+  },
+  "cta": {
+    "titleWords": "Your grooming salon deserves",
+    "titleHighlight": "pro-level management",
+    "subtitle": "Create your free account and get full access to every feature. No credit card, no paperwork.",
+    "primary": "Create free account",
+    "demo": "Book a demo",
+    "checks": ["30-day free trial", "No credit card", "Cancel anytime", "Tech support included"],
+    "trustTitle": "Security and trust",
+    "trust": [
+      "Secure, encrypted cloud data",
+      "Tech support by email and WhatsApp",
+      "Regular updates with new features",
+      "Secure payments through Google Play",
+      "Email verification to protect your account",
+      "Android app available on Google Play"
+    ]
+  },
+  "footer": {
+    "tagline": "Complete management software for pet grooming salons.",
+    "product": "Product",
+    "blog": "Blog",
+    "desktop": "Petzara Desktop",
+    "features": "Features",
+    "benefits": "Benefits",
+    "demo": "Demo",
+    "howItWorks": "How it works",
+    "support": "Support",
+    "login": "Log in",
+    "register": "Create account",
+    "contact": "Contact",
+    "legal": "Legal",
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie preferences",
+    "rights": "© {year} Petzara. All rights reserved."
+  },
+  "consent": {
+    "aria": "Cookie notice",
+    "text": "We use cookies to measure how the site is used.",
+    "more": "Learn more",
+    "decline": "Decline",
+    "accept": "Accept"
+  },
+  "whatsapp": {
+    "floatingAria": "Chat with Petzara on WhatsApp",
+    "floatingLabel": "Questions? Chat on WhatsApp",
+    "floatingMessage": "Hi! I found Petzara's website and have a question.",
+    "demoMessage": "Hi! I saw Petzara's website and would like to book a demo."
+  },
+  "download": {
+    "badge": "Available for Windows, macOS and Linux",
+    "title": "Petzara for Desktop",
+    "subtitle": "All of Petzara in an installable app. Faster access, native notifications and a professional experience on any system.",
+    "detectedMobile": "Looks like you're on a mobile device. To install the desktop app, open this page on your computer.",
+    "detected": "We detected {platform}. The recommended download is highlighted below.",
+    "recommended": "Recommended",
+    "platforms": {
+      "windows": {
+        "requirement": "Windows 10 or later (64-bit)",
+        "download": "Download for Windows",
+        "note": "Installer · ~74 MB · Free",
+        "warning": "If SmartScreen shows \"Windows protected your PC\", click \"More info\" → \"Run anyway\"."
+      },
+      "mac": {
+        "requirement": "macOS 11 (Big Sur) or later",
+        "download": "Download for macOS",
+        "note": "DMG file · ~74 MB · Free",
+        "warning": "Since the app isn't signed by Apple, the first time you open it, open Terminal and run: xattr -cr /Applications/Petzara.app"
+      },
+      "linux": {
+        "requirement": "Any modern distribution (x64)",
+        "download": "Download for Linux (AppImage)",
+        "note": "AppImage · ~74 MB · no install needed",
+        "warning": "After downloading, mark the file as executable: chmod +x *.AppImage"
+      }
+    },
+    "mobileLabel": "a mobile device",
+    "allReleases": "See all versions and changelogs on GitHub →",
+    "whyTitle": "Why use the desktop app?",
+    "features": [
+      "Quick access from a desktop shortcut, no browser needed",
+      "Desktop notifications for new appointments and updates",
+      "Secure: no data stored on your computer, everything is in the cloud",
+      "Automatic updates included, no reinstalling"
+    ],
+    "howTitle": "How to install",
+    "steps": [
+      {
+        "title": "Download the installer",
+        "description": "Pick the file for your operating system and wait for the download."
+      },
+      {
+        "title": "Run the installer",
+        "description": "Open the downloaded file and follow the on-screen steps. It takes less than a minute."
+      },
+      {
+        "title": "Done!",
+        "description": "Petzara opens automatically. Log in with your account and get started."
+      }
+    ],
+    "requirementsTitle": "Requirements",
+    "requirements": [
+      ["Windows", "Windows 10 or later (64-bit)"],
+      ["macOS", "macOS 11 Big Sur or later (Intel or Apple Silicon)"],
+      ["Linux", "Any x64 distribution with AppImage support"],
+      ["Internet connection", "Required: the system runs in the cloud"],
+      ["Petzara account", "Required: create one for free at petzara.app"]
+    ],
+    "ctaTitle": "Ready to get started?",
+    "ctaText": "Pick the installer for your system and open Petzara right from your desktop.",
+    "ctaWindows": "Download for Windows",
+    "ctaOther": "Other platforms →",
+    "ctaWeb": "Use the web version →"
+  },
+  "legal": {
+    "back": "Back to home",
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "notice": "Reference translation. The binding version is the Portuguese original. Pending legal review."
+  }
+}

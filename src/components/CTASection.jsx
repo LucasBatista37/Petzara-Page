@@ -1,24 +1,12 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { ArrowRight, Check, Shield, Headphones, RefreshCw, CreditCard, Mail, Smartphone } from 'lucide-react'
-import { appRegisterUrl, whatsappDemoUrl, playStoreUrl } from '../siteConfig'
+import { useLinks } from '../lib/links'
+import { useI18n } from '../i18n/I18nProvider.jsx'
 import { ease, wordVariant, useResponsiveInView } from '../animations/variants'
 
-const trustItems = [
-    { icon: Shield, label: 'Dados seguros na nuvem com criptografia' },
-    { icon: Headphones, label: 'Suporte técnico por e-mail e WhatsApp' },
-    { icon: RefreshCw, label: 'Atualizações constantes com novas funcionalidades' },
-    { icon: CreditCard, label: 'Pagamento seguro processado pelo Stripe' },
-    { icon: Mail, label: 'Verificação de e-mail para proteção da conta' },
-    { icon: Smartphone, label: 'App Android disponível na Play Store', href: playStoreUrl },
-]
-
-const checkItems = [
-    'Teste grátis por 30 dias',
-    'Sem cartão de crédito',
-    'Cancele quando quiser',
-    'Suporte técnico incluso',
-]
+// Textos em i18n/locales (cta.trust / cta.checks), na mesma ordem. O último item leva à Play.
+const TRUST_ICONS = [Shield, Headphones, RefreshCw, CreditCard, Mail, Smartphone]
 
 // Divide o título em palavras para o word-by-word reveal
 function HeadlineWords({ children, className }) {
@@ -39,6 +27,15 @@ function HeadlineWords({ children, className }) {
 export default function CTASection() {
     const { ref, isInView } = useResponsiveInView()
     const [showPulse, setShowPulse] = useState(false)
+    const { t, tm } = useI18n()
+    const links = useLinks()
+    const trustLabels = tm('cta.trust') || []
+    const trustItems = trustLabels.map((label, i) => ({
+        icon: TRUST_ICONS[i],
+        label,
+        href: i === trustLabels.length - 1 ? links.play : undefined,
+    }))
+    const checkItems = tm('cta.checks') || []
 
     // Pulse de atenção no botão após 3s — desabilitado em mobile para poupar CPU
     useEffect(() => {
@@ -71,10 +68,10 @@ export default function CTASection() {
                             variants={{ animate: { transition: { staggerChildren: 0.045 } } }}
                             style={{ perspective: 1000 }}
                         >
-                            <HeadlineWords>Seu petshop merece uma gestão</HeadlineWords>
+                            <HeadlineWords>{t('cta.titleWords')}</HeadlineWords>
                             {' '}
                             <motion.span className="text-terracotta" variants={wordVariant}>
-                                profissional
+                                {t('cta.titleHighlight')}
                             </motion.span>
                         </motion.h2>
 
@@ -85,7 +82,7 @@ export default function CTASection() {
                             }}
                             className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg"
                         >
-                            Crie sua conta gratuitamente e tenha acesso completo a todas as funcionalidades. Sem cartão de crédito, sem burocracia.
+                            {t('cta.subtitle')}
                         </motion.p>
 
                         {/* CTAs */}
@@ -98,7 +95,7 @@ export default function CTASection() {
                         >
                             {/* Botão primário com glow + pulse de atenção */}
                             <motion.a
-                                href={appRegisterUrl}
+                                href={links.register}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{
@@ -121,18 +118,18 @@ export default function CTASection() {
                                 onAnimationComplete={() => setShowPulse(false)}
                                 className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-terracotta/30"
                             >
-                                Criar Conta Grátis
+                                {t('cta.primary')}
                                 <ArrowRight size={18} />
                             </motion.a>
                             <motion.a
-                                href={whatsappDemoUrl}
+                                href={links.whatsappDemo}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.03, backgroundColor: 'rgba(255,255,255,0.15)' }}
                                 whileTap={{ scale: 0.98 }}
                                 className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-bold text-base px-8 py-4 rounded-2xl"
                             >
-                                Agendar demonstração
+                                {t('cta.demo')}
                             </motion.a>
                         </motion.div>
 
@@ -167,7 +164,7 @@ export default function CTASection() {
                     >
                         <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8">
                             <h3 className="font-accent font-bold text-xl text-white mb-6">
-                                Segurança e confiança
+                                {t('cta.trustTitle')}
                             </h3>
                             <motion.div
                                 variants={{ animate: { transition: { staggerChildren: 0.08, delayChildren: 0.4 } } }}

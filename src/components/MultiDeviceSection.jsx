@@ -1,15 +1,11 @@
 import { motion } from 'framer-motion'
 import { Monitor, Smartphone, Download, RefreshCw } from 'lucide-react'
 import { ease, useResponsiveInView } from '../animations/variants'
-import { playStoreUrl } from '../siteConfig'
 import OptimizedImage from './OptimizedImage'
+import { useLinks } from '../lib/links'
+import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
-const pills = [
-    { icon: Smartphone,  label: 'Android e iPhone (navegador)' },
-    { icon: Monitor,     label: 'Qualquer navegador' },
-    { icon: Download,    label: 'Disponível na Play Store' },
-    { icon: RefreshCw,   label: 'Sincronização em tempo real' },
-]
+const PILL_ICONS = [Smartphone, Monitor, Download, RefreshCw]
 
 // ─── MacBook Frame ─────────────────────────────────────────────────────────────
 function MacBookFrame({ src, alt }) {
@@ -104,6 +100,9 @@ function IPhoneFrame({ src, alt }) {
 // ─── Section ───────────────────────────────────────────────────────────────────
 export default function MultiDeviceSection() {
     const { ref, isInView } = useResponsiveInView()
+    const { t, tm, meta } = useI18n()
+    const links = useLinks()
+    const pills = (tm('multiDevice.pills') || []).map((label, i) => ({ icon: PILL_ICONS[i], label }))
 
     return (
         <section ref={ref} className="py-20 sm:py-28 relative overflow-hidden">
@@ -127,27 +126,25 @@ export default function MultiDeviceSection() {
                     className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
                 >
                     <span className="inline-block bg-white/10 border border-white/15 text-white/70 px-4 py-1.5 rounded-full text-sm font-bold mb-4 backdrop-blur-sm">
-                        Acesse de onde quiser
+                        {t('multiDevice.badge')}
                     </span>
                     <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-white">
-                        Funciona em{' '}
-                        <span className="gradient-text">qualquer dispositivo</span>
+                        <Highlighted parts={tm('multiDevice.title')} />
                     </h2>
                     <p className="text-white/65 text-lg leading-relaxed">
-                        Celular, tablet e computador. Instala como app no Android direto pela Play Store.
-                        Sua equipe acessa de onde estiver.
+                        {t('multiDevice.subtitle')}
                     </p>
                     <div className="mt-6 flex justify-center">
                         <a
-                            href={playStoreUrl}
+                            href={links.play}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="Disponível no Google Play"
+                            aria-label={t('multiDevice.playBadgeAlt')}
                             className="inline-block transition-transform hover:-translate-y-0.5 active:translate-y-0"
                         >
                             <img
-                                src="https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png"
-                                alt="Disponível no Google Play"
+                                src={meta.playBadge}
+                                alt={t('multiDevice.playBadgeAlt')}
                                 className="h-12 w-auto"
                                 loading="lazy"
                             />
@@ -181,7 +178,7 @@ export default function MultiDeviceSection() {
                         >
                             <IPadFrame
                                 src="/prints/clientes-lista.png"
-                                alt="Gestão de clientes no tablet"
+                                alt={t('multiDevice.tabletAlt')}
                             />
                         </motion.div>
                     </motion.div>
@@ -196,7 +193,7 @@ export default function MultiDeviceSection() {
                     >
                         <MacBookFrame
                             src="/prints/dashboard.png"
-                            alt="Dashboard Petzara no computador"
+                            alt={t('multiDevice.desktopAlt')}
                         />
                     </motion.div>
 
@@ -215,7 +212,7 @@ export default function MultiDeviceSection() {
                         >
                             <IPhoneFrame
                                 src="/prints/mobile/agendamentos.png"
-                                alt="Agendamentos no celular"
+                                alt={t('multiDevice.phoneAlt')}
                             />
                         </motion.div>
                     </motion.div>

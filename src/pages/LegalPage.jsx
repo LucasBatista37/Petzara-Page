@@ -2,36 +2,22 @@ import { useEffect, useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { ArrowLeft } from 'lucide-react'
-import termsMd from '../../docs/TERMOS_DE_USO.md?raw'
-import privacyMd from '../../docs/POLITICA_DE_PRIVACIDADE.md?raw'
+import { ArrowLeft, Info } from 'lucide-react'
+import { useI18n } from '../i18n/I18nProvider.jsx'
+import { usePageHead } from '../i18n/usePageHead'
+import { useHydrated } from '../lib/useHydrated'
+import LanguageSwitcher from '../components/LanguageSwitcher'
 
-function prepareTerms(raw) {
-    return raw.replace(
-        /\]\(\.\/POLITICA_DE_PRIVACIDADE\.md\)/g,
-        '](/politica-de-privacidade)',
-    )
-}
-
-function preparePrivacy(raw) {
-    return raw.replace(/\]\(\.\/TERMOS_DE_USO\.md\)/g, '](/termos-de-uso)')
-}
-
-const meta = {
-    terms: {
-        title: 'Termos de Uso — Petzara',
-        description:
-            'Termos de Uso da plataforma Petzara: condições de cadastro, uso do serviço, assinatura, pagamentos e responsabilidades.',
-        prepare: prepareTerms,
-        body: termsMd,
-    },
-    privacy: {
-        title: 'Política de Privacidade — Petzara',
-        description:
-            'Política de Privacidade Petzara (LGPD): dados tratados, bases legais, cookies, direitos dos titulares e contato.',
-        prepare: preparePrivacy,
-        body: privacyMd,
-    },
+/**
+ * Termos e privacidade. O texto vem dos Markdown em docs/ (pt-BR, original e válido) e
+ * docs/legal/{es,en}/ (traduções de referência, noindex até a revisão jurídica). Cada idioma
+ * tem um wrapper em pages/legal/ que passa `docs`, para o chunk de um idioma não levar os outros.
+ *
+ * docs = { terms: string, privacy: string, files: { 'ARQUIVO.md': 'terms' | 'privacy' } }
+ */
+function prepare(raw, files, path) {
+    // Links entre os documentos (./ARQUIVO.md) → rota da página no idioma.
+    return raw.replace(/\]\(\.\/([A-Z_]+\.md)\)/g, (match, file) => (files[file] ? `](${path(files[file])})` : match))
 }
 
 function MarkdownLink({ href, children }) {
@@ -126,34 +112,30 @@ const LOGO = (
     </>
 )
 
-export default function LegalPage({ variant }) {
-    const config = meta[variant]
+export default function LegalPage({ variant, docs }) {
+    const { t, path } = useI18n()
+    usePageHead(variant)
     // Aberta pelo app (?origem=app): a página não leva à página inicial, onde ficam preços e
-    // contratação pela web (política de pagamentos do Google Play).
+    // contratação pela web (política de pagamentos do Google Play). Só depois da hidratação:
+    // o HTML pré-renderizado é a versão do site.
     const [searchParams] = useSearchParams()
-    const fromApp = searchParams.get('origem') === 'app'
+    const hydrated = useHydrated()
+    const fromApp = hydrated && searchParams.get('origem') === 'app'
     const qs = fromApp ? '?origem=app' : ''
+    const termsPath = path('terms')
+    const privacyPath = path('privacy')
+    const notice = t('legal.notice')
     const content = useMemo(() => {
-        const c = meta[variant]
-        const md = c.prepare(c.body)
-        return fromApp ? md.replace(/\]\((\/(?:termos-de-uso|politica-de-privacidade))\)/g, ']($1?origem=app)') : md
-    }, [variant, fromApp])
+        const md = prepare(docs[variant], docs.files, path)
+        if (!fromApp) return md
+        return md
+            .split(`](${termsPath})`).join(`](${termsPath}?origem=app)`)
+            .split(`](${privacyPath})`).join(`](${privacyPath}?origem=app)`)
+    }, [variant, docs, path, fromApp, termsPath, privacyPath])
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        document.title = `${config.title} | Petzara`
-        const desc = document.querySelector('meta[name="description"]')
-        const prev = desc?.getAttribute('content') ?? ''
-        if (desc) {
-            desc.setAttribute('content', config.description)
-        }
-        return () => {
-            document.title = 'Petzara — Sistema de Gestão para Petshops | Agendamento Online'
-            if (desc) {
-                desc.setAttribute('content', prev)
-            }
-        }
-    }, [config])
+    }, [variant])
 
     return (
         <div className="min-h-screen bg-cream text-espresso">
@@ -169,13 +151,13 @@ export default function LegalPage({ variant }) {
                     ) : (
                         <>
                             <Link
-                                to="/"
+                                to={path('home')}
                                 className="inline-flex items-center gap-2 text-sm font-semibold text-taupe hover:text-terracotta transition-colors"
                             >
                                 <ArrowLeft size={18} aria-hidden="true" />
-                                Voltar ao início
+                                {t('legal.back')}
                             </Link>
-                            <Link to="/" className="flex items-center gap-2 shrink-0 group" aria-label="Petzara — página inicial">
+                            <Link to={path('home')} className="flex items-center gap-2 shrink-0 group" aria-label={t('nav.homeAria')}>
                                 {LOGO}
                             </Link>
                         </>
@@ -184,6 +166,12 @@ export default function LegalPage({ variant }) {
             </header>
 
             <main className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14 pb-16">
+                {notice && (
+                    <div role="note" data-legal-notice className="mb-8 flex gap-3 items-start rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                        <Info size={18} aria-hidden="true" className="shrink-0 mt-0.5" />
+                        <p className="leading-relaxed font-medium">{notice}</p>
+                    </div>
+                )}
                 <article className="legal-prose">
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
                         {content}
@@ -195,12 +183,13 @@ export default function LegalPage({ variant }) {
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-taupe">
                     <p className="text-xs sm:text-sm">© {new Date().getFullYear()} Petzara</p>
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-                        <Link to={`/termos-de-uso${qs}`} className="hover:text-terracotta transition-colors">
-                            Termos de Uso
+                        <Link to={`${termsPath}${qs}`} className="hover:text-terracotta transition-colors">
+                            {t('legal.terms')}
                         </Link>
-                        <Link to={`/politica-de-privacidade${qs}`} className="hover:text-terracotta transition-colors">
-                            Política de Privacidade
+                        <Link to={`${privacyPath}${qs}`} className="hover:text-terracotta transition-colors">
+                            {t('legal.privacy')}
                         </Link>
+                        <LanguageSwitcher className="text-xs sm:text-sm" />
                     </div>
                 </div>
             </footer>

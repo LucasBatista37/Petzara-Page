@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 import { Zap, Bell, Shield, RefreshCw, Download } from 'lucide-react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { DESKTOP_DOWNLOADS, appLoginUrl } from '../siteConfig'
+import { DESKTOP_DOWNLOADS } from '../siteConfig'
+import { useLinks } from '../lib/links'
+import { useI18n } from '../i18n/I18nProvider.jsx'
+import { usePageHead } from '../i18n/usePageHead'
 
 const RELEASES_URL = 'https://github.com/LucasBatista37/petzara-desktop/releases/latest'
 
@@ -18,12 +21,7 @@ const PLATFORMS = [
                 <path d="M3 5.557L10.5 4.5V11.5H3V5.557ZM11.5 4.356L21 3V11.5H11.5V4.356ZM3 12.5H10.5V19.5L3 18.443V12.5ZM11.5 12.5H21V21L11.5 19.644V12.5Z" />
             </svg>
         ),
-        requirement: 'Windows 10 ou superior (64-bit)',
-        downloads: [
-            { label: 'Baixar para Windows', url: DESKTOP_DOWNLOADS.windows.url, primary: true },
-        ],
-        note: 'Instalador · ~74 MB · Gratuito',
-        warning: 'Se o SmartScreen exibir "O Windows protegeu seu PC", clique em "Mais informações" → "Executar assim mesmo".',
+        url: DESKTOP_DOWNLOADS.windows.url,
     },
     {
         id: 'mac',
@@ -33,12 +31,7 @@ const PLATFORMS = [
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
             </svg>
         ),
-        requirement: 'macOS 11 (Big Sur) ou superior',
-        downloads: [
-            { label: 'Baixar para macOS', url: DESKTOP_DOWNLOADS.mac.url, primary: true },
-        ],
-        note: 'Arquivo DMG · ~74 MB · Gratuito',
-        warning: 'Como o app não é assinado pela Apple, na primeira abertura abra o Terminal e execute: xattr -cr /Applications/Petzara.app',
+        url: DESKTOP_DOWNLOADS.mac.url,
     },
     {
         id: 'linux',
@@ -48,35 +41,12 @@ const PLATFORMS = [
                 <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00.11.27c.05.06.12.09.19.09a.53.53 0 00.47-.3c.165-.375.352-.75.56-1.12.45.766 1.012 1.49 1.695 2.19-.2.396-.38.8-.536 1.213-.217.581-.296 1.2-.296 1.818C7 22.52 9.53 24 12 24c2.468 0 5-1.48 5-5.77 0-.618-.079-1.237-.296-1.817-.155-.413-.336-.817-.535-1.212.683-.7 1.244-1.424 1.695-2.19.208.37.395.745.56 1.12a.53.53 0 00.47.3c.07 0 .14-.03.19-.09a.424.424 0 00.11-.27c.123-.806-.009-1.657-.287-2.49-.59-1.77-1.831-3.47-2.716-4.52-.75-1.067-.974-1.928-1.05-3.02-.064-1.49 1.057-5.965-3.17-6.298a6.04 6.04 0 00-.481-.02z" />
             </svg>
         ),
-        requirement: 'Qualquer distribuição moderna (x64)',
-        downloads: [
-            { label: 'Baixar para Linux (AppImage)', url: DESKTOP_DOWNLOADS.linux.url, primary: true },
-        ],
-        note: 'AppImage · ~74 MB · sem instalação',
-        warning: 'Após baixar, marque o arquivo como executável: chmod +x *.AppImage',
+        url: DESKTOP_DOWNLOADS.linux.url,
     },
 ]
 
-const FEATURES = [
-    { icon: Zap,       text: 'Acesso rápido pelo atalho na área de trabalho, sem abrir o navegador' },
-    { icon: Bell,      text: 'Notificações desktop de novos agendamentos e atualizações' },
-    { icon: Shield,    text: 'Seguro — sem dados armazenados localmente, tudo na nuvem' },
-    { icon: RefreshCw, text: 'Atualizações automáticas incluídas, sem precisar reinstalar' },
-]
-
-const STEPS = [
-    { n: '1', title: 'Baixe o instalador', desc: 'Escolha o arquivo para o seu sistema operacional e aguarde o download.' },
-    { n: '2', title: 'Execute o instalador', desc: 'Abra o arquivo baixado e siga as instruções na tela. Leva menos de 1 minuto.' },
-    { n: '3', title: 'Pronto!', desc: 'O Petzara abrirá automaticamente. Faça login com sua conta e comece a usar.' },
-]
-
-const REQUIREMENTS = [
-    ['Windows',              'Windows 10 ou superior (64-bit)'],
-    ['macOS',                'macOS 11 Big Sur ou superior (Intel ou Apple Silicon)'],
-    ['Linux',                'Qualquer distribuição x64 com suporte a AppImage'],
-    ['Conexão com internet', 'Necessária — o sistema roda na nuvem'],
-    ['Conta Petzara',        'Necessária — crie gratuitamente em petzara.app'],
-]
+// Textos em i18n/locales (download.*), na mesma ordem.
+const FEATURE_ICONS = [Zap, Bell, Shield, RefreshCw]
 
 function getDetectedPlatform() {
     if (typeof navigator === 'undefined') return null
@@ -91,23 +61,32 @@ function getDetectedPlatform() {
     return null
 }
 
-const PLATFORM_LABELS = {
-    windows: 'Windows',
-    mac:     'macOS',
-    linux:   'Linux',
-    mobile:  'dispositivo móvel',
-}
-
 export default function DownloadPage() {
     const [detectedPlatform, setDetectedPlatform] = useState(null)
+    const { t, tm } = useI18n()
+    const links = useLinks()
+    usePageHead('download')
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         setDetectedPlatform(getDetectedPlatform())
-        document.title = 'Petzara Desktop | Baixar aplicativo para Windows, macOS e Linux'
-        return () => { document.title = 'Petzara — Gestão completa para pet shops' }
     }, [])
 
+    const PLATFORM_LABELS = { windows: 'Windows', mac: 'macOS', linux: 'Linux', mobile: t('download.mobileLabel') }
     const detectedLabel = PLATFORM_LABELS[detectedPlatform]
+    const platforms = PLATFORMS.map((p) => {
+        const text = tm(`download.platforms.${p.id}`) || {}
+        return {
+            ...p,
+            requirement: text.requirement,
+            downloads: [{ label: text.download, url: p.url, primary: true }],
+            note: text.note,
+            warning: text.warning,
+        }
+    })
+    const FEATURES = (tm('download.features') || []).map((text, i) => ({ icon: FEATURE_ICONS[i], text }))
+    const STEPS = (tm('download.steps') || []).map((s, i) => ({ n: String(i + 1), title: s.title, desc: s.description }))
+    const REQUIREMENTS = tm('download.requirements') || []
 
     return (
         <div className="min-h-screen bg-cream overflow-x-hidden flex flex-col">
@@ -124,19 +103,19 @@ export default function DownloadPage() {
                             className="w-1.5 h-1.5 rounded-full animate-pulse"
                             style={{ backgroundColor: 'var(--color-terracotta)' }}
                         />
-                        Disponível para Windows, macOS e Linux
+                        {t('download.badge')}
                     </div>
                     <h1 className="font-accent text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
-                        Petzara para Desktop
+                        {t('download.title')}
                     </h1>
                     <p className="text-lg leading-relaxed max-w-xl mx-auto" style={{ color: 'rgba(250,250,249,0.65)' }}>
-                        Toda a potência do Petzara em um aplicativo instalável. Acesso mais rápido, notificações nativas e experiência profissional em qualquer sistema.
+                        {t('download.subtitle')}
                     </p>
                     {detectedLabel && (
                         <p className="mt-5 text-sm" style={{ color: 'rgba(250,250,249,0.6)' }}>
                             {detectedPlatform === 'mobile'
-                                ? 'Você parece estar em um dispositivo móvel. Para instalar o app desktop, abra esta página no computador.'
-                                : `Detectamos ${detectedLabel}. O download recomendado está destacado abaixo.`}
+                                ? t('download.detectedMobile')
+                                : t('download.detected', { platform: detectedLabel })}
                         </p>
                     )}
                 </div>
@@ -145,7 +124,7 @@ export default function DownloadPage() {
             {/* ── Platform cards (overlap hero) ── */}
             <section className="px-4 -mt-8 mb-16">
                 <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-                    {PLATFORMS.map((p) => {
+                    {platforms.map((p) => {
                         const isDetected = detectedPlatform === p.id
                         return (
                             <div
@@ -167,7 +146,7 @@ export default function DownloadPage() {
                                         className="absolute right-4 top-4 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white"
                                         style={{ backgroundColor: 'var(--color-terracotta)' }}
                                     >
-                                        Recomendado
+                                        {t('download.recommended')}
                                     </div>
                                 )}
 
@@ -230,7 +209,7 @@ export default function DownloadPage() {
                         rel="noopener noreferrer"
                         className="text-xs text-taupe/40 hover:text-terracotta transition-colors"
                     >
-                        Ver todas as versões e changelogs no GitHub →
+                        {t('download.allReleases')}
                     </a>
                 </div>
             </section>
@@ -239,7 +218,7 @@ export default function DownloadPage() {
             <section className="px-4 pb-16">
                 <div className="max-w-3xl mx-auto">
                     <h2 className="font-accent text-xl font-bold text-espresso text-center mb-8">
-                        Por que usar o aplicativo desktop?
+                        {t('download.whyTitle')}
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {FEATURES.map(({ icon: Icon, text }) => (
@@ -261,7 +240,7 @@ export default function DownloadPage() {
             <section className="bg-cream-warm px-4 py-16">
                 <div className="max-w-3xl mx-auto">
                     <h2 className="font-accent text-xl font-bold text-espresso text-center mb-10">
-                        Como instalar
+                        {t('download.howTitle')}
                     </h2>
                     <div className="flex flex-col sm:flex-row gap-8">
                         {STEPS.map((s) => (
@@ -284,7 +263,7 @@ export default function DownloadPage() {
             <section className="px-4 py-14">
                 <div className="max-w-3xl mx-auto">
                     <h2 className="font-accent text-xl font-bold text-espresso text-center mb-6">
-                        Requisitos
+                        {t('download.requirementsTitle')}
                     </h2>
                     <div className="overflow-hidden rounded-xl border border-sand/60">
                         <table className="w-full text-sm">
@@ -311,10 +290,10 @@ export default function DownloadPage() {
                 style={{ background: DARK_GRADIENT }}
             >
                 <h2 className="font-accent text-2xl font-extrabold text-white mb-2">
-                    Pronto para começar?
+                    {t('download.ctaTitle')}
                 </h2>
                 <p className="text-sm mb-6" style={{ color: 'rgba(250,250,249,0.55)' }}>
-                    Escolha o instalador para o seu sistema e acesse o Petzara direto do seu desktop.
+                    {t('download.ctaText')}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                     <a
@@ -322,7 +301,7 @@ export default function DownloadPage() {
                         className="bg-white font-bold px-6 py-3 rounded-xl hover:bg-cream transition-colors text-sm"
                         style={{ color: 'var(--color-espresso)' }}
                     >
-                        Baixar para Windows
+                        {t('download.ctaWindows')}
                     </a>
                     <a
                         href={RELEASES_URL}
@@ -331,16 +310,16 @@ export default function DownloadPage() {
                         className="text-sm transition-colors hover:text-white"
                         style={{ color: 'rgba(250,250,249,0.55)' }}
                     >
-                        Outras plataformas →
+                        {t('download.ctaOther')}
                     </a>
                     <a
-                        href={appLoginUrl}
+                        href={links.login}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm transition-colors hover:text-white"
                         style={{ color: 'rgba(250,250,249,0.55)' }}
                     >
-                        Acessar versão web →
+                        {t('download.ctaWeb')}
                     </a>
                 </div>
             </section>

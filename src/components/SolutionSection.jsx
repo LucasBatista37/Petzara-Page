@@ -2,48 +2,22 @@ import { motion } from 'framer-motion'
 import { CalendarCheck, Clock, LineChart, Users, PawPrint, BarChart3 } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
+import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
-const features = [
-    {
-        icon: CalendarCheck,
-        title: 'Agenda inteligente',
-        description: 'Controle visual em tempo real de todos os agendamentos com prevenção automática de conflitos. Atualizações sincronizadas entre dispositivos.',
-        color: 'bg-terracotta/10 text-terracotta',
-    },
-    {
-        icon: Clock,
-        title: 'Agendamento 24h',
-        description: 'Página pública com URL do seu petshop. Clientes visualizam os horários disponíveis e são direcionados para o WhatsApp para confirmar o agendamento.',
-        color: 'bg-sage/10 text-sage-dark',
-    },
-    {
-        icon: LineChart,
-        title: 'Financeiro integrado',
-        description: 'Receitas e despesas com gráficos por categoria. Cada agendamento finalizado já cria a transação financeira automaticamente.',
-        color: 'bg-terracotta/10 text-terracotta',
-    },
-    {
-        icon: Users,
-        title: 'Gestão de equipe',
-        description: 'Convide colaboradores com permissões granulares (ler/criar/editar/excluir) por módulo. Cada banhista vê só o que precisa.',
-        color: 'bg-sage/10 text-sage-dark',
-    },
-    {
-        icon: PawPrint,
-        title: 'Histórico do pet',
-        description: 'Raça, porte, observações do tutor e serviços anteriores de cada pet — tudo em um clique, sem depender de memória.',
-        color: 'bg-terracotta/10 text-terracotta',
-    },
-    {
-        icon: BarChart3,
-        title: 'Decisões sem achismo',
-        description: 'Saiba qual serviço mais lucra, qual dia é pico e onde estão os buracos — antes que virem problema.',
-        color: 'bg-sage/10 text-sage-dark',
-    },
+// Textos em i18n/locales (solution.features), na mesma ordem.
+const FEATURE_VISUALS = [
+    { icon: CalendarCheck, color: 'bg-terracotta/10 text-terracotta' },
+    { icon: Clock, color: 'bg-sage/10 text-sage-dark' },
+    { icon: LineChart, color: 'bg-terracotta/10 text-terracotta' },
+    { icon: Users, color: 'bg-sage/10 text-sage-dark' },
+    { icon: PawPrint, color: 'bg-terracotta/10 text-terracotta' },
+    { icon: BarChart3, color: 'bg-sage/10 text-sage-dark' },
 ]
 
 export default function SolutionSection() {
     const { ref, isInView, isMobile } = useResponsiveInView()
+    const { t, tm } = useI18n()
+    const features = (tm('solution.features') || []).map((item, i) => ({ ...FEATURE_VISUALS[i], ...item }))
 
     return (
         <section id="solucao" className="py-20 sm:py-28 relative overflow-hidden">
@@ -63,14 +37,13 @@ export default function SolutionSection() {
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
                     <span className="inline-block bg-white/10 border border-white/15 text-white/70 px-4 py-1.5 rounded-full text-sm font-bold mb-4 backdrop-blur-sm">
-                        A solução
+                        {t('solution.badge')}
                     </span>
                     <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-white">
-                        Conheça o{' '}
-                        <span className="gradient-text">Petzara</span>
+                        <Highlighted parts={tm('solution.title')} />
                     </h2>
                     <p className="text-white/65 text-lg leading-relaxed">
-                        Tudo que você precisa para organizar, crescer e lucrar — em uma única plataforma feita para quem vive de banho e tosa.
+                        {t('solution.subtitle')}
                     </p>
                 </motion.div>
 
@@ -133,7 +106,7 @@ export default function SolutionSection() {
                                     </div>
                                     <img
                                         src="/prints/agendamentos-lista.webp"
-                                        alt="Lista de agendamentos Petzara"
+                                        alt={t('solution.listAlt')}
                                         className="w-full block"
                                         loading="lazy"
                                     />
@@ -169,7 +142,7 @@ export default function SolutionSection() {
                                 <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
                                     <img
                                         src="/prints/mobile/agendamentos.webp"
-                                        alt="Agendamentos mobile Petzara"
+                                        alt={t('solution.mobileAlt')}
                                         className="w-full block"
                                         loading="lazy"
                                     />

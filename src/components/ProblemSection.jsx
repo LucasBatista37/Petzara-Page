@@ -1,48 +1,23 @@
 import { motion } from 'framer-motion'
 import { CalendarX2, DollarSign, Smartphone, Users, Clock, BarChart3, ArrowRight } from 'lucide-react'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
-import { appRegisterUrl } from '../siteConfig'
+import { useLinks } from '../lib/links'
+import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
-const problems = [
-    {
-        icon: CalendarX2,
-        emoji: '⏰',
-        title: 'O horário duplo que estraga o dia',
-        description: 'Dois tutores chegam ao mesmo tempo. Um vai embora irritado. Você ainda vai ouvir sobre isso no Google.',
-    },
-    {
-        icon: DollarSign,
-        emoji: '💸',
-        title: 'Você fecha o caixa no chute',
-        description: 'No fim do mês soma as entradas no celular e reza pra dar lucro. Nunca tem certeza.',
-    },
-    {
-        icon: Smartphone,
-        emoji: '📱',
-        title: 'O WhatsApp virou o sistema',
-        description: 'Agendamentos, confirmações, reclamações e áudios de voz misturados. Qualquer hora você perde um horário importante.',
-    },
-    {
-        icon: Users,
-        emoji: '👥',
-        title: 'Banhista chega sem saber a agenda',
-        description: 'Sua equipe depende de você para saber o que tem no dia. Você responde mensagem antes de tomar café.',
-    },
-    {
-        icon: Clock,
-        emoji: '🕐',
-        title: 'Horas que poderiam ser pets atendidos',
-        description: 'Cada hora atualizando planilha é um banho que não foi feito e um cliente que esperou.',
-    },
-    {
-        icon: BarChart3,
-        emoji: '📊',
-        title: 'Você não sabe o que mais lucra',
-        description: 'Tosa completa ou banho simples? Terça ou sábado? Sem dados é chute, e chute custa dinheiro.',
-    },
+// Textos em i18n/locales (problem.items), na mesma ordem.
+const PROBLEM_VISUALS = [
+    { icon: CalendarX2, emoji: '⏰' },
+    { icon: DollarSign, emoji: '💸' },
+    { icon: Smartphone, emoji: '📱' },
+    { icon: Users, emoji: '👥' },
+    { icon: Clock, emoji: '🕐' },
+    { icon: BarChart3, emoji: '📊' },
 ]
 
 export default function ProblemSection() {
+    const { t, tm } = useI18n()
+    const links = useLinks()
+    const problems = (tm('problem.items') || []).map((item, i) => ({ ...PROBLEM_VISUALS[i], ...item }))
     // ref apenas para o cabeçalho
     const { ref, isInView } = useResponsiveInView()
 
@@ -59,14 +34,13 @@ export default function ProblemSection() {
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
                     <span className="inline-block bg-terracotta/10 text-terracotta px-4 py-1.5 rounded-full text-sm font-bold mb-4">
-                        Reconhece essa rotina?
+                        {t('problem.badge')}
                     </span>
                     <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
-                        A desorganização está{' '}
-                        <span className="text-terracotta">custando clientes</span>
+                        <Highlighted parts={tm('problem.title')} className="text-terracotta" />
                     </h2>
                     <p className="text-taupe text-lg leading-relaxed">
-                        Muito petshop perde dinheiro por falta de organização — não por falta de clientes.
+                        {t('problem.subtitle')}
                     </p>
                 </motion.div>
 
@@ -108,7 +82,7 @@ export default function ProblemSection() {
                         <span className="text-2xl mt-0.5 shrink-0" aria-hidden="true">💬</span>
                         <div>
                             <p className="text-espresso/80 text-base leading-relaxed font-medium italic">
-                                "Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro."
+                                {t('problem.quote')}
                             </p>
                         </div>
                     </div>
@@ -123,12 +97,12 @@ export default function ProblemSection() {
                     className="mt-8 text-center"
                 >
                     <a
-                        href={appRegisterUrl}
+                        href={links.register}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-terracotta font-bold text-sm hover:gap-3 transition-all duration-200 group"
                     >
-                        Resolver isso — testar 30 dias grátis
+                        {t('problem.cta')}
                         <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
                     </a>
                 </motion.div>

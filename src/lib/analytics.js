@@ -13,6 +13,12 @@
  * - Pixel: Lead (cadastro e Play), Contact (WhatsApp) + PageView
  * Os cliques são capturados por um único listener no documento, pelo destino do link,
  * então qualquer link novo para cadastro/WhatsApp/Play já é medido.
+ *
+ * Idioma do site: todo evento (page_view automático, cliques, view_pricing) leva o parâmetro
+ * `site_language` = pt-BR | es | en (idioma da página, nada pessoal). Não usamos o nome
+ * `language`: no GA4 ele é um campo reservado que substituiria a dimensão "Idioma" (idioma do
+ * navegador), que continua útil. Para relatórios: GA4 → Admin → Definições personalizadas →
+ * dimensão de evento "site_language".
  */
 
 // IDs públicos (aparecem no HTML de qualquer site que os usa). A variável da Vercel, se existir, tem prioridade.
@@ -28,6 +34,12 @@ export const CONSENT_EVENT = 'pz:consent-change'
 export const analyticsConfigured = Boolean(GA4_ID || PIXEL_ID)
 
 let loaded = false
+let siteLanguage = 'pt-BR'
+
+/** Idioma da página atual (definido pelo main.jsx e pelo App a cada troca de rota). */
+export function setSiteLanguage(locale) {
+    if (locale) siteLanguage = locale
+}
 
 function safeGet(key) {
     try { return window.localStorage.getItem(key) } catch { return null }
@@ -70,7 +82,7 @@ function loadGA4() {
     window.gtag('js', new Date())
     // page_view inicial automático; mudanças de rota do SPA são medidas pela
     // "medição otimizada" do GA4 (eventos de histórico do navegador), ligada por padrão.
-    window.gtag('config', GA4_ID)
+    window.gtag('config', GA4_ID, { site_language: siteLanguage })
     injectScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`)
 }
 
@@ -109,16 +121,17 @@ const PIXEL_EVENT = {
 export function track(name, params = {}) {
     if (!loaded) return
     try {
-        if (GA4_ID && window.gtag) window.gtag('event', name, params)
+        const withLanguage = { site_language: siteLanguage, ...params }
+        if (GA4_ID && window.gtag) window.gtag('event', name, withLanguage)
         const px = PIXEL_EVENT[name]
-        if (PIXEL_ID && window.fbq && px) window.fbq('track', px, { content_name: name, ...params })
+        if (PIXEL_ID && window.fbq && px) window.fbq('track', px, { content_name: name, ...withLanguage })
     } catch { /* medição nunca pode quebrar o site */ }
 }
 
 /** PageView do Pixel em navegação interna (blog, download…). */
 export function trackPageView() {
     if (!loaded) return
-    try { if (PIXEL_ID && window.fbq) window.fbq('track', 'PageView') } catch { /* noop */ }
+    try { if (PIXEL_ID && window.fbq) window.fbq('track', 'PageView', { site_language: siteLanguage }) } catch { /* noop */ }
 }
 
 /** Classifica um link pelo destino. */
