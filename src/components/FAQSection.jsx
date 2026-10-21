@@ -8,13 +8,12 @@ import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 // Perguntas e respostas em i18n/locales (faq.items). O JSON-LD FAQPage é gerado no <head>
 // por i18n/seo.js com os mesmos textos (um por idioma).
 
-function FAQItem({ faq, index, isOpen, onToggle }) {
+function FAQItem({ faq, index, isOpen, onToggle, revealed }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '0px 0px 120px 0px' }}
-            transition={{ duration: 0.4, delay: Math.min(index, 6) * 0.05 }}
+            animate={revealed ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
             className={`rounded-2xl overflow-hidden bg-white transition-all duration-300 ${isOpen ? 'border border-terracotta/30 shadow-sm shadow-terracotta/5' : 'border border-sand/60'}`}
         >
             <button
@@ -108,6 +107,7 @@ export default function FAQSection() {
                             index={index}
                             isOpen={openIndex === index}
                             onToggle={() => toggle(index)}
+                            revealed={isInView}
                         />
                     ))}
                 </div>
