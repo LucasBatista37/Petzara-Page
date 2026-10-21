@@ -32,3 +32,6 @@ coverage/
 # Miscellaneous
 .cache/
 .parcel-cache/
+
+# Pré-render (build SSR temporário)
+/dist-ssr/
