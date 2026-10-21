@@ -2,6 +2,8 @@ import { lazy, Suspense, useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
 import { SHOW_CASE } from '../siteConfig'
+import { useI18n } from '../i18n/I18nProvider.jsx'
+import { usePageHead } from '../i18n/usePageHead'
 
 // Below-fold sections — loaded on demand as the user scrolls
 const ProblemSection      = lazy(() => import('../components/ProblemSection'))
@@ -23,12 +25,12 @@ const Footer              = lazy(() => import('../components/Footer'))
 // Desligados no celular (< 640px): blur de 180px em elementos de 600px+ custa
 // GPU/bateria e quase não aparece em tela pequena (L8).
 function AuroraBackground() {
-    const [isDesktop, setIsDesktop] = useState(
-        typeof window !== 'undefined' && window.innerWidth >= 640
-    )
+    // false no pré-render e na hidratação (HTML igual para todos); liga logo depois no desktop.
+    const [isDesktop, setIsDesktop] = useState(false)
 
     useEffect(() => {
         const mq = window.matchMedia('(min-width: 640px)')
+        setIsDesktop(mq.matches)
         const handler = (e) => setIsDesktop(e.matches)
         mq.addEventListener('change', handler)
         return () => mq.removeEventListener('change', handler)
@@ -84,6 +86,10 @@ const previewCase = import.meta.env.DEV && typeof window !== 'undefined'
     && new URLSearchParams(window.location.search).has('previewCase')
 
 export default function HomePage() {
+    const { locale } = useI18n()
+    usePageHead('home')
+    // Prova social: dados reais só do Brasil por enquanto (CASE_STUDY em pt) → só na página pt-BR.
+    const showCase = (SHOW_CASE || previewCase) && locale === 'pt-BR'
     return (
         <div className="relative min-h-screen bg-cream">
             <AuroraBackground />
@@ -96,7 +102,7 @@ export default function HomePage() {
                 <Suspense fallback={<SectionFallback />}><MultiDeviceSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><DemoSection /></Suspense>
                 {/* Prova social (L9): desligada até o Lucas preencher CASE_STUDY com dados reais */}
-                {(SHOW_CASE || previewCase) && (
+                {showCase && (
                     <Suspense fallback={<SectionFallback />}><CaseSection preview={previewCase} /></Suspense>
                 )}
                 <Suspense fallback={<SectionFallback />}><PricingSection /></Suspense>

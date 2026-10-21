@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom'
-import { appLoginUrl, appRegisterUrl, SUPPORT_EMAIL, instagramUrl, whatsappSupportUrl } from '../siteConfig'
+import { SUPPORT_EMAIL, instagramUrl } from '../siteConfig'
 import { analyticsConfigured, resetConsent } from '../lib/analytics'
+import { useLinks } from '../lib/links'
+import { useI18n } from '../i18n/I18nProvider.jsx'
+import { pathFor } from '../i18n/config.js'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Footer() {
+    const { t, path, locale } = useI18n()
+    const links = useLinks()
+    // O blog é só em português: não aparece no rodapé de es/en.
+    const blogPath = pathFor('blog', locale)
     return (
         <footer className="bg-espresso text-white/60 py-12 relative overflow-hidden">
             <div className="absolute inset-0 pointer-events-none">
@@ -15,7 +23,7 @@ export default function Footer() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
                     {/* Brand */}
                     <div className="lg:col-span-1">
-                        <Link to="/" className="flex items-center gap-2.5 mb-4">
+                        <Link to={path('home')} className="flex items-center gap-2.5 mb-4" aria-label={t('nav.homeAria')}>
                             <svg width="32" height="32" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M256 260C200 260 140 290 140 360C140 430 190 460 256 460C322 460 372 430 372 360C372 290 312 260 256 260Z" style={{ fill: 'var(--color-terracotta)', transition: 'fill 0.5s ease' }} />
                                 <circle cx="160" cy="220" r="45" style={{ fill: 'var(--color-sage)', transition: 'fill 0.5s ease' }} />
@@ -27,43 +35,43 @@ export default function Footer() {
                             </span>
                         </Link>
                         <p className="text-sm leading-relaxed max-w-xs">
-                            O sistema de gestão completo para petshops focados em banho e tosa.
+                            {t('footer.tagline')}
                         </p>
                     </div>
 
                     {/* Produto */}
                     <div>
-                        <h4 className="font-accent font-bold text-white text-sm mb-4">Produto</h4>
+                        <h4 className="font-accent font-bold text-white text-sm mb-4">{t('footer.product')}</h4>
                         <ul className="space-y-2.5 text-sm">
-                            <li><Link to="/blog" className="hover:text-terracotta transition-colors">Blog</Link></li>
-                            <li><Link to="/download" className="hover:text-terracotta transition-colors">Petzara Desktop</Link></li>
-                            <li><a href="#solucao" className="hover:text-terracotta transition-colors">Funcionalidades</a></li>
-                            <li><a href="#beneficios" className="hover:text-terracotta transition-colors">Benefícios</a></li>
-                            <li><a href="#demo" className="hover:text-terracotta transition-colors">Demonstração</a></li>
-                            <li><a href="#como-funciona" className="hover:text-terracotta transition-colors">Como Funciona</a></li>
+                            {blogPath && <li><Link to={blogPath} className="hover:text-terracotta transition-colors">{t('footer.blog')}</Link></li>}
+                            <li><Link to={path('download')} className="hover:text-terracotta transition-colors">{t('footer.desktop')}</Link></li>
+                            <li><a href="#solucao" className="hover:text-terracotta transition-colors">{t('footer.features')}</a></li>
+                            <li><a href="#beneficios" className="hover:text-terracotta transition-colors">{t('footer.benefits')}</a></li>
+                            <li><a href="#demo" className="hover:text-terracotta transition-colors">{t('footer.demo')}</a></li>
+                            <li><a href="#como-funciona" className="hover:text-terracotta transition-colors">{t('footer.howItWorks')}</a></li>
                         </ul>
                     </div>
 
                     {/* Suporte */}
                     <div>
-                        <h4 className="font-accent font-bold text-white text-sm mb-4">Suporte</h4>
+                        <h4 className="font-accent font-bold text-white text-sm mb-4">{t('footer.support')}</h4>
                         <ul className="space-y-2.5 text-sm">
-                            <li><a href={appLoginUrl} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors">Entrar</a></li>
-                            <li><a href={appRegisterUrl} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors">Criar Conta</a></li>
-                            <li><a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-terracotta transition-colors">Contato</a></li>
+                            <li><a href={links.login} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors">{t('footer.login')}</a></li>
+                            <li><a href={links.register} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors">{t('footer.register')}</a></li>
+                            <li><a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-terracotta transition-colors">{t('footer.contact')}</a></li>
                         </ul>
                     </div>
 
                     {/* Legal */}
                     <div>
-                        <h4 className="font-accent font-bold text-white text-sm mb-4">Legal</h4>
+                        <h4 className="font-accent font-bold text-white text-sm mb-4">{t('footer.legal')}</h4>
                         <ul className="space-y-2.5 text-sm">
-                            <li><Link to="/termos-de-uso" className="hover:text-terracotta transition-colors">Termos de Uso</Link></li>
-                            <li><Link to="/politica-de-privacidade" className="hover:text-terracotta transition-colors">Política de Privacidade</Link></li>
+                            <li><Link to={path('terms')} className="hover:text-terracotta transition-colors">{t('footer.terms')}</Link></li>
+                            <li><Link to={path('privacy')} className="hover:text-terracotta transition-colors">{t('footer.privacy')}</Link></li>
                             {analyticsConfigured && (
                                 <li>
                                     <button type="button" onClick={resetConsent} className="hover:text-terracotta transition-colors text-left">
-                                        Preferências de cookies
+                                        {t('footer.cookies')}
                                     </button>
                                 </li>
                             )}
@@ -73,9 +81,12 @@ export default function Footer() {
 
                 {/* Divider + Copyright */}
                 <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-xs">
-                        © {new Date().getFullYear()} Petzara. Todos os direitos reservados.
-                    </p>
+                    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
+                        <p className="text-xs">
+                            {t('footer.rights', { year: new Date().getFullYear() })}
+                        </p>
+                        <LanguageSwitcher tone="light" className="text-xs" />
+                    </div>
                     <div className="flex items-center gap-4">
                         <a
                             href={instagramUrl}
@@ -89,7 +100,7 @@ export default function Footer() {
                             </svg>
                         </a>
                         <a
-                            href={whatsappSupportUrl}
+                            href={links.whatsappSupport}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center hover:bg-sage/20 hover:text-sage transition-all"

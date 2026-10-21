@@ -1,23 +1,20 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Download, Sparkles } from 'lucide-react'
-import { appRegisterUrl, playStoreUrl } from '../siteConfig'
 import { ease } from '../animations/variants'
 import OptimizedImage from './OptimizedImage'
-
-const trustItems = [
-    { text: 'Sem cartão de crédito' },
-    { text: 'Ajuda grátis para configurar' },
-    { text: 'Cancele quando quiser' },
-]
+import { useLinks } from '../lib/links'
+import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
+import { useHydrated } from '../lib/useHydrated'
 
 /** Android → o CTA principal leva à Play; nos demais, ao cadastro web (L3). */
-const isAndroid = typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent || '')
+const detectAndroid = () => typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent || '')
 
 // ─── Dual Device Mockup ────────────────────────────────────────────────────────
 // MacBook ao fundo + iPhone sobreposto com leve rotação.
 // Responsivo: aparece centralizado abaixo do copy no mobile,
 // lado a lado com o copy no desktop (lg+).
 function DualDeviceMockup({ mockupY, isDesktop }) {
+    const { t } = useI18n()
     return (
         <motion.div
             initial={{ opacity: 0, x: 40 }}
@@ -48,7 +45,7 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                         </div>
                         <OptimizedImage
                             src="/prints/dashboard.png"
-                            alt="Dashboard Petzara"
+                            alt={t('hero.dashboardAlt')}
                             className="w-full block"
                             loading="eager"
                         />
@@ -91,7 +88,7 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                     <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
                         <OptimizedImage
                             src="/prints/mobile/dashboard.png"
-                            alt="Petzara Mobile"
+                            alt={t('hero.mobileAlt')}
                             className="w-full block"
                             loading="eager"
                         />
@@ -124,8 +121,8 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                         </svg>
                     </div>
                     <div>
-                        <div className="text-[9px] sm:text-[10px] font-bold text-espresso">Novo agendamento!</div>
-                        <div className="text-[8px] sm:text-[9px] text-taupe">Luna — Banho às 10:30</div>
+                        <div className="text-[9px] sm:text-[10px] font-bold text-espresso">{t('hero.notificationTitle')}</div>
+                        <div className="text-[8px] sm:text-[9px] text-taupe">{t('hero.notificationText')}</div>
                     </div>
                 </motion.div>
             </motion.div>
@@ -136,7 +133,13 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 export default function HeroSection() {
-    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024
+    const { t, tm, meta } = useI18n()
+    const links = useLinks()
+    // HTML pré-renderizado = versão "desktop, não Android"; o navegador ajusta logo após hidratar.
+    const hydrated = useHydrated()
+    const isAndroid = hydrated && detectAndroid()
+    const isDesktop = hydrated && window.innerWidth >= 1024
+    const trustItems = (tm('hero.trust') || []).map((text) => ({ text }))
     const { scrollY } = useScroll()
     const mockupY   = useTransform(scrollY, [0, 600], isDesktop ? [0, -50] : [0, 0])
     const pawBigY   = useTransform(scrollY, [0, 600], isDesktop ? [0, -25] : [0, 0])
@@ -182,20 +185,17 @@ export default function HeroSection() {
                         {/* Selo */}
                         <div className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-terracotta/20">
                             <Sparkles size={15} aria-hidden="true" />
-                            30 dias grátis · sem cartão
+                            {t('hero.badge')}
                         </div>
 
                         {/* Headline — resultado + palavra-chave */}
                         <h1 className="font-accent text-[2.1rem] sm:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.1] mb-6 text-espresso">
-                            Agenda de banho e tosa{' '}
-                            <span className="gradient-text">sem horário duplicado</span>
-                            {' '}— e sem caderno
+                            <Highlighted parts={tm('hero.title')} />
                         </h1>
 
                         {/* Subheading */}
                         <p className="text-taupe text-lg sm:text-xl leading-relaxed mb-8 max-w-xl">
-                            Agenda, clientes, pets e caixa do seu pet shop em um só lugar, no celular e no computador.
-                            Seus clientes veem os horários livres no seu link de agendamento e chamam você no WhatsApp.
+                            {t('hero.subtitle')}
                         </p>
 
                         {/* CTAs — o principal depende do aparelho */}
@@ -203,7 +203,7 @@ export default function HeroSection() {
                             {isAndroid ? (
                                 <>
                                     <motion.a
-                                        href={playStoreUrl}
+                                        href={links.play}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         data-track="hero_principal"
@@ -212,22 +212,22 @@ export default function HeroSection() {
                                         className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20"
                                     >
                                         <Download size={18} aria-hidden="true" />
-                                        Baixar grátis na Play Store
+                                        {t('hero.playCta')}
                                     </motion.a>
                                     <a
-                                        href={appRegisterUrl}
+                                        href={links.register}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         data-track="hero_secundario"
                                         className="inline-flex items-center justify-center gap-2 bg-white border-2 border-sand hover:border-terracotta/40 text-espresso font-bold text-base px-8 py-4 rounded-2xl transition-all"
                                     >
-                                        Começar teste grátis no navegador
+                                        {t('hero.webCtaAndroid')}
                                     </a>
                                 </>
                             ) : (
                                 <>
                                     <motion.a
-                                        href={appRegisterUrl}
+                                        href={links.register}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         data-track="hero_principal"
@@ -235,20 +235,20 @@ export default function HeroSection() {
                                         whileTap={{ scale: 0.98 }}
                                         className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20"
                                     >
-                                        Começar teste grátis
+                                        {t('hero.webCta')}
                                         <ArrowRight size={18} aria-hidden="true" />
                                     </motion.a>
                                     <a
-                                        href={playStoreUrl}
+                                        href={links.play}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         data-track="hero_secundario"
-                                        aria-label="Baixar grátis na Play Store"
+                                        aria-label={t('hero.playCta')}
                                         className="inline-flex justify-center sm:justify-start transition-transform hover:-translate-y-0.5 active:translate-y-0"
                                     >
                                         <img
-                                            src="https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png"
-                                            alt="Disponível no Google Play"
+                                            src={meta.playBadge}
+                                            alt={t('hero.playBadgeAlt')}
                                             width={155}
                                             height={60}
                                             className="h-[60px] w-auto"
@@ -261,7 +261,7 @@ export default function HeroSection() {
 
                         {/* Bônus de uso */}
                         <p className="mt-5 text-sm text-espresso/70 font-medium">
-                            <span className="text-sage-dark font-bold">+14 dias grátis</span> se você criar agendamentos em 3 dias diferentes durante o teste.
+                            <span className="text-sage-dark font-bold">{t('hero.bonusStrong')}</span> {t('hero.bonusText')}
                         </p>
 
                         {/* Trust signals */}

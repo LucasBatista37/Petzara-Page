@@ -1,23 +1,42 @@
 import { motion } from 'framer-motion'
 import { Check, Sparkles, ArrowRight, Gift } from 'lucide-react'
-import { stripeMonthlyUrl, stripeAnnualUrl } from '../siteConfig'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
 import { useEffect } from 'react'
 import { track } from '../lib/analytics'
+import { useLinks } from '../lib/links'
+import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
+import { pricingFor, moneyParts, formatMoney, annualDerived } from '../config/pricingByLocale'
 
-const sharedFeatures = [
-    'Agendamentos ilimitados',
-    'Cadastro completo de pets e clientes',
-    'Dashboard financeiro com receitas e despesas',
-    'Gestão de equipe e colaboradores',
-    'Agenda pública: seu link de agendamento 24h',
-    'Suporte por email e WhatsApp',
-    'Atualizações automáticas',
-    'Dados seguros na nuvem',
-]
+/** Preço grande do card: "R$ 49,90 /mês" — ou, sem preço definido para o idioma, "Prueba gratis". */
+function PriceTag({ amount, per, className = 'mb-8' }) {
+    const { t, locale, meta } = useI18n()
+    const { currency } = pricingFor(locale)
+    if (amount == null || !currency) {
+        return (
+            <div className={className}>
+                <span className="font-accent text-4xl sm:text-5xl font-extrabold text-white block leading-tight">{t('pricing.noPriceTrial')}</span>
+                <span className="text-white/65 text-sm">{t('pricing.noPrice')}</span>
+            </div>
+        )
+    }
+    const { symbol, number } = moneyParts(amount, currency, meta.intl)
+    return (
+        <div className={`${className} flex items-baseline gap-1`}>
+            <span className="text-white/65 font-bold">{symbol}</span>
+            <span className="font-accent text-5xl font-extrabold text-white">{number}</span>
+            <span className="text-white/65">{per}</span>
+        </div>
+    )
+}
 
 export default function PricingSection() {
     const { ref, isInView } = useResponsiveInView()
+    const { t, tm, locale, meta } = useI18n()
+    const links = useLinks()
+    const pricing = pricingFor(locale)
+    const derived = pricing.currency ? annualDerived(pricing) : null
+    const sharedFeatures = tm('pricing.features') || []
+    const footnote2 = t('pricing.footnote2')
 
     // GA4: a seção de preços apareceu na tela (uma vez por visita à página)
     useEffect(() => {
@@ -41,17 +60,17 @@ export default function PricingSection() {
                     className="text-center max-w-2xl mx-auto mb-12"
                 >
                     <span className="inline-block bg-white/10 border border-white/15 text-white/70 px-4 py-1.5 rounded-full text-sm font-bold mb-4 backdrop-blur-sm">
-                        Preços
+                        {t('pricing.badge')}
                     </span>
                     <h2 className="font-accent text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-white">
-                        Simples e <span className="gradient-text">justo</span>
+                        <Highlighted parts={tm('pricing.title')} />
                     </h2>
                     <p className="text-white/60 text-lg leading-relaxed mb-5">
-                        Comece grátis. Escolha o plano quando estiver pronto.
+                        {t('pricing.subtitle')}
                     </p>
                     <div className="inline-flex items-center gap-2 bg-terracotta/20 border border-terracotta/35 text-terracotta px-4 py-2 rounded-full text-sm font-bold">
-                        <Gift size={14} aria-hidden="true" />
-                        +14 dias grátis se você criar agendamentos em 3 dias diferentes durante o teste
+                        <Gift size={14} aria-hidden="true" className="shrink-0" />
+                        {t('pricing.bonus')}
                     </div>
                 </motion.div>
 
@@ -65,15 +84,11 @@ export default function PricingSection() {
                         className="relative rounded-2xl p-8 backdrop-blur-sm border border-white/12 bg-white/8 shadow-md shadow-black/20 transition-all hover:-translate-y-1"
                     >
                         <div className="mb-6">
-                            <h3 className="font-accent font-bold text-2xl text-white mb-1">Mensal</h3>
-                            <p className="text-white/65 text-sm">Flexibilidade para pagar mês a mês</p>
+                            <h3 className="font-accent font-bold text-2xl text-white mb-1">{t('pricing.monthly.name')}</h3>
+                            <p className="text-white/65 text-sm">{t('pricing.monthly.description')}</p>
                         </div>
 
-                        <div className="mb-8 flex items-baseline gap-1">
-                            <span className="text-white/65 font-bold">R$</span>
-                            <span className="font-accent text-5xl font-extrabold text-white">49,90</span>
-                            <span className="text-white/65">/mês</span>
-                        </div>
+                        <PriceTag amount={pricing.monthly} per={t('pricing.monthly.per')} />
 
                         <ul className="space-y-3 mb-8">
                             {sharedFeatures.map((f) => (
@@ -87,17 +102,17 @@ export default function PricingSection() {
                         </ul>
 
                         <a
-                            href={stripeMonthlyUrl}
+                            href={links.registerMonthly}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-bold text-sm transition-all bg-white/15 hover:bg-white/25 text-white border border-white/20"
                         >
-                            Testar grátis por 30 dias
+                            {t('pricing.cta')}
                             <ArrowRight size={16} />
                         </a>
 
                         <p className="mt-4 text-center text-white/40 text-xs">
-                            30 dias grátis · Sem cartão · Cancele quando quiser
+                            {t('pricing.fineprint')}
                         </p>
                     </motion.div>
 
@@ -110,20 +125,22 @@ export default function PricingSection() {
                         className="relative rounded-2xl p-8 backdrop-blur-sm border-2 border-terracotta/70 bg-white/12 shadow-xl shadow-terracotta/20 transition-all hover:-translate-y-1"
                     >
                         <div className="mb-6">
-                            <h3 className="font-accent font-bold text-2xl text-white mb-1">Anual</h3>
-                            <p className="text-white/65 text-sm">Equivale a R$ 41,58/mês</p>
+                            <h3 className="font-accent font-bold text-2xl text-white mb-1">{t('pricing.annual.name')}</h3>
+                            <p className="text-white/65 text-sm">
+                                {derived
+                                    ? t('pricing.annual.description', { amount: formatMoney(derived.perMonth, pricing.currency, meta.intl) })
+                                    : t('pricing.annual.descriptionNoPrice')}
+                            </p>
                         </div>
 
-                        <div className="mb-2 flex items-baseline gap-1">
-                            <span className="text-white/65 font-bold">R$</span>
-                            <span className="font-accent text-5xl font-extrabold text-white">499,00</span>
-                            <span className="text-white/65">/ano</span>
-                        </div>
+                        <PriceTag amount={pricing.annual} per={t('pricing.annual.per')} className={derived?.savings > 0 ? 'mb-2' : 'mb-8'} />
 
-                        <div className="mb-8 inline-flex items-center gap-1 bg-sage/20 text-sage text-xs font-bold px-3 py-1 rounded-full">
-                            <Sparkles size={11} />
-                            Economize R$ 99,80 — 2 meses grátis
-                        </div>
+                        {derived?.savings > 0 && (
+                            <div className="mb-8 inline-flex items-center gap-1 bg-sage/20 text-sage text-xs font-bold px-3 py-1 rounded-full">
+                                <Sparkles size={11} />
+                                {t('pricing.annual.savings', { amount: formatMoney(derived.savings, pricing.currency, meta.intl), months: derived.monthsFree })}
+                            </div>
+                        )}
 
                         <ul className="space-y-3 mb-8">
                             {sharedFeatures.map((f) => (
@@ -137,17 +154,17 @@ export default function PricingSection() {
                         </ul>
 
                         <a
-                            href={stripeAnnualUrl}
+                            href={links.registerAnnual}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-bold text-sm transition-all bg-terracotta hover:bg-terracotta-dark text-white shadow-lg shadow-terracotta/30 hover:-translate-y-0.5"
                         >
-                            Testar grátis por 30 dias
+                            {t('pricing.cta')}
                             <ArrowRight size={16} />
                         </a>
 
                         <p className="mt-4 text-center text-white/40 text-xs">
-                            30 dias grátis · Sem cartão · Cancele quando quiser
+                            {t('pricing.fineprint')}
                         </p>
                     </motion.div>
                 </div>
@@ -159,9 +176,13 @@ export default function PricingSection() {
                     transition={{ duration: 0.6, ease }}
                     className="text-center text-white/40 text-sm mt-10"
                 >
-                    Preços da assinatura pelo site, com pagamento seguro via Stripe. Mesmas funcionalidades nos dois planos.
-                    <br className="hidden sm:block" />
-                    {' '}No app Android, a assinatura é feita pela Google Play e o preço aparece no próprio app.
+                    {t('pricing.footnote')}
+                    {footnote2 ? (
+                        <>
+                            <br className="hidden sm:block" />
+                            {' '}{footnote2}
+                        </>
+                    ) : null}
                 </motion.p>
             </div>
         </section>

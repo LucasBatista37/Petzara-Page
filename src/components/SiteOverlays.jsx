@@ -9,6 +9,7 @@ import {
     initAnalytics,
     trackPageView,
 } from '../lib/analytics'
+import { useHydrated } from '../lib/useHydrated'
 
 /**
  * Elementos fixos do site: faixa de cookies (L1) e botão flutuante do WhatsApp (L5). Não aparecem nas páginas abertas
@@ -16,6 +17,9 @@ import {
  */
 export default function SiteOverlays() {
     const location = useLocation()
+    // Só no navegador, depois da hidratação: o HTML pré-renderizado não tem faixa nem botão
+    // (consentimento e ?origem=app só existem no navegador).
+    const hydrated = useHydrated()
     const fromApp = new URLSearchParams(location.search).get('origem') === 'app'
     const [consent, setConsentState] = useState(() => getConsent())
     const [bannerHeight, setBannerHeight] = useState(0)
@@ -36,7 +40,7 @@ export default function SiteOverlays() {
         trackPageView()
     }, [location.pathname])
 
-    if (fromApp) return null
+    if (!hydrated || fromApp) return null
 
     const showBanner = analyticsConfigured && consent === null
 

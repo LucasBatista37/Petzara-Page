@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Cookie } from 'lucide-react'
 import { setConsent } from '../lib/analytics'
+import { useI18n } from '../i18n/I18nProvider.jsx'
 
 /**
  * Faixa LGPD (L1). Só é montada quando há GA4/Pixel configurado e a pessoa ainda
@@ -10,6 +11,7 @@ import { setConsent } from '../lib/analytics'
  */
 export default function ConsentBanner({ onHeight }) {
     const ref = useRef(null)
+    const { t, path } = useI18n()
 
     useEffect(() => {
         const el = ref.current
@@ -26,7 +28,7 @@ export default function ConsentBanner({ onHeight }) {
             ref={ref}
             data-consent-banner
             role="region"
-            aria-label="Aviso de cookies"
+            aria-label={t('consent.aria')}
             className="fixed z-[60] bottom-3 left-3 right-3 sm:right-auto sm:bottom-5 sm:left-5 sm:max-w-md bg-white border border-sand shadow-xl shadow-espresso/10 rounded-2xl p-4 sm:p-5"
         >
             <div className="flex items-start gap-3">
@@ -34,9 +36,9 @@ export default function ConsentBanner({ onHeight }) {
                     <Cookie size={18} />
                 </span>
                 <p className="text-sm text-espresso/80 leading-relaxed">
-                    Usamos cookies para medir o uso do site.{' '}
-                    <Link to="/politica-de-privacidade" className="underline underline-offset-2 text-taupe hover:text-terracotta">
-                        Saiba mais
+                    {t('consent.text')}{' '}
+                    <Link to={path('privacy')} className="underline underline-offset-2 text-taupe hover:text-terracotta">
+                        {t('consent.more')}
                     </Link>
                 </p>
             </div>
@@ -46,14 +48,14 @@ export default function ConsentBanner({ onHeight }) {
                     onClick={() => setConsent('declined')}
                     className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl border-2 border-sand text-espresso font-bold text-sm hover:border-terracotta/40 transition-colors"
                 >
-                    Recusar
+                    {t('consent.decline')}
                 </button>
                 <button
                     type="button"
                     onClick={() => setConsent('accepted')}
                     className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm transition-colors"
                 >
-                    Aceitar
+                    {t('consent.accept')}
                 </button>
             </div>
         </div>
