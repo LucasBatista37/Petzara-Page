@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Clock, ArrowLeft } from 'lucide-react'
 import { blogPosts, categoryColors } from '../data/blogPosts'
 import { fadeUp, staggerContainer, cardVariant, getCardViewport } from '../animations/variants'
-import { appRegisterUrl } from '../siteConfig'
+import { useLinks } from '../lib/links'
+import { usePageHead } from '../i18n/usePageHead'
 
 function BlogCard({ post }) {
     const colors = categoryColors[post.category] ?? categoryColors['Organização']
@@ -68,18 +69,11 @@ export default function BlogPage() {
         ? blogPosts
         : blogPosts.filter(p => p.category === activeCategory)
 
+    const links = useLinks()
+    usePageHead('blog')
+
     useEffect(() => {
         window.scrollTo(0, 0)
-        document.title = 'Blog — Petzara'
-        const desc = document.querySelector('meta[name="description"]')
-        const prev = desc?.getAttribute('content') ?? ''
-        if (desc) {
-            desc.setAttribute('content', 'Guias práticos para donos de petshop: agendamento, finanças, gestão de equipe e atendimento ao cliente.')
-        }
-        return () => {
-            document.title = 'Petzara — Sistema de Gestão para Petshops | Agendamento Online'
-            if (desc) desc.setAttribute('content', prev)
-        }
     }, [])
 
     return (
@@ -175,7 +169,7 @@ export default function BlogPage() {
                                 Pronto para colocar em prática? Conheça o Petzara.
                             </p>
                             <a
-                                href={appRegisterUrl}
+                                href={links.register}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm px-6 py-3 rounded-xl transition-all shadow-md shadow-terracotta/20"

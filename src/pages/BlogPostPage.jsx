@@ -6,7 +6,8 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, Clock, ArrowRight, List } from 'lucide-react'
 import { blogPosts, categoryColors } from '../data/blogPosts'
 import { fadeUp, cardVariant, staggerContainer, getCardViewport } from '../animations/variants'
-import { appRegisterUrl } from '../siteConfig'
+import { useLinks } from '../lib/links'
+import { usePageHead } from '../i18n/usePageHead'
 
 const DIACRITICS_RE = new RegExp('[̀-ͯ]', 'g')
 
@@ -80,8 +81,10 @@ const mdComponents = {
         <blockquote className="border-l-4 border-terracotta/40 bg-terracotta/5 rounded-r-xl pl-4 pr-4 py-3 my-6 text-espresso not-italic">{children}</blockquote>
     ),
     a: MarkdownLink,
+    // Imagem do Markdown fica dentro de um <p>: <figure> ali é HTML inválido (o navegador fecha o
+    // <p> antes) e quebra a hidratação do HTML pré-renderizado. Mesmo visual com <span> em bloco.
     img: ({ src, alt }) => (
-        <figure className="my-8">
+        <span className="block my-8">
             <img
                 src={src}
                 alt={alt || ''}
@@ -89,9 +92,9 @@ const mdComponents = {
                 className="w-full rounded-2xl border border-sand/60"
             />
             {alt && (
-                <figcaption className="text-center text-xs text-taupe/80 mt-2 italic">{alt}</figcaption>
+                <span className="block text-center text-xs text-taupe/80 mt-2 italic">{alt}</span>
             )}
-        </figure>
+        </span>
     ),
 }
 
@@ -114,28 +117,13 @@ export default function BlogPostPage() {
     }, [post])
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
+    const links = useLinks()
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    usePageHead('blogPost', { post })
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         window.scrollTo(0, 0)
-        document.title = `${post.title} — Petzara`
-
-        const desc = document.querySelector('meta[name="description"]')
-        const ogTitle = document.querySelector('meta[property="og:title"]')
-        const ogDesc = document.querySelector('meta[property="og:description"]')
-
-        const prevDesc = desc?.getAttribute('content') ?? ''
-        const prevOgTitle = ogTitle?.getAttribute('content') ?? ''
-        const prevOgDesc = ogDesc?.getAttribute('content') ?? ''
-
-        if (desc) desc.setAttribute('content', post.description)
-        if (ogTitle) ogTitle.setAttribute('content', `${post.title} — Blog Petzara`)
-        if (ogDesc) ogDesc.setAttribute('content', post.description)
-
-        return () => {
-            document.title = 'Petzara — Sistema de Gestão para Petshops | Agendamento Online'
-            if (desc) desc.setAttribute('content', prevDesc)
-            if (ogTitle) ogTitle.setAttribute('content', prevOgTitle)
-            if (ogDesc) ogDesc.setAttribute('content', prevOgDesc)
-        }
     }, [post])
 
     return (
@@ -246,7 +234,7 @@ export default function BlogPostPage() {
                             Sistema completo de agendamento e gestão para petshops. 30 dias grátis, sem cartão.
                         </p>
                         <a
-                            href={appRegisterUrl}
+                            href={links.register}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm px-6 py-3 rounded-xl transition-all shadow-md shadow-terracotta/20"
