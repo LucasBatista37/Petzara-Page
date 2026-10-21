@@ -4,12 +4,28 @@ Site institucional do Petzara. Vite + React 19 + Tailwind 4, publicado na Vercel
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
-npm run build    # gera dist/
-npm run preview  # serve o dist/ localmente
+npm run dev      # http://localhost:5173 (sem pré-render)
+npm run build    # gera dist/ com o HTML de cada rota e idioma pré-renderizado + sitemap.xml
+npm test         # catálogos/rotas (sempre) e HTML do dist/ (depois do build)
+npm run preview  # serve o dist/ localmente (sem as rewrites da Vercel)
 ```
 
 Configurações centrais (links do sistema, WhatsApp, Play Store, flags) ficam em `src/siteConfig.js`.
+
+## Idiomas (pt-BR, es, en)
+
+- URLs: pt-BR na raiz (`/`, `/download`, `/termos-de-uso`…), espanhol em `/es/…`, inglês em `/en/…`. Tabela única
+  em `src/i18n/config.js` (`PAGES`); o blog é só pt-BR.
+- Textos: `src/i18n/locales/{pt-BR,es,en}.json` (glossário do contrato §10). Componente: `const { t, tm } = useI18n()`.
+  Toda chave nova vai nos 3 arquivos — o `npm test` falha se faltar chave ou se os `{placeholders}` diferirem.
+- `<head>` (title, description, canonical, hreflang, OG, JSON-LD) por página e idioma: `src/i18n/seo.js`. Não
+  escreva essas tags no `index.html`.
+- Preços por idioma: `src/config/pricingByLocale.js` (es/en sem valor = "preço na sua moeda na Google Play").
+- O build pré-renderiza cada página (`scripts/prerender.mjs`) e o navegador **hidrata** esse HTML: o que depende do
+  navegador (UTM, Android, largura da tela, consentimento, `?origem=app`) só pode mudar depois da hidratação
+  (`useHydrated()` ou `useEffect`).
+- Termos e privacidade em es/en (`docs/legal/`) são tradução de referência, `noindex`, até a revisão jurídica.
+- Detalhes, decisões de SEO e pendências: `i18n/LANDING-SEO.md` (fora do repositório, na pasta de trabalho).
 
 ## Medição: GA4 e Meta Pixel (com consentimento LGPD)
 
@@ -58,6 +74,8 @@ Para testar localmente, crie `.env.local` (não vai para o git) a partir de `.en
 | Seção de preços apareceu na tela | `view_pricing` | — |
 
 Os eventos de clique levam `link_location` (seção da página, ou o `data-track` do link) e `link_text`.
+Todos os eventos (inclusive `page_view`) levam `site_language` = `pt-BR` | `es` | `en` (crie a dimensão
+personalizada de evento `site_language` no GA4 para os relatórios por idioma).
 São capturados por um único listener no documento (`src/lib/analytics.js`), pelo destino do link —
 um link novo para cadastro, WhatsApp ou Play já é medido sem código extra.
 
