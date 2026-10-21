@@ -1,0 +1,487 @@
+{
+  "seo": {
+    "siteName": "Petzara",
+    "home": {
+      "title": "Petzara — Software para peluquería canina y agenda de citas",
+      "description": "Citas, clientes, mascotas y finanzas de tu estética canina en un solo lugar, con enlace de reservas 24 h. Prueba gratis 30 días, sin tarjeta.",
+      "keywords": "Petzara, software para estética canina, agenda para peluquería canina, programa para peluquería canina, sistema para peluquería canina, agenda de citas para mascotas",
+      "ogTitle": "Petzara — Tu peluquería canina organizada. Tus clientes, felices.",
+      "ogDescription": "El sistema para estéticas caninas que quieren dejar la libreta y el caos de WhatsApp por una gestión profesional.",
+      "ogImageAlt": "Petzara — software de gestión y agenda de citas para peluquerías y estéticas caninas",
+      "twitterTitle": "Petzara — Tu peluquería canina, organizada.",
+      "twitterDescription": "Citas, clientes, mascotas y finanzas. Todo en un solo lugar.",
+      "appDescription": "Software de agenda de citas y gestión para peluquerías y estéticas caninas."
+    },
+    "download": {
+      "title": "Petzara Desktop | Descargar la app para Windows, macOS y Linux",
+      "description": "Descarga Petzara Desktop para Windows, macOS y Linux: el sistema de tu peluquería canina con acceso directo en el escritorio y avisos de nuevas citas."
+    },
+    "terms": {
+      "title": "Términos de uso (traducción de referencia) — Petzara",
+      "description": "Traducción de referencia de los Términos de uso de Petzara. La versión válida es la original en portugués."
+    },
+    "privacy": {
+      "title": "Política de privacidad (traducción de referencia) — Petzara",
+      "description": "Traducción de referencia de la Política de privacidad de Petzara. La versión válida es la original en portugués."
+    }
+  },
+  "nav": {
+    "problem": "Problema",
+    "solution": "Solución",
+    "howItWorks": "Cómo funciona",
+    "demo": "Demo",
+    "pricing": "Precios",
+    "faq": "FAQ",
+    "cta": "Empezar gratis",
+    "ctaMobile": "Empezar gratis →",
+    "menu": "Menú",
+    "menuLabel": "Menú principal",
+    "homeAria": "Petzara — página de inicio"
+  },
+  "language": {
+    "label": "Idioma",
+    "switchTo": "Cambiar el idioma a {language}"
+  },
+  "hero": {
+    "badge": "30 días gratis · sin tarjeta",
+    "title": {
+      "before": "Agenda para peluquería canina",
+      "highlight": "sin citas duplicadas",
+      "after": "— y sin libreta"
+    },
+    "subtitle": "Citas, clientes, mascotas y caja de tu negocio en un solo lugar, en el celular y en la computadora. Tus clientes ven los horarios libres en tu enlace de reservas y te escriben por WhatsApp.",
+    "playCta": "Descargar gratis en Google Play",
+    "webCtaAndroid": "Empezar la prueba gratis en el navegador",
+    "webCta": "Empezar prueba gratis",
+    "playBadgeAlt": "Disponible en Google Play",
+    "bonusStrong": "+14 días gratis",
+    "bonusText": "si creas citas en 3 días distintos durante la prueba.",
+    "trust": ["Sin tarjeta de crédito", "Ayuda gratis para configurar", "Cancela cuando quieras"],
+    "dashboardAlt": "Panel de Petzara",
+    "mobileAlt": "Petzara en el celular",
+    "notificationTitle": "¡Nueva cita!",
+    "notificationText": "Luna — Baño a las 10:30"
+  },
+  "problem": {
+    "badge": "¿Te suena esta rutina?",
+    "title": {
+      "before": "El desorden te está",
+      "highlight": "costando clientes",
+      "after": ""
+    },
+    "subtitle": "Muchas peluquerías caninas pierden dinero por falta de organización, no por falta de clientes.",
+    "items": [
+      {
+        "title": "La cita duplicada que arruina el día",
+        "description": "Dos dueños llegan a la misma hora. Uno se va molesto. Y encima te deja una mala reseña en Google."
+      },
+      {
+        "title": "Cierras la caja a ojo",
+        "description": "A fin de mes sumas los cobros en el celular y cruzas los dedos para que haya ganancia. Nunca estás seguro."
+      },
+      {
+        "title": "WhatsApp se volvió tu sistema",
+        "description": "Citas, confirmaciones, reclamos y audios, todo mezclado. En cualquier momento se te pasa una cita importante."
+      },
+      {
+        "title": "Tu equipo llega sin saber la agenda",
+        "description": "Tu equipo depende de ti para saber qué hay en el día. Respondes mensajes antes de tomarte el café."
+      },
+      {
+        "title": "Horas que podrían ser mascotas atendidas",
+        "description": "Cada hora actualizando una hoja de cálculo es un baño que no se hizo y un cliente que esperó."
+      },
+      {
+        "title": "No sabes qué te deja más ganancia",
+        "description": "¿Corte completo o baño sencillo? ¿Martes o sábado? Sin datos es adivinar, y adivinar cuesta dinero."
+      }
+    ],
+    "quote": "\"En la práctica: anotas en una libreta, agendas por WhatsApp, cierras la caja en Excel… y a fin de mes todavía no sabes si ganaste dinero.\"",
+    "cta": "Resolver esto — prueba 30 días gratis"
+  },
+  "solution": {
+    "badge": "La solución",
+    "title": {
+      "before": "Conoce",
+      "highlight": "Petzara",
+      "after": ""
+    },
+    "subtitle": "Todo lo que necesitas para organizarte, crecer y ganar más, en una sola plataforma hecha para peluquerías y estéticas caninas.",
+    "features": [
+      {
+        "title": "Agenda inteligente",
+        "description": "Control visual en tiempo real de todas las citas, con prevención automática de choques de horario. Todo sincronizado entre dispositivos."
+      },
+      {
+        "title": "Reservas 24 h",
+        "description": "Página pública con la URL de tu negocio. Tus clientes ven los horarios disponibles y pasan a WhatsApp para confirmar la cita."
+      },
+      {
+        "title": "Finanzas integradas",
+        "description": "Ingresos y gastos con gráficos por categoría. Cada cita finalizada registra el ingreso automáticamente."
+      },
+      {
+        "title": "Gestión del equipo",
+        "description": "Invita colaboradores con permisos detallados (ver/crear/editar/eliminar) por módulo. Cada peluquero ve solo lo que necesita."
+      },
+      {
+        "title": "Historial de cada mascota",
+        "description": "Raza, tamaño, notas del dueño y servicios anteriores de cada mascota, a un clic, sin depender de la memoria."
+      },
+      {
+        "title": "Decisiones con datos",
+        "description": "Descubre qué servicio deja más ganancia, qué día es el más fuerte y dónde hay huecos, antes de que se vuelvan un problema."
+      }
+    ],
+    "listAlt": "Lista de citas en Petzara",
+    "mobileAlt": "Citas de Petzara en el celular"
+  },
+  "howItWorks": {
+    "badge": "Es simple",
+    "title": {
+      "before": "Empieza en",
+      "highlight": "3 pasos",
+      "after": ""
+    },
+    "subtitle": "Del registro a la primera cita en minutos.",
+    "steps": [
+      {
+        "title": "Crea tu cuenta",
+        "description": "Registro rápido con tu correo. Sin tarjeta de crédito ni trámites."
+      },
+      {
+        "title": "Configura tu negocio",
+        "description": "Agrega servicios y horarios de atención, e invita a tu equipo."
+      },
+      {
+        "title": "Empieza a agendar",
+        "description": "Crea la primera cita y comparte tu enlace de reservas."
+      }
+    ],
+    "ctaNote": "No instalas nada ni pones tarjeta. Si lo necesitas, te ayudamos a configurarlo por WhatsApp.",
+    "cta": "Crear cuenta — prueba 30 días gratis"
+  },
+  "multiDevice": {
+    "badge": "Úsalo desde donde quieras",
+    "title": {
+      "before": "Funciona en",
+      "highlight": "cualquier dispositivo",
+      "after": ""
+    },
+    "subtitle": "Celular, tablet y computadora. En Android se instala como app desde Google Play. Tu equipo entra desde donde esté.",
+    "playBadgeAlt": "Disponible en Google Play",
+    "tabletAlt": "Gestión de clientes en la tablet",
+    "desktopAlt": "Panel de Petzara en la computadora",
+    "phoneAlt": "Citas en el celular",
+    "pills": ["Android y iPhone (navegador)", "Cualquier navegador", "Disponible en Google Play", "Sincronización en tiempo real"]
+  },
+  "demo": {
+    "badge": "Míralo en acción",
+    "title": {
+      "before": "Simple por fuera,",
+      "highlight": "potente",
+      "after": "por dentro"
+    },
+    "subtitle": "Cada pantalla está pensada para el día a día de una peluquería canina, sin complicaciones.",
+    "desktop": "Escritorio",
+    "mobile": "Celular",
+    "prev": "Pantalla anterior",
+    "next": "Pantalla siguiente",
+    "goTo": "Ir a {title}",
+    "mobileAlt": "{alt} — celular",
+    "screens": {
+      "dashboard": {
+        "title": "Panel",
+        "description": "Una vista completa de tu negocio en tiempo real",
+        "imageAlt": "Panel de Petzara"
+      },
+      "agendamentos": {
+        "title": "Citas",
+        "description": "Mira y gestiona todas las citas del día",
+        "imageAlt": "Calendario de citas en Petzara"
+      },
+      "servicos": {
+        "title": "Servicios",
+        "description": "Configura servicios, precios y la duración de cada uno",
+        "imageAlt": "Servicios configurados en Petzara"
+      },
+      "clientes": {
+        "title": "Clientes",
+        "description": "Ficha completa de cada cliente con su historial de citas",
+        "imageAlt": "Lista de clientes en Petzara"
+      },
+      "pets": {
+        "title": "Mascotas",
+        "description": "Registro detallado con raza, tamaño y notas especiales",
+        "imageAlt": "Mascotas registradas en Petzara"
+      },
+      "colaboradores": {
+        "title": "Equipo",
+        "description": "Gestiona tu equipo y reparte la agenda entre tus peluqueros",
+        "imageAlt": "Equipo en Petzara"
+      },
+      "financeiro": {
+        "title": "Finanzas",
+        "description": "Panel financiero con ingresos y gastos",
+        "imageAlt": "Panel de finanzas en Petzara"
+      },
+      "contasReceber": {
+        "title": "Por cobrar",
+        "description": "Controla todos los ingresos y pagos pendientes",
+        "imageAlt": "Cuentas por cobrar en Petzara"
+      },
+      "despesas": {
+        "title": "Gastos",
+        "description": "Registra y clasifica todos los gastos del negocio",
+        "imageAlt": "Gastos en Petzara"
+      },
+      "paginaPublica": {
+        "title": "Enlace de reservas",
+        "description": "Tus clientes ven los horarios libres en tu enlace y te escriben por WhatsApp",
+        "imageAlt": "Página pública de reservas de Petzara"
+      }
+    }
+  },
+  "palette": {
+    "badge": "Personalízalo a tu gusto",
+    "title": {
+      "before": "Tu identidad visual,",
+      "highlight": "a tu manera",
+      "after": ""
+    },
+    "subtitle": "Elige la paleta que va con tu negocio. Tu sistema, y esta página, cambian al instante.",
+    "desktop": "Escritorio",
+    "mobile": "Celular",
+    "selected": "Estilo seleccionado",
+    "selectAria": "Seleccionar la paleta {name}",
+    "desktopAlt": "Petzara - tema {name}",
+    "mobileAlt": "Petzara en el celular - tema {name}"
+  },
+  "pricing": {
+    "badge": "Precios",
+    "title": {
+      "before": "Simple y",
+      "highlight": "justo",
+      "after": ""
+    },
+    "subtitle": "Empieza gratis. Elige tu plan cuando estés listo.",
+    "bonus": "+14 días gratis si creas citas en 3 días distintos durante la prueba",
+    "monthly": {
+      "name": "Plan mensual",
+      "description": "Flexibilidad para pagar mes a mes",
+      "per": "/mes"
+    },
+    "annual": {
+      "name": "Plan anual",
+      "description": "Equivale a {amount}/mes",
+      "descriptionNoPrice": "Pagas una vez al año",
+      "per": "/año",
+      "savings": "Ahorra {amount}: {months} meses gratis"
+    },
+    "noPrice": "Precio en tu moneda en Google Play",
+    "noPriceTrial": "Prueba gratis",
+    "features": [
+      "Citas ilimitadas",
+      "Registro completo de mascotas y clientes",
+      "Panel financiero con ingresos y gastos",
+      "Gestión de equipo y colaboradores",
+      "Enlace de reservas 24 h",
+      "Soporte por correo y WhatsApp",
+      "Actualizaciones automáticas",
+      "Datos seguros en la nube"
+    ],
+    "cta": "Probar gratis 30 días",
+    "fineprint": "30 días gratis · Sin tarjeta · Cancela cuando quieras",
+    "footnote": "Las mismas funciones en los dos planes. La suscripción se hace en la app Android, con Google Play, que te muestra el precio en tu moneda antes de confirmar.",
+    "footnote2": "La suscripción con tarjeta desde la web todavía no está disponible en tu país."
+  },
+  "faq": {
+    "badge": "Preguntas frecuentes",
+    "title": {
+      "before": "Preguntas",
+      "highlight": "y respuestas",
+      "after": ""
+    },
+    "subtitle": "¿Tienes dudas? Seguramente la respuesta está aquí.",
+    "whatsappLink": "Escribir por WhatsApp",
+    "items": [
+      {
+        "question": "¿Puedo probarlo antes de pagar?",
+        "answer": "Sí. Son 30 días gratis, sin tarjeta de crédito y con acceso a todo. Como no pedimos tarjeta, no se cobra nada automáticamente: al final de la prueba tú decides si quieres suscribirte."
+      },
+      {
+        "question": "¿Cómo me suscribo y cuánto cuesta?",
+        "answer": "La suscripción se hace en la app Android de Petzara, con Google Play. Antes de confirmar, Google Play te muestra el precio en tu moneda y la fecha del cobro, y puedes cancelar cuando quieras en Google Play. La suscripción con tarjeta desde la web todavía no está disponible en tu país."
+      },
+      {
+        "question": "¿Cómo gano +14 días gratis?",
+        "answer": "Crea citas en 3 días distintos durante la prueba. Cuenta el día en que creas la cita en Petzara, no la fecha de la cita: si hoy registras los horarios de toda la semana, eso cuenta como 1 día. Al llegar al 3.er día, los 14 días extra se suman automáticamente a tu prueba. Válido una vez por cuenta."
+      },
+      {
+        "question": "¿Qué pasa cuando termina la prueba?",
+        "answer": "Si no te suscribes, la cuenta queda en solo lectura: tus clientes, mascotas, citas y finanzas siguen guardados y puedes consultarlo todo, pero no puedes crear ni editar nada hasta suscribirte. Te suscribes y todo vuelve al instante."
+      },
+      {
+        "question": "¿Envía recordatorios por WhatsApp?",
+        "answer": "Todavía no. Hoy Petzara no envía recordatorios automáticos por WhatsApp a tus clientes. Lo que sí hace: en tu enlace de reservas, el cliente ve los horarios libres y pasa al WhatsApp de tu negocio para acordar la cita contigo; y Petzara te avisa a ti y a tu equipo en la app, por ejemplo cuando entra una cita nueva."
+      },
+      {
+        "question": "¿Puedo traer a mis clientes de la libreta o de una hoja de cálculo?",
+        "answer": "Sí. En el sistema web (app.petzara.app), en Clientes › Importar, subes una hoja de cálculo CSV con nombre y teléfono (hay una plantilla para descargar; en Excel solo usa \"Guardar como → CSV\"). Los teléfonos repetidos se ignoran. Si tus clientes están en una libreta, pásalos a una hoja sencilla o escríbenos por WhatsApp y te ayudamos."
+      },
+      {
+        "question": "¿Me ayudan a configurarlo?",
+        "answer": "Sí, gratis, por WhatsApp: te ayudamos a registrar servicios y precios, horarios de atención, importar a tus clientes y activar tu enlace de reservas. Después, el soporte sigue por WhatsApp y por correo (suporte@petzara.app), en horario comercial de Brasil (UTC−3).",
+        "link": "whatsapp"
+      },
+      {
+        "question": "¿Tengo que instalar algún programa en la computadora?",
+        "answer": "No. Petzara funciona en el navegador de la computadora, la tablet o el celular: solo entra a app.petzara.app. En Android también está la app Petzara en Google Play."
+      },
+      {
+        "question": "¿Funciona bien en el celular?",
+        "answer": "Sí. En Android, descarga la app Petzara en Google Play. En iPhone, úsalo desde el navegador (Safari o Chrome) en app.petzara.app; puedes agregarlo a la pantalla de inicio. La cuenta es la misma en todos tus dispositivos."
+      },
+      {
+        "question": "¿Mis datos están seguros?",
+        "answer": "Sí. Los datos se guardan en la nube, con conexión cifrada (HTTPS) y contraseñas guardadas con hash; no dependen de tu computadora ni de una libreta. Solo entran las personas que tú invitas, cada una con los permisos que definas."
+      },
+      {
+        "question": "¿Cuántos colaboradores puedo agregar?",
+        "answer": "Ilimitados en los dos planes. Cada colaborador tiene su propio acceso, con permisos por módulo: tú decides qué puede ver y hacer cada uno."
+      },
+      {
+        "question": "¿Cómo cancelo?",
+        "answer": "Sin multas ni llamadas. Si te suscribiste en la app Android, cancelas en Google Play, en Pagos y suscripciones. Si te suscribiste en la web, cancelas cuando quieras en la configuración de tu cuenta."
+      },
+      {
+        "question": "¿Es difícil de aprender?",
+        "answer": "No. Está pensado para quien nunca usó un sistema de gestión: registras tus servicios, creas la primera cita y ya lo estás usando. Si te trabas en algo, te ayudamos por WhatsApp."
+      },
+      {
+        "question": "Tengo una peluquería canina pequeña, con 1 o 2 empleados. ¿Vale la pena?",
+        "answer": "Sí: Petzara está hecho para negocios pequeños de baño y corte. Con la agenda en el celular de tu equipo, dejas de ser el intermediario de todo. Y lo pruebas 30 días gratis antes de decidir."
+      }
+    ]
+  },
+  "cta": {
+    "titleWords": "Tu peluquería canina merece una gestión",
+    "titleHighlight": "profesional",
+    "subtitle": "Crea tu cuenta gratis y accede a todas las funciones. Sin tarjeta de crédito ni trámites.",
+    "primary": "Crear cuenta gratis",
+    "demo": "Pedir una demostración",
+    "checks": ["Prueba gratis de 30 días", "Sin tarjeta de crédito", "Cancela cuando quieras", "Soporte técnico incluido"],
+    "trustTitle": "Seguridad y confianza",
+    "trust": [
+      "Datos seguros en la nube, con cifrado",
+      "Soporte técnico por correo y WhatsApp",
+      "Actualizaciones constantes con nuevas funciones",
+      "Pago seguro con Google Play",
+      "Verificación de correo para proteger tu cuenta",
+      "App Android disponible en Google Play"
+    ]
+  },
+  "footer": {
+    "tagline": "El sistema de gestión completo para peluquerías y estéticas caninas.",
+    "product": "Producto",
+    "blog": "Blog",
+    "desktop": "Petzara Desktop",
+    "features": "Funciones",
+    "benefits": "Beneficios",
+    "demo": "Demostración",
+    "howItWorks": "Cómo funciona",
+    "support": "Soporte",
+    "login": "Iniciar sesión",
+    "register": "Crear cuenta",
+    "contact": "Contacto",
+    "legal": "Legal",
+    "terms": "Términos de uso",
+    "privacy": "Política de privacidad",
+    "cookies": "Preferencias de cookies",
+    "rights": "© {year} Petzara. Todos los derechos reservados."
+  },
+  "consent": {
+    "aria": "Aviso de cookies",
+    "text": "Usamos cookies para medir el uso del sitio.",
+    "more": "Más información",
+    "decline": "Rechazar",
+    "accept": "Aceptar"
+  },
+  "whatsapp": {
+    "floatingAria": "Hablar con Petzara por WhatsApp",
+    "floatingLabel": "¿Dudas? Escríbenos por WhatsApp",
+    "floatingMessage": "¡Hola! Vengo del sitio de Petzara y tengo una pregunta.",
+    "demoMessage": "¡Hola! Vi el sitio de Petzara y me gustaría agendar una demostración."
+  },
+  "download": {
+    "badge": "Disponible para Windows, macOS y Linux",
+    "title": "Petzara para escritorio",
+    "subtitle": "Todo Petzara en una aplicación instalable. Acceso más rápido, notificaciones nativas y una experiencia profesional en cualquier sistema.",
+    "detectedMobile": "Parece que estás en un dispositivo móvil. Para instalar la app de escritorio, abre esta página en la computadora.",
+    "detected": "Detectamos {platform}. La descarga recomendada está destacada abajo.",
+    "recommended": "Recomendado",
+    "platforms": {
+      "windows": {
+        "requirement": "Windows 10 o superior (64 bits)",
+        "download": "Descargar para Windows",
+        "note": "Instalador · ~74 MB · Gratis",
+        "warning": "Si SmartScreen muestra \"Windows protegió tu PC\", haz clic en \"Más información\" → \"Ejecutar de todas formas\"."
+      },
+      "mac": {
+        "requirement": "macOS 11 (Big Sur) o superior",
+        "download": "Descargar para macOS",
+        "note": "Archivo DMG · ~74 MB · Gratis",
+        "warning": "Como la app no está firmada por Apple, la primera vez abre la Terminal y ejecuta: xattr -cr /Applications/Petzara.app"
+      },
+      "linux": {
+        "requirement": "Cualquier distribución moderna (x64)",
+        "download": "Descargar para Linux (AppImage)",
+        "note": "AppImage · ~74 MB · sin instalación",
+        "warning": "Después de descargarlo, marca el archivo como ejecutable: chmod +x *.AppImage"
+      }
+    },
+    "mobileLabel": "dispositivo móvil",
+    "allReleases": "Ver todas las versiones y novedades en GitHub →",
+    "whyTitle": "¿Por qué usar la app de escritorio?",
+    "features": [
+      "Entras rápido desde el acceso directo del escritorio, sin abrir el navegador",
+      "Notificaciones de escritorio de nuevas citas y actualizaciones",
+      "Seguro: no se guardan datos en tu computadora, todo está en la nube",
+      "Actualizaciones automáticas incluidas, sin reinstalar"
+    ],
+    "howTitle": "Cómo instalar",
+    "steps": [
+      {
+        "title": "Descarga el instalador",
+        "description": "Elige el archivo para tu sistema operativo y espera la descarga."
+      },
+      {
+        "title": "Ejecuta el instalador",
+        "description": "Abre el archivo descargado y sigue las instrucciones en pantalla. Tarda menos de 1 minuto."
+      },
+      {
+        "title": "¡Listo!",
+        "description": "Petzara se abrirá automáticamente. Inicia sesión con tu cuenta y empieza a usarlo."
+      }
+    ],
+    "requirementsTitle": "Requisitos",
+    "requirements": [
+      ["Windows", "Windows 10 o superior (64 bits)"],
+      ["macOS", "macOS 11 Big Sur o superior (Intel o Apple Silicon)"],
+      ["Linux", "Cualquier distribución x64 compatible con AppImage"],
+      ["Conexión a internet", "Necesaria: el sistema funciona en la nube"],
+      ["Cuenta de Petzara", "Necesaria: créala gratis en petzara.app"]
+    ],
+    "ctaTitle": "¿Listo para empezar?",
+    "ctaText": "Elige el instalador para tu sistema y entra a Petzara directo desde tu escritorio.",
+    "ctaWindows": "Descargar para Windows",
+    "ctaOther": "Otras plataformas →",
+    "ctaWeb": "Usar la versión web →"
+  },
+  "legal": {
+    "back": "Volver al inicio",
+    "terms": "Términos de uso",
+    "privacy": "Política de privacidad",
+    "notice": "Traducción de referencia. La versión válida es la original en portugués. Pendiente de revisión legal."
+  }
+}

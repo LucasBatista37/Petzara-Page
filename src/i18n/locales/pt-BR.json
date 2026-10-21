@@ -1,0 +1,487 @@
+{
+  "seo": {
+    "siteName": "Petzara",
+    "home": {
+      "title": "Petzara — Sistema de Gestão para Petshops | Agendamento Online",
+      "description": "Petzara: gerencie agendamentos, clientes, pets e finanças em um único lugar — feito para petshops de banho e tosa. Teste grátis, sem cartão.",
+      "keywords": "Petzara, pet shop, agendamento, banho e tosa, sistema pet, gestão petshop, software petshop",
+      "ogTitle": "Petzara — Seu petshop organizado. Seus clientes felizes.",
+      "ogDescription": "O sistema completo para petshops que querem trocar o caderno e o WhatsApp por uma gestão profissional.",
+      "ogImageAlt": "Petzara — sistema de gestão e agendamento para petshops de banho e tosa",
+      "twitterTitle": "Petzara — Seu petshop organizado.",
+      "twitterDescription": "Agendamentos, clientes, pets e finanças. Tudo num só lugar.",
+      "appDescription": "Sistema de agendamento e gestão completa para pet shops de banho e tosa."
+    },
+    "download": {
+      "title": "Petzara Desktop | Baixar aplicativo para Windows, macOS e Linux",
+      "description": "Baixe o Petzara Desktop para Windows, macOS e Linux: o sistema do seu pet shop com atalho na área de trabalho e notificações de novos agendamentos."
+    },
+    "terms": {
+      "title": "Termos de Uso — Petzara",
+      "description": "Termos de Uso da plataforma Petzara: condições de cadastro, uso do serviço, assinatura, pagamentos e responsabilidades."
+    },
+    "privacy": {
+      "title": "Política de Privacidade — Petzara",
+      "description": "Política de Privacidade Petzara (LGPD): dados tratados, bases legais, cookies, direitos dos titulares e contato."
+    }
+  },
+  "nav": {
+    "problem": "Problema",
+    "solution": "Solução",
+    "howItWorks": "Como Funciona",
+    "demo": "Demo",
+    "pricing": "Preços",
+    "faq": "FAQ",
+    "cta": "Começar Grátis",
+    "ctaMobile": "Começar Grátis →",
+    "menu": "Menu",
+    "menuLabel": "Menu principal",
+    "homeAria": "Petzara — página inicial"
+  },
+  "language": {
+    "label": "Idioma",
+    "switchTo": "Mudar o idioma para {language}"
+  },
+  "hero": {
+    "badge": "30 dias grátis · sem cartão",
+    "title": {
+      "before": "Agenda de banho e tosa",
+      "highlight": "sem horário duplicado",
+      "after": "— e sem caderno"
+    },
+    "subtitle": "Agenda, clientes, pets e caixa do seu pet shop em um só lugar, no celular e no computador. Seus clientes veem os horários livres no seu link de agendamento e chamam você no WhatsApp.",
+    "playCta": "Baixar grátis na Play Store",
+    "webCtaAndroid": "Começar teste grátis no navegador",
+    "webCta": "Começar teste grátis",
+    "playBadgeAlt": "Disponível no Google Play",
+    "bonusStrong": "+14 dias grátis",
+    "bonusText": "se você criar agendamentos em 3 dias diferentes durante o teste.",
+    "trust": ["Sem cartão de crédito", "Ajuda grátis para configurar", "Cancele quando quiser"],
+    "dashboardAlt": "Dashboard Petzara",
+    "mobileAlt": "Petzara Mobile",
+    "notificationTitle": "Novo agendamento!",
+    "notificationText": "Luna — Banho às 10:30"
+  },
+  "problem": {
+    "badge": "Reconhece essa rotina?",
+    "title": {
+      "before": "A desorganização está",
+      "highlight": "custando clientes",
+      "after": ""
+    },
+    "subtitle": "Muito petshop perde dinheiro por falta de organização — não por falta de clientes.",
+    "items": [
+      {
+        "title": "O horário duplo que estraga o dia",
+        "description": "Dois tutores chegam ao mesmo tempo. Um vai embora irritado. Você ainda vai ouvir sobre isso no Google."
+      },
+      {
+        "title": "Você fecha o caixa no chute",
+        "description": "No fim do mês soma as entradas no celular e reza pra dar lucro. Nunca tem certeza."
+      },
+      {
+        "title": "O WhatsApp virou o sistema",
+        "description": "Agendamentos, confirmações, reclamações e áudios de voz misturados. Qualquer hora você perde um horário importante."
+      },
+      {
+        "title": "Banhista chega sem saber a agenda",
+        "description": "Sua equipe depende de você para saber o que tem no dia. Você responde mensagem antes de tomar café."
+      },
+      {
+        "title": "Horas que poderiam ser pets atendidos",
+        "description": "Cada hora atualizando planilha é um banho que não foi feito e um cliente que esperou."
+      },
+      {
+        "title": "Você não sabe o que mais lucra",
+        "description": "Tosa completa ou banho simples? Terça ou sábado? Sem dados é chute, e chute custa dinheiro."
+      }
+    ],
+    "quote": "\"Na prática: você anota no caderno, agenda pelo WhatsApp, fecha o caixa no Excel — e no fim do mês ainda não sabe se teve lucro.\"",
+    "cta": "Resolver isso — testar 30 dias grátis"
+  },
+  "solution": {
+    "badge": "A solução",
+    "title": {
+      "before": "Conheça o",
+      "highlight": "Petzara",
+      "after": ""
+    },
+    "subtitle": "Tudo que você precisa para organizar, crescer e lucrar — em uma única plataforma feita para quem vive de banho e tosa.",
+    "features": [
+      {
+        "title": "Agenda inteligente",
+        "description": "Controle visual em tempo real de todos os agendamentos com prevenção automática de conflitos. Atualizações sincronizadas entre dispositivos."
+      },
+      {
+        "title": "Agendamento 24h",
+        "description": "Página pública com URL do seu petshop. Clientes visualizam os horários disponíveis e são direcionados para o WhatsApp para confirmar o agendamento."
+      },
+      {
+        "title": "Financeiro integrado",
+        "description": "Receitas e despesas com gráficos por categoria. Cada agendamento finalizado já cria a transação financeira automaticamente."
+      },
+      {
+        "title": "Gestão de equipe",
+        "description": "Convide colaboradores com permissões granulares (ler/criar/editar/excluir) por módulo. Cada banhista vê só o que precisa."
+      },
+      {
+        "title": "Histórico do pet",
+        "description": "Raça, porte, observações do tutor e serviços anteriores de cada pet — tudo em um clique, sem depender de memória."
+      },
+      {
+        "title": "Decisões sem achismo",
+        "description": "Saiba qual serviço mais lucra, qual dia é pico e onde estão os buracos — antes que virem problema."
+      }
+    ],
+    "listAlt": "Lista de agendamentos Petzara",
+    "mobileAlt": "Agendamentos mobile Petzara"
+  },
+  "howItWorks": {
+    "badge": "É simples",
+    "title": {
+      "before": "Comece em",
+      "highlight": "3 passos",
+      "after": ""
+    },
+    "subtitle": "Do cadastro ao primeiro agendamento em minutos.",
+    "steps": [
+      {
+        "title": "Crie sua conta",
+        "description": "Cadastro rápido com e-mail. Sem cartão de crédito, sem burocracia."
+      },
+      {
+        "title": "Configure seu petshop",
+        "description": "Adicione serviços, horários de funcionamento e convide sua equipe."
+      },
+      {
+        "title": "Comece a agendar",
+        "description": "Crie o primeiro agendamento e compartilhe seu link de agendamento."
+      }
+    ],
+    "ctaNote": "Sem instalar nada e sem cartão. Se precisar, a gente ajuda a configurar pelo WhatsApp.",
+    "cta": "Criar conta — testar 30 dias grátis"
+  },
+  "multiDevice": {
+    "badge": "Acesse de onde quiser",
+    "title": {
+      "before": "Funciona em",
+      "highlight": "qualquer dispositivo",
+      "after": ""
+    },
+    "subtitle": "Celular, tablet e computador. Instala como app no Android direto pela Play Store. Sua equipe acessa de onde estiver.",
+    "playBadgeAlt": "Disponível no Google Play",
+    "tabletAlt": "Gestão de clientes no tablet",
+    "desktopAlt": "Dashboard Petzara no computador",
+    "phoneAlt": "Agendamentos no celular",
+    "pills": ["Android e iPhone (navegador)", "Qualquer navegador", "Disponível na Play Store", "Sincronização em tempo real"]
+  },
+  "demo": {
+    "badge": "Veja em ação",
+    "title": {
+      "before": "Simples por fora,",
+      "highlight": "poderoso",
+      "after": "por dentro"
+    },
+    "subtitle": "Cada tela foi pensada para o dia a dia do petshop — sem complicação.",
+    "desktop": "Desktop",
+    "mobile": "Mobile",
+    "prev": "Tela anterior",
+    "next": "Próxima tela",
+    "goTo": "Ir para {title}",
+    "mobileAlt": "{alt} — mobile",
+    "screens": {
+      "dashboard": {
+        "title": "Dashboard",
+        "description": "Visão completa do seu negócio em tempo real",
+        "imageAlt": "Dashboard Petzara"
+      },
+      "agendamentos": {
+        "title": "Agendamentos",
+        "description": "Visualize e gerencie todos os atendimentos do dia",
+        "imageAlt": "Calendário de agendamentos Petzara"
+      },
+      "servicos": {
+        "title": "Serviços",
+        "description": "Configure serviços, preços e duração de cada atendimento",
+        "imageAlt": "Serviços configurados no Petzara"
+      },
+      "clientes": {
+        "title": "Clientes",
+        "description": "Ficha completa de cada tutor com histórico de atendimentos",
+        "imageAlt": "Lista de clientes Petzara"
+      },
+      "pets": {
+        "title": "Pets",
+        "description": "Cadastro detalhado com raça, porte e observações especiais",
+        "imageAlt": "Pets cadastrados no Petzara"
+      },
+      "colaboradores": {
+        "title": "Colaboradores",
+        "description": "Gerencie sua equipe e distribua a agenda entre banhistas",
+        "imageAlt": "Colaboradores Petzara"
+      },
+      "financeiro": {
+        "title": "Financeiro",
+        "description": "Dashboard financeiro com receitas e despesas",
+        "imageAlt": "Dashboard financeiro Petzara"
+      },
+      "contasReceber": {
+        "title": "Contas a Receber",
+        "description": "Controle de todas as receitas e pagamentos pendentes",
+        "imageAlt": "Contas a receber Petzara"
+      },
+      "despesas": {
+        "title": "Despesas",
+        "description": "Registre e categorize todas as saídas do negócio",
+        "imageAlt": "Despesas Petzara"
+      },
+      "paginaPublica": {
+        "title": "Agenda pública",
+        "description": "Clientes veem os horários livres no seu link e chamam você no WhatsApp",
+        "imageAlt": "Página pública de agendamento Petzara"
+      }
+    }
+  },
+  "palette": {
+    "badge": "Personalize como quiser",
+    "title": {
+      "before": "Sua identidade visual,",
+      "highlight": "do seu jeito",
+      "after": ""
+    },
+    "subtitle": "Escolha a paleta que combina com o seu negócio. Seu sistema — e esta página — mudam instantaneamente.",
+    "desktop": "Desktop",
+    "mobile": "Mobile",
+    "selected": "Estilo selecionado",
+    "selectAria": "Selecionar paleta {name}",
+    "desktopAlt": "Petzara - tema {name}",
+    "mobileAlt": "Petzara mobile - tema {name}"
+  },
+  "pricing": {
+    "badge": "Preços",
+    "title": {
+      "before": "Simples e",
+      "highlight": "justo",
+      "after": ""
+    },
+    "subtitle": "Comece grátis. Escolha o plano quando estiver pronto.",
+    "bonus": "+14 dias grátis se você criar agendamentos em 3 dias diferentes durante o teste",
+    "monthly": {
+      "name": "Mensal",
+      "description": "Flexibilidade para pagar mês a mês",
+      "per": "/mês"
+    },
+    "annual": {
+      "name": "Anual",
+      "description": "Equivale a {amount}/mês",
+      "descriptionNoPrice": "Pague uma vez por ano",
+      "per": "/ano",
+      "savings": "Economize {amount} — {months} meses grátis"
+    },
+    "noPrice": "Preço na sua moeda na Google Play",
+    "noPriceTrial": "Teste grátis",
+    "features": [
+      "Agendamentos ilimitados",
+      "Cadastro completo de pets e clientes",
+      "Dashboard financeiro com receitas e despesas",
+      "Gestão de equipe e colaboradores",
+      "Agenda pública: seu link de agendamento 24h",
+      "Suporte por email e WhatsApp",
+      "Atualizações automáticas",
+      "Dados seguros na nuvem"
+    ],
+    "cta": "Testar grátis por 30 dias",
+    "fineprint": "30 dias grátis · Sem cartão · Cancele quando quiser",
+    "footnote": "Preços da assinatura pelo site, com pagamento seguro via Stripe. Mesmas funcionalidades nos dois planos.",
+    "footnote2": "No app Android, a assinatura é feita pela Google Play e o preço aparece no próprio app."
+  },
+  "faq": {
+    "badge": "Dúvidas frequentes",
+    "title": {
+      "before": "Perguntas",
+      "highlight": "e respostas",
+      "after": ""
+    },
+    "subtitle": "Tem dúvida? A resposta provavelmente está aqui.",
+    "whatsappLink": "Chamar no WhatsApp",
+    "items": [
+      {
+        "question": "Posso testar antes de pagar?",
+        "answer": "Sim. São 30 dias grátis, sem cartão de crédito, com acesso a tudo. Como não pedimos cartão, nada é cobrado automaticamente: no fim do teste você decide se quer assinar."
+      },
+      {
+        "question": "Se eu assinar durante o teste, pago na hora?",
+        "answer": "Não. Pelo site e pelo app, a 1ª cobrança é só no fim do teste: os dias grátis que faltam continuam valendo. No app Android, a data da 1ª cobrança aparece antes de você confirmar a compra, e dá para cancelar sem custo na Play Store antes dela. Só se faltar menos de 2 dias para o teste acabar a cobrança pode ser feita no dia — e a tela de pagamento avisa antes."
+      },
+      {
+        "question": "Como ganho +14 dias grátis?",
+        "answer": "Crie agendamentos em 3 dias diferentes durante o teste. Conta o dia em que você cria o agendamento no Petzara, não a data marcada para o atendimento: se hoje você cadastra os horários da semana inteira, isso vale como 1 dia. Quando chegar ao 3º dia, os 14 dias extras entram automaticamente no seu teste. Vale uma vez por conta."
+      },
+      {
+        "question": "O que acontece quando o teste acaba?",
+        "answer": "Se você não assinar, a conta fica somente leitura: seus clientes, pets, agendamentos e o financeiro continuam guardados e você consegue consultar tudo, mas não cria nem edita nada até assinar. Assinou, volta tudo na hora."
+      },
+      {
+        "question": "Manda lembrete no WhatsApp?",
+        "answer": "Ainda não. Hoje o Petzara não envia lembretes automáticos por WhatsApp para os seus clientes. O que ele faz: na Agenda pública, o cliente vê os horários livres e é levado para o WhatsApp do seu pet shop para combinar o horário com você; e o Petzara avisa você e a sua equipe pelo app, como quando entra um agendamento novo."
+      },
+      {
+        "question": "Consigo trazer meus clientes do caderno ou planilha?",
+        "answer": "Sim. No sistema pelo navegador (app.petzara.app), em Clientes › Importar, você envia uma planilha CSV com nome e telefone (tem um modelo para baixar; no Excel é só \"Salvar como → CSV\"). Telefones repetidos são ignorados. Se seus clientes estão no caderno, passe para uma planilha simples ou mande para a gente no WhatsApp que ajudamos."
+      },
+      {
+        "question": "Vocês me ajudam a configurar?",
+        "answer": "Sim, de graça, pelo WhatsApp: ajudamos a cadastrar serviços e preços, horários de funcionamento, importar seus clientes e ativar o seu link de agendamento. Depois, o suporte continua pelo WhatsApp e pelo e-mail suporte@petzara.app, em horário comercial.",
+        "link": "whatsapp"
+      },
+      {
+        "question": "Preciso instalar algum programa no computador?",
+        "answer": "Não. O Petzara funciona no navegador do computador, do tablet ou do celular — é só entrar em app.petzara.app. No Android, também tem o app Petzara na Google Play."
+      },
+      {
+        "question": "O sistema funciona bem no celular?",
+        "answer": "Sim. No Android, baixe o app Petzara na Google Play. No iPhone, use pelo navegador (Safari ou Chrome) em app.petzara.app — dá para adicionar à tela de início. A conta é a mesma em todos os aparelhos."
+      },
+      {
+        "question": "Meus dados ficam seguros?",
+        "answer": "Sim. Os dados ficam na nuvem, com conexão criptografada (HTTPS) e senhas guardadas com hash — não dependem do seu computador nem de um caderno. Só quem você convida acessa a conta, cada um com as permissões que você definir."
+      },
+      {
+        "question": "Quantos colaboradores posso adicionar?",
+        "answer": "Ilimitado nos dois planos. Cada colaborador tem login próprio com permissões configuráveis por módulo — você decide o que cada um pode ver e fazer."
+      },
+      {
+        "question": "Como funciona o cancelamento?",
+        "answer": "Sem multa e sem ligação. Assinou pelo site: cancele quando quiser nas configurações da conta. Assinou pelo app Android: o cancelamento é feito na Google Play, em Pagamentos e assinaturas."
+      },
+      {
+        "question": "O sistema é difícil de aprender?",
+        "answer": "Não. Foi pensado para quem nunca usou um sistema de gestão: você cadastra seus serviços, cria o primeiro agendamento e já está usando. Se travar em algo, a gente ajuda pelo WhatsApp."
+      },
+      {
+        "question": "Tenho um petshop pequeno com 1 ou 2 funcionários. Vale a pena?",
+        "answer": "Vale: o Petzara foi feito para pet shops pequenos de banho e tosa. Com a agenda no celular da equipe, o dono para de ser o intermediário de tudo. E você testa 30 dias grátis antes de decidir."
+      }
+    ]
+  },
+  "cta": {
+    "titleWords": "Seu petshop merece uma gestão",
+    "titleHighlight": "profissional",
+    "subtitle": "Crie sua conta gratuitamente e tenha acesso completo a todas as funcionalidades. Sem cartão de crédito, sem burocracia.",
+    "primary": "Criar Conta Grátis",
+    "demo": "Agendar demonstração",
+    "checks": ["Teste grátis por 30 dias", "Sem cartão de crédito", "Cancele quando quiser", "Suporte técnico incluso"],
+    "trustTitle": "Segurança e confiança",
+    "trust": [
+      "Dados seguros na nuvem com criptografia",
+      "Suporte técnico por e-mail e WhatsApp",
+      "Atualizações constantes com novas funcionalidades",
+      "Pagamento seguro processado pelo Stripe",
+      "Verificação de e-mail para proteção da conta",
+      "App Android disponível na Play Store"
+    ]
+  },
+  "footer": {
+    "tagline": "O sistema de gestão completo para petshops focados em banho e tosa.",
+    "product": "Produto",
+    "blog": "Blog",
+    "desktop": "Petzara Desktop",
+    "features": "Funcionalidades",
+    "benefits": "Benefícios",
+    "demo": "Demonstração",
+    "howItWorks": "Como Funciona",
+    "support": "Suporte",
+    "login": "Entrar",
+    "register": "Criar Conta",
+    "contact": "Contato",
+    "legal": "Legal",
+    "terms": "Termos de Uso",
+    "privacy": "Política de Privacidade",
+    "cookies": "Preferências de cookies",
+    "rights": "© {year} Petzara. Todos os direitos reservados."
+  },
+  "consent": {
+    "aria": "Aviso de cookies",
+    "text": "Usamos cookies para medir o uso do site.",
+    "more": "Saiba mais",
+    "decline": "Recusar",
+    "accept": "Aceitar"
+  },
+  "whatsapp": {
+    "floatingAria": "Falar com o Petzara no WhatsApp",
+    "floatingLabel": "Dúvidas? Fale no WhatsApp",
+    "floatingMessage": "Olá! Vim pelo site do Petzara e tenho uma dúvida.",
+    "demoMessage": "Olá! Vi o site do Petzara e gostaria de agendar uma demonstração."
+  },
+  "download": {
+    "badge": "Disponível para Windows, macOS e Linux",
+    "title": "Petzara para Desktop",
+    "subtitle": "Toda a potência do Petzara em um aplicativo instalável. Acesso mais rápido, notificações nativas e experiência profissional em qualquer sistema.",
+    "detectedMobile": "Você parece estar em um dispositivo móvel. Para instalar o app desktop, abra esta página no computador.",
+    "detected": "Detectamos {platform}. O download recomendado está destacado abaixo.",
+    "recommended": "Recomendado",
+    "platforms": {
+      "windows": {
+        "requirement": "Windows 10 ou superior (64-bit)",
+        "download": "Baixar para Windows",
+        "note": "Instalador · ~74 MB · Gratuito",
+        "warning": "Se o SmartScreen exibir \"O Windows protegeu seu PC\", clique em \"Mais informações\" → \"Executar assim mesmo\"."
+      },
+      "mac": {
+        "requirement": "macOS 11 (Big Sur) ou superior",
+        "download": "Baixar para macOS",
+        "note": "Arquivo DMG · ~74 MB · Gratuito",
+        "warning": "Como o app não é assinado pela Apple, na primeira abertura abra o Terminal e execute: xattr -cr /Applications/Petzara.app"
+      },
+      "linux": {
+        "requirement": "Qualquer distribuição moderna (x64)",
+        "download": "Baixar para Linux (AppImage)",
+        "note": "AppImage · ~74 MB · sem instalação",
+        "warning": "Após baixar, marque o arquivo como executável: chmod +x *.AppImage"
+      }
+    },
+    "mobileLabel": "dispositivo móvel",
+    "allReleases": "Ver todas as versões e changelogs no GitHub →",
+    "whyTitle": "Por que usar o aplicativo desktop?",
+    "features": [
+      "Acesso rápido pelo atalho na área de trabalho, sem abrir o navegador",
+      "Notificações desktop de novos agendamentos e atualizações",
+      "Seguro — sem dados armazenados localmente, tudo na nuvem",
+      "Atualizações automáticas incluídas, sem precisar reinstalar"
+    ],
+    "howTitle": "Como instalar",
+    "steps": [
+      {
+        "title": "Baixe o instalador",
+        "description": "Escolha o arquivo para o seu sistema operacional e aguarde o download."
+      },
+      {
+        "title": "Execute o instalador",
+        "description": "Abra o arquivo baixado e siga as instruções na tela. Leva menos de 1 minuto."
+      },
+      {
+        "title": "Pronto!",
+        "description": "O Petzara abrirá automaticamente. Faça login com sua conta e comece a usar."
+      }
+    ],
+    "requirementsTitle": "Requisitos",
+    "requirements": [
+      ["Windows", "Windows 10 ou superior (64-bit)"],
+      ["macOS", "macOS 11 Big Sur ou superior (Intel ou Apple Silicon)"],
+      ["Linux", "Qualquer distribuição x64 com suporte a AppImage"],
+      ["Conexão com internet", "Necessária — o sistema roda na nuvem"],
+      ["Conta Petzara", "Necessária — crie gratuitamente em petzara.app"]
+    ],
+    "ctaTitle": "Pronto para começar?",
+    "ctaText": "Escolha o instalador para o seu sistema e acesse o Petzara direto do seu desktop.",
+    "ctaWindows": "Baixar para Windows",
+    "ctaOther": "Outras plataformas →",
+    "ctaWeb": "Acessar versão web →"
+  },
+  "legal": {
+    "back": "Voltar ao início",
+    "terms": "Termos de Uso",
+    "privacy": "Política de Privacidade",
+    "notice": ""
+  }
+}
