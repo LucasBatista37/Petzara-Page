@@ -10,7 +10,7 @@
  */
 import { useMemo } from 'react'
 import { APP_ORIGIN, PLAY_STORE_BASE_URL } from '../siteConfig'
-import { resolveUtm, withParams, playUrlWithReferrer } from './attribution'
+import { resolveUtm, resolveClick, withParams, playUrlWithReferrer } from './attribution'
 import { LOCALE_META, DEFAULT_LOCALE } from '../i18n/config.js'
 import { createTranslator } from '../i18n/catalogs.js'
 import { useI18n } from '../i18n/I18nProvider.jsx'
@@ -19,17 +19,24 @@ import { useHydrated } from './useHydrated'
 export const WHATSAPP_NUMBER = '5513996830085'
 
 let cachedUtm = null
+let cachedClick = null
 function visitUtm() {
     if (typeof window === 'undefined') return {}
     if (!cachedUtm) cachedUtm = resolveUtm()
     return cachedUtm
 }
+function visitClick() {
+    if (typeof window === 'undefined') return {}
+    if (!cachedClick) cachedClick = resolveClick()
+    return cachedClick
+}
 
-export function buildLinks(locale = DEFAULT_LOCALE, utm = {}) {
+export function buildLinks(locale = DEFAULT_LOCALE, utm = {}, click = {}) {
     const meta = LOCALE_META[locale] || LOCALE_META[DEFAULT_LOCALE]
     const { t } = createTranslator(locale)
     const lang = meta.appLang ? { lang: meta.appLang } : {}
-    const register = withParams(`${APP_ORIGIN}/register`, { ...utm, ...lang })
+    // Clique do Google Ads só no cadastro (CONTRATO-ADS); a Play e o WhatsApp não recebem.
+    const register = withParams(`${APP_ORIGIN}/register`, { ...utm, ...lang, ...click })
     let play = playUrlWithReferrer(PLAY_STORE_BASE_URL, utm)
     if (meta.playHl) play = withParams(play, { hl: meta.playHl })
     const wa = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
@@ -49,5 +56,5 @@ export function buildLinks(locale = DEFAULT_LOCALE, utm = {}) {
 export function useLinks() {
     const { locale } = useI18n()
     const hydrated = useHydrated()
-    return useMemo(() => buildLinks(locale, hydrated ? visitUtm() : {}), [locale, hydrated])
+    return useMemo(() => buildLinks(locale, hydrated ? visitUtm() : {}, hydrated ? visitClick() : {}), [locale, hydrated])
 }

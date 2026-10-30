@@ -57,6 +57,56 @@ export function resolveUtm() {
     return stored
 }
 
+// ── Clique do Google Ads (CONTRATO-ADS) ────────────────────────────────────────────────────────
+// gclid/gbraid/wbraid que o Google Ads acrescenta na URL (marcação automática). Vale o último clique,
+// por até 90 dias. Vai no link de cadastro (com gclid_at = hora do clique) para o sistema web gravar na
+// conta; o backend usa só o id do clique para a importação de conversões offline (sem dados pessoais).
+// Quem recusou os cookies não tem o clique guardado nem repassado.
+export const CLICK_KEYS = ['gclid', 'gbraid', 'wbraid']
+const CLICK_STORAGE_KEY = 'pz_click'
+const CLICK_ID = /^[A-Za-z0-9_-]{10,300}$/
+const CLICK_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000
+
+function consentDeclined() {
+    try { return window.localStorage.getItem('pz_cookie_consent') === 'declined' } catch { return false }
+}
+
+export function clickFromSearch(search) {
+    const out = {}
+    try {
+        const params = new URLSearchParams(search)
+        for (const k of CLICK_KEYS) {
+            const v = String(params.get(k) ?? '').trim()
+            if (CLICK_ID.test(v)) out[k] = v
+        }
+    } catch { /* URL inválida */ }
+    return out
+}
+
+function readStoredClick(now) {
+    try {
+        const parsed = JSON.parse(window.localStorage.getItem(CLICK_STORAGE_KEY) || 'null')
+        const at = Number(parsed?.at)
+        if (!Number.isFinite(at) || at > now || now - at > CLICK_MAX_AGE_MS) return {}
+        const out = {}
+        for (const k of CLICK_KEYS) if (CLICK_ID.test(String(parsed[k] ?? ''))) out[k] = parsed[k]
+        return Object.keys(out).length ? { ...out, gclid_at: String(at) } : {}
+    } catch { return {} }
+}
+
+/** Parâmetros do clique para o link de cadastro: { gclid?, gbraid?, wbraid?, gclid_at } ou {}. */
+export function resolveClick(now = Date.now()) {
+    if (typeof window === 'undefined' || consentDeclined()) return {}
+    const current = clickFromSearch(window.location.search)
+    if (Object.keys(current).length) {
+        try {
+            window.localStorage.setItem(CLICK_STORAGE_KEY, JSON.stringify({ ...current, at: now }))
+        } catch { /* armazenamento bloqueado: repassa só nesta visita */ }
+        return { ...current, gclid_at: String(now) }
+    }
+    return readStoredClick(now)
+}
+
 /** Acrescenta parâmetros a uma URL absoluta, sem duplicar "?". */
 export function withParams(url, params = {}) {
     const u = new URL(url)
