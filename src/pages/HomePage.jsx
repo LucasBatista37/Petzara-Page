@@ -6,6 +6,7 @@ import { useI18n } from '../i18n/I18nProvider.jsx'
 import { usePageHead } from '../i18n/usePageHead'
 
 // Below-fold sections — loaded on demand as the user scrolls
+const VideoSection        = lazy(() => import('../components/VideoSection'))
 const ProblemSection      = lazy(() => import('../components/ProblemSection'))
 const SolutionSection     = lazy(() => import('../components/SolutionSection'))
 const HowItWorksSection   = lazy(() => import('../components/HowItWorksSection'))
@@ -96,6 +97,8 @@ export default function HomePage() {
             <Navbar />
             <main className="bg-gradient-to-b from-cream via-cream-warm to-cream">
                 <HeroSection />
+                {/* Vídeos reais logo depois do hero: quem chega pelo anúncio vê o sistema funcionando */}
+                <Suspense fallback={<SectionFallback />}><VideoSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><ProblemSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><SolutionSection /></Suspense>
                 <Suspense fallback={<SectionFallback />}><HowItWorksSection /></Suspense>

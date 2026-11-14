@@ -1,6 +1,6 @@
 # Privacy Policy — Petzara
 
-**Last updated (Portuguese original):** 10/16/2026
+**Last updated (Portuguese original):** 11/13/2026
 
 ---
 
@@ -141,6 +141,8 @@ In these cases, we adopt the measures provided for in the LGPD (Articles 33 to 3
 **8.4** On the **company website** (petzara.app) we may use third-party **audience measurement** and **advertising** tools — **Google Analytics 4** (Google) and **Meta Pixel** (Meta Platforms) — to understand how the site is used (page views, clicks on "create account", "WhatsApp" and "Google Play") and to measure campaigns. These tools **are only loaded after you consent** in the cookie banner ("Accept"). If you click "Decline", they are not loaded. Your choice is saved in the browser's local storage and can be changed at any time under **"Cookie preferences"** in the site footer. Legal basis: **consent** (Article 7, I, of the LGPD). Data collected by these tools is also processed under Google's and Meta's policies and may be processed outside Brazil (see section 7).
 
 **8.5** The **system** (app.petzara.app) and the **Android app** do not use advertising cookies for marketing profiling.
+
+**8.6** In addition, the petzara.app website has its **own cookie-free visit measurement**, so we know how many visits each channel brings (ads, search engines, social networks) and how many end with a click on "create account", "WhatsApp" or the app stores. It records only: the page viewed, the language, the referring site (just the address, e.g. google.com), the campaign parameters in the URL (utm), whether the visit came from a Google ad (yes/no, without the click identifier), the device type and operating system (e.g. Android phone), the buttons clicked and the videos played on the site, linked to a random session number that stays only in the open browser tab (sessionStorage) and is discarded when the tab is closed. It **does not record** IP addresses, cookies, name, email or any data that identifies you; the data is used only as aggregated numbers in Petzara's internal dashboard and deleted within 400 days. Legal basis: **legitimate interest** (Article 7, IX, of the LGPD) in measuring the performance of our own website and ads.
 
 ---
 

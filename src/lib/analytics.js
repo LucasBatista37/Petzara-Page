@@ -21,6 +21,8 @@
  * dimensão de evento "site_language".
  */
 
+import { siteCta } from './siteStats'
+
 // IDs públicos (aparecem no HTML de qualquer site que os usa). A variável da Vercel, se existir, tem prioridade.
 // GA4: propriedade "Petzara — site", fluxo petzara.app (criado em 16/10/2026).
 const GA4_DEFAULT = 'G-QZ53SEKZ7L'
@@ -156,6 +158,8 @@ export function installClickTracking() {
         const name = classifyHref(a.href)
         if (!name) return
         const where = a.dataset.track || a.closest('section[id]')?.id || (a.closest('footer') ? 'rodape' : 'outro')
+        // Medição própria (sem cookies, vale com ou sem consentimento): só o tipo do botão e onde ele está.
+        siteCta(name, where)
         track(name, { link_location: where, link_text: (a.innerText || a.getAttribute('aria-label') || '').trim().slice(0, 60) })
     }
     document.addEventListener('click', handler, { capture: true })

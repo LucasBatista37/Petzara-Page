@@ -167,7 +167,7 @@ export default function MultiDeviceSection() {
                             transition={{ delay: 2.2, duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
                         >
                             <IPadFrame
-                                src="/prints/clientes-lista.png"
+                                src="/prints/app/clientes.webp"
                                 alt={t('multiDevice.tabletAlt')}
                             />
                         </motion.div>
@@ -182,7 +182,7 @@ export default function MultiDeviceSection() {
                         style={{ width: 'clamp(210px, 58vw, 640px)' }}
                     >
                         <MacBookFrame
-                            src="/prints/dashboard.png"
+                            src="/prints/app/agenda-calendario-semana.webp"
                             alt={t('multiDevice.desktopAlt')}
                         />
                     </motion.div>
@@ -201,7 +201,7 @@ export default function MultiDeviceSection() {
                             transition={{ delay: 1.8, duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
                         >
                             <IPhoneFrame
-                                src="/prints/mobile/agendamentos.png"
+                                src="/prints/app/mobile/agendamentos.webp"
                                 alt={t('multiDevice.phoneAlt')}
                             />
                         </motion.div>

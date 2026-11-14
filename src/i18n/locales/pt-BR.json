@@ -64,6 +64,51 @@
     "notificationTitle": "Novo agendamento!",
     "notificationText": "Luna — Banho às 10:30"
   },
+  "video": {
+    "badge": "Veja funcionando",
+    "title": {
+      "before": "O Petzara de verdade,",
+      "highlight": "na tela",
+      "after": ""
+    },
+    "subtitle": "Gravações do sistema rodando, sem montagem. Escolha o que você quer ver.",
+    "tabsLabel": "Vídeos do Petzara",
+    "play": "Assistir: {title}",
+    "note": "Telas reais do Petzara, com um pet shop de demonstração (dados fictícios).",
+    "cta": "Começar teste grátis",
+    "items": {
+      "promo": {
+        "title": "Petzara em 1 minuto",
+        "short": "O app no celular, do início ao fim",
+        "description": "Agenda do dia, valor certo de cada atendimento, ficha do pet e a equipe no mesmo sistema."
+      },
+      "novoAgendamento": {
+        "title": "Novo agendamento",
+        "short": "Pet, serviço, data e hora",
+        "description": "Do painel ao horário marcado: escolha o pet, o serviço e os extras, a data e a hora. O sistema não deixa marcar dois no mesmo horário."
+      },
+      "agenda": {
+        "title": "Agenda",
+        "short": "Lista, mês, semana e dia",
+        "description": "Veja os atendimentos por lista, mês, semana ou dia, com o status de cada banho e filtros por período."
+      },
+      "link": {
+        "title": "Link de agendamento",
+        "short": "O cliente escolhe o horário",
+        "description": "Seu cliente abre o seu link, escolhe um horário livre e confirma pelo seu WhatsApp."
+      },
+      "financeiro": {
+        "title": "Financeiro",
+        "short": "Receber, despesas e planilha",
+        "description": "Contas a receber, despesas do mês e exportação dos atendimentos para planilha."
+      },
+      "celular": {
+        "title": "No navegador do celular",
+        "short": "Tudo também no celular",
+        "description": "O mesmo sistema no navegador do celular: menu lateral, agenda em cards e agendamento em poucos toques."
+      }
+    }
+  },
   "problem": {
     "badge": "Reconhece essa rotina?",
     "title": {
@@ -203,6 +248,11 @@
         "description": "Visualize e gerencie todos os atendimentos do dia",
         "imageAlt": "Calendário de agendamentos Petzara"
       },
+      "novoAgendamento": {
+        "title": "Novo agendamento",
+        "description": "Pet, serviço e extras em passos, com o valor de cada um",
+        "imageAlt": "Novo agendamento no Petzara: escolha dos serviços extras"
+      },
       "servicos": {
         "title": "Serviços",
         "description": "Configure serviços, preços e duração de cada atendimento",
@@ -237,6 +287,11 @@
         "title": "Despesas",
         "description": "Registre e categorize todas as saídas do negócio",
         "imageAlt": "Despesas Petzara"
+      },
+      "notificacoes": {
+        "title": "Notificações",
+        "description": "Aviso de agendamento pelo link, atendimento iniciado e conta a vencer",
+        "imageAlt": "Notificações do Petzara"
       },
       "paginaPublica": {
         "title": "Agenda pública",

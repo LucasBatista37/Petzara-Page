@@ -64,6 +64,51 @@
     "notificationTitle": "New appointment!",
     "notificationText": "Luna — Bath at 10:30 AM"
   },
+  "video": {
+    "badge": "See it in action",
+    "title": {
+      "before": "The real Petzara,",
+      "highlight": "on screen",
+      "after": ""
+    },
+    "subtitle": "Recordings of the system running, no mockups. Pick what you want to see.",
+    "tabsLabel": "Petzara videos",
+    "play": "Watch: {title}",
+    "note": "Real Petzara screens (interface in Portuguese), with a demo grooming shop (fictitious data).",
+    "cta": "Start free trial",
+    "items": {
+      "promo": {
+        "title": "Petzara in 1 minute",
+        "short": "The phone app, start to finish",
+        "description": "Today's schedule, the right price for every appointment, pet profiles and your team in one system."
+      },
+      "novoAgendamento": {
+        "title": "New appointment",
+        "short": "Pet, service, date and time",
+        "description": "From the dashboard to a booked slot: pick the pet, the service and extras, the date and the time. The system won't let you book two in the same slot."
+      },
+      "agenda": {
+        "title": "Schedule",
+        "short": "List, month, week and day",
+        "description": "See appointments as a list or by month, week or day, with each one's status and filters by period."
+      },
+      "link": {
+        "title": "Booking link",
+        "short": "Clients pick the time",
+        "description": "Your client opens your link, picks an open slot and confirms through your WhatsApp."
+      },
+      "financeiro": {
+        "title": "Finances",
+        "short": "Receivables, expenses, spreadsheet",
+        "description": "Receivables, monthly expenses and exporting appointments to a spreadsheet."
+      },
+      "celular": {
+        "title": "In the phone's browser",
+        "short": "Everything on your phone too",
+        "description": "The same system in the phone's browser: side menu, schedule as cards and booking in a few taps."
+      }
+    }
+  },
   "problem": {
     "badge": "Sound familiar?",
     "title": {
@@ -203,6 +248,11 @@
         "description": "See and manage every appointment of the day",
         "imageAlt": "Petzara appointment calendar"
       },
+      "novoAgendamento": {
+        "title": "New appointment",
+        "description": "Pet, service and extras step by step, with each price",
+        "imageAlt": "New appointment in Petzara: choosing extra services"
+      },
       "servicos": {
         "title": "Services",
         "description": "Set up services, prices and how long each one takes",
@@ -237,6 +287,11 @@
         "title": "Expenses",
         "description": "Record and categorize every business expense",
         "imageAlt": "Petzara expenses"
+      },
+      "notificacoes": {
+        "title": "Notifications",
+        "description": "Alerts for bookings from your link, appointments started and bills coming due",
+        "imageAlt": "Petzara notifications"
       },
       "paginaPublica": {
         "title": "Booking link",

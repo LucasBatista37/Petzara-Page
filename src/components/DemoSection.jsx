@@ -7,28 +7,35 @@ import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
 const FADE = { duration: 0.28, ease }
 
-// Textos (título, descrição, alt) em i18n/locales → demo.screens.<key>. As capturas ainda mostram
-// a interface em português (ver LANDING-SEO.md: capturas localizadas pendentes).
+// Textos (título, descrição, alt) em i18n/locales → demo.screens.<key>. As capturas são do sistema rodando de
+// verdade (visual-assets, set/2026), com o pet shop fictício "Pet & Cia" do seed — nenhum dado de cliente.
+// A interface aparece em português nos três idiomas. Sem mobileImage, a tela só entra na vista Desktop.
+const D = '/prints/app'
+const M = '/prints/app/mobile'
 const SCREENS = [
-    { id: 'dashboard', key: 'dashboard', desktopImage: '/prints/dashboard.webp', mobileImage: '/prints/mobile/dashboard.webp', browserPath: `${APP_HOST}/dashboard` },
-    { id: 'agendamentos', key: 'agendamentos', desktopImage: '/prints/agendamentos-calendario.webp', mobileImage: '/prints/mobile/agendamentos.webp', browserPath: `${APP_HOST}/agendamentos` },
-    { id: 'servicos', key: 'servicos', desktopImage: '/prints/servicos.webp', mobileImage: '/prints/mobile/servicos.webp', browserPath: `${APP_HOST}/servicos` },
-    { id: 'clientes', key: 'clientes', desktopImage: '/prints/clientes-lista.webp', mobileImage: '/prints/mobile/clientes.webp', browserPath: `${APP_HOST}/clientes` },
-    { id: 'pets', key: 'pets', desktopImage: '/prints/pets-card.webp', mobileImage: '/prints/mobile/pets.webp', browserPath: `${APP_HOST}/pets` },
-    { id: 'colaboradores', key: 'colaboradores', desktopImage: '/prints/colaboradores-lista.webp', mobileImage: '/prints/mobile/colaboradores.webp', browserPath: `${APP_HOST}/colaboradores` },
-    { id: 'financeiro', key: 'financeiro', desktopImage: '/prints/financeiro-dashboard.webp', mobileImage: '/prints/mobile/financeiro-dashboard.webp', browserPath: `${APP_HOST}/financeiro` },
-    { id: 'contas-receber', key: 'contasReceber', desktopImage: '/prints/financeiro-contas-a-receber.webp', mobileImage: '/prints/mobile/financeiro-contas-a-receber.webp', browserPath: `${APP_HOST}/financeiro/contas-a-receber` },
-    { id: 'despesas', key: 'despesas', desktopImage: '/prints/financeiro-despesas.webp', mobileImage: '/prints/mobile/financeiro-despesas.webp', browserPath: `${APP_HOST}/financeiro/despesas` },
-    { id: 'pagina-publica', key: 'paginaPublica', desktopImage: '/prints/pagina-publica.webp', mobileImage: '/prints/mobile/pagina-publica.webp', browserPath: `${APP_HOST}/agendar/petshop-da-ana` },
+    { id: 'dashboard', key: 'dashboard', desktopImage: `${D}/dashboard.webp`, mobileImage: `${M}/dashboard.webp`, browserPath: `${APP_HOST}/dashboard` },
+    { id: 'agendamentos', key: 'agendamentos', desktopImage: `${D}/agenda-calendario-mes.webp`, mobileImage: `${M}/calendario.webp`, browserPath: `${APP_HOST}/appointments` },
+    { id: 'novo-agendamento', key: 'novoAgendamento', desktopImage: `${D}/novo-agendamento-servicos.webp`, mobileImage: `${M}/novo-agendamento.webp`, browserPath: `${APP_HOST}/appointments` },
+    { id: 'clientes', key: 'clientes', desktopImage: `${D}/clientes-cards.webp`, mobileImage: `${M}/clientes.webp`, browserPath: `${APP_HOST}/clients` },
+    { id: 'pets', key: 'pets', desktopImage: `${D}/pets-cards.webp`, browserPath: `${APP_HOST}/pets` },
+    { id: 'servicos', key: 'servicos', desktopImage: `${D}/servicos.webp`, browserPath: `${APP_HOST}/services` },
+    { id: 'colaboradores', key: 'colaboradores', desktopImage: `${D}/colaboradores.webp`, browserPath: `${APP_HOST}/collaborators` },
+    { id: 'financeiro', key: 'financeiro', desktopImage: `${D}/financeiro-dashboard.webp`, mobileImage: `${M}/financeiro.webp`, browserPath: `${APP_HOST}/financial` },
+    { id: 'contas-receber', key: 'contasReceber', desktopImage: `${D}/financeiro-contas-a-receber.webp`, browserPath: `${APP_HOST}/financial` },
+    { id: 'despesas', key: 'despesas', desktopImage: `${D}/financeiro-despesas.webp`, browserPath: `${APP_HOST}/financial` },
+    { id: 'notificacoes', key: 'notificacoes', desktopImage: `${D}/notificacoes.webp`, mobileImage: `${M}/notificacoes.webp`, browserPath: `${APP_HOST}/notifications` },
+    { id: 'pagina-publica', key: 'paginaPublica', desktopImage: `${D}/link-publico.webp`, mobileImage: `${M}/link-publico.webp`, browserPath: `${APP_HOST}/agendar/petecia` },
 ]
 
 
 export default function DemoSection() {
     const { ref, isInView } = useResponsiveInView()
     const { t, tm } = useI18n()
-    const screens = SCREENS.map((s) => ({ ...s, ...(tm(`demo.screens.${s.key}`) || {}) }))
     const [current, setCurrent] = useState(0)
     const [viewMode, setViewMode] = useState('desktop')
+    const screens = SCREENS
+        .filter((s) => viewMode === 'desktop' || s.mobileImage)
+        .map((s) => ({ ...s, ...(tm(`demo.screens.${s.key}`) || {}) }))
 
     useEffect(() => {
         if (window.matchMedia('(max-width: 767px)').matches) {
@@ -40,7 +47,7 @@ export default function DemoSection() {
     const prev = () => navigate((current - 1 + screens.length) % screens.length)
     const next = () => navigate((current + 1) % screens.length)
 
-    const screen = screens[current]
+    const screen = screens[current] || screens[0]
 
     return (
         <section id="demo" className="py-20 sm:py-28 relative overflow-hidden">
@@ -81,7 +88,13 @@ export default function DemoSection() {
                             ].map(({ mode, Icon, label }) => (
                                 <button
                                     key={mode}
-                                    onClick={() => setViewMode(mode)}
+                                    onClick={() => {
+                                        if (mode === viewMode) return
+                                        const id = screens[current]?.id
+                                        const next = SCREENS.filter((s) => mode === 'desktop' || s.mobileImage)
+                                        setCurrent(Math.max(0, next.findIndex((s) => s.id === id)))
+                                        setViewMode(mode)
+                                    }}
                                     className="relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-colors z-10"
                                     style={{ color: viewMode === mode ? 'white' : undefined }}
                                 >
