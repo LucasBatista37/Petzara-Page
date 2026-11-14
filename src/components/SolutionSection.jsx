@@ -105,7 +105,7 @@ export default function SolutionSection() {
                                         </div>
                                     </div>
                                     <img
-                                        src="/prints/agendamentos-lista.webp"
+                                        src="/prints/app/agendamentos-lista.webp"
                                         alt={t('solution.listAlt')}
                                         className="w-full block"
                                         loading="lazy"
@@ -141,7 +141,7 @@ export default function SolutionSection() {
                                 />
                                 <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
                                     <img
-                                        src="/prints/mobile/agendamentos.webp"
+                                        src="/prints/app/mobile/agendamentos.webp"
                                         alt={t('solution.mobileAlt')}
                                         className="w-full block"
                                         loading="lazy"

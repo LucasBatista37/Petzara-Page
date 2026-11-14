@@ -64,6 +64,51 @@
     "notificationTitle": "¡Nueva cita!",
     "notificationText": "Luna — Baño a las 10:30"
   },
+  "video": {
+    "badge": "Míralo en acción",
+    "title": {
+      "before": "Petzara de verdad,",
+      "highlight": "en pantalla",
+      "after": ""
+    },
+    "subtitle": "Grabaciones del sistema funcionando, sin montajes. Elige lo que quieres ver.",
+    "tabsLabel": "Videos de Petzara",
+    "play": "Ver: {title}",
+    "note": "Pantallas reales de Petzara (interfaz en portugués), con una peluquería canina de demostración (datos ficticios).",
+    "cta": "Empezar prueba gratis",
+    "items": {
+      "promo": {
+        "title": "Petzara en 1 minuto",
+        "short": "La app en el celular",
+        "description": "Agenda del día, precio correcto de cada servicio, ficha de la mascota y el equipo en el mismo sistema."
+      },
+      "novoAgendamento": {
+        "title": "Nueva cita",
+        "short": "Mascota, servicio, fecha y hora",
+        "description": "Del panel a la cita reservada: elige la mascota, el servicio y los extras, la fecha y la hora. El sistema no deja reservar dos en el mismo horario."
+      },
+      "agenda": {
+        "title": "Agenda",
+        "short": "Lista, mes, semana y día",
+        "description": "Mira las citas en lista, mes, semana o día, con el estado de cada baño y filtros por período."
+      },
+      "link": {
+        "title": "Enlace de reservas",
+        "short": "El cliente elige el horario",
+        "description": "Tu cliente abre tu enlace, elige un horario libre y confirma por tu WhatsApp."
+      },
+      "financeiro": {
+        "title": "Finanzas",
+        "short": "Cobros, gastos y planilla",
+        "description": "Cuentas por cobrar, gastos del mes y exportación de las citas a una planilla."
+      },
+      "celular": {
+        "title": "En el navegador del celular",
+        "short": "Todo también en el celular",
+        "description": "El mismo sistema en el navegador del celular: menú lateral, agenda en tarjetas y citas en pocos toques."
+      }
+    }
+  },
   "problem": {
     "badge": "¿Te suena esta rutina?",
     "title": {
@@ -203,6 +248,11 @@
         "description": "Mira y gestiona todas las citas del día",
         "imageAlt": "Calendario de citas en Petzara"
       },
+      "novoAgendamento": {
+        "title": "Nueva cita",
+        "description": "Mascota, servicio y extras en pasos, con el precio de cada uno",
+        "imageAlt": "Nueva cita en Petzara: selección de servicios extra"
+      },
       "servicos": {
         "title": "Servicios",
         "description": "Configura servicios, precios y la duración de cada uno",
@@ -237,6 +287,11 @@
         "title": "Gastos",
         "description": "Registra y clasifica todos los gastos del negocio",
         "imageAlt": "Gastos en Petzara"
+      },
+      "notificacoes": {
+        "title": "Notificaciones",
+        "description": "Avisos de citas por el enlace, servicio iniciado y cuentas por vencer",
+        "imageAlt": "Notificaciones de Petzara"
       },
       "paginaPublica": {
         "title": "Enlace de reservas",

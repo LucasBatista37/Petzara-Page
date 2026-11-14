@@ -46,7 +46,7 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                             </div>
                         </div>
                         <OptimizedImage
-                            src="/prints/dashboard.png"
+                            src="/prints/app/dashboard.webp"
                             alt={t('hero.dashboardAlt')}
                             className="w-full block"
                             loading="eager"
@@ -89,7 +89,7 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                     {/* Tela */}
                     <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
                         <OptimizedImage
-                            src="/prints/mobile/dashboard.png"
+                            src="/prints/app/mobile/dashboard.webp"
                             alt={t('hero.mobileAlt')}
                             className="w-full block"
                             loading="eager"

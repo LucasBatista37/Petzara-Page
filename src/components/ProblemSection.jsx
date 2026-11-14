@@ -1,17 +1,17 @@
 import { motion } from 'framer-motion'
-import { CalendarX2, DollarSign, Smartphone, Users, Clock, BarChart3, ArrowRight } from 'lucide-react'
+import { CalendarX2, DollarSign, MessageCircleWarning, Users, Clock, BarChart3, ArrowRight, Quote } from 'lucide-react'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
 import { useLinks } from '../lib/links'
 import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
 // Textos em i18n/locales (problem.items), na mesma ordem.
 const PROBLEM_VISUALS = [
-    { icon: CalendarX2, emoji: '⏰' },
-    { icon: DollarSign, emoji: '💸' },
-    { icon: Smartphone, emoji: '📱' },
-    { icon: Users, emoji: '👥' },
-    { icon: Clock, emoji: '🕐' },
-    { icon: BarChart3, emoji: '📊' },
+    { icon: CalendarX2 },
+    { icon: DollarSign },
+    { icon: MessageCircleWarning },
+    { icon: Users },
+    { icon: Clock },
+    { icon: BarChart3 },
 ]
 
 export default function ProblemSection() {
@@ -56,7 +56,9 @@ export default function ProblemSection() {
                             className="group bg-white rounded-2xl p-6 border border-sand/60 hover:border-terracotta/30 hover:shadow-lg hover:shadow-terracotta/5 transition-all duration-300 hover:-translate-y-1"
                         >
                             <div className="flex items-start gap-4">
-                                <div className="text-3xl">{problem.emoji}</div>
+                                <div className="w-11 h-11 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0 transition-colors group-hover:bg-terracotta group-hover:text-white">
+                                    <problem.icon size={20} aria-hidden="true" />
+                                </div>
                                 <div>
                                     <h3 className="font-accent font-bold text-espresso text-lg mb-1">
                                         {problem.title}
@@ -79,7 +81,7 @@ export default function ProblemSection() {
                     className="mt-12 max-w-2xl mx-auto"
                 >
                     <div className="bg-terracotta/5 border border-terracotta/20 rounded-2xl px-6 py-5 flex gap-4 items-start">
-                        <span className="text-2xl mt-0.5 shrink-0" aria-hidden="true">💬</span>
+                        <Quote size={22} className="mt-0.5 shrink-0 text-terracotta" aria-hidden="true" />
                         <div>
                             <p className="text-espresso/80 text-base leading-relaxed font-medium italic">
                                 {t('problem.quote')}

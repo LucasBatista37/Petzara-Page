@@ -6,6 +6,7 @@ import LanguageSuggestion from './components/LanguageSuggestion'
 import { I18nProvider } from './i18n/I18nProvider.jsx'
 import { PAGES, localeFromPath } from './i18n/config.js'
 import { setSiteLanguage } from './lib/analytics'
+import { sitePageView } from './lib/siteStats'
 
 // Páginas fora da home em chunks próprios: react-markdown/remark-gfm, os textos
 // legais e os artigos do blog não pesam no carregamento da página inicial (L8).
@@ -49,6 +50,8 @@ export default function App() {
     const locale = localeFromPath(location.pathname)
 
     useEffect(() => { setSiteLanguage(locale) }, [locale])
+    // Medição própria de visitas (painel → Tráfego), sem cookies: uma visualização por rota.
+    useEffect(() => { sitePageView(locale) }, [location.pathname, locale])
 
     return (
         <I18nProvider locale={locale}>
