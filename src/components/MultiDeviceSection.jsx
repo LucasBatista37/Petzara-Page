@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Monitor, Smartphone, Download, RefreshCw } from 'lucide-react'
 import { ease, useResponsiveInView } from '../animations/variants'
 import OptimizedImage from './OptimizedImage'
-import { useLinks } from '../lib/links'
+import StoreBadges from './StoreBadges'
 import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
 const PILL_ICONS = [Smartphone, Monitor, Download, RefreshCw]
@@ -100,8 +100,7 @@ function IPhoneFrame({ src, alt }) {
 // ─── Section ───────────────────────────────────────────────────────────────────
 export default function MultiDeviceSection() {
     const { ref, isInView } = useResponsiveInView()
-    const { t, tm, meta } = useI18n()
-    const links = useLinks()
+    const { t, tm } = useI18n()
     const pills = (tm('multiDevice.pills') || []).map((label, i) => ({ icon: PILL_ICONS[i], label }))
 
     return (
@@ -134,22 +133,13 @@ export default function MultiDeviceSection() {
                     <p className="text-white/65 text-lg leading-relaxed">
                         {t('multiDevice.subtitle')}
                     </p>
-                    <div className="mt-6 flex justify-center">
-                        <a
-                            href={links.play}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={t('multiDevice.playBadgeAlt')}
-                            className="inline-block transition-transform hover:-translate-y-0.5 active:translate-y-0"
-                        >
-                            <img
-                                src={meta.playBadge}
-                                alt={t('multiDevice.playBadgeAlt')}
-                                className="h-12 w-auto"
-                                loading="lazy"
-                            />
-                        </a>
-                    </div>
+                    <StoreBadges
+                        size="md"
+                        center
+                        className="mt-6"
+                        playAlt={t('multiDevice.playBadgeAlt')}
+                        appStoreAlt={t('multiDevice.appStoreBadgeAlt')}
+                    />
                 </motion.div>
 
                 {/* ── Three-device showcase ─────────────────────────────────── */}

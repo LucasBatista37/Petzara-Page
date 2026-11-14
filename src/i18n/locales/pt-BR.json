@@ -51,9 +51,11 @@
     },
     "subtitle": "Agenda, clientes, pets e caixa do seu pet shop em um só lugar, no celular e no computador. Seus clientes veem os horários livres no seu link de agendamento e chamam você no WhatsApp.",
     "playCta": "Baixar grátis na Play Store",
+    "appStoreCta": "Baixar grátis na App Store",
     "webCtaAndroid": "Começar teste grátis no navegador",
     "webCta": "Começar teste grátis",
     "playBadgeAlt": "Disponível no Google Play",
+    "appStoreBadgeAlt": "Baixar na App Store",
     "bonusStrong": "+14 dias grátis",
     "bonusText": "se você criar agendamentos em 3 dias diferentes durante o teste.",
     "trust": ["Sem cartão de crédito", "Ajuda grátis para configurar", "Cancele quando quiser"],
@@ -168,12 +170,13 @@
       "highlight": "qualquer dispositivo",
       "after": ""
     },
-    "subtitle": "Celular, tablet e computador. Instala como app no Android direto pela Play Store. Sua equipe acessa de onde estiver.",
+    "subtitle": "Celular, tablet e computador. Baixe o app no Android pela Play Store e no iPhone pela App Store. Sua equipe acessa de onde estiver.",
     "playBadgeAlt": "Disponível no Google Play",
+    "appStoreBadgeAlt": "Baixar na App Store",
     "tabletAlt": "Gestão de clientes no tablet",
     "desktopAlt": "Dashboard Petzara no computador",
     "phoneAlt": "Agendamentos no celular",
-    "pills": ["Android e iPhone (navegador)", "Qualquer navegador", "Disponível na Play Store", "Sincronização em tempo real"]
+    "pills": ["App para Android e iPhone", "Qualquer navegador", "Na Play Store e na App Store", "Sincronização em tempo real"]
   },
   "demo": {
     "badge": "Veja em ação",
@@ -278,7 +281,7 @@
       "per": "/ano",
       "savings": "Economize {amount} — {months} meses grátis"
     },
-    "noPrice": "Preço na sua moeda na Google Play",
+    "noPrice": "Preço na sua moeda na Google Play e na App Store",
     "noPriceTrial": "Teste grátis",
     "features": [
       "Agendamentos ilimitados",
@@ -293,7 +296,7 @@
     "cta": "Testar grátis por 30 dias",
     "fineprint": "30 dias grátis · Sem cartão · Cancele quando quiser",
     "footnote": "Preços da assinatura pelo site, com pagamento seguro via Stripe. Mesmas funcionalidades nos dois planos.",
-    "footnote2": "No app Android, a assinatura é feita pela Google Play e o preço aparece no próprio app."
+    "footnote2": "Nos apps, a assinatura é feita pela Google Play (Android) ou pela App Store (iPhone), e o preço aparece no próprio app."
   },
   "faq": {
     "badge": "Dúvidas frequentes",
@@ -311,7 +314,7 @@
       },
       {
         "question": "Se eu assinar durante o teste, pago na hora?",
-        "answer": "Não. Pelo site e pelo app, a 1ª cobrança é só no fim do teste: os dias grátis que faltam continuam valendo. No app Android, a data da 1ª cobrança aparece antes de você confirmar a compra, e dá para cancelar sem custo na Play Store antes dela. Só se faltar menos de 2 dias para o teste acabar a cobrança pode ser feita no dia — e a tela de pagamento avisa antes."
+        "answer": "Não. Pelo site e pelo app, a 1ª cobrança é só no fim do teste: os dias grátis que faltam continuam valendo. No app Android, a data da 1ª cobrança aparece antes de você confirmar a compra, e dá para cancelar sem custo na Play Store antes dela. Só se faltar menos de 2 dias para o teste acabar a cobrança pode ser feita no dia — e a tela de pagamento avisa antes. No app do iPhone é diferente: a App Store cobra na hora da compra, e os dias grátis que faltavam são somados à sua assinatura."
       },
       {
         "question": "Como ganho +14 dias grátis?",
@@ -336,11 +339,11 @@
       },
       {
         "question": "Preciso instalar algum programa no computador?",
-        "answer": "Não. O Petzara funciona no navegador do computador, do tablet ou do celular — é só entrar em app.petzara.app. No Android, também tem o app Petzara na Google Play."
+        "answer": "Não. O Petzara funciona no navegador do computador, do tablet ou do celular — é só entrar em app.petzara.app. Também tem o app Petzara no Android (Google Play) e no iPhone (App Store)."
       },
       {
         "question": "O sistema funciona bem no celular?",
-        "answer": "Sim. No Android, baixe o app Petzara na Google Play. No iPhone, use pelo navegador (Safari ou Chrome) em app.petzara.app — dá para adicionar à tela de início. A conta é a mesma em todos os aparelhos."
+        "answer": "Sim. No Android, baixe o app Petzara na Google Play. No iPhone, baixe na App Store. Se preferir, também dá para usar pelo navegador em app.petzara.app. A conta é a mesma em todos os aparelhos."
       },
       {
         "question": "Meus dados ficam seguros?",
@@ -352,7 +355,7 @@
       },
       {
         "question": "Como funciona o cancelamento?",
-        "answer": "Sem multa e sem ligação. Assinou pelo site: cancele quando quiser nas configurações da conta. Assinou pelo app Android: o cancelamento é feito na Google Play, em Pagamentos e assinaturas."
+        "answer": "Sem multa e sem ligação. Assinou pelo site: cancele quando quiser nas configurações da conta. Assinou pelo app Android: o cancelamento é feito na Google Play, em Pagamentos e assinaturas. Assinou pelo app do iPhone: cancele em Ajustes > seu nome > Assinaturas."
       },
       {
         "question": "O sistema é difícil de aprender?",
@@ -378,7 +381,7 @@
       "Atualizações constantes com novas funcionalidades",
       "Pagamento seguro processado pelo Stripe",
       "Verificação de e-mail para proteção da conta",
-      "App Android disponível na Play Store"
+      "App para Android e iPhone na Play Store e na App Store"
     ]
   },
   "footer": {

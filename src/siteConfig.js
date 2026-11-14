@@ -19,6 +19,9 @@ export const stripeMonthlyUrl = withParams(appRegisterUrl, { plan: 'monthly' })
 export const stripeAnnualUrl = withParams(appRegisterUrl, { plan: 'annual' })
 
 export const PLAY_STORE_BASE_URL = 'https://play.google.com/store/apps/details?id=app.petzara.twa'
+/** App iOS (aprovado e lançado em 13/11/2026). Sem país no caminho a Apple abre a loja do visitante. */
+export const APP_STORE_ID = '6834036890'
+export const APP_STORE_BASE_URL = `https://apps.apple.com/app/petzara/id${APP_STORE_ID}`
 /** Link da Play com &referrer=utm_source%3D…%26utm_medium%3D…%26utm_campaign%3D… (padrão "site"). */
 export const playStoreUrl = playUrlWithReferrer(PLAY_STORE_BASE_URL, visitUtm)
 

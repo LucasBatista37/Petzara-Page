@@ -31,6 +31,9 @@ export const LOCALE_META = {
         appLang: null,
         playHl: null,
         playBadge: 'https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png',
+        /** loja brasileira da App Store; selo oficial da Apple no idioma, sem alteração (toolbox.marketingtools.apple.com), servido pelo site */
+        appStoreCountry: 'br',
+        appStoreBadge: '/badges/app-store-pt-br.svg',
         suggest: { question: 'Ver esta página em português?', action: 'Ver em português', dismiss: 'Agora não' },
     },
     es: {
@@ -44,6 +47,8 @@ export const LOCALE_META = {
         appLang: 'es',
         playHl: 'es',
         playBadge: 'https://play.google.com/intl/es-419/badges/static/images/badges/es-419_badge_web_generic.png',
+        appStoreCountry: null,
+        appStoreBadge: '/badges/app-store-es-mx.svg',
         suggest: { question: '¿Ver esta página en español?', action: 'Ver en español', dismiss: 'No, gracias' },
     },
     en: {
@@ -57,6 +62,8 @@ export const LOCALE_META = {
         appLang: 'en',
         playHl: 'en',
         playBadge: 'https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png',
+        appStoreCountry: null,
+        appStoreBadge: '/badges/app-store-en-us.svg',
         suggest: { question: 'View this page in English?', action: 'View in English', dismiss: 'No thanks' },
     },
 }

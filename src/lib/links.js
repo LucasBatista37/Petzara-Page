@@ -1,5 +1,5 @@
 /**
- * Links de conversão por idioma (cadastro, login, Play, WhatsApp), com a UTM da visita.
+ * Links de conversão por idioma (cadastro, login, Play, App Store, WhatsApp), com a UTM da visita.
  *
  * - pt-BR: exatamente como antes (sem ?lang, sem &hl).
  * - es/en: cadastro e login com ?lang=es|en (o sistema web pode usar para abrir no idioma;
@@ -9,7 +9,7 @@
  * HTML pré-renderizado) e, logo depois, com a UTM guardada.
  */
 import { useMemo } from 'react'
-import { APP_ORIGIN, PLAY_STORE_BASE_URL } from '../siteConfig'
+import { APP_ORIGIN, PLAY_STORE_BASE_URL, APP_STORE_BASE_URL } from '../siteConfig'
 import { resolveUtm, resolveClick, withParams, playUrlWithReferrer } from './attribution'
 import { LOCALE_META, DEFAULT_LOCALE } from '../i18n/config.js'
 import { createTranslator } from '../i18n/catalogs.js'
@@ -39,6 +39,10 @@ export function buildLinks(locale = DEFAULT_LOCALE, utm = {}, click = {}) {
     const register = withParams(`${APP_ORIGIN}/register`, { ...utm, ...lang, ...click })
     let play = playUrlWithReferrer(PLAY_STORE_BASE_URL, utm)
     if (meta.playHl) play = withParams(play, { hl: meta.playHl })
+    // App Store: pt-BR abre direto a loja do Brasil; es/en deixam a Apple escolher a loja do visitante.
+    const appStore = meta.appStoreCountry
+        ? APP_STORE_BASE_URL.replace('apps.apple.com/', `apps.apple.com/${meta.appStoreCountry}/`)
+        : APP_STORE_BASE_URL
     const wa = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
     return {
         register,
@@ -47,6 +51,8 @@ export function buildLinks(locale = DEFAULT_LOCALE, utm = {}, click = {}) {
         login: meta.appLang ? withParams(`${APP_ORIGIN}/login`, lang) : `${APP_ORIGIN}/login`,
         play,
         playBadge: meta.playBadge,
+        appStore,
+        appStoreBadge: meta.appStoreBadge,
         whatsappSupport: `https://wa.me/${WHATSAPP_NUMBER}`,
         whatsappDemo: wa(t('whatsapp.demoMessage')),
         whatsappFloating: wa(t('whatsapp.floatingMessage')),
