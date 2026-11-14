@@ -9,10 +9,10 @@
  * - Sem nenhuma das duas, a faixa nem aparece (o site não usa cookies de medição).
  *
  * Eventos:
- * - GA4: click_signup, click_whatsapp, click_play, view_pricing
- * - Pixel: Lead (cadastro e Play), Contact (WhatsApp) + PageView
+ * - GA4: click_signup, click_whatsapp, click_play, click_app_store, view_pricing
+ * - Pixel: Lead (cadastro, Play e App Store), Contact (WhatsApp) + PageView
  * Os cliques são capturados por um único listener no documento, pelo destino do link,
- * então qualquer link novo para cadastro/WhatsApp/Play já é medido.
+ * então qualquer link novo para cadastro/WhatsApp/Play/App Store já é medido.
  *
  * Idioma do site: todo evento (page_view automático, cliques, view_pricing) leva o parâmetro
  * `site_language` = pt-BR | es | en (idioma da página, nada pessoal). Não usamos o nome
@@ -114,6 +114,7 @@ export function loadAnalytics() {
 const PIXEL_EVENT = {
     click_signup: 'Lead',
     click_play: 'Lead',
+    click_app_store: 'Lead',
     click_whatsapp: 'Contact',
 }
 
@@ -139,12 +140,13 @@ export function classifyHref(href = '') {
     if (href.includes('app.petzara.app/register')) return 'click_signup'
     if (href.includes('wa.me/') || href.includes('api.whatsapp.com')) return 'click_whatsapp'
     if (href.includes('play.google.com/store')) return 'click_play'
+    if (href.includes('apps.apple.com/')) return 'click_app_store'
     return null
 }
 
 let clickListenerInstalled = false
 
-/** Um listener só, no documento: mede cliques em cadastro, WhatsApp e Play. */
+/** Um listener só, no documento: mede cliques em cadastro, WhatsApp, Play e App Store. */
 export function installClickTracking() {
     if (clickListenerInstalled || typeof document === 'undefined') return
     clickListenerInstalled = true

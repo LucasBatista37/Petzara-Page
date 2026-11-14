@@ -27,7 +27,7 @@ function homeJsonLd(locale, t, faqs) {
         name: 'Petzara',
         url,
         applicationCategory: 'BusinessApplication',
-        operatingSystem: 'Web',
+        operatingSystem: 'Web, Android, iOS',
         offers: { '@type': 'Offer', price: '0', priceCurrency: pricing.schemaCurrency },
         description: t('seo.home.appDescription'),
     }

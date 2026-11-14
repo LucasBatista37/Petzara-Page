@@ -5,9 +5,11 @@ import OptimizedImage from './OptimizedImage'
 import { useLinks } from '../lib/links'
 import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 import { useHydrated } from '../lib/useHydrated'
+import StoreBadges from './StoreBadges'
 
-/** Android → o CTA principal leva à Play; nos demais, ao cadastro web (L3). */
+/** Android → o CTA principal leva à Play; iPhone → à App Store; nos demais, ao cadastro web (L3). */
 const detectAndroid = () => typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent || '')
+const detectIPhone = () => typeof navigator !== 'undefined' && /iphone|ipod/i.test(navigator.userAgent || '')
 
 // ─── Dual Device Mockup ────────────────────────────────────────────────────────
 // MacBook ao fundo + iPhone sobreposto com leve rotação.
@@ -133,11 +135,16 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 export default function HeroSection() {
-    const { t, tm, meta } = useI18n()
+    const { t, tm } = useI18n()
     const links = useLinks()
-    // HTML pré-renderizado = versão "desktop, não Android"; o navegador ajusta logo após hidratar.
+    // HTML pré-renderizado = versão "desktop, nem Android nem iPhone"; o navegador ajusta logo após hidratar.
     const hydrated = useHydrated()
     const isAndroid = hydrated && detectAndroid()
+    const isIPhone = hydrated && !isAndroid && detectIPhone()
+    // No celular, o botão principal leva à loja do aparelho.
+    const store = isAndroid
+        ? { href: links.play, label: t('hero.playCta') }
+        : isIPhone ? { href: links.appStore, label: t('hero.appStoreCta') } : null
     const isDesktop = hydrated && window.innerWidth >= 1024
     const trustItems = (tm('hero.trust') || []).map((text) => ({ text }))
     const { scrollY } = useScroll()
@@ -200,10 +207,10 @@ export default function HeroSection() {
 
                         {/* CTAs — o principal depende do aparelho */}
                         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                            {isAndroid ? (
+                            {store ? (
                                 <>
                                     <motion.a
-                                        href={links.play}
+                                        href={store.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         data-track="hero_principal"
@@ -212,7 +219,7 @@ export default function HeroSection() {
                                         className="btn-shine inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-2xl transition-all shadow-lg shadow-terracotta/20"
                                     >
                                         <Download size={18} aria-hidden="true" />
-                                        {t('hero.playCta')}
+                                        {store.label}
                                     </motion.a>
                                     <a
                                         href={links.register}
@@ -238,23 +245,13 @@ export default function HeroSection() {
                                         {t('hero.webCta')}
                                         <ArrowRight size={18} aria-hidden="true" />
                                     </motion.a>
-                                    <a
-                                        href={links.play}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-track="hero_secundario"
-                                        aria-label={t('hero.playCta')}
-                                        className="inline-flex justify-center sm:justify-start transition-transform hover:-translate-y-0.5 active:translate-y-0"
-                                    >
-                                        <img
-                                            src={meta.playBadge}
-                                            alt={t('hero.playBadgeAlt')}
-                                            width={155}
-                                            height={60}
-                                            className="h-[60px] w-auto"
-                                            loading="eager"
-                                        />
-                                    </a>
+                                    <StoreBadges
+                                        size="lg"
+                                        eager
+                                        trackPrefix="hero_secundario"
+                                        playAlt={t('hero.playBadgeAlt')}
+                                        appStoreAlt={t('hero.appStoreBadgeAlt')}
+                                    />
                                 </>
                             )}
                         </div>
