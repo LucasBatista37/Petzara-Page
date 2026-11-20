@@ -39,3 +39,18 @@ test('quem recusou os cookies não tem o clique guardado nem repassado', () => {
     assert.deepEqual(resolveClick(NOW), {})
     assert.equal(store.has('pz_click'), false)
 })
+
+test('visita de anúncio: clique do Google Ads na URL ou utm_medium pago (nesta visita ou guardado)', async () => {
+    const { isPaidVisit } = await import('../../src/lib/attribution.js')
+    assert.equal(isPaidVisit(), false)
+    window.location.search = '?utm_source=instagram&utm_medium=social'
+    assert.equal(isPaidVisit(), false)
+    store.clear()
+    window.location.search = `?gclid=${GCLID}`
+    assert.equal(isPaidVisit(), true)
+    window.location.search = '?utm_source=google&utm_medium=cpc&utm_campaign=mae'
+    assert.equal(isPaidVisit(), true)
+    // volta depois, sem parâmetros: vale a origem guardada na 1ª visita
+    window.location.search = ''
+    assert.equal(isPaidVisit(), true)
+})

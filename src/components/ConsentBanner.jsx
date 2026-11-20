@@ -29,31 +29,31 @@ export default function ConsentBanner({ onHeight }) {
             data-consent-banner
             role="region"
             aria-label={t('consent.aria')}
-            className="fixed z-[60] bottom-3 left-3 right-3 sm:right-auto sm:bottom-5 sm:left-5 sm:max-w-md bg-white border border-sand shadow-xl shadow-espresso/10 rounded-2xl p-4 sm:p-5"
+            className="fixed z-[60] bottom-3 left-3 right-3 sm:right-auto sm:bottom-5 sm:left-5 sm:max-w-md bg-white border border-sand shadow-xl shadow-espresso/10 rounded-2xl p-3 sm:p-5"
         >
             <div className="flex items-start gap-3">
-                <span className="shrink-0 w-9 h-9 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center" aria-hidden="true">
+                <span className="hidden sm:flex shrink-0 w-9 h-9 rounded-xl bg-terracotta/10 text-terracotta items-center justify-center" aria-hidden="true">
                     <Cookie size={18} />
                 </span>
-                <p className="text-sm text-espresso/80 leading-relaxed">
+                <p className="text-[13px] sm:text-sm text-espresso/80 leading-snug sm:leading-relaxed">
                     {t('consent.text')}{' '}
                     <Link to={path('privacy')} className="underline underline-offset-2 text-taupe hover:text-terracotta">
                         {t('consent.more')}
                     </Link>
                 </p>
             </div>
-            <div className="mt-3 flex gap-2 sm:pl-12">
+            <div className="mt-2 sm:mt-3 flex gap-2 sm:pl-12">
                 <button
                     type="button"
                     onClick={() => setConsent('declined')}
-                    className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl border-2 border-sand text-espresso font-bold text-sm hover:border-terracotta/40 transition-colors"
+                    className="flex-1 sm:flex-none px-5 py-2 sm:py-2.5 rounded-xl border-2 border-sand text-espresso font-bold text-sm hover:border-terracotta/40 transition-colors"
                 >
                     {t('consent.decline')}
                 </button>
                 <button
                     type="button"
                     onClick={() => setConsent('accepted')}
-                    className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm transition-colors"
+                    className="flex-1 sm:flex-none px-5 py-2 sm:py-2.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm transition-colors"
                 >
                     {t('consent.accept')}
                 </button>

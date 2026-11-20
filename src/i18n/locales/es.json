@@ -44,6 +44,7 @@
   },
   "hero": {
     "badge": "30 días gratis · sin tarjeta",
+    "eyebrow": "Sistema para pet shop y peluquería canina",
     "title": {
       "before": "Agenda para peluquería canina",
       "highlight": "sin citas duplicadas",
@@ -58,7 +59,11 @@
     "appStoreBadgeAlt": "Descargar en la App Store",
     "bonusStrong": "+14 días gratis",
     "bonusText": "si creas citas en 3 días distintos durante la prueba.",
-    "trust": ["Sin tarjeta de crédito", "Ayuda gratis para configurar", "Cancela cuando quieras"],
+    "trust": [
+      "Sin tarjeta de crédito",
+      "Ayuda gratis para configurar",
+      "Cancela cuando quieras"
+    ],
     "dashboardAlt": "Panel de Petzara",
     "mobileAlt": "Petzara en el celular",
     "notificationTitle": "¡Nueva cita!",
@@ -221,7 +226,12 @@
     "tabletAlt": "Gestión de clientes en la tablet",
     "desktopAlt": "Panel de Petzara en la computadora",
     "phoneAlt": "Citas en el celular",
-    "pills": ["App para Android y iPhone", "Cualquier navegador", "En Google Play y en la App Store", "Sincronización en tiempo real"]
+    "pills": [
+      "App para Android y iPhone",
+      "Cualquier navegador",
+      "En Google Play y en la App Store",
+      "Sincronización en tiempo real"
+    ]
   },
   "demo": {
     "badge": "Míralo en acción",
@@ -428,7 +438,12 @@
     "subtitle": "Crea tu cuenta gratis y accede a todas las funciones. Sin tarjeta de crédito ni trámites.",
     "primary": "Crear cuenta gratis",
     "demo": "Pedir una demostración",
-    "checks": ["Prueba gratis de 30 días", "Sin tarjeta de crédito", "Cancela cuando quieras", "Soporte técnico incluido"],
+    "checks": [
+      "Prueba gratis de 30 días",
+      "Sin tarjeta de crédito",
+      "Cancela cuando quieras",
+      "Soporte técnico incluido"
+    ],
     "trustTitle": "Seguridad y confianza",
     "trust": [
       "Datos seguros en la nube, con cifrado",
@@ -438,6 +453,10 @@
       "Verificación de correo para proteger tu cuenta",
       "App para Android y iPhone en Google Play y la App Store"
     ]
+  },
+  "sticky": {
+    "cta": "Empezar prueba gratis",
+    "aria": "Empezar la prueba gratis"
   },
   "footer": {
     "tagline": "El sistema de gestión completo para peluquerías y estéticas caninas.",
@@ -524,11 +543,26 @@
     ],
     "requirementsTitle": "Requisitos",
     "requirements": [
-      ["Windows", "Windows 10 o superior (64 bits)"],
-      ["macOS", "macOS 11 Big Sur o superior (Intel o Apple Silicon)"],
-      ["Linux", "Cualquier distribución x64 compatible con AppImage"],
-      ["Conexión a internet", "Necesaria: el sistema funciona en la nube"],
-      ["Cuenta de Petzara", "Necesaria: créala gratis en petzara.app"]
+      [
+        "Windows",
+        "Windows 10 o superior (64 bits)"
+      ],
+      [
+        "macOS",
+        "macOS 11 Big Sur o superior (Intel o Apple Silicon)"
+      ],
+      [
+        "Linux",
+        "Cualquier distribución x64 compatible con AppImage"
+      ],
+      [
+        "Conexión a internet",
+        "Necesaria: el sistema funciona en la nube"
+      ],
+      [
+        "Cuenta de Petzara",
+        "Necesaria: créala gratis en petzara.app"
+      ]
     ],
     "ctaTitle": "¿Listo para empezar?",
     "ctaText": "Elige el instalador para tu sistema y entra a Petzara directo desde tu escritorio.",

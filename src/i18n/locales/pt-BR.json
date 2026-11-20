@@ -44,6 +44,7 @@
   },
   "hero": {
     "badge": "30 dias grátis · sem cartão",
+    "eyebrow": "Sistema para pet shop e banho e tosa",
     "title": {
       "before": "Agenda de banho e tosa",
       "highlight": "sem horário duplicado",
@@ -58,7 +59,11 @@
     "appStoreBadgeAlt": "Baixar na App Store",
     "bonusStrong": "+14 dias grátis",
     "bonusText": "se você criar agendamentos em 3 dias diferentes durante o teste.",
-    "trust": ["Sem cartão de crédito", "Ajuda grátis para configurar", "Cancele quando quiser"],
+    "trust": [
+      "Sem cartão de crédito",
+      "Ajuda grátis para configurar",
+      "Cancele quando quiser"
+    ],
     "dashboardAlt": "Dashboard Petzara",
     "mobileAlt": "Petzara Mobile",
     "notificationTitle": "Novo agendamento!",
@@ -221,7 +226,12 @@
     "tabletAlt": "Gestão de clientes no tablet",
     "desktopAlt": "Dashboard Petzara no computador",
     "phoneAlt": "Agendamentos no celular",
-    "pills": ["App para Android e iPhone", "Qualquer navegador", "Na Play Store e na App Store", "Sincronização em tempo real"]
+    "pills": [
+      "App para Android e iPhone",
+      "Qualquer navegador",
+      "Na Play Store e na App Store",
+      "Sincronização em tempo real"
+    ]
   },
   "demo": {
     "badge": "Veja em ação",
@@ -428,7 +438,12 @@
     "subtitle": "Crie sua conta gratuitamente e tenha acesso completo a todas as funcionalidades. Sem cartão de crédito, sem burocracia.",
     "primary": "Criar Conta Grátis",
     "demo": "Agendar demonstração",
-    "checks": ["Teste grátis por 30 dias", "Sem cartão de crédito", "Cancele quando quiser", "Suporte técnico incluso"],
+    "checks": [
+      "Teste grátis por 30 dias",
+      "Sem cartão de crédito",
+      "Cancele quando quiser",
+      "Suporte técnico incluso"
+    ],
     "trustTitle": "Segurança e confiança",
     "trust": [
       "Dados seguros na nuvem com criptografia",
@@ -438,6 +453,10 @@
       "Verificação de e-mail para proteção da conta",
       "App para Android e iPhone na Play Store e na App Store"
     ]
+  },
+  "sticky": {
+    "cta": "Começar teste grátis",
+    "aria": "Começar o teste grátis"
   },
   "footer": {
     "tagline": "O sistema de gestão completo para petshops focados em banho e tosa.",
@@ -524,11 +543,26 @@
     ],
     "requirementsTitle": "Requisitos",
     "requirements": [
-      ["Windows", "Windows 10 ou superior (64-bit)"],
-      ["macOS", "macOS 11 Big Sur ou superior (Intel ou Apple Silicon)"],
-      ["Linux", "Qualquer distribuição x64 com suporte a AppImage"],
-      ["Conexão com internet", "Necessária — o sistema roda na nuvem"],
-      ["Conta Petzara", "Necessária — crie gratuitamente em petzara.app"]
+      [
+        "Windows",
+        "Windows 10 ou superior (64-bit)"
+      ],
+      [
+        "macOS",
+        "macOS 11 Big Sur ou superior (Intel ou Apple Silicon)"
+      ],
+      [
+        "Linux",
+        "Qualquer distribuição x64 com suporte a AppImage"
+      ],
+      [
+        "Conexão com internet",
+        "Necessária — o sistema roda na nuvem"
+      ],
+      [
+        "Conta Petzara",
+        "Necessária — crie gratuitamente em petzara.app"
+      ]
     ],
     "ctaTitle": "Pronto para começar?",
     "ctaText": "Escolha o instalador para o seu sistema e acesse o Petzara direto do seu desktop.",

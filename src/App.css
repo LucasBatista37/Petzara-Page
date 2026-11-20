@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Fontes servidas pelo próprio site (sem pedir CSS ao Google Fonts antes do 1º quadro). */
+@import "@fontsource-variable/outfit/wght.css";
+@import "@fontsource-variable/plus-jakarta-sans/wght.css";
 
 @theme {
   --color-terracotta: #E07A5F;
@@ -11,8 +14,8 @@
   --color-cream: #FAFAF9;
   --color-cream-warm: #F5F0EB;
 
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-accent: "Outfit", sans-serif;
+  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", sans-serif;
+  --font-accent: "Outfit Variable", "Outfit", sans-serif;
 }
 
 @layer base {
