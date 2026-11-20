@@ -24,7 +24,7 @@ const SCREENS = [
     { id: 'contas-receber', key: 'contasReceber', desktopImage: `${D}/financeiro-contas-a-receber.webp`, browserPath: `${APP_HOST}/financial` },
     { id: 'despesas', key: 'despesas', desktopImage: `${D}/financeiro-despesas.webp`, browserPath: `${APP_HOST}/financial` },
     { id: 'notificacoes', key: 'notificacoes', desktopImage: `${D}/notificacoes.webp`, mobileImage: `${M}/notificacoes.webp`, browserPath: `${APP_HOST}/notifications` },
-    { id: 'pagina-publica', key: 'paginaPublica', desktopImage: `${D}/link-publico.webp`, mobileImage: `${M}/link-publico.webp`, browserPath: `${APP_HOST}/agendar/petecia` },
+    { id: 'pagina-publica', key: 'paginaPublica', desktopImage: `${D}/link-publico.webp`, mobileImage: `${M}/link-publico.webp`, browserPath: `${APP_HOST}/agendar/amigofiel` },
 ]
 
 

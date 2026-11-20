@@ -147,8 +147,8 @@ function MobileFrame({ palette, reduced }) {
             {PALETTES.filter(p => seen.includes(p.id)).map(p => (
               <motion.img
                 key={p.id}
-                width={1080}
-                height={2400}
+                width={720}
+                height={1558}
                 src={p.mobileImage}
                 alt={t('palette.mobileAlt', { name: p.name })}
                 className="w-full h-auto object-cover"
