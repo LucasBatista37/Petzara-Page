@@ -47,8 +47,8 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                             </div>
                         </div>
                         <OptimizedImage
-                            src="/prints/app/dashboard.webp"
-                            srcSet="/prints/app/dashboard-800.webp 800w, /prints/app/dashboard.webp 1600w"
+                            src="/prints/v2/app/dashboard.webp"
+                            srcSet="/prints/v2/app/dashboard-800.webp 800w, /prints/v2/app/dashboard.webp 1600w"
                             sizes="(min-width: 1024px) 480px, 92vw"
                             alt={t('hero.dashboardAlt')}
                             className="w-full h-auto block"
@@ -92,8 +92,8 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                     {/* Tela */}
                     <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
                         <OptimizedImage
-                            src="/prints/app/mobile/dashboard.webp"
-                            srcSet="/prints/app/mobile/dashboard-360.webp 360w, /prints/app/mobile/dashboard.webp 900w"
+                            src="/prints/v2/app/mobile/dashboard.webp"
+                            srcSet="/prints/v2/app/mobile/dashboard-360.webp 360w, /prints/v2/app/mobile/dashboard.webp 900w"
                             sizes="128px"
                             alt={t('hero.mobileAlt')}
                             className="w-full h-auto block"

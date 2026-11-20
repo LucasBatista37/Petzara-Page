@@ -105,7 +105,7 @@ export default function SolutionSection() {
                                         </div>
                                     </div>
                                     <img
-                                        src="/prints/app/agendamentos-lista.webp"
+                                        src="/prints/v2/app/agendamentos-lista.webp"
                                         width={1600}
                                         height={960}
                                         alt={t('solution.listAlt')}
@@ -143,7 +143,7 @@ export default function SolutionSection() {
                                 />
                                 <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
                                     <img
-                                        src="/prints/app/mobile/agendamentos.webp"
+                                        src="/prints/v2/app/mobile/agendamentos.webp"
                                         width={900}
                                         height={1948}
                                         alt={t('solution.mobileAlt')}

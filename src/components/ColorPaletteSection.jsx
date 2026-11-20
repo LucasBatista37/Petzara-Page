@@ -13,8 +13,8 @@ const PALETTES = [
     secondary: '#81B29A',
     primaryDark: '#C4634A',
     secondaryDark: '#6A9980',
-    desktopImage: '/prints/themes/terracotta-desktop.webp',
-    mobileImage: '/prints/themes/terracotta-mobile.webp',
+    desktopImage: '/prints/v2/themes/terracotta-desktop.webp',
+    mobileImage: '/prints/v2/themes/terracotta-mobile.webp',
   },
   {
     id: 'forest',
@@ -24,8 +24,8 @@ const PALETTES = [
     secondary: '#97BC62',
     primaryDark: '#1e4520',
     secondaryDark: '#7aa34e',
-    desktopImage: '/prints/themes/forest-desktop.webp',
-    mobileImage: '/prints/themes/forest-mobile.webp',
+    desktopImage: '/prints/v2/themes/forest-desktop.webp',
+    mobileImage: '/prints/v2/themes/forest-mobile.webp',
   },
   {
     id: 'ocean',
@@ -35,8 +35,8 @@ const PALETTES = [
     secondary: '#669BBC',
     primaryDark: '#001e2f',
     secondaryDark: '#4a86a8',
-    desktopImage: '/prints/themes/ocean-desktop.webp',
-    mobileImage: '/prints/themes/ocean-mobile.webp',
+    desktopImage: '/prints/v2/themes/ocean-desktop.webp',
+    mobileImage: '/prints/v2/themes/ocean-mobile.webp',
   },
   {
     id: 'ochre',
@@ -46,8 +46,8 @@ const PALETTES = [
     secondary: '#DDA15E',
     primaryDark: '#9a5519',
     secondaryDark: '#c8894a',
-    desktopImage: '/prints/themes/ochre-desktop.webp',
-    mobileImage: '/prints/themes/ochre-mobile.webp',
+    desktopImage: '/prints/v2/themes/ochre-desktop.webp',
+    mobileImage: '/prints/v2/themes/ochre-mobile.webp',
   },
 ]
 

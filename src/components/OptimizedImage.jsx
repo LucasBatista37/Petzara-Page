@@ -1,7 +1,7 @@
 /** Tamanho real dos prints (reserva o espaço antes de a imagem chegar: sem salto de layout). */
 function printSize(src) {
-    if (src.startsWith('/prints/app/mobile/')) return { width: 900, height: 1948 }
-    if (src.startsWith('/prints/app/')) return { width: 1600, height: 960 }
+    if (src.startsWith('/prints/v2/app/mobile/')) return { width: 900, height: 1948 }
+    if (src.startsWith('/prints/v2/app/')) return { width: 1600, height: 960 }
     return {}
 }
 
