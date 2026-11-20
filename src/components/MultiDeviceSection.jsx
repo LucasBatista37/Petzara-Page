@@ -2,98 +2,46 @@ import { motion } from 'framer-motion'
 import { Monitor, Smartphone, Download, RefreshCw } from 'lucide-react'
 import { ease, useResponsiveInView } from '../animations/variants'
 import OptimizedImage from './OptimizedImage'
+import { LaptopFrame, PhoneFrame, TabletFrame } from './DeviceFrames'
 import StoreBadges from './StoreBadges'
 import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 
 const PILL_ICONS = [Smartphone, Monitor, Download, RefreshCw]
 
-// ─── MacBook Frame ─────────────────────────────────────────────────────────────
+// ─── Molduras ──────────────────────────────────────────────────────────────────
 function MacBookFrame({ src, alt }) {
     return (
-        <div className="relative">
-            {/* Screen + bezel */}
-            <div className="bg-espresso rounded-t-[14px] sm:rounded-t-[18px] px-[3%] pt-[2.5%]">
-                <div className="rounded-t-lg overflow-hidden">
-                    {/* Browser chrome */}
-                    <div className="bg-cream-warm px-2 sm:px-3 py-1.5 flex items-center gap-1.5 border-b border-sand/20">
-                        <div className="flex gap-1 shrink-0">
-                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-terracotta/50" />
-                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-sage/50" />
-                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-sand/70" />
-                        </div>
-                        <div className="flex-1 mx-1 sm:mx-2">
-                            <div className="bg-white/70 rounded px-1.5 py-0.5 text-[6px] sm:text-[8px] text-taupe/40 border border-sand/20 max-w-[120px] truncate">
-                                app.petzara.app/dashboard
-                            </div>
-                        </div>
+        <LaptopFrame shadow="0 4cqw 9cqw -3cqw rgba(0,0,0,0.6)">
+            <div className="bg-cream-warm px-2 sm:px-3 py-1 sm:py-1.5 flex items-center gap-1.5 border-b border-sand/20">
+                <div className="flex gap-1 shrink-0">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-terracotta/50" />
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-sage/50" />
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-sand/70" />
+                </div>
+                <div className="flex-1 mx-1 sm:mx-2">
+                    <div className="bg-white/70 rounded px-1.5 py-0.5 text-[6px] sm:text-[8px] text-taupe/40 border border-sand/20 max-w-[120px] truncate">
+                        app.petzara.app/appointments
                     </div>
-                    <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
                 </div>
             </div>
-            {/* Camera notch */}
-            <div className="bg-espresso h-2 sm:h-2.5 flex items-center justify-center">
-                <div className="w-4 h-[2px] rounded-full bg-black/20" />
-            </div>
-            {/* Hinge */}
-            <div className="h-[3px] bg-black/30" />
-            {/* Base */}
-            <div className="bg-espresso/90 h-3 sm:h-4 rounded-b-[8px] sm:rounded-b-[10px] mx-[2%]" />
-            {/* Ground shadow */}
-            <div className="h-px bg-black/20 mx-[10%] rounded-full mt-0.5 blur-sm" />
-        </div>
+            <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
+        </LaptopFrame>
     )
 }
 
-// ─── iPad Frame (landscape) ────────────────────────────────────────────────────
 function IPadFrame({ src, alt }) {
     return (
-        <div
-            className="relative bg-espresso"
-            style={{
-                borderRadius: '10px',
-                padding: '7px',
-                boxShadow: '0 24px 48px -6px rgba(0,0,0,0.55)',
-            }}
-        >
-            {/* Câmera (lado esquerdo no landscape) */}
-            <div
-                className="absolute left-[5px] top-1/2 -translate-y-1/2 bg-black/20 rounded-full"
-                style={{ width: '3px', height: '3px' }}
-            />
-            {/* Tela */}
-            <div className="overflow-hidden" style={{ borderRadius: '5px' }}>
-                <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
-            </div>
-        </div>
+        <TabletFrame>
+            <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
+        </TabletFrame>
     )
 }
 
-// ─── iPhone Frame (portrait) ──────────────────────────────────────────────────
 function IPhoneFrame({ src, alt }) {
     return (
-        <div
-            className="relative bg-espresso"
-            style={{
-                borderRadius: '20px',
-                padding: '6px',
-                boxShadow: '0 30px 60px -8px rgba(0,0,0,0.70)',
-            }}
-        >
-            {/* Dynamic island */}
-            <div
-                className="absolute left-1/2 -translate-x-1/2 bg-espresso rounded-full z-10"
-                style={{ top: '9px', width: '44%', height: '9px' }}
-            />
-            {/* Tela */}
-            <div className="overflow-hidden" style={{ borderRadius: '15px' }}>
-                <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
-            </div>
-            {/* Botão lateral */}
-            <div className="absolute -right-[2px] top-12 w-[2px] h-5 bg-espresso/60 rounded-r-sm" />
-            {/* Volume */}
-            <div className="absolute -left-[2px] top-9   w-[2px] h-3.5 bg-espresso/60 rounded-l-sm" />
-            <div className="absolute -left-[2px] top-[54px] w-[2px] h-3.5 bg-espresso/60 rounded-l-sm" />
-        </div>
+        <PhoneFrame shadow="0 6cqw 12cqw -3cqw rgba(0,0,0,0.7)">
+            <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
+        </PhoneFrame>
     )
 }
 

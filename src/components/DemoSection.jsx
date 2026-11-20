@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { PhoneFrame } from './DeviceFrames'
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, Monitor, Smartphone } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
@@ -187,10 +188,9 @@ export default function DemoSection() {
                                         transition: 'background 0.6s ease',
                                     }}
                                 />
-                                <div className="relative bg-espresso rounded-[2.8rem] p-[10px] shadow-2xl shadow-espresso/30 w-[300px]">
-                                    <div className="absolute top-[20px] left-1/2 -translate-x-1/2 w-[96px] h-[28px] bg-espresso rounded-full z-10" />
+                                <PhoneFrame className="w-[280px]">
                                     {/* Cross-fade: apenas slide atual ± 1 adjacente no DOM */}
-                                    <div className="grid rounded-[2.3rem] overflow-hidden" role="tabpanel" aria-labelledby={`tab-${current}`}>
+                                    <div className="grid" role="tabpanel" aria-labelledby={`tab-${current}`}>
                                         {screens.map((s, i) => {
                                             const isVisible = s.id === screen.id
                                             if (!isVisible && Math.abs(i - current) > 1) return null
@@ -210,7 +210,7 @@ export default function DemoSection() {
                                             )
                                         })}
                                     </div>
-                                </div>
+                                </PhoneFrame>
                                 <button onClick={prev} aria-label={t('demo.prev')} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 sm:-translate-x-full sm:-ml-2 w-10 h-10 bg-white rounded-full shadow-lg border border-sand flex items-center justify-center text-espresso hover:text-terracotta hover:scale-110 transition-all">
                                     <ChevronLeft size={20} aria-hidden="true" />
                                 </button>

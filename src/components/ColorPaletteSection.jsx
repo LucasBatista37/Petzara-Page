@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { PhoneFrame } from './DeviceFrames'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Monitor, Smartphone } from 'lucide-react'
 import { useResponsiveInView } from '../animations/variants'
@@ -133,17 +134,9 @@ function MobileFrame({ palette, reduced }) {
           animate={{ background: `linear-gradient(135deg, ${palette.primary}33, ${palette.secondary}33)` }}
           transition={{ duration: reduced ? 0 : 0.6 }}
         />
-        <div
-          className="relative rounded-[2.8rem] p-[10px] shadow-2xl shadow-espresso/30 w-[220px] sm:w-[260px]"
-          style={{ backgroundColor: '#2C2421' }}
-        >
-          {/* Dynamic island */}
-          <div
-            className="absolute top-[18px] left-1/2 -translate-x-1/2 w-[80px] h-[24px] rounded-full z-10"
-            style={{ backgroundColor: '#2C2421' }}
-          />
+        <PhoneFrame className="w-[220px] sm:w-[250px]">
           {/* Todas as imagens empilhadas — cross-fade via opacity */}
-          <div className="grid rounded-[2.3rem] overflow-hidden">
+          <div className="grid">
             {PALETTES.filter(p => seen.includes(p.id)).map(p => (
               <motion.img
                 key={p.id}
@@ -159,7 +152,7 @@ function MobileFrame({ palette, reduced }) {
               />
             ))}
           </div>
-        </div>
+        </PhoneFrame>
       </div>
     </div>
   )
