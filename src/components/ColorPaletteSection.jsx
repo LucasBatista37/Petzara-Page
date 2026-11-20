@@ -59,8 +59,18 @@ function applyPaletteGlobally(palette) {
   root.style.setProperty('--color-sage-dark', palette.secondaryDark)
 }
 
+/** Temas já mostrados: só o escolhido é baixado; os outros entram quando a pessoa clica neles. */
+function useSeenPalettes(currentId) {
+  const [seen, setSeen] = useState([currentId])
+  useEffect(() => {
+    setSeen((prev) => (prev.includes(currentId) ? prev : [...prev, currentId]))
+  }, [currentId])
+  return seen.includes(currentId) ? seen : [...seen, currentId]
+}
+
 function DesktopFrame({ palette, reduced }) {
   const { t } = useI18n()
+  const seen = useSeenPalettes(palette.id)
   return (
     <div className="relative">
       <motion.div
@@ -92,16 +102,18 @@ function DesktopFrame({ palette, reduced }) {
         </div>
         {/* Todas as imagens empilhadas — cross-fade via opacity */}
         <div className="grid">
-          {PALETTES.map(p => (
+          {PALETTES.filter(p => seen.includes(p.id)).map(p => (
             <motion.img
               key={p.id}
+              width={1600}
+              height={960}
               src={p.desktopImage}
               alt={t('palette.desktopAlt', { name: p.name })}
-              className="w-full object-cover"
+              className="w-full h-auto object-cover"
               style={{ gridArea: '1 / 1' }}
               animate={{ opacity: p.id === palette.id ? 1 : 0 }}
               transition={{ duration: reduced ? 0 : 0.4 }}
-              loading="eager"
+              loading="lazy"
             />
           ))}
         </div>
@@ -112,6 +124,7 @@ function DesktopFrame({ palette, reduced }) {
 
 function MobileFrame({ palette, reduced }) {
   const { t } = useI18n()
+  const seen = useSeenPalettes(palette.id)
   return (
     <div className="flex justify-center">
       <div className="relative">
@@ -131,16 +144,18 @@ function MobileFrame({ palette, reduced }) {
           />
           {/* Todas as imagens empilhadas — cross-fade via opacity */}
           <div className="grid rounded-[2.3rem] overflow-hidden">
-            {PALETTES.map(p => (
+            {PALETTES.filter(p => seen.includes(p.id)).map(p => (
               <motion.img
                 key={p.id}
+                width={1080}
+                height={2400}
                 src={p.mobileImage}
                 alt={t('palette.mobileAlt', { name: p.name })}
-                className="w-full object-cover"
+                className="w-full h-auto object-cover"
                 style={{ gridArea: '1 / 1' }}
                 animate={{ opacity: p.id === palette.id ? 1 : 0 }}
                 transition={{ duration: reduced ? 0 : 0.4 }}
-                loading="eager"
+                loading="lazy"
               />
             ))}
           </div>

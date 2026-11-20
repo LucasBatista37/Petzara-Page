@@ -27,7 +27,7 @@ function MacBookFrame({ src, alt }) {
                             </div>
                         </div>
                     </div>
-                    <OptimizedImage src={src} alt={alt} className="w-full block" />
+                    <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
                 </div>
             </div>
             {/* Camera notch */}
@@ -62,7 +62,7 @@ function IPadFrame({ src, alt }) {
             />
             {/* Tela */}
             <div className="overflow-hidden" style={{ borderRadius: '5px' }}>
-                <OptimizedImage src={src} alt={alt} className="w-full block" />
+                <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
             </div>
         </div>
     )
@@ -86,7 +86,7 @@ function IPhoneFrame({ src, alt }) {
             />
             {/* Tela */}
             <div className="overflow-hidden" style={{ borderRadius: '15px' }}>
-                <OptimizedImage src={src} alt={alt} className="w-full block" />
+                <OptimizedImage src={src} alt={alt} className="w-full h-auto block" />
             </div>
             {/* Botão lateral */}
             <div className="absolute -right-[2px] top-12 w-[2px] h-5 bg-espresso/60 rounded-r-sm" />

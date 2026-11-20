@@ -125,3 +125,15 @@ export function playUrlWithReferrer(baseUrl, utm = {}) {
     ].join('&')
     return withParams(baseUrl, { referrer })
 }
+
+/**
+ * A visita veio de anúncio pago? (clique do Google Ads na URL, ou utm_medium=cpc/ppc/paid… — nesta
+ * visita ou guardado da 1ª). Usado só para escolher o botão principal no celular: o cadastro pelo
+ * navegador leva o clique do anúncio até a conta; a loja de apps não leva.
+ */
+export function isPaidVisit() {
+    if (typeof window === 'undefined') return false
+    if (Object.keys(clickFromSearch(window.location.search)).length) return true
+    const medium = String(resolveUtm().utm_medium || '').toLowerCase()
+    return /^(cpc|ppc|paid|paidsearch|paid_search|display|ads)/.test(medium)
+}

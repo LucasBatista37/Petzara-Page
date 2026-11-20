@@ -106,8 +106,10 @@ export default function SolutionSection() {
                                     </div>
                                     <img
                                         src="/prints/app/agendamentos-lista.webp"
+                                        width={1600}
+                                        height={960}
                                         alt={t('solution.listAlt')}
-                                        className="w-full block"
+                                        className="w-full h-auto block"
                                         loading="lazy"
                                     />
                                 </div>
@@ -142,8 +144,10 @@ export default function SolutionSection() {
                                 <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
                                     <img
                                         src="/prints/app/mobile/agendamentos.webp"
+                                        width={900}
+                                        height={1948}
                                         alt={t('solution.mobileAlt')}
-                                        className="w-full block"
+                                        className="w-full h-auto block"
                                         loading="lazy"
                                     />
                                 </div>

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import ConsentBanner from './ConsentBanner'
 import FloatingWhatsApp from './FloatingWhatsApp'
+import StickyMobileCta from './StickyMobileCta'
+import { pageFromPath } from '../i18n/config.js'
 import {
     analyticsConfigured,
     CONSENT_EVENT,
@@ -23,6 +25,7 @@ export default function SiteOverlays() {
     const fromApp = new URLSearchParams(location.search).get('origem') === 'app'
     const [consent, setConsentState] = useState(() => getConsent())
     const [bannerHeight, setBannerHeight] = useState(0)
+    const [stickyVisible, setStickyVisible] = useState(false)
     const firstPath = useRef(location.pathname)
 
     useEffect(() => {
@@ -43,10 +46,13 @@ export default function SiteOverlays() {
     if (!hydrated || fromApp) return null
 
     const showBanner = analyticsConfigured && consent === null
+    const isHome = pageFromPath(location.pathname).page === 'home'
 
     return (
         <>
-            <FloatingWhatsApp bannerHeight={showBanner ? bannerHeight : 0} />
+            {/* Barra de cadastro no celular: só na página inicial e depois de a pessoa responder aos cookies. */}
+            {isHome && !showBanner && <StickyMobileCta onVisible={setStickyVisible} />}
+            <FloatingWhatsApp bannerHeight={showBanner ? bannerHeight : 0} onStickyBar={isHome && !showBanner && stickyVisible} />
             {showBanner && <ConsentBanner onHeight={setBannerHeight} />}
         </>
     )

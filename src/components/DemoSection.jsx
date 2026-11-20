@@ -156,8 +156,10 @@ export default function DemoSection() {
                                             <motion.img
                                                 key={s.id + '-desktop'}
                                                 src={s.desktopImage}
+                                                width={1600}
+                                                height={960}
                                                 alt={s.imageAlt}
-                                                className="w-full object-cover"
+                                                className="w-full h-auto object-cover"
                                                 style={{ gridArea: '1 / 1' }}
                                                 animate={{ opacity: isVisible ? 1 : 0 }}
                                                 transition={FADE}
@@ -196,8 +198,10 @@ export default function DemoSection() {
                                                 <motion.img
                                                     key={s.id + '-mobile'}
                                                     src={s.mobileImage}
+                                                    width={900}
+                                                    height={1948}
                                                     alt={t('demo.mobileAlt', { alt: s.imageAlt })}
-                                                    className="w-full object-cover"
+                                                    className="w-full h-auto object-cover"
                                                     style={{ gridArea: '1 / 1' }}
                                                     animate={{ opacity: isVisible ? 1 : 0 }}
                                                     transition={FADE}

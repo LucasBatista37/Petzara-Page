@@ -6,6 +6,7 @@ import { useLinks } from '../lib/links'
 import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 import { useHydrated } from '../lib/useHydrated'
 import StoreBadges from './StoreBadges'
+import { isPaidVisit } from '../lib/attribution'
 
 /** Android → o CTA principal leva à Play; iPhone → à App Store; nos demais, ao cadastro web (L3). */
 const detectAndroid = () => typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent || '')
@@ -47,8 +48,10 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                         </div>
                         <OptimizedImage
                             src="/prints/app/dashboard.webp"
+                            srcSet="/prints/app/dashboard-800.webp 800w, /prints/app/dashboard.webp 1600w"
+                            sizes="(min-width: 1024px) 480px, 92vw"
                             alt={t('hero.dashboardAlt')}
-                            className="w-full block"
+                            className="w-full h-auto block"
                             loading="eager"
                         />
                     </div>
@@ -90,8 +93,10 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
                     <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
                         <OptimizedImage
                             src="/prints/app/mobile/dashboard.webp"
+                            srcSet="/prints/app/mobile/dashboard-360.webp 360w, /prints/app/mobile/dashboard.webp 900w"
+                            sizes="128px"
                             alt={t('hero.mobileAlt')}
-                            className="w-full block"
+                            className="w-full h-auto block"
                             loading="eager"
                         />
                     </div>
@@ -141,8 +146,10 @@ export default function HeroSection() {
     const hydrated = useHydrated()
     const isAndroid = hydrated && detectAndroid()
     const isIPhone = hydrated && !isAndroid && detectIPhone()
-    // No celular, o botão principal leva à loja do aparelho.
-    const store = isAndroid
+    // No celular, o botão principal leva à loja do aparelho — menos em visita de anúncio: aí o principal é o
+    // cadastro pelo navegador, que leva o clique do anúncio até a conta (a loja não leva); as lojas ficam ao lado.
+    const paid = hydrated && isPaidVisit()
+    const store = paid ? null : isAndroid
         ? { href: links.play, label: t('hero.playCta') }
         : isIPhone ? { href: links.appStore, label: t('hero.appStoreCta') } : null
     const isDesktop = hydrated && window.innerWidth >= 1024
@@ -190,10 +197,13 @@ export default function HeroSection() {
                     {/* Sem animação de entrada: H1, texto e botões aparecem já no 1º quadro (LCP). */}
                     <div>
                         {/* Selo */}
-                        <div className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-terracotta/20">
+                        <div className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-semibold mb-5 border border-terracotta/20">
                             <Sparkles size={15} aria-hidden="true" />
                             {t('hero.badge')}
                         </div>
+
+                        {/* O que é, nas palavras de quem pesquisou (anúncio → página) */}
+                        <p className="text-sm sm:text-base font-bold text-espresso/80 mb-2">{t('hero.eyebrow')}</p>
 
                         {/* Headline — resultado + palavra-chave */}
                         <h1 className="font-accent text-[2.1rem] sm:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.1] mb-6 text-espresso">

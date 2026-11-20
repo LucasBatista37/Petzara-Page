@@ -44,6 +44,7 @@
   },
   "hero": {
     "badge": "30 days free · no credit card",
+    "eyebrow": "Software for pet shops and grooming salons",
     "title": {
       "before": "Dog grooming scheduling",
       "highlight": "without double bookings",
@@ -58,7 +59,11 @@
     "appStoreBadgeAlt": "Download on the App Store",
     "bonusStrong": "+14 free days",
     "bonusText": "when you create appointments on 3 different days during your trial.",
-    "trust": ["No credit card", "Free setup help", "Cancel anytime"],
+    "trust": [
+      "No credit card",
+      "Free setup help",
+      "Cancel anytime"
+    ],
     "dashboardAlt": "Petzara dashboard",
     "mobileAlt": "Petzara on mobile",
     "notificationTitle": "New appointment!",
@@ -221,7 +226,12 @@
     "tabletAlt": "Client management on a tablet",
     "desktopAlt": "Petzara dashboard on a computer",
     "phoneAlt": "Appointments on a phone",
-    "pills": ["Android and iPhone app", "Any browser", "On Google Play and the App Store", "Real-time sync"]
+    "pills": [
+      "Android and iPhone app",
+      "Any browser",
+      "On Google Play and the App Store",
+      "Real-time sync"
+    ]
   },
   "demo": {
     "badge": "See it in action",
@@ -428,7 +438,12 @@
     "subtitle": "Create your free account and get full access to every feature. No credit card, no paperwork.",
     "primary": "Create free account",
     "demo": "Book a demo",
-    "checks": ["30-day free trial", "No credit card", "Cancel anytime", "Tech support included"],
+    "checks": [
+      "30-day free trial",
+      "No credit card",
+      "Cancel anytime",
+      "Tech support included"
+    ],
     "trustTitle": "Security and trust",
     "trust": [
       "Secure, encrypted cloud data",
@@ -438,6 +453,10 @@
       "Email verification to protect your account",
       "Android and iPhone app on Google Play and the App Store"
     ]
+  },
+  "sticky": {
+    "cta": "Start free trial",
+    "aria": "Start the free trial"
   },
   "footer": {
     "tagline": "Complete management software for pet grooming salons.",
@@ -524,11 +543,26 @@
     ],
     "requirementsTitle": "Requirements",
     "requirements": [
-      ["Windows", "Windows 10 or later (64-bit)"],
-      ["macOS", "macOS 11 Big Sur or later (Intel or Apple Silicon)"],
-      ["Linux", "Any x64 distribution with AppImage support"],
-      ["Internet connection", "Required: the system runs in the cloud"],
-      ["Petzara account", "Required: create one for free at petzara.app"]
+      [
+        "Windows",
+        "Windows 10 or later (64-bit)"
+      ],
+      [
+        "macOS",
+        "macOS 11 Big Sur or later (Intel or Apple Silicon)"
+      ],
+      [
+        "Linux",
+        "Any x64 distribution with AppImage support"
+      ],
+      [
+        "Internet connection",
+        "Required: the system runs in the cloud"
+      ],
+      [
+        "Petzara account",
+        "Required: create one for free at petzara.app"
+      ]
     ],
     "ctaTitle": "Ready to get started?",
     "ctaText": "Pick the installer for your system and open Petzara right from your desktop.",
