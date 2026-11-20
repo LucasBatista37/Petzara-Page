@@ -10,8 +10,8 @@ const FADE = { duration: 0.28, ease }
 // Textos (título, descrição, alt) em i18n/locales → demo.screens.<key>. As capturas são do sistema rodando de
 // verdade (visual-assets, set/2026), com o pet shop fictício "Pet & Cia" do seed — nenhum dado de cliente.
 // A interface aparece em português nos três idiomas. Sem mobileImage, a tela só entra na vista Desktop.
-const D = '/prints/app'
-const M = '/prints/app/mobile'
+const D = '/prints/v2/app'
+const M = '/prints/v2/app/mobile'
 const SCREENS = [
     { id: 'dashboard', key: 'dashboard', desktopImage: `${D}/dashboard.webp`, mobileImage: `${M}/dashboard.webp`, browserPath: `${APP_HOST}/dashboard` },
     { id: 'agendamentos', key: 'agendamentos', desktopImage: `${D}/agenda-calendario-mes.webp`, mobileImage: `${M}/calendario.webp`, browserPath: `${APP_HOST}/appointments` },

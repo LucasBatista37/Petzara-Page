@@ -1,5 +1,5 @@
 const sharp = require('sharp'); const fs = require('fs'); const path = require('path');
-const OUT = process.argv[2], PUB = require('path').resolve(__dirname, '../../public/prints');
+const OUT = process.argv[2], PUB = require('path').resolve(__dirname, '../../public/prints/v2');
 (async () => {
   const conv = async (src, dst, w) => { let s = sharp(src); if (w) s = s.resize(w); await s.webp({ quality: 84 }).toFile(dst); };
   for (const f of fs.readdirSync(OUT).filter((f) => f.endsWith('.png'))) await conv(`${OUT}/${f}`, `${PUB}/app/${f.replace('.png', '.webp')}`);
