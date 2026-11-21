@@ -6,6 +6,7 @@ import { useLinks } from '../lib/links'
 import { useI18n, Highlighted } from '../i18n/I18nProvider.jsx'
 import { useHydrated } from '../lib/useHydrated'
 import StoreBadges from './StoreBadges'
+import { LaptopFrame, PhoneFrame } from './DeviceFrames'
 import { isPaidVisit } from '../lib/attribution'
 
 /** Android → o CTA principal leva à Play; iPhone → à App Store; nos demais, ao cadastro web (L3). */
@@ -28,85 +29,48 @@ function DualDeviceMockup({ mockupY, isDesktop }) {
             className="relative w-full max-w-lg mx-auto lg:mx-0 pb-16 mt-14 lg:mt-0"
         >
 
-            {/* ── MacBook ─────────────────────────────────────────────────────── */}
-            <div className="relative">
-                {/* Bezel do ecrã */}
-                <div className="bg-espresso rounded-t-[18px] px-[3.5%] pt-[3%] shadow-2xl shadow-espresso/20">
-                    <div className="rounded-t-xl overflow-hidden">
-                        {/* Browser chrome */}
-                        <div className="bg-cream-warm px-3 py-2 flex items-center gap-2 border-b border-sand/30">
-                            <div className="flex gap-1.5 shrink-0">
-                                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-terracotta/60" />
-                                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-sage/60" />
-                                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-sand" />
-                            </div>
-                            <div className="flex-1 mx-2">
-                                <div className="bg-white rounded px-2 py-0.5 text-[8px] sm:text-[9px] text-taupe/50 border border-sand/30 truncate max-w-[180px]">
-                                    app.petzara.app/dashboard
-                                </div>
-                            </div>
+            {/* ── Notebook ────────────────────────────────────────────────────── */}
+            <LaptopFrame>
+                {/* Barra do navegador */}
+                <div className="bg-cream-warm px-3 py-1.5 flex items-center gap-2 border-b border-sand/30">
+                    <div className="flex gap-1.5 shrink-0">
+                        <div className="w-2 h-2 rounded-full bg-terracotta/60" />
+                        <div className="w-2 h-2 rounded-full bg-sage/60" />
+                        <div className="w-2 h-2 rounded-full bg-sand" />
+                    </div>
+                    <div className="flex-1 mx-2">
+                        <div className="bg-white rounded px-2 py-0.5 text-[8px] sm:text-[9px] text-taupe/50 border border-sand/30 truncate max-w-[180px]">
+                            app.petzara.app/dashboard
                         </div>
-                        <OptimizedImage
-                            src="/prints/v2/app/dashboard.webp"
-                            srcSet="/prints/v2/app/dashboard-800.webp 800w, /prints/v2/app/dashboard.webp 1600w"
-                            sizes="(min-width: 1024px) 480px, 92vw"
-                            alt={t('hero.dashboardAlt')}
-                            className="w-full h-auto block"
-                            loading="eager"
-                        />
                     </div>
                 </div>
+                <OptimizedImage
+                    src="/prints/v2/app/dashboard.webp"
+                    srcSet="/prints/v2/app/dashboard-800.webp 800w, /prints/v2/app/dashboard.webp 1600w"
+                    sizes="(min-width: 1024px) 480px, 92vw"
+                    alt={t('hero.dashboardAlt')}
+                    className="w-full h-auto block"
+                    loading="eager"
+                />
+            </LaptopFrame>
 
-                {/* Câmera / webcam notch */}
-                <div className="bg-espresso h-3 flex items-center justify-center">
-                    <div className="w-6 h-[3px] rounded-full bg-black/25" />
-                </div>
-
-                {/* Dobradiça */}
-                <div className="h-[4px] bg-black/35" />
-
-                {/* Base / teclado */}
-                <div className="bg-espresso/90 h-4 sm:h-5 rounded-b-xl mx-[1.5%]" />
-
-                {/* Sombra no chão */}
-                <div className="h-px bg-black/10 mx-[10%] rounded-full mt-0.5 blur-sm" />
-            </div>
-
-            {/* ── iPhone ──────────────────────────────────────────────────────── */}
+            {/* ── Celular ─────────────────────────────────────────────────────── */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.85, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ delay: 0.65, type: 'spring', damping: 16, stiffness: 120 }}
-                className="absolute bottom-0 -right-3 sm:-right-5 lg:-right-8 rotate-[3deg] z-10"
+                className="absolute bottom-0 -right-1 sm:-right-3 lg:-right-6 rotate-[3deg] z-10"
             >
-                <div
-                    className="relative bg-espresso p-[7px] shadow-md shadow-espresso/20 lg:shadow-[0_20px_48px_-8px_rgba(44,36,33,0.55)]"
-                    style={{ borderRadius: '28px', width: 'clamp(88px, 22vw, 128px)' }}
-                >
-                    {/* Dynamic island */}
-                    <div
-                        className="absolute left-1/2 -translate-x-1/2 bg-espresso rounded-full z-10"
-                        style={{ top: '11px', width: '44%', height: '12px' }}
+                <PhoneFrame style={{ width: 'clamp(96px, 24vw, 140px)' }}>
+                    <OptimizedImage
+                        src="/prints/v2/app/mobile/dashboard.webp"
+                        srcSet="/prints/v2/app/mobile/dashboard-360.webp 360w, /prints/v2/app/mobile/dashboard.webp 900w"
+                        sizes="140px"
+                        alt={t('hero.mobileAlt')}
+                        className="w-full h-auto block"
+                        loading="eager"
                     />
-
-                    {/* Tela */}
-                    <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
-                        <OptimizedImage
-                            src="/prints/v2/app/mobile/dashboard.webp"
-                            srcSet="/prints/v2/app/mobile/dashboard-360.webp 360w, /prints/v2/app/mobile/dashboard.webp 900w"
-                            sizes="128px"
-                            alt={t('hero.mobileAlt')}
-                            className="w-full h-auto block"
-                            loading="eager"
-                        />
-                    </div>
-
-                    {/* Botão lateral */}
-                    <div className="absolute -right-[3px] top-14 w-[3px] h-7 bg-espresso/70 rounded-r-sm" />
-                    {/* Botões de volume */}
-                    <div className="absolute -left-[3px] top-10 w-[3px] h-4 bg-espresso/70 rounded-l-sm" />
-                    <div className="absolute -left-[3px] top-16 w-[3px] h-4 bg-espresso/70 rounded-l-sm" />
-                </div>
+                </PhoneFrame>
             </motion.div>
 
             {/* ── Card flutuante de notificação ────────────────────────────────── */}

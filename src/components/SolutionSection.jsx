@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { LaptopFrame, PhoneFrame } from './DeviceFrames'
 import { CalendarCheck, Clock, LineChart, Users, PawPrint, BarChart3 } from 'lucide-react'
 import { APP_HOST } from '../siteConfig'
 import { ease, useResponsiveInView, getCardViewport } from '../animations/variants'
@@ -86,43 +87,29 @@ export default function SolutionSection() {
                             style={{ background: 'linear-gradient(225deg, var(--color-terracotta), var(--color-sage))', transition: 'background 0.6s ease' }}
                         />
 
-                        {/* MacBook */}
-                        <div className="relative">
-                            {/* Bezel */}
-                            <div className="bg-[#1a1208] rounded-t-[18px] px-[3.5%] pt-[3%] shadow-2xl shadow-black/50 border border-white/5">
-                                <div className="rounded-t-xl overflow-hidden">
-                                    {/* Browser chrome */}
-                                    <div className="bg-cream-warm px-3 py-2 flex items-center gap-2 border-b border-sand/30">
-                                        <div className="flex gap-1.5 shrink-0">
-                                            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-terracotta/60" />
-                                            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-sage/60" />
-                                            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-sand" />
-                                        </div>
-                                        <div className="flex-1 mx-2">
-                                            <div className="bg-white rounded px-2 py-0.5 text-[8px] sm:text-[9px] text-taupe/50 border border-sand/30 truncate max-w-[180px]">
-                                                {APP_HOST}/agendamentos
-                                            </div>
-                                        </div>
+                        {/* Notebook */}
+                        <LaptopFrame shadow="0 4cqw 9cqw -3cqw rgba(0,0,0,0.7)">
+                            <div className="bg-cream-warm px-3 py-1.5 flex items-center gap-2 border-b border-sand/30">
+                                <div className="flex gap-1.5 shrink-0">
+                                    <div className="w-2 h-2 rounded-full bg-terracotta/60" />
+                                    <div className="w-2 h-2 rounded-full bg-sage/60" />
+                                    <div className="w-2 h-2 rounded-full bg-sand" />
+                                </div>
+                                <div className="flex-1 mx-2">
+                                    <div className="bg-white rounded px-2 py-0.5 text-[8px] sm:text-[9px] text-taupe/50 border border-sand/30 truncate max-w-[180px]">
+                                        {APP_HOST}/agendamentos
                                     </div>
-                                    <img
-                                        src="/prints/v2/app/agendamentos-lista.webp"
-                                        width={1600}
-                                        height={960}
-                                        alt={t('solution.listAlt')}
-                                        className="w-full h-auto block"
-                                        loading="lazy"
-                                    />
                                 </div>
                             </div>
-                            {/* Webcam notch */}
-                            <div className="bg-[#1a1208] h-3 flex items-center justify-center border-x border-white/5">
-                                <div className="w-6 h-[3px] rounded-full bg-black/40" />
-                            </div>
-                            {/* Dobradiça */}
-                            <div className="h-[4px] bg-black/40" />
-                            {/* Base */}
-                            <div className="bg-[#151009] h-4 sm:h-5 rounded-b-xl mx-[1.5%] border border-white/5" />
-                        </div>
+                            <img
+                                src="/prints/v2/app/agendamentos-lista.webp"
+                                width={1600}
+                                height={960}
+                                alt={t('solution.listAlt')}
+                                className="w-full h-auto block"
+                                loading="lazy"
+                            />
+                        </LaptopFrame>
 
                         {/* Phone mockup flutuando */}
                         <motion.div
@@ -132,30 +119,16 @@ export default function SolutionSection() {
                             transition={{ delay: isMobile ? 0.1 : 0.45, type: 'spring', damping: 16, stiffness: 120 }}
                             className="absolute bottom-0 -right-3 sm:-right-5 rotate-[3deg] z-10"
                         >
-                            <div
-                                className="relative p-[7px] shadow-2xl shadow-black/60"
-                                style={{ background: '#100b09', borderRadius: '28px', width: 'clamp(84px, 20vw, 116px)' }}
-                            >
-                                {/* Dynamic island */}
-                                <div
-                                    className="absolute left-1/2 -translate-x-1/2 rounded-full z-10"
-                                    style={{ background: '#100b09', top: '11px', width: '44%', height: '12px' }}
+                            <PhoneFrame style={{ width: 'clamp(90px, 22vw, 128px)' }} shadow="0 5cqw 10cqw -3cqw rgba(0,0,0,0.75)">
+                                <img
+                                    src="/prints/v2/app/mobile/agendamentos.webp"
+                                    width={900}
+                                    height={1948}
+                                    alt={t('solution.mobileAlt')}
+                                    className="w-full h-auto block"
+                                    loading="lazy"
                                 />
-                                <div className="overflow-hidden" style={{ borderRadius: '22px' }}>
-                                    <img
-                                        src="/prints/v2/app/mobile/agendamentos.webp"
-                                        width={900}
-                                        height={1948}
-                                        alt={t('solution.mobileAlt')}
-                                        className="w-full h-auto block"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                {/* Botões laterais */}
-                                <div className="absolute -right-[3px] top-14 w-[3px] h-7 rounded-r-sm" style={{ background: '#100b09' }} />
-                                <div className="absolute -left-[3px] top-10 w-[3px] h-4 rounded-l-sm" style={{ background: '#100b09' }} />
-                                <div className="absolute -left-[3px] top-16 w-[3px] h-4 rounded-l-sm" style={{ background: '#100b09' }} />
-                            </div>
+                            </PhoneFrame>
                         </motion.div>
                     </motion.div>
                 </div>
