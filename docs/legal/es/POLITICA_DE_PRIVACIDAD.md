@@ -1,6 +1,6 @@
 # Política de privacidad — Petzara
 
-**Última actualización del original en portugués:** 13/11/2026
+**Última actualización del original en portugués:** 22/11/2026
 
 ---
 
@@ -114,7 +114,7 @@ Podemos compartir datos con proveedores que actúan en nuestro nombre o como par
 | **Autenticación** | **Google** — inicio de sesión OAuth cuando está habilitado |
 | **Correo electrónico** | **Resend** (o un proveedor equivalente) — envío de mensajes transaccionales |
 | **Monitoreo de errores** | **Sentry** — diagnóstico de fallas y rendimiento |
-| **Medición del sitio (solo con consentimiento)** | **Google Analytics 4** y **Meta Pixel** — audiencia y campañas del sitio petzara.app (ver la sección 8.4) |
+| **Medición del sitio (solo con consentimiento)** | **Google Analytics 4**, la **etiqueta de Google Ads** y **Meta Pixel** — audiencia y campañas del sitio petzara.app (ver las secciones 8.4 y 8.5) |
 | **Alojamiento y base de datos** | Proveedores de nube donde se alojan la aplicación y **MongoDB** |
 | **Orden judicial o requerimiento legal** | Autoridades, cuando sea obligatorio |
 
@@ -138,9 +138,9 @@ En esos casos, adoptamos las medidas previstas en la LGPD (arts. 33 a 36), como 
 
 **8.3** El uso de **"Iniciar sesión con Google"** está sujeto a las políticas de cookies y privacidad de **Google**.
 
-**8.4** En el **sitio institucional** (petzara.app) podemos utilizar herramientas de terceros de **medición de audiencia** y de **publicidad** — **Google Analytics 4** (Google) y **Meta Pixel** (Meta Platforms) — para entender cómo se usa el sitio (páginas vistas, clics en "crear cuenta", "WhatsApp" y "Google Play") y medir campañas. Estas herramientas **solo se cargan después de tu consentimiento** en el aviso de cookies ("Aceptar"). Si haces clic en "Rechazar", no se cargan. Tu elección queda guardada en el almacenamiento local del navegador y puede cambiarse en cualquier momento en **"Preferencias de cookies"**, en el pie de página del sitio. Base legal: **consentimiento** (art. 7, I, de la LGPD). Los datos recopilados por estas herramientas también se tratan conforme a las políticas de Google y de Meta, y pueden procesarse fuera de Brasil (ver la sección 7).
+**8.4** En el **sitio institucional** (petzara.app) podemos utilizar herramientas de terceros de **medición de audiencia** y de **publicidad** — **Google Analytics 4** y la **etiqueta de Google Ads** (Google) y **Meta Pixel** (Meta Platforms) — para entender cómo se usa el sitio (páginas vistas, clics en "crear cuenta", "WhatsApp" y "Google Play") y medir campañas. Estas herramientas **solo se cargan después de tu consentimiento** en el aviso de cookies ("Aceptar"). Si haces clic en "Rechazar", no se cargan. Tu elección queda guardada en el almacenamiento local del navegador y puede cambiarse en cualquier momento en **"Preferencias de cookies"**, en el pie de página del sitio. Base legal: **consentimiento** (art. 7, I, de la LGPD). Los datos recopilados por estas herramientas también se tratan conforme a las políticas de Google y de Meta, y pueden procesarse fuera de Brasil (ver la sección 7).
 
-**8.5** El **sistema** (app.petzara.app) y la **aplicación Android** no utilizan cookies publicitarias para la elaboración de perfiles de marketing.
+**8.5** El **sistema** (app.petzara.app) y la **aplicación Android** no utilizan cookies publicitarias para la elaboración de perfiles de marketing. Hay una única excepción de medición, que depende del consentimiento dado en el sitio: si llegaste al sitio por un anuncio de Google **y aceptaste las cookies** (sección 8.4), la etiqueta de Google Ads guarda el identificador de ese clic en una cookie del dominio petzara.app; al **completar el registro** en app.petzara.app, informamos a Google Ads de que ese clic resultó en un registro. No enviamos tu nombre, correo, teléfono ni datos de tu pet shop en ese aviso. Si rechazaste las cookies en el sitio, o no llegaste por un anuncio, la etiqueta de Google Ads no se carga en el sistema.
 
 **8.6** Además, el sitio petzara.app tiene una **medición propia de visitas, sin cookies**, para saber cuántas visitas trae cada canal (anuncios, buscadores, redes sociales) y cuántas terminan en un clic en "crear cuenta", "WhatsApp" o en las tiendas de aplicaciones. Solo registra: la página vista, el idioma, el sitio de origen (solo la dirección, por ejemplo google.com), los parámetros de campaña de la URL (utm), si la visita vino de un anuncio de Google (sí/no, sin el identificador del clic), el tipo de dispositivo y el sistema (por ejemplo, celular Android), los botones pulsados y los videos reproducidos en el sitio, vinculados a un número aleatorio de sesión que queda solo en la pestaña abierta del navegador (sessionStorage) y se descarta al cerrarla. **No registra** la dirección IP, cookies, nombre, correo electrónico ni ningún dato que te identifique; los datos se usan solo como cifras agregadas en el panel interno de Petzara y se eliminan en un plazo de hasta 400 días. Base legal: **interés legítimo** (art. 7, IX, de la LGPD) en medir el rendimiento del propio sitio y de los anuncios.
 
