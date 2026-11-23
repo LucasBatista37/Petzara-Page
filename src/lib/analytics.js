@@ -1,12 +1,17 @@
 /**
- * Medição do site (L1) — GA4 + Meta Pixel, sem dependências.
+ * Medição do site (L1) — GA4 + tag do Google Ads + Meta Pixel, sem dependências.
  *
  * Regras (LGPD):
  * - Nada é carregado sem consentimento explícito ("Aceitar" na faixa de cookies).
  * - Cada ferramenta só carrega se a variável de ambiente existir no build:
  *     VITE_GA4_ID         (ex.: G-XXXXXXXXXX)
+ *     VITE_GOOGLE_ADS_ID  (ex.: AW-XXXXXXXXXXX)
  *     VITE_META_PIXEL_ID  (ex.: 123456789012345)
- * - Sem nenhuma das duas, a faixa nem aparece (o site não usa cookies de medição).
+ * - Sem nenhuma delas, a faixa nem aparece (o site não usa cookies de medição).
+ *
+ * Tag do Google Ads (conta 756-817-4864): com o consentimento, a tag guarda o clique do anúncio num
+ * cookie próprio de .petzara.app (_gcl_aw). O cadastro acontece em app.petzara.app, que lê esse cookie
+ * e só então avisa o Google Ads da conversão — quem recusou os cookies aqui não é medido lá.
  *
  * Eventos:
  * - GA4: click_signup, click_whatsapp, click_play, click_app_store, view_pricing
@@ -26,14 +31,16 @@ import { siteCta } from './siteStats'
 // IDs públicos (aparecem no HTML de qualquer site que os usa). A variável da Vercel, se existir, tem prioridade.
 // GA4: propriedade "Petzara — site", fluxo petzara.app (criado em 16/10/2026).
 const GA4_DEFAULT = 'G-QZ53SEKZ7L'
+const ADS_DEFAULT = 'AW-18445564611'
 const PIXEL_DEFAULT = ''
 const GA4_ID = (import.meta.env.VITE_GA4_ID || GA4_DEFAULT).trim()
+const ADS_ID = (import.meta.env.VITE_GOOGLE_ADS_ID || ADS_DEFAULT).trim()
 const PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID || PIXEL_DEFAULT).trim()
 
 export const CONSENT_KEY = 'pz_cookie_consent'
 export const CONSENT_EVENT = 'pz:consent-change'
 
-export const analyticsConfigured = Boolean(GA4_ID || PIXEL_ID)
+export const analyticsConfigured = Boolean(GA4_ID || ADS_ID || PIXEL_ID)
 
 let loaded = false
 let siteLanguage = 'pt-BR'
@@ -78,14 +85,17 @@ function injectScript(src) {
     document.head.appendChild(s)
 }
 
-function loadGA4() {
+/** Uma tag do Google (gtag.js) só, servindo o GA4 e o Google Ads. */
+function loadGoogleTag() {
     window.dataLayer = window.dataLayer || []
     window.gtag = function gtag() { window.dataLayer.push(arguments) }
     window.gtag('js', new Date())
     // page_view inicial automático; mudanças de rota do SPA são medidas pela
     // "medição otimizada" do GA4 (eventos de histórico do navegador), ligada por padrão.
-    window.gtag('config', GA4_ID, { site_language: siteLanguage })
-    injectScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`)
+    if (GA4_ID) window.gtag('config', GA4_ID, { site_language: siteLanguage })
+    // Google Ads: guarda o clique do anúncio (cookie _gcl_aw em .petzara.app) para o cadastro contar como conversão.
+    if (ADS_ID) window.gtag('config', ADS_ID)
+    injectScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID || ADS_ID)}`)
 }
 
 function loadPixel() {
@@ -109,7 +119,7 @@ export function loadAnalytics() {
     if (loaded || !analyticsConfigured || typeof window === 'undefined') return
     if (getConsent() !== 'accepted') return
     loaded = true
-    if (GA4_ID) loadGA4()
+    if (GA4_ID || ADS_ID) loadGoogleTag()
     if (PIXEL_ID) loadPixel()
 }
 

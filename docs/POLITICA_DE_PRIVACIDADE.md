@@ -1,6 +1,6 @@
 # Política de Privacidade — Petzara
 
-**Última atualização:** 13/11/2026
+**Última atualização:** 22/11/2026
 
 ---
 
@@ -114,7 +114,7 @@ Podemos compartilhar dados com prestadores que atuam em nosso nome ou como parte
 | **Autenticação** | **Google** — login OAuth quando habilitado |
 | **E-mail** | **Resend** (ou provedor equivalente) — envio de mensagens transacionais |
 | **Monitoramento de erros** | **Sentry** — diagnóstico de falhas e desempenho |
-| **Medição do site (só com consentimento)** | **Google Analytics 4** e **Meta Pixel** — audiência e campanhas do site petzara.app (ver seção 8.4) |
+| **Medição do site (só com consentimento)** | **Google Analytics 4**, **tag do Google Ads** e **Meta Pixel** — audiência e campanhas do site petzara.app (ver seções 8.4 e 8.5) |
 | **Hospedagem e banco de dados** | Provedores de nuvem onde a aplicação e o **MongoDB** são hospedados |
 | **Ordem judicial ou requisição legal** | Autoridades, quando obrigatório |
 
@@ -138,9 +138,9 @@ Nesses casos, adotamos medidas previstas na LGPD (arts. 33 a 36), como **cláusu
 
 **8.3** O uso de **“Entrar com Google”** está sujeito às políticas de cookies e privacidade da **Google**.
 
-**8.4** No **site institucional** (petzara.app) podemos usar ferramentas de **medição de audiência** e de **anúncios** de terceiros — **Google Analytics 4** (Google) e **Meta Pixel** (Meta Platforms) — para entender como o site é usado (páginas vistas, cliques em "criar conta", "WhatsApp" e "Google Play") e medir campanhas. Essas ferramentas **só são carregadas depois do seu consentimento** na faixa de cookies ("Aceitar"). Se você clicar em "Recusar", elas não são carregadas. Sua escolha fica guardada no armazenamento local do navegador e pode ser alterada a qualquer momento em **"Preferências de cookies"**, no rodapé do site. Base legal: **consentimento** (art. 7º, I, da LGPD). Os dados coletados por essas ferramentas são tratados também conforme as políticas da Google e da Meta, podendo ser processados fora do Brasil (ver seção 7).
+**8.4** No **site institucional** (petzara.app) podemos usar ferramentas de **medição de audiência** e de **anúncios** de terceiros — **Google Analytics 4** e a **tag do Google Ads** (Google) e **Meta Pixel** (Meta Platforms) — para entender como o site é usado (páginas vistas, cliques em "criar conta", "WhatsApp" e "Google Play") e medir campanhas. Essas ferramentas **só são carregadas depois do seu consentimento** na faixa de cookies ("Aceitar"). Se você clicar em "Recusar", elas não são carregadas. Sua escolha fica guardada no armazenamento local do navegador e pode ser alterada a qualquer momento em **"Preferências de cookies"**, no rodapé do site. Base legal: **consentimento** (art. 7º, I, da LGPD). Os dados coletados por essas ferramentas são tratados também conforme as políticas da Google e da Meta, podendo ser processados fora do Brasil (ver seção 7).
 
-**8.5** O **sistema** (app.petzara.app) e o **aplicativo Android** não usam cookies de publicidade para perfilagem de marketing.
+**8.5** O **sistema** (app.petzara.app) e o **aplicativo Android** não usam cookies de publicidade para perfilagem de marketing. Há uma única exceção de medição, que depende do consentimento dado no site: se você chegou ao site por um anúncio do Google **e aceitou os cookies** (seção 8.4), a tag do Google Ads guarda o identificador daquele clique em um cookie do domínio petzara.app; ao **concluir o cadastro** em app.petzara.app, informamos ao Google Ads que aquele clique resultou em um cadastro. Não enviamos nome, e-mail, telefone nem dados do seu pet shop nesse aviso. Quem recusou os cookies no site, ou não veio de um anúncio, não tem a tag do Google Ads carregada no sistema.
 
 **8.6** Além disso, o site petzara.app tem uma **medição própria de visitas, sem cookies**, para sabermos quantas visitas cada canal traz (anúncios, buscadores, redes sociais) e quantas terminam em um clique em "criar conta", "WhatsApp" ou nas lojas de aplicativos. Ela grava apenas: a página vista, o idioma, o site de origem (só o endereço, por exemplo google.com), os parâmetros de campanha da URL (utm), se a visita veio de um anúncio do Google (sim/não, sem o identificador do clique), o tipo de aparelho e o sistema (por exemplo, celular Android), os botões clicados e os vídeos assistidos no site, ligados a um número aleatório de sessão que fica só na aba aberta do navegador (sessionStorage) e é descartado ao fechá-la. **Não grava** endereço IP, cookies, nome, e-mail ou qualquer dado que identifique você, e os dados são usados apenas em números agregados no painel interno da Petzara, apagados em até 400 dias. Base legal: **legítimo interesse** (art. 7º, IX, da LGPD) em medir o desempenho do próprio site e dos anúncios.
 

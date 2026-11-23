@@ -1,6 +1,6 @@
 # Privacy Policy — Petzara
 
-**Last updated (Portuguese original):** 11/13/2026
+**Last updated (Portuguese original):** 11/22/2026
 
 ---
 
@@ -114,7 +114,7 @@ We may share data with providers acting on our behalf or as part of the service 
 | **Authentication** | **Google** — OAuth login when enabled |
 | **Email** | **Resend** (or an equivalent provider) — sending transactional messages |
 | **Error monitoring** | **Sentry** — failure and performance diagnostics |
-| **Website analytics (only with consent)** | **Google Analytics 4** and **Meta Pixel** — audience and campaigns for the petzara.app website (see section 8.4) |
+| **Website analytics (only with consent)** | **Google Analytics 4**, the **Google Ads tag** and **Meta Pixel** — audience and campaigns for the petzara.app website (see sections 8.4 and 8.5) |
 | **Hosting and database** | Cloud providers where the application and **MongoDB** are hosted |
 | **Court order or legal request** | Authorities, when required |
 
@@ -138,9 +138,9 @@ In these cases, we adopt the measures provided for in the LGPD (Articles 33 to 3
 
 **8.3** Use of **"Sign in with Google"** is subject to **Google's** cookie and privacy policies.
 
-**8.4** On the **company website** (petzara.app) we may use third-party **audience measurement** and **advertising** tools — **Google Analytics 4** (Google) and **Meta Pixel** (Meta Platforms) — to understand how the site is used (page views, clicks on "create account", "WhatsApp" and "Google Play") and to measure campaigns. These tools **are only loaded after you consent** in the cookie banner ("Accept"). If you click "Decline", they are not loaded. Your choice is saved in the browser's local storage and can be changed at any time under **"Cookie preferences"** in the site footer. Legal basis: **consent** (Article 7, I, of the LGPD). Data collected by these tools is also processed under Google's and Meta's policies and may be processed outside Brazil (see section 7).
+**8.4** On the **company website** (petzara.app) we may use third-party **audience measurement** and **advertising** tools — **Google Analytics 4** and the **Google Ads tag** (Google) and **Meta Pixel** (Meta Platforms) — to understand how the site is used (page views, clicks on "create account", "WhatsApp" and "Google Play") and to measure campaigns. These tools **are only loaded after you consent** in the cookie banner ("Accept"). If you click "Decline", they are not loaded. Your choice is saved in the browser's local storage and can be changed at any time under **"Cookie preferences"** in the site footer. Legal basis: **consent** (Article 7, I, of the LGPD). Data collected by these tools is also processed under Google's and Meta's policies and may be processed outside Brazil (see section 7).
 
-**8.5** The **system** (app.petzara.app) and the **Android app** do not use advertising cookies for marketing profiling.
+**8.5** The **system** (app.petzara.app) and the **Android app** do not use advertising cookies for marketing profiling. There is a single measurement exception, which depends on the consent given on the website: if you reached the website through a Google ad **and accepted cookies** (section 8.4), the Google Ads tag stores the identifier of that click in a cookie on the petzara.app domain; when you **complete sign-up** on app.petzara.app, we tell Google Ads that the click resulted in a sign-up. We do not send your name, email, phone number or any pet shop data in that notice. If you declined cookies on the website, or did not come from an ad, the Google Ads tag is not loaded in the system.
 
 **8.6** In addition, the petzara.app website has its **own cookie-free visit measurement**, so we know how many visits each channel brings (ads, search engines, social networks) and how many end with a click on "create account", "WhatsApp" or the app stores. It records only: the page viewed, the language, the referring site (just the address, e.g. google.com), the campaign parameters in the URL (utm), whether the visit came from a Google ad (yes/no, without the click identifier), the device type and operating system (e.g. Android phone), the buttons clicked and the videos played on the site, linked to a random session number that stays only in the open browser tab (sessionStorage) and is discarded when the tab is closed. It **does not record** IP addresses, cookies, name, email or any data that identifies you; the data is used only as aggregated numbers in Petzara's internal dashboard and deleted within 400 days. Legal basis: **legitimate interest** (Article 7, IX, of the LGPD) in measuring the performance of our own website and ads.
 
