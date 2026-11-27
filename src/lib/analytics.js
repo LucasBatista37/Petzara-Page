@@ -16,6 +16,7 @@
  * Eventos:
  * - GA4: click_signup, click_whatsapp, click_play, click_app_store, view_pricing
  * - Pixel: Lead (cadastro, Play e App Store), Contact (WhatsApp) + PageView
+ * - Google Ads: os mesmos cliques viram conversão (WhatsApp, Criar conta, Play/App Store) — adsConversions.js
  * Os cliques são capturados por um único listener no documento, pelo destino do link,
  * então qualquer link novo para cadastro/WhatsApp/Play/App Store já é medido.
  *
@@ -27,6 +28,7 @@
  */
 
 import { siteCta } from './siteStats'
+import { reportAdsClick } from './adsConversions'
 
 // IDs públicos (aparecem no HTML de qualquer site que os usa). A variável da Vercel, se existir, tem prioridade.
 // GA4: propriedade "Petzara — site", fluxo petzara.app (criado em 16/10/2026).
@@ -136,6 +138,8 @@ export function track(name, params = {}) {
     try {
         const withLanguage = { site_language: siteLanguage, ...params }
         if (GA4_ID && window.gtag) window.gtag('event', name, withLanguage)
+        // Google Ads: cliques em WhatsApp, Criar conta e lojas viram conversão (sem os parâmetros acima).
+        if (ADS_ID && window.gtag) reportAdsClick(name, { adsId: ADS_ID, gtag: window.gtag })
         const px = PIXEL_EVENT[name]
         if (PIXEL_ID && window.fbq && px) window.fbq('track', px, { content_name: name, ...withLanguage })
     } catch { /* medição nunca pode quebrar o site */ }
